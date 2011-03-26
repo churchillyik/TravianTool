@@ -1,0 +1,219 @@
+﻿// global const
+tribelist=Auto,Romans,Teutons,Gauls
+typelist=ResField,Building,Destroy,Attack,Defence,Research,Party,Transfer,NpcTrade
+// main form
+username=Username
+server=Server
+tribe=Tribe
+accmanager=Account Manager
+// main form context menu account
+loginnoacc=&Login
+loginacc=&Login: 
+loginaccs=&Login these
+loginall=L&ogin all
+addacc=&Add account
+editacc=&Edit account
+delacc=&Delete account
+// main form message
+repeatlogin=Repeat login: 
+
+// main frame
+villagebuilding=Village Develop
+event=Events
+log=Log
+// tab village building tab
+villagestatus=Building Status
+upgradestatus=Upgrade Status
+// list view villages
+vid=VID
+qcount=Q
+vname=VName
+coord=Coord
+// list view building
+bid=BID
+gname=Building
+lefttimetobuild=Left time
+available=Available
+// list view inbuilding
+ibtype=Type
+ibitem=Item and time
+// list view queue
+qtype=Type
+status=Status
+qdelay=Delay
+// list view upgrade
+troopname=Troop
+research=Research
+offence=Attack
+defence=Defence
+finished=Finished
+notavailable=N/A
+upgrading=Upgrading
+// list view event
+trigger=Trigger conditions
+action=Actions
+// context menu village
+refresh=&Refresh this village
+cmbup=&Add to queue
+cmpupmulti=Upgrade m&ultiple times
+cmpup2=Upgrade &2 times
+cmpup5=Upgrade &5 times
+cmpup9=Upgrade &9 times
+cmpupto=Upgrade to specified &level...
+cmpdestroy=&Destroy
+cmbnew=&New building
+cmbai=&Enable AI module
+// context menu queue
+cmqedit=&Edit
+cmqdel=&Delete
+cmqclear=&Clear
+cmqup=Move &up
+cmqdown=Move &down
+cmqpause=&Pause
+cmqtimer=Enable countdown &timer
+cmqexport=E&Xport
+cmqimport=&Import
+// message
+reallyclosetext=Still items in queue. Sure to close?
+reallyclosecap=Warning!
+
+// account form
+account= account
+password=Password
+displang=Display Lang
+edit=Edit
+add=Add
+save=Save
+cancel=Cancel
+
+// new building form
+newbuilding=New Building
+building=Building
+position=Position(BID)
+ok=OK
+
+// build to level form
+upgradeto=Upgrade to...
+upgrade=Upgrade
+
+ResourceLowerLimit=&L Minimum Resource
+ResourceUpperLimit=&U Maximum Resource
+snapshot=&Snapshot this village
+snapall=Snapshot &all villages
+
+mresearch=&Research
+upgradeatk=Upgrade &Attack
+upgradeatkto=Upgrade Attack &To...
+upgradedef=Upgrade &Defense
+upgradedefto=Upgrade Defense T&o...
+
+market=Market
+reallyexittext=Sure to close application?
+resamount=Res Amount
+queue=Queue
+mtype=Type
+role=Role
+newtransfer=New &Transfer
+npctrade=N&PC Trade
+merchantcnt=Merchants:
+transfercnt=Repeats(0=inf):
+cmbaic=Based on &current amount
+cmbail=Based on resource field &level
+transfer=Transfer
+merchantsformat={0}/{1} merchants
+unprocessedqueue=Unprocessed queue item found, load them into queue list?
+villagelist=Village List
+resourceshow=Resource Status
+inbuilding=In-working task
+autonormalizetarget=Nml target village
+autonormalizeme=Nml this village
+uniformdistribution=Uniform distrib
+noautonormalize=No normalize
+nocrop=No crop
+MyResource=Source
+TargetResource=Target
+
+// Transfer timing form
+Timing=Timing
+ActionTiming=Action timing
+ImmediateAction=Start action immediately
+DelayedAction=Start action at:
+ActionArriveAt=Estimated arrival time:
+ActionInterval=Minimum interval:
+Minutes=Minutes
+
+// resource limit form
+ResourceLimit=Resource Limits
+lowerlimit=Minimum resource amount to enable outgoing transportation
+upperlimit=Maximum resource amount to enable incoming transportation
+
+// NPC trade form
+NpcTradeSetting=NPC Trade
+NpcTradeThreshold=Start trading after exceeding the following thresholds:
+NpcTradeDistribution=Resource allocation ratio:
+NpcTradeMinRatio=Min. trade ratio:
+NpcTradeMaxCount=Repeats(0=inf):
+
+cmbparty=Enable &Party module
+cmbparty500=&500 Small celebrations
+cmbparty2000=&2000 Great celebrations
+
+refreshbuilding=Re&fresh building list
+refreshdestroy=Refres&h destroy item
+refreshupgrade=Re&fresh research list
+refreshtroop=Refresh &troop list
+cmicancel=&Cancel
+
+// Queue import/export dialogs
+ExportTaskQueue=Export Task Queue
+ImportTaskQueue=Import Task Queue
+
+// troop
+troopinfo=Troop info
+troopamount=Troop amount
+trooptype=Troop type
+
+// quick panel
+QPParty=Enable &Party module
+QPAILevel=Enable &level based AI module
+QPUpTop=&Upgrade to top level
+QPRefreshRes=&R. Refresh resources/market info
+
+nolimit=No limit
+
+CMBEnableCoin=Enable &Coin function <FIXME>
+enabled= (Enabled)
+
+autonormalizemetime=Nml this village (Time)
+forcetransfer=Skip full check
+CMBProduceTroop=Pr&oduce troops
+CMBRaid=&Send troops
+vres=Res
+newcap=Refresh &Capital Information
+showallarmy=Show &All Army
+Great=Great barracks&&Great stable or Palace
+TResourceLimit=Resource LowerLimit of Producing Troop
+TResLimit=&Troop Resource
+Rename=Re&name Village
+Settlers=Settlers
+raidtypelist=Reinforcement,Attack: Normal,Attack: Raid,Scout: resources&troops,Scout: defences&troops,None,Random
+raidtype=Attack Type
+katatarget=Target
+SendTroops=Send Troops
+Description=Description
+saveRES=&Export Resource Limit
+restoreRES=&Import Resource Limit
+refreshall=Refresh A&ll Villages
+deleteVillage=&Delete Village
+//alarm
+CMBAlarm=&Warning
+mailsender=mail sender
+mailuser=account:
+mailpass=password：
+smtpserver=smtp Server：
+serverport=port：
+recvsettings=Receive Settings
+recvaccounts=receive accounts（seperated by comma）：
+trustfuluser=trustful(no alarm)：
+//by Churchill
+findoasis=&O. FindOasis(Cost much time)

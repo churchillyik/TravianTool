@@ -1,0 +1,24 @@
+D:\stran\libTravian\bin\Debug\LICENSE - MPL-1.1.txt
+D:\stran\libTravian\bin\Debug\libTravian.dll
+D:\stran\libTravian\bin\Debug\libTravian.pdb
+D:\stran\libTravian\bin\Debug\json.dll
+D:\stran\libTravian\bin\Debug\json.pdb
+D:\stran\libTravian\obj\Debug\ResolveAssemblyReference.cache
+D:\stran\libTravian\obj\Debug\libTravian.dll
+D:\stran\libTravian\obj\Debug\libTravian.pdb
+D:\Resources\stran\libTravian\bin\Debug\LICENSE - MPL-1.1.txt
+D:\Resources\stran\libTravian\bin\Debug\libTravian.dll
+D:\Resources\stran\libTravian\bin\Debug\libTravian.pdb
+D:\Resources\stran\libTravian\bin\Debug\json.dll
+D:\Resources\stran\libTravian\bin\Debug\json.pdb
+D:\Resources\stran\libTravian\obj\Debug\ResolveAssemblyReference.cache
+D:\Resources\stran\libTravian\obj\Debug\libTravian.dll
+D:\Resources\stran\libTravian\obj\Debug\libTravian.pdb
+E:\Resources\stran\libTravian\bin\Debug\LICENSE - MPL-1.1.txt
+E:\Resources\stran\libTravian\bin\Debug\libTravian.dll
+E:\Resources\stran\libTravian\bin\Debug\libTravian.pdb
+E:\Resources\stran\libTravian\bin\Debug\json.dll
+E:\Resources\stran\libTravian\bin\Debug\json.pdb
+E:\Resources\stran\libTravian\obj\Debug\ResolveAssemblyReference.cache
+E:\Resources\stran\libTravian\obj\Debug\libTravian.dll
+E:\Resources\stran\libTravian\obj\Debug\libTravian.pdb

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{935028A9-A233-4FFE-8FC6-37C34847A0F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>libTravian</RootNamespace>
+    <AssemblyName>libTravian</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\yip\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Combat|AnyCPU' ">
+    <OutputPath>bin\Combat\</OutputPath>
+    <DefineConstants>DEBUG;COMBAT</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DBCenter.cs" />
+    <Compile Include="HtmlUtility.cs" />
+    <Compile Include="Level1\Data.cs" />
+    <Compile Include="Level1\Debug.cs" />
+    <Compile Include="Level1\ExtendMethod.cs" />
+    <Compile Include="Level1\Login.cs" />
+    <Compile Include="Level1\NewParser.cs" />
+    <Compile Include="Level1\RemoteCtrl.cs" />
+    <Compile Include="Level1\Statistics.cs" />
+    <Compile Include="Level2\Actions.cs" />
+    <Compile Include="Level2\Cancel.cs" />
+    <Compile Include="Level2\FetchVillages.cs" />
+    <Compile Include="DisplayLang.cs" />
+    <Compile Include="Level3\Interface.cs" />
+    <Compile Include="Queue\AIQueue.cs" />
+    <Compile Include="Queue\AlarmQueue.cs" />
+    <Compile Include="Queue\AttackQueue.cs" />
+    <Compile Include="Queue\BuildingQueue.cs" />
+    <Compile Include="Queue\DestroyQueue.cs" />
+    <Compile Include="Queue\IQueue.cs" />
+    <Compile Include="Queue\NpcTradeQueue.cs" />
+    <Compile Include="Queue\PartyQueue.cs" />
+    <Compile Include="Queue\ProduceTroopQueue.cs" />
+    <Compile Include="Queue\RaidQueue.cs" />
+    <Compile Include="Queue\ResearchQueue.cs" />
+    <Compile Include="Queue\TransferQueue.cs" />
+    <Compile Include="ServerLang.cs" />
+    <Compile Include="Structure\Structure.cs" />
+    <Compile Include="Structure\TResAmount.cs" />
+    <Compile Include="Structure\TVillage.cs" />
+    <Compile Include="Structure\TPoint.cs" />
+    <Compile Include="Travian.cs">
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Level1\FetchPage.cs">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE - MPL-1.1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\json\json.csproj">
+      <Project>{F5C0EADF-AC62-4D68-9F2D-98F5C8D5DABF}</Project>
+      <Name>json</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

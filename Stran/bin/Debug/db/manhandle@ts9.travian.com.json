@@ -1,0 +1,421 @@
+
+{
+  "Cookie" : "T3E=%3DEDO3IWO2YWMlljOzgjM3IjMyojNyQTNxojMxYjMwETMwMTM6AjOyMGMxQjM5QGMwoTZsRmbhhmbh1mOxIzN4IjOwMCMjEjM3gjM",
+  "UserID" : 28721,
+  "MarketSpeed" : 16,
+  "ServerTimeOffset" : -28777,
+  "ActiveDid"        : 47216,
+  "Villages"         : {
+    "47216" : {
+      "ID" : 47216,
+      "X"  : 184,
+      "Y"  : 65,
+      "Name" : "NeverWin",
+      "isCapital" : true,
+      "Sort"      : 0,
+      "Buildings" : {
+        "1" : {
+          "Gid" : 1,
+          "Level" : 9,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "2" : {
+          "Gid" : 4,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "3" : {
+          "Gid" : 1,
+          "Level" : 9,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "4" : {
+          "Gid" : 3,
+          "Level" : 9,
+          "InBuilding" : true,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "5" : {
+          "Gid" : 2,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "6" : {
+          "Gid" : 2,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "7" : {
+          "Gid" : 3,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "8" : {
+          "Gid" : 4,
+          "Level" : 7,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "9" : {
+          "Gid" : 4,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "10" : {
+          "Gid" : 3,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "11" : {
+          "Gid" : 3,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "12" : {
+          "Gid" : 4,
+          "Level" : 7,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "13" : {
+          "Gid" : 4,
+          "Level" : 7,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "14" : {
+          "Gid" : 1,
+          "Level" : 9,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "15" : {
+          "Gid" : 4,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "16" : {
+          "Gid" : 2,
+          "Level" : 8,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "17" : {
+          "Gid" : 1,
+          "Level" : 9,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "18" : {
+          "Gid" : 2,
+          "Level" : 10,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "19" : {
+          "Gid" : 18,
+          "Level" : 1,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "20" : {
+          "Gid" : 10,
+          "Level" : 10,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "21" : {
+          "Gid" : 11,
+          "Level" : 10,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "22" : {
+          "Gid" : 23,
+          "Level" : 10,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "23" : {
+          "Gid" : 17,
+          "Level" : 5,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "24" : {
+          "Gid" : 8,
+          "Level" : 2,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "25" : {
+          "Gid" : 25,
+          "Level" : 10,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "26" : {
+          "Gid" : 15,
+          "Level" : 10,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "29" : {
+          "Gid" : 6,
+          "Level" : 5,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "31" : {
+          "Gid" : 19,
+          "Level" : 1,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "39" : {
+          "Gid" : 16,
+          "Level" : 1,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        },
+        "40" : {
+          "Gid" : 31,
+          "Level" : 0,
+          "InBuilding" : false,
+          "__fullname" : "libTravian.TBuilding"
+        }
+      },
+      "Upgrades"  : {
+        "1" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "2" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "3" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "4" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "5" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "6" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "7" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "8" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "9" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        },
+        "10" : {
+          "CanResearch" : false,
+          "Researched"  : false,
+          "AttackLevel" : -1,
+          "DefenceLevel" : -1,
+          "InUpgrading"  : false,
+          "__fullname"   : "libTravian.TRU"
+        }
+      },
+      "BlacksmithLevel" : 0,
+      "ArmouryLevel"    : 0,
+      "Resource"        : [
+        {
+          "Capacity" : 11800,
+          "Produce"  : 652,
+          "Time"     : 634367282012500000,
+          "Amount"   : 1349,
+          "__fullname" : "libTravian.TResource"
+        },
+        {
+          "Capacity" : 11800,
+          "Produce"  : 697,
+          "Time"     : 634367282012500000,
+          "Amount"   : 1425,
+          "__fullname" : "libTravian.TResource"
+        },
+        {
+          "Capacity" : 11800,
+          "Produce"  : 472,
+          "Time"     : 634367282012500000,
+          "Amount"   : 2537,
+          "__fullname" : "libTravian.TResource"
+        },
+        {
+          "Capacity" : 11800,
+          "Produce"  : 316,
+          "Time"     : 634367282012500000,
+          "Amount"   : 2518,
+          "__fullname" : "libTravian.TResource"
+        }
+      ],
+      "InBuilding"      : [
+        {
+          "ABid" : 4,
+          "Gid"  : 3,
+          "Level" : 9,
+          "FinishTime" : 634367517260156250,
+          "CancelURL"  : "dorf1.php?d=3729932&a=0&c=33bba1",
+          "__fullname" : "libTravian.TInBuilding"
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "Queue"           : [
+      ],
+      "OasisInfo"       : [
+      ],
+      "isVillageInitialized" : 2,
+      "isBuildingInitialized" : 2,
+      "isUpgradeInitialized"  : 2,
+      "isDestroyInitialized"  : 2,
+      "isTroopInitialized"    : 2,
+      "isMarketInitialized"   : 0,
+      "isOasisFoundInitialized" : 0,
+      "RB"                      : [
+        {
+          "ABid" : 4,
+          "Gid"  : 3,
+          "Level" : 8,
+          "FinishTime" : 0,
+          "CancelURL"  : null,
+          "__fullname" : "libTravian.TInBuilding"
+        },
+        null,
+        null,
+        null,
+        null
+      ],
+      "Market"                  : {
+        "SingleCarry" : 500,
+        "ActiveMerchant" : 5,
+        "MaxMerchant"    : 5,
+        "MarketInfo"     : [
+        ],
+        "UpperLimit"     : null,
+        "LowerLimit"     : null,
+        "__fullname"     : "libTravian.TMarket"
+      },
+      "GetAllTroop"             : false,
+      "Troop"                   : {
+        "TournamentLevel" : 0,
+        "ResLimit"        : null,
+        "Troops"          : [
+          {
+            "Tribe" : 1,
+            "Troops" : [
+              9,
+              21,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "TroopType" : 11,
+            "FinishTime" : 0,
+            "Owner"      : "NeverWin",
+            "OwnerVillageZ" : 268920,
+            "OwnerVillageUrl" : "karte.php?d=268920",
+            "VillageName"     : "Own troops",
+            "__fullname"      : "libTravian.TTInfo"
+          },
+          {
+            "Tribe" : 1,
+            "Troops" : [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3,
+              0
+            ],
+            "TroopType" : 12,
+            "FinishTime" : 634368967822500000,
+            "Owner"      : "NeverWin",
+            "OwnerVillageZ" : 268920,
+            "OwnerVillageUrl" : "karte.php?d=268920",
+            "VillageName"     : "Founding a new village (392|350)",
+            "__fullname"      : "libTravian.TTInfo"
+          }
+        ],
+        "__fullname"      : "libTravian.TTroop"
+      },
+      "__fullname"              : "libTravian.TVillage"
+    }
+  },
+  "__fullname"       : "libTravian.Data"
+}

@@ -1,0 +1,7 @@
+﻿gid=Woodcutter,Clay Pit,Iron Mine,Cropland,Sawmill,Brickyard,Iron Foundry,Grain Mill,Bakery,Warehouse,Granary,Blacksmith,Armoury,Tournament square,Main building,Rally point,Marketplace,Embassy,Barracks,Stable,Workshop,Academy,Cranny,Townhall,Residence,Palace,Treasury,Trade office,Great barracks,Great stable,City Wall,Earth Wall,Palisade,Stonemason,Brewery,Trapper,Hero's mansion,Great Warehouse,Great Granary,Wonder Of The World,Horse Drinking Trough
+aid1=Legionnaire,Praetorian,Imperian,Equites Legati,Equites Imperatoris,Equites Caesaris,Battering Ram,Fire Catapult,Senator,Settler,Hero
+aid2=Clubswinger,Spearman,Axeman,Scout,Paladin,Teutonic Knight,Ram,Catapult,Chief,Settler,Hero
+aid3=Phalanx,Swordsman,Pathfinder,Theutates Thunder,Druidrider,Haeduan,Ram,Trebuchet,Chieftain,Settler,Hero
+author=sone
+attack=Attack against
+raid=Raid against

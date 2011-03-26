@@ -1,0 +1,219 @@
+﻿// global const
+tribelist=自動偵測,羅馬,條頓,高盧
+typelist=資源,建築,拆除,攻擊,防禦,研發,派對,運輸,平倉
+// main form
+username=帳號
+server=伺服器
+tribe=種族
+accmanager=帳號管理
+// main form context menu account
+loginnoacc=登入(&L)
+loginacc=登入(&L): 
+loginaccs=登入選取的帳號(&L)
+loginall=登入所有的帳號(&O)
+addacc=新增帳號(&A)
+editacc=編輯帳號(&E)
+delacc=刪除帳號(&D)
+// main form message
+repeatlogin=下列帳號已重覆登入: 
+
+// main frame
+villagebuilding=村莊建設
+event=事件
+log=記錄
+// tab village building tab
+villagestatus=村莊建築
+upgradestatus=研發狀態
+// list view villages
+vid=編號
+qcount=任務
+vname=村莊名稱
+coord=座標
+// list view building
+bid=坑號
+gname=建築名稱
+lefttimetobuild=剩餘時間
+available=已可升級
+// list view inbuilding
+ibtype=項目
+ibitem=建築 等級 剩餘時間→完成時間
+// list view queue
+qtype=類別
+status=狀態
+qdelay=延遲
+// list view upgrade
+troopname=兵種
+research=研究
+offence=攻擊
+defence=防禦
+finished=研發完成
+notavailable=無法研發
+upgrading=正在升級
+// list view event
+trigger=啟動條件
+action=動作
+// context menu village
+refresh=更新目前村莊的資訊(&R)
+cmbup=升級建築 - 一次(&A)
+cmpupmulti=升級建築 - 多次(&U)
+cmpup2=升級 2 次(&2)
+cmpup5=升級 5 次(&5)
+cmpup9=升級 9 次(&9)
+cmpupto=升級建築 - 自訂(&L)
+cmpdestroy=拆除建築(&D)
+cmbnew=新增建築(&N)
+cmbai=自動建設(&E)
+// context menu queue
+cmqedit=編輯(&E)
+cmqdel=刪除(&D)
+cmqclear=清空(&C)
+cmqup=上移(&U)
+cmqdown=下移(&D)
+cmqpause=暫停(&P)
+cmqtimer=保持帳號繼續運作(&T)
+cmqexport=匯出(&X)
+cmqimport=匯入(&I)
+// message
+reallyclosetext=佇列中仍有任務。是否確定關閉視窗?
+reallyclosecap=警告!
+
+// account form
+account=帳號
+password=密碼
+displang=語言
+edit=編輯
+add=新增
+save=儲存
+cancel=取消
+
+// new building form
+newbuilding=新增建築
+building=建築
+position=坑號
+ok=確定
+
+// build to level form
+upgradeto=升級至...
+upgrade=升級
+
+ResourceLowerLimit=運輸下限(&L)
+ResourceUpperLimit=運輸上限(&U)
+snapshot=目前村莊的詳細資訊(&S)
+snapall=全部村莊的詳細資訊(&A)
+
+mresearch=研發(&R)
+upgradeatk=升級攻擊(&A)
+upgradeatkto=升級攻擊至(&T)...
+upgradedef=升級防禦(&D)
+upgradedefto=升級防禦至(&O)...
+
+market=市場運輸
+reallyexittext=是否確定關閉程式?
+resamount=資源量
+queue=任務佇列
+mtype=類型
+role=角色
+newtransfer=新增運輸(&T)
+npctrade=自動平倉(&P)
+merchantcnt=商人數:
+transfercnt=次數(0:無限):
+cmbaic=根據資源儲存量(&C)
+cmbail=根據資源田等級(&L)
+transfer=運輸
+merchantsformat={0}/{1} 個商人
+unprocessedqueue=發現未處理的任務，要加入到佇列中嗎?
+villagelist=村莊列表
+resourceshow=資源狀態
+inbuilding=執行中的工作
+autonormalizetarget=平衡目標資源
+autonormalizeme=平衡本地資源
+uniformdistribution=平均分配資源
+noautonormalize=取消平衡計算
+nocrop=取消運送糧食
+MyResource=本地資源
+TargetResource=目標資源
+
+// transfer timing form
+Timing=定時
+ActionTiming=定時事件
+ImmediateAction=立即執行
+DelayedAction=在下列時間執行:
+ActionArriveAt=事件到達時間:
+ActionInterval=多次事件至少間隔:
+Minutes=分鐘
+
+// resource limit form
+ResourceLimit=資源限制
+lowerlimit=運輸下限: (限制資源運出)
+upperlimit=運輸上限: (限制資源運入)
+
+// NPC trade form
+NpcTradeSetting=自動平倉
+NpcTradeThreshold=啟動條件: (當資源量大於所有設定值)
+NpcTradeDistribution=分配比例: (各種資源將依下列比例重新分配)
+NpcTradeMinRatio=最小資源變動率:
+NpcTradeMaxCount=次數: (0:無限)
+
+cmbparty=自動派對(&P)
+cmbparty500=小型派對(&5)
+cmbparty2000=大型派對(&2)
+
+refreshbuilding=讀取建築資訊(&F)
+refreshdestroy=讀取拆除資訊(&H)
+refreshupgrade=讀取研發資訊(&F)
+refreshtroop=讀取軍隊資訊(&T)
+cmicancel=取消(&C)
+
+// Queue import/export dialogs
+ExportTaskQueue=匯出任務佇列
+ImportTaskQueue=匯入任務佇列
+
+// troop
+troopinfo=軍隊訊息
+troopamount=軍隊數量
+trooptype=軍隊類型
+
+// quick panel
+QPParty=自動派對功能(&P)
+QPAILevel=根據資源田等級自動建設(&L)
+QPUpTop=升至最高等級(&U)
+QPRefreshRes=更新資源及市場(&R)
+
+nolimit=取消限制
+
+CMBEnableCoin=金幣功能(&C)
+enabled=(已啟用)
+
+autonormalizemetime=平衡爆倉時間
+forcetransfer=取消爆倉限制
+CMBProduceTroop=建造軍隊(&O)
+CMBRaid=派遣軍隊(&S)
+vres=資源
+newcap=更新主村的資訊(&C)
+showallarmy=顯示所有軍種(&A)
+Great=大兵營或大馬廄或皇宮(&G)
+TResourceLimit=軍隊建造資源限制
+TResLimit=造軍限制(&T)
+Rename=重新命名村莊(&N)
+Settlers=開拓者
+raidtypelist=增援,攻擊: 正常,攻擊: 搶奪,偵察: 資源&軍隊,偵察: 防禦&軍隊,無,隨機
+raidtype=攻擊類型
+katatarget=投石機目標
+SendTroops=派遣軍隊
+Description=簡單描述
+saveRES=匯出資源限制(&E)
+restoreRES=匯入資源限制(&I)
+refreshall=更新全部村莊的資訊(&L)
+deleteVillage=刪除村莊(&D)
+//alarm
+CMBAlarm=自動警報(&W)
+mailsender=發信設定
+mailuser=帳號:
+mailpass=密碼：
+smtpserver=寄信伺服器：
+serverport=連接埠：
+recvsettings=接收設定
+recvaccounts=接收郵件位址(逗號分隔)：
+trustfuluser=信任帳號(不會報警)：
+//by Churchill
+findoasis=&O. 搜田（會較費時間）

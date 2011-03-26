@@ -1,0 +1,219 @@
+﻿// global const
+tribelist=自动探测,罗马,日尔曼,高卢
+typelist=资源田,建筑,拆除,攻击,防御,研究,活动,运输,平仓
+// main form
+username=用户名
+server=服务器
+tribe=种族
+accmanager=帐号管理
+// main form context menu account
+loginnoacc=&L. 登录
+loginacc=&L. 登录: 
+loginaccs=&L. 登录这些帐号
+loginall=&O. 登录所有帐号
+addacc=&A. 添加帐号
+editacc=&E. 编辑帐号
+delacc=&D. 删除帐号
+// main form message
+repeatlogin=重复登录的帐号: 
+
+// main frame
+villagebuilding=村庄建设
+event=事件
+log=日志
+// tab village building tab
+villagestatus=村庄建筑
+upgradestatus=研发状态
+// list view villages
+vid=ID
+qcount=队列
+vname=村名
+coord=坐标
+// list view building
+bid=坑号
+gname=建筑名
+lefttimetobuild=剩余时间
+available=可升级
+// list view inbuilding
+ibtype=项目
+ibitem=建筑和时间
+// list view queue
+qtype=类别
+status=状态
+qdelay=延迟
+// list view upgrade
+troopname=兵种
+research=研发
+offence=攻击
+defence=防御
+finished=已完成
+notavailable=不可升级
+upgrading=正在升级
+// list view event
+trigger=触发条件
+action=动作
+// context menu village
+refresh=&R. 刷新村庄
+cmbup=&A. 升级建筑 - 添加到队列
+cmpupmulti=&U. 升级建筑 - 多次
+cmpup2=&2. 添加 2 次
+cmpup5=&5. 添加 5 次
+cmpup9=&9. 添加 9 次
+cmpupto=&L. 升级建筑到指定等级...
+cmpdestroy=&D. 拆除建筑
+cmbnew=&N. 新建建筑
+cmbai=&E. 启用人工智能模块
+// context menu queue
+cmqedit=&E. 编辑
+cmqdel=&D. 删除
+cmqclear=&C. 清空
+cmqup=上移
+cmqdown=下移
+cmqpause=&P. 暂停
+cmqtimer=&T. 延迟倒计时正在工作
+cmqexport=&X. 导出
+cmqimport=&I. 导入
+// message
+reallyclosetext=队列中仍有项目。真的要关闭吗？
+reallyclosecap=警告!
+
+// account form
+account=帐号
+password=密码
+displang=显示语言
+edit=编辑
+add=添加
+save=保存
+cancel=取消
+
+// new building form
+newbuilding=新建建筑
+building=建筑
+position=位置
+ok=确定
+
+// build to level form
+upgradeto=升级至…
+upgrade=升级
+
+ResourceLowerLimit=&L. 资源下限
+ResourceUpperLimit=&U. 资源上限
+snapshot=&S. 获取当前村庄快照
+snapall=&A. 获取所有村庄快照
+
+mresearch=&R. 研发
+upgradeatk=&A. 升级攻击
+upgradeatkto=&T. 升级攻击至…
+upgradedef=&D. 升级防御
+upgradedefto=&O. 升级防御至…
+
+market=市场运输
+reallyexittext=真的要关闭程序吗？
+resamount=资源量
+queue=队列
+mtype=运输类型
+role=用途
+newtransfer=&T. 新的运输
+npctrade=&P. 自动平仓
+merchantcnt=商人数:
+transfercnt=次数(0=无限):
+cmbaic=&C. 根据资源储备
+cmbail=&L. 根据资源田等级
+transfer=运输
+merchantsformat={0}/{1} 个商人
+unprocessedqueue=发现未处理的队列项目，要加入到队列列表中吗？
+villagelist=村庄列表
+resourceshow=资源状况
+inbuilding=进行中的任务
+autonormalizetarget=自动平衡目标资源
+autonormalizeme=自动平衡我的资源
+uniformdistribution=平均分配资源
+noautonormalize=无资源平衡计算
+nocrop=不运送粮食
+MyResource=我的资源
+TargetResource=目标资源
+
+// transfer timing form
+Timing=定时
+ActionTiming=定时运输
+ImmediateAction=立即开始
+DelayedAction=于下列时刻开始事件:
+ActionArriveAt=事件到达时间:
+ActionInterval=多次事件至少间隔:
+Minutes=分钟
+
+// resource limit form
+ResourceLimit=资源限制
+lowerlimit=资源下限: (限制资源输出)
+upperlimit=资源上限: (限制资源输入)
+
+// NPC trade form
+NpcTradeSetting=自动平仓
+NpcTradeThreshold=触发条件: (当资源量大于所有阈值后开始平仓)
+NpcTradeDistribution=分配比例: (所有资源将按如下比例重新调整)
+NpcTradeMinRatio=最小置换比例:
+NpcTradeMaxCount=次数(0=无限):
+
+cmbparty=&P. 启用自动派对模块
+cmbparty500=&500 小派对
+cmbparty2000=&2000 大派对
+
+refreshbuilding=&F. 刷新建筑列表
+refreshdestroy=&H. 刷新拆除项目
+refreshupgrade=&F. 刷新研发项目
+refreshtroop=&T. 刷新军队项目
+cmicancel=&C. 取消
+
+// Queue import/export dialogs
+ExportTaskQueue=导出任务队列
+ImportTaskQueue=导入任务队列
+
+// troop
+troopinfo=军队信息
+troopamount=军队数量
+trooptype=军队类型
+
+// quick panel
+QPParty=&P. 自动派对模块
+QPAILevel=&L. 人工智能以资源田等级
+QPUpTop=&U. 升级到最高等级
+QPRefreshRes=&R. 刷新资源/市场情况
+
+nolimit=解除限制
+
+CMBEnableCoin=&C. 允许金币功能
+enabled= (已启用)
+
+autonormalizemetime=自动平衡我的爆仓时间
+forcetransfer=无视爆仓检查
+CMBProduceTroop=&O. 造兵
+CMBRaid=&S. 出兵
+vres=资源
+newcap=&C. 刷新主村
+showallarmy=&A. 显示所有军种
+Great=&G. 大兵营或大马厩或皇宫
+TResourceLimit=军队建造资源限制
+TResLimit=&T. 造军限制
+Rename=&N. 重新命名村庄
+Settlers=开拓者
+raidtypelist=增援,攻击: 普通,攻击: 抢夺,侦察: 资源&军队,侦察: 防御&军队,无,随机
+raidtype=攻击类型
+katatarget=投石机目标
+SendTroops=出兵
+Description=简单描述
+saveRES=&E. 汇出资源限制
+restoreRES=&I. 汇入资源限制
+refreshall=&L. 全部刷新
+deleteVillage=&D. 删除村庄
+//alarm
+CMBAlarm=&W. 报警
+mailsender=邮件服务器设置
+mailuser=发件人：
+mailpass=登录密码：
+smtpserver=服务器：
+serverport=端口：
+recvsettings=接收设置
+recvaccounts=接收地址（逗号分隔）：
+trustfuluser=信任帐号：
+//by Churchill
+findoasis=&O. 搜田（会较费时间）

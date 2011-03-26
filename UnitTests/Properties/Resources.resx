@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConfirmForm" xml:space="preserve">
+    <value>&lt;form method="post" action="a2b.php"&gt;
+	
+	&lt;table id="short_info" cellpadding="1" cellspacing="1"&gt;
+		&lt;tbody&gt;&lt;tr&gt;
+			&lt;th&gt;Destination:&lt;/th&gt;
+			&lt;td&gt;&lt;a href="karte.php?d=538519&amp;amp;c=31"&gt;loazy Village (-154|-272)&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Player:&lt;/th&gt;
+			&lt;td&gt;&lt;a href="spieler.php?uid=96983"&gt;loazy&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;&lt;/tbody&gt;
+	&lt;/table&gt;
+		
+	&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;td&gt;sz&lt;/td&gt;
+				&lt;td colspan="10"&gt;Raiding loazy Village&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody class="units"&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;/td&gt;
+				&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Units&lt;/th&gt;
+				&lt;td&gt;8&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;			&lt;/tr&gt;
+		&lt;/tbody&gt;
+		
+				&lt;tbody class="infos"&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Arrival&lt;/th&gt;
+				&lt;td colspan="10"&gt;
+					&lt;div class="in"&gt;in 0:17:09 hrs.&lt;/div&gt;
+					&lt;div class="at"&gt;at &lt;span id="tp2"&gt;10:59:08&lt;/span&gt;&lt;span&gt; pm&lt;/span&gt;&lt;/div&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;	
+	
+	&lt;input type="hidden" name="timestamp" value="1259379719" /&gt;
+	&lt;input type="hidden" name="timestamp_checksum" value="057e55" /&gt;						
+	&lt;input type="hidden" name="id" value="39" /&gt;
+	&lt;input type="hidden" name="a" value="9225796" /&gt;
+	&lt;input type="hidden" name="c" value="4" /&gt;
+	&lt;input type="hidden" name="kid" value="538519" /&gt;
+	
+	&lt;input type="hidden" name="t1" value="8" /&gt;
+	&lt;input type="hidden" name="t2" value="0" /&gt;
+	&lt;input type="hidden" name="t3" value="0" /&gt;
+	&lt;input type="hidden" name="t4" value="0" /&gt;
+	&lt;input type="hidden" name="t5" value="0" /&gt;
+	&lt;input type="hidden" name="t6" value="0" /&gt;
+	&lt;input type="hidden" name="t7" value="0" /&gt;
+	&lt;input type="hidden" name="t8" value="0" /&gt;
+	&lt;input type="hidden" name="t9" value="0" /&gt;
+	&lt;input type="hidden" name="t10" value="0" /&gt;
+	&lt;input type="hidden" name="t11" value="0" /&gt;
+	
+		
+	
+	&lt;p class="btn"&gt;&lt;input type="image" value="ok" name="s1" id="btn_ok" class="dynamic_img" src="img/x.gif" alt	="OK" /&gt;&lt;/p&gt;
+&lt;/form&gt;</value>
+  </data>
+  <data name="ConfirmResult" xml:space="preserve">
+    <value>&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=540121&amp;c=5c"&gt;sz&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=540119&amp;c=1d"&gt;Raid on Sharledla Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;8&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in small"&gt;in &lt;span id=timer1&gt;0:17:09&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at small"&gt;at 02:25:53&lt;/span&gt;&lt;span&gt; am&lt;/div&gt;&lt;div class="abort"&gt;&lt;a href="build.php?id=39&amp;a=4&amp;t=11168551"&gt;&lt;img src="img/x.gif" class="del" title="cancel" alt="cancel" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;</value>
+  </data>
+  <data name="RallyPointCrazy" xml:space="preserve">
+    <value>&lt;html&gt;
+&lt;body class="v35 ie ie8"&gt;
+&lt;h1&gt;Rally Point &lt;span class="level"&gt;level 3&lt;/span&gt;&lt;/h1&gt;
+&lt;p class="build_desc"&gt;The village's troops meet at the rally point. From here you can send them out to reinforce, raid, or conquer another village.&lt;/p&gt;
+ 
+&lt;div id="textmenu"&gt;
+		&lt;a href="build.php?id=39"&gt;Overview&lt;/a&gt; |
+		&lt;a href="a2b.php"&gt;Send troops&lt;/a&gt; |
+		&lt;a href="warsim.php"&gt;Combat Simulator&lt;/a&gt;&lt;/div&gt;&lt;h4&gt;
+						Incoming troops (7)&lt;/h4&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=217465&amp;c=5c"&gt;Return from Jeffo Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer1&gt;0:06:40&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 20:57:40&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=212661&amp;c=4c"&gt;Return from laraelaine40 Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Bounty&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="res" style="width: auto;"&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;85 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;49 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;50 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;56&lt;/div&gt;&lt;div class="carry" style="float: right; width: auto;"&gt;&lt;img class="car" src="img/x.gif" alt="carry" title="carry" /&gt;240/240&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer2&gt;0:12:09&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:03:09&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=221471&amp;c=d7"&gt;Return from Euks village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Bounty&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="res" style="width: auto;"&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;68 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;67 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;68 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;37&lt;/div&gt;&lt;div class="carry" style="float: right; width: auto;"&gt;&lt;img class="car" src="img/x.gif" alt="carry" title="carry" /&gt;240/240&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer3&gt;0:22:13&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:13:13&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=215859&amp;c=92"&gt;Return from mazda3478 Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Bounty&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="res" style="width: auto;"&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;75 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;55 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;55 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;55&lt;/div&gt;&lt;div class="carry" style="float: right; width: auto;"&gt;&lt;img class="car" src="img/x.gif" alt="carry" title="carry" /&gt;240/240&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer4&gt;0:24:31&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:15:31&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=220680&amp;c=8c"&gt;Return from fdssdf Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;40&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Bounty&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="res" style="width: auto;"&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;541 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;537 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;537 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;537&lt;/div&gt;&lt;div class="carry" style="float: right; width: auto;"&gt;&lt;img class="car" src="img/x.gif" alt="carry" title="carry" /&gt;2152/2400&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer5&gt;0:28:35&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:19:35&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=216670&amp;c=1b"&gt;Return from loladuong456 Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Bounty&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="res" style="width: auto;"&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;57 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;56 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;56 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;71&lt;/div&gt;&lt;div class="carry" style="float: right; width: auto;"&gt;&lt;img class="car" src="img/x.gif" alt="carry" title="carry" /&gt;240/240&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer6&gt;0:36:41&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:27:41&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=213463&amp;c=5a"&gt;Return from auso000 Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Bounty&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="res" style="width: auto;"&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;56 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;56 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;57 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;71&lt;/div&gt;&lt;div class="carry" style="float: right; width: auto;"&gt;&lt;img class="car" src="img/x.gif" alt="carry" title="carry" /&gt;240/240&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer7&gt;0:44:37&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:35:37&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;h4&gt;Troops in the village&lt;/h4&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="11"&gt;&lt;a href="spieler.php?uid=15819"&gt;Own troops&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit uhero" title="Hero" alt="Hero" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Upkeep&lt;/th&gt;&lt;td colspan="11"&gt;10&lt;img class="r4" src="img/x.gif" title="Wheat" alt="Wheat" /&gt;per hour&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;h4&gt;Troops moving&lt;/h4&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=212659&amp;c=ac"&gt;Raid on hotmamapam Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer8&gt;0:05:06&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 20:56:06&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=217468&amp;c=63"&gt;Raid on fatpics Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in small"&gt;in &lt;span id=timer9&gt;0:16:16&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at small"&gt;at 21:07:16&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;div class="abort"&gt;&lt;a href="build.php?id=39&amp;a=4&amp;t=1053899"&gt;&lt;img src="img/x.gif" class="del" title="cancel" alt="cancel" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=222272&amp;c=ff"&gt;Raid on Nickkkkkkk Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer10&gt;0:27:16&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:18:16&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=223071&amp;c=e7"&gt;Raid on Mr_Walker Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer11&gt;0:32:03&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:23:03&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=214263&amp;c=f3"&gt;Raid on mirc Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;4&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer12&gt;0:32:42&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 21:23:42&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=219878&amp;c=ee"&gt;Raid on Wynter Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;6&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="in"&gt;in &lt;span id=timer13&gt;1:11:38&lt;/span&gt; Hrs&lt;/div&gt;
+				&lt;div class="at"&gt;at 22:02:38&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;h4&gt;Troops in other villages&lt;/h4&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="karte.php?d=270225&amp;c=52"&gt;Reinforcement for Mole&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Upkeep&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="sup"&gt;1&lt;img class="r4" src="img/x.gif" title="Wheat" alt="Wheat" /&gt;per hour&lt;/div&gt;
+					&lt;div class="gback"&gt;&lt;a href="a2b.php?d=440136&amp;c=d8"&gt;Withdraw&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p id="contract"&gt;&lt;b&gt;Costs&lt;/b&gt; to upgrade to level 4:&lt;br /&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;230 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;335 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;190 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;145 | &lt;img class="r5" src="img/x.gif" alt="Wheat consumption" title="Wheat consumption" /&gt;1 | &lt;img class="clock" src="img/x.gif" alt="duration" title="duration" /&gt;0:53:50&lt;br /&gt; &lt;span class="none"&gt;Your builders are already working&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+ 
+&lt;div id="side_info"&gt;
+ 
+&lt;/div&gt;
+&lt;/div&gt;
+ 
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="RallyPointTiny" xml:space="preserve">
+    <value>&lt;body class="v35 gecko gecko3_5_x"&gt;
+&lt;h1&gt;Rally Point &lt;span class="level"&gt;level 1&lt;/span&gt;&lt;/h1&gt;
+&lt;p class="build_desc"&gt;The village's troops meet at the rally point. From here you can send them out to reinforce, raid, or conquer another village.&lt;/p&gt;
+
+&lt;div id="textmenu"&gt;
+		&lt;a href="build.php?id=39"&gt;Overview&lt;/a&gt; |
+		&lt;a href="a2b.php"&gt;Send troops&lt;/a&gt; |
+		&lt;a href="warsim.php"&gt;Combat Simulator&lt;/a&gt;&lt;/div&gt;&lt;h4&gt;Troops in the village&lt;/h4&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=270225&amp;c=52"&gt;Tiny&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="spieler.php?uid=15830"&gt;Own troops&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u21" title="Phalanx" alt="Phalanx" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u22" title="Swordsman" alt="Swordsman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u23" title="Pathfinder" alt="Pathfinder" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u24" title="Theutates Thunder" alt="Theutates Thunder" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u25" title="Druidrider" alt="Druidrider" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u26" title="Haeduan" alt="Haeduan" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u27" title="Battering Ram" alt="Battering Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u28" title="Trebuchet" alt="Trebuchet" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u29" title="Chief" alt="Chief" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u30" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td&gt;8&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Upkeep&lt;/th&gt;&lt;td colspan="10"&gt;8&lt;img class="r4" src="img/x.gif" title="Wheat" alt="Wheat" /&gt;per hour&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=217466&amp;c=83"&gt;Crazy&lt;/a&gt;&lt;/td&gt;&lt;td colspan="10"&gt;&lt;a href="spieler.php?uid=15819"&gt;abc's troops&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u11" title="Maceman" alt="Maceman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u12" title="Spearman" alt="Spearman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u13" title="Axeman" alt="Axeman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u14" title="Scout" alt="Scout" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u15" title="Paladin" alt="Paladin" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u16" title="Teutonic Knight" alt="Teutonic Knight" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u17" title="Ram" alt="Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u18" title="Catapult" alt="Catapult" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u19" title="Chieftain" alt="Chieftain" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u20" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Upkeep&lt;/th&gt;&lt;td colspan="10"&gt;&lt;div class="sup"&gt;1&lt;img class="r4" src="img/x.gif" title="Wheat" alt="Wheat" /&gt;per hour&lt;/div&gt;&lt;div class="sback"&gt;&lt;a href="a2b.php?d=440136&amp;c=d8"&gt;Send back&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;h4&gt;Troops moving&lt;/h4&gt;&lt;table class="troop_details" cellpadding="1" cellspacing="1"&gt;
+
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;td class="role"&gt;&lt;a href="karte.php?d=270225&amp;c=52"&gt;Tiny&lt;/a&gt;&lt;/td&gt;&lt;td colspan="11"&gt;&lt;a href="karte.php?d=227078&amp;c=38"&gt;Reinforcement for lalala Village&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody class="units"&gt;&lt;tr&gt;&lt;th&gt;&amp;nbsp;&lt;/th&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u21" title="Phalanx" alt="Phalanx" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u22" title="Swordsman" alt="Swordsman" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u23" title="Pathfinder" alt="Pathfinder" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u24" title="Theutates Thunder" alt="Theutates Thunder" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u25" title="Druidrider" alt="Druidrider" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u26" title="Haeduan" alt="Haeduan" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u27" title="Battering Ram" alt="Battering Ram" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u28" title="Trebuchet" alt="Trebuchet" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u29" title="Chief" alt="Chief" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit u30" title="Settler" alt="Settler" /&gt;&lt;/td&gt;&lt;td&gt;&lt;img src="img/x.gif" class="unit uhero" title="Hero" alt="Hero" /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th&gt;Units&lt;/th&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td class="none"&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;tbody class="infos"&gt;&lt;tr&gt;&lt;th&gt;Arrival&lt;/th&gt;&lt;td colspan="11"&gt;&lt;div class="in"&gt;in &lt;span id=timer1&gt;11:14:28&lt;/span&gt; Hrs&lt;/div&gt;
+
+				&lt;div class="at"&gt;at 08:15:25&lt;/span&gt;&lt;span&gt; Hrs&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p id="contract"&gt;&lt;b&gt;Costs&lt;/b&gt; to upgrade to level 2:&lt;br /&gt;&lt;img class="r1" src="img/x.gif" alt="Wood" title="Wood" /&gt;140 | &lt;img class="r2" src="img/x.gif" alt="Clay" title="Clay" /&gt;205 | &lt;img class="r3" src="img/x.gif" alt="Iron" title="Iron" /&gt;115 | &lt;img class="r4" src="img/x.gif" alt="Wheat" title="Wheat" /&gt;90 | &lt;img class="r5" src="img/x.gif" alt="Wheat consumption" title="Wheat consumption" /&gt;1 | &lt;img class="clock" src="img/x.gif" alt="duration" title="duration" /&gt;0:40:30&lt;br /&gt; &lt;a class="build" href="dorf2.php?a=39&amp;c=b9b"&gt;Upgrade to level 2&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="SendTroopsForm" xml:space="preserve">
+    <value>&lt;h1&gt;Send troops&lt;/h1&gt;
+&lt;form method="POST" name="snd" action="a2b.php"&gt;
+	&lt;input type="hidden" name="timestamp" value="1259379679" /&gt;
+	&lt;input type="hidden" name="timestamp_checksum" value="719106" /&gt;
+	&lt;input type="hidden" name="b" value="1" /&gt;
+ 
+ 
+		&lt;table id="troops" cellpadding="1" cellspacing="1"&gt;
+		&lt;tr&gt;
+			&lt;td class="line-first column-first"&gt;
+				&lt;img class="unit u11" src="img/x.gif" title="Maceman" onclick="document.snd.t1.value=''; return false;" alt="Maceman" /&gt;
+				&lt;input type="text" class="text" name="t1" value="" maxlength="6" /&gt;
+				&lt;a href="#" onclick="document.snd.t1.value=8; return false;"&gt;(8)&lt;/a&gt;			&lt;/td&gt;
+			&lt;td class="line-first"&gt;
+				&lt;img class="unit u14" src="img/x.gif" title="Scout"  alt="Scout" /&gt;
+				&lt;input type="text" class="text disabled" name="t4" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+			&lt;td class="line-first"&gt;
+				&lt;img class="unit u17" src="img/x.gif" title="Ram"  alt="Ram" /&gt;
+				&lt;input type="text" class="text disabled" name="t7" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+			&lt;td class="line-first column-last"&gt;
+				&lt;img class="unit u19" src="img/x.gif" title="Chieftain"  alt="Chieftain" /&gt;
+				&lt;input type="text" class="text disabled" name="t9" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="column-first"&gt;
+				&lt;img class="unit u12" src="img/x.gif" title="Spearman"  alt="Spearman" /&gt;
+				&lt;input type="text" class="text disabled" name="t2" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;img class="unit u15" src="img/x.gif" title="Paladin"  alt="Paladin" /&gt;
+				&lt;input type="text" class="text disabled" name="t5" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;img class="unit u18" src="img/x.gif" title="Catapult"  alt="Catapult" /&gt;
+				&lt;input type="text" class="text disabled" name="t8" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+			&lt;td class="column-last"&gt;
+				&lt;img class="unit u20" src="img/x.gif" title="Settler"  alt="Settler" /&gt;
+				&lt;input type="text" class="text disabled" name="t10" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="line-last column-first"&gt;
+				&lt;img class="unit u13" src="img/x.gif" title="Axeman"  alt="Axeman" /&gt;
+				&lt;input type="text" class="text disabled" name="t3" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+			&lt;td class="line-last"&gt;
+				&lt;img class="unit u16" src="img/x.gif" title="Teutonic Knight"  alt="Teutonic Knight" /&gt;
+				&lt;input type="text" class="text disabled" name="t6" value="" maxlength="6" /&gt;
+				&lt;span class="none"&gt;(0)&lt;/span&gt;			&lt;/td&gt;
+			&lt;td class="line-last"&gt;&lt;/td&gt;
+			&lt;td class="line-last column-last"&gt;&lt;/td&gt;
+ 
+ 
+		&lt;/tr&gt;
+	&lt;/table&gt;
+ 
+		&lt;table id="coords" cellpadding="1" cellspacing="1"&gt;
+		&lt;tr&gt;
+			&lt;td class="sel"&gt;&lt;label&gt;&lt;input type="radio" class="radio" name="c" value="2" checked /&gt; Reinf.&lt;/label&gt;&lt;/td&gt;
+			&lt;td class="vil"&gt;&lt;span&gt;Village:&lt;/span&gt;&lt;input type="text" class="text" name="dname" value="" maxlength="20"  /&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="sel"&gt;&lt;label&gt;&lt;input type="radio" class="radio" name="c" value="3"  /&gt; Attack: Normal&lt;/label&gt;&lt;/td&gt;
+			&lt;td class="or"&gt;or&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="sel"&gt;&lt;label&gt;&lt;input type="radio" class="radio" name="c" value="4"  /&gt; Attack: Raid&lt;/label&gt;&lt;/td&gt;
+			&lt;td class="target"&gt;
+				&lt;span&gt;X:&lt;/span&gt;&lt;input type="text" class="text" name="x" value="-154" maxlength="4" /&gt;
+				&lt;span&gt;Y:&lt;/span&gt;&lt;input type="text" class="text" name="y" value="-272" maxlength="4" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+ 
+	&lt;input type="image" value="ok" name="s1" id="btn_ok" class="dynamic_img" src="img/x.gif" alt="OK" /&gt;
+&lt;/form&gt;</value>
+  </data>
+</root>

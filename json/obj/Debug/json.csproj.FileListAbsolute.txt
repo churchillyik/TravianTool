@@ -1,0 +1,15 @@
+D:\stran\json\bin\Debug\json.dll
+D:\stran\json\bin\Debug\json.pdb
+D:\stran\json\obj\Debug\ResolveAssemblyReference.cache
+D:\stran\json\obj\Debug\json.dll
+D:\stran\json\obj\Debug\json.pdb
+D:\Resources\stran\json\bin\Debug\json.dll
+D:\Resources\stran\json\bin\Debug\json.pdb
+D:\Resources\stran\json\obj\Debug\ResolveAssemblyReference.cache
+D:\Resources\stran\json\obj\Debug\json.dll
+D:\Resources\stran\json\obj\Debug\json.pdb
+E:\Resources\stran\json\bin\Debug\json.dll
+E:\Resources\stran\json\bin\Debug\json.pdb
+E:\Resources\stran\json\obj\Debug\ResolveAssemblyReference.cache
+E:\Resources\stran\json\obj\Debug\json.dll
+E:\Resources\stran\json\obj\Debug\json.pdb

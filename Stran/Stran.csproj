@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A361E172-DB43-4782-A032-878EE055F5A0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stran</RootNamespace>
+    <AssemblyName>Stran</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>http://localhost/Stran/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\yip\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Combat|AnyCPU' ">
+    <OutputPath>bin\Combat\</OutputPath>
+    <DefineConstants>DEBUG;COMBAT</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account.Designer.cs">
+      <DependentUpon>Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alarm.Designer.cs">
+      <DependentUpon>Alarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttackOptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttackOptForm.Designer.cs">
+      <DependentUpon>AttackOptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildToLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildToLevel.Designer.cs">
+      <DependentUpon>BuildToLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\BuildingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\BuildingList.Designer.cs">
+      <DependentUpon>BuildingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\InBuildingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\InBuildingList.Designer.cs">
+      <DependentUpon>InBuildingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\QueueList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\QueueList.Designer.cs">
+      <DependentUpon>QueueList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\ResearchStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\ResearchStatus.Designer.cs">
+      <DependentUpon>ResearchStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\ResourceShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\ResourceShow.Designer.cs">
+      <DependentUpon>ResourceShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\TransferStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\TransferStatus.Designer.cs">
+      <DependentUpon>TransferStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\TroopInfoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\TroopInfoList.Designer.cs">
+      <DependentUpon>TroopInfoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockingPanel\VillageList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockingPanel\VillageList.Designer.cs">
+      <DependentUpon>VillageList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MsgBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MsgBox.Designer.cs">
+      <DependentUpon>MsgBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainFrame.Designer.cs">
+      <DependentUpon>MainFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MUI.cs" />
+    <Compile Include="NewBuilding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewBuilding.Designer.cs">
+      <DependentUpon>NewBuilding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NpcTradeSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NpcTradeSetting.Designer.cs">
+      <DependentUpon>NpcTradeSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProduceTroopSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProduceTroopSetting.Designer.cs">
+      <DependentUpon>ProduceTroopSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Account.resx">
+      <DependentUpon>Account.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Alarm.resx">
+      <DependentUpon>Alarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttackOptForm.resx">
+      <DependentUpon>AttackOptForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildToLevel.resx">
+      <DependentUpon>BuildToLevel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\BuildingList.resx">
+      <DependentUpon>BuildingList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\InBuildingList.resx">
+      <DependentUpon>InBuildingList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\QueueList.resx">
+      <DependentUpon>QueueList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\ResearchStatus.resx">
+      <DependentUpon>ResearchStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\ResourceShow.resx">
+      <DependentUpon>ResourceShow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\TransferStatus.resx">
+      <DependentUpon>TransferStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\TroopInfoList.resx">
+      <DependentUpon>TroopInfoList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\VillageList.resx">
+      <DependentUpon>VillageList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MsgBox.resx">
+      <DependentUpon>MsgBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainFrame.resx">
+      <DependentUpon>MainFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewBuilding.resx">
+      <DependentUpon>NewBuilding.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NpcTradeSetting.resx">
+      <DependentUpon>NpcTradeSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProduceTroopSetting.resx">
+      <DependentUpon>ProduceTroopSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RaidOptForm.resx">
+      <DependentUpon>RaidOptForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rename.resx">
+      <DependentUpon>Rename.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLabel.resx">
+      <DependentUpon>ResourceLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLimit.resx">
+      <DependentUpon>ResourceLimit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferSetting.resx">
+      <DependentUpon>TransferSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionTiming.resx">
+      <DependentUpon>ActionTiming.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RaidOptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RaidOptForm.Designer.cs">
+      <DependentUpon>RaidOptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rename.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rename.Designer.cs">
+      <DependentUpon>Rename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResourceLabel.Designer.cs">
+      <DependentUpon>ResourceLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceLimit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResourceLimit.Designer.cs">
+      <DependentUpon>ResourceLimit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransferSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransferSetting.Designer.cs">
+      <DependentUpon>TransferSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionTiming.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActionTiming.Designer.cs">
+      <DependentUpon>ActionTiming.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\json\json.csproj">
+      <Project>{F5C0EADF-AC62-4D68-9F2D-98F5C8D5DABF}</Project>
+      <Name>json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libTravian\libTravian.csproj">
+      <Project>{935028A9-A233-4FFE-8FC6-37C34847A0F8}</Project>
+      <Name>libTravian</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\WinFormsUI.csproj">
+      <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
+      <Name>WinFormsUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="villagebg_export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE - MPL-1.1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\Troops.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
