@@ -2,6 +2,7 @@
 aid1=Legionnaire,Praetorian,Imperian,Equites Legati,Equites Imperatoris,Equites Caesaris,Battering Ram,Fire Catapult,Senator,Settler,Hero
 aid2=Clubswinger,Spearman,Axeman,Scout,Paladin,Teutonic Knight,Ram,Catapult,Chief,Settler,Hero
 aid3=Phalanx,Swordsman,Pathfinder,Theutates Thunder,Druidrider,Haeduan,Ram,Trebuchet,Chieftain,Settler,Hero
+aid4=Rat,Spider,Snake,Bat,Wild Boar,Wolf,Bear,Crocodile,Tiger,Elephant,
 author=sone
 attack=Attack against
 raid=Raid against

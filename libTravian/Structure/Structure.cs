@@ -62,7 +62,7 @@ namespace libTravian
 			}
 		}
 		public Dictionary<int, TIGM> IGMData { get; set; }
-		//public Travian UpCall { get; set; }
+		
 		public string key
 		{
 			get
@@ -88,14 +88,6 @@ namespace libTravian
 		string Subject { get; set; }
 		string Text { get; set; }
 	}
-	/*
-	public class TStatus
-	{
-		public string Status { get; set; }
-		public string Details { get; set; }
-	}
-	*/
-
 
 	public static class TypeViewer
 	{
@@ -103,7 +95,7 @@ namespace libTravian
 		{
 			StringBuilder sb = new StringBuilder();
 			Type t = sender.GetType();
-			var p = t.GetProperties();//BindingFlags.Public);
+			var p = t.GetProperties();
 			foreach (var x in p)
 			{
 				if (x.GetIndexParameters().Length == 0)
@@ -117,11 +109,12 @@ namespace libTravian
 			}
 			return sb.ToString();
 		}
+		
 		public static string Snapshot(object sender)
 		{
 			StringBuilder sb = new StringBuilder();
 			Type t = sender.GetType();
-			var p = t.GetProperties();//BindingFlags.Public);
+			var p = t.GetProperties();
 			foreach (var x in p)
 			{
 				if (x.PropertyType == typeof(int) ||

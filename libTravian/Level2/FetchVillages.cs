@@ -103,7 +103,10 @@ namespace libTravian
             lock (Level2Lock)
             {
                 int VillageID = (int)o;
+                TD.Villages[VillageID].isMarketInitialized = 1;
                 PageQuery(VillageID, "build.php?gid=17");	//	市场
+                TD.Villages[VillageID].isMarketInitialized = 2;
+                TD.Dirty = true;
             }
         }
         

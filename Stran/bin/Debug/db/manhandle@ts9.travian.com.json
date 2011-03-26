@@ -1,9 +1,9 @@
 
 {
-  "Cookie" : "T3E=%3DEDO3IWO2YWMlljOzgjM3IjMyojNyQTNxojMxYjMwETMwMTM6AjOyMGMxQjM5QGMwoTZsRmbhhmbh1mOxIzN4IjOwMCMjEjM3gjM",
+  "Cookie" : "T3E=1kDZ2UGZjlDNyozN1QjNzIjM6YjM0UTM6kDN5IzMxEDMzEjOwojMjBTM0ITOkBDM6UGbk5WYo5WYtpTMycDOyoDMjEjM3gjMjEjM3gjM",
   "UserID" : 28721,
   "MarketSpeed" : 16,
-  "ServerTimeOffset" : -28777,
+  "ServerTimeOffset" : -28781,
   "ActiveDid"        : 47216,
   "Villages"         : {
     "47216" : {
@@ -35,7 +35,7 @@
         "4" : {
           "Gid" : 3,
           "Level" : 9,
-          "InBuilding" : true,
+          "InBuilding" : false,
           "__fullname" : "libTravian.TBuilding"
         },
         "5" : {
@@ -148,7 +148,7 @@
         },
         "23" : {
           "Gid" : 17,
-          "Level" : 5,
+          "Level" : 6,
           "InBuilding" : false,
           "__fullname" : "libTravian.TBuilding"
         },
@@ -283,39 +283,39 @@
         {
           "Capacity" : 11800,
           "Produce"  : 652,
-          "Time"     : 634367282012500000,
-          "Amount"   : 1349,
+          "Time"     : 634367585299375000,
+          "Amount"   : 1228,
           "__fullname" : "libTravian.TResource"
         },
         {
           "Capacity" : 11800,
           "Produce"  : 697,
-          "Time"     : 634367282012500000,
-          "Amount"   : 1425,
+          "Time"     : 634367585299375000,
+          "Amount"   : 4163,
           "__fullname" : "libTravian.TResource"
         },
         {
           "Capacity" : 11800,
-          "Produce"  : 472,
-          "Time"     : 634367282012500000,
-          "Amount"   : 2537,
+          "Produce"  : 517,
+          "Time"     : 634367585299375000,
+          "Amount"   : 660,
           "__fullname" : "libTravian.TResource"
         },
         {
           "Capacity" : 11800,
-          "Produce"  : 316,
-          "Time"     : 634367282012500000,
-          "Amount"   : 2518,
+          "Produce"  : 320,
+          "Time"     : 634367585299375000,
+          "Amount"   : 1493,
           "__fullname" : "libTravian.TResource"
         }
       ],
       "InBuilding"      : [
         {
           "ABid" : 4,
-          "Gid"  : 3,
+          "Gid"  : 2,
           "Level" : 9,
-          "FinishTime" : 634367517260156250,
-          "CancelURL"  : "dorf1.php?d=3729932&a=0&c=33bba1",
+          "FinishTime" : 634367697811875000,
+          "CancelURL"  : "dorf1.php?d=3750681&a=0&c=a97ff0",
           "__fullname" : "libTravian.TInBuilding"
         },
         null,
@@ -352,8 +352,8 @@
       ],
       "Market"                  : {
         "SingleCarry" : 500,
-        "ActiveMerchant" : 5,
-        "MaxMerchant"    : 5,
+        "ActiveMerchant" : 6,
+        "MaxMerchant"    : 6,
         "MarketInfo"     : [
         ],
         "UpperLimit"     : null,
@@ -368,8 +368,54 @@
           {
             "Tribe" : 1,
             "Troops" : [
-              9,
-              21,
+              6,
+              15,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "TroopType" : 11,
+            "FinishTime" : 0,
+            "Owner"      : "NeverWin",
+            "OwnerVillageZ" : 268920,
+            "OwnerVillageUrl" : "karte.php?d=268920",
+            "VillageName"     : "Own troops",
+            "__fullname"      : "libTravian.TTInfo"
+          },
+          {
+            "Tribe" : 4,
+            "Troops" : [
+              0,
+              0,
+              0,
+              0,
+              12,
+              11,
+              6,
+              0,
+              0,
+              0,
+              0
+            ],
+            "TroopType" : 11,
+            "FinishTime" : 0,
+            "Owner"      : "Nature",
+            "OwnerVillageZ" : 0,
+            "OwnerVillageUrl" : "",
+            "VillageName"     : "Nature's troops",
+            "__fullname"      : "libTravian.TTInfo"
+          },
+          {
+            "Tribe" : 1,
+            "Troops" : [
+              0,
+              0,
               0,
               0,
               0,
@@ -380,12 +426,12 @@
               0,
               1
             ],
-            "TroopType" : 11,
-            "FinishTime" : 0,
+            "TroopType" : 12,
+            "FinishTime" : 634367609479375000,
             "Owner"      : "NeverWin",
             "OwnerVillageZ" : 268920,
             "OwnerVillageUrl" : "karte.php?d=268920",
-            "VillageName"     : "Own troops",
+            "VillageName"     : "Adventure (176|59)",
             "__fullname"      : "libTravian.TTInfo"
           },
           {
@@ -404,7 +450,7 @@
               0
             ],
             "TroopType" : 12,
-            "FinishTime" : 634368967822500000,
+            "FinishTime" : 634368967859375000,
             "Owner"      : "NeverWin",
             "OwnerVillageZ" : 268920,
             "OwnerVillageUrl" : "karte.php?d=268920",

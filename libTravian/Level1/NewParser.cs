@@ -42,7 +42,6 @@ namespace libTravian
                 NewParseGLanguage(VillageID, data);
                 NewParseALanguage(VillageID, data);
                 NewParseInbuilding(VillageID, data);
-                NewParseInDestroying(VillageID, data);
                 NewParseUpgrade(VillageID, data);
                 NewParseTownHall(VillageID, data);
                 NewParseMarket(VillageID, data);
@@ -67,11 +66,12 @@ namespace libTravian
             {
                 for (int i = 0; i < 4; i++)
             	{
-                    TD.Villages[VillageID].Resource[i] = new TResource(
+                    TD.Villages[VillageID].Resource[i] = new TResource
+                    (
                         Convert.ToInt32(m[i].Groups[1].Value),
                         Convert.ToInt32(m[i].Groups[2].Value),
                         Convert.ToInt32(m[i].Groups[3].Value)
-                        );
+                    );
                 }
             }
         }
@@ -345,63 +345,6 @@ namespace libTravian
             
         }
 
-        private void NewParseInDestroying(int VillageID, string data)
-        {
-            if (this.GetBuildingLevel(15, data) < 0)  // test if it can destroy
-                return;
-            var CV = TD.Villages[VillageID];
-
-            Match m;
-            m = Regex.Match(data, @"demolish.*?<td>\s*([^<]*)\s\(\S+\s(\d+)\).*?timer\d+.*?>(\d+:\d+:\d+)</span>", RegexOptions.Singleline);
-            CV.InBuilding[2] = null;
-            if (m.Success)
-            {
-                int gid = -1;
-                foreach (KeyValuePair<int, string> kvp in GidLang)
-                    if (kvp.Value == m.Groups[1].Value)
-                    {
-                        gid = kvp.Key;
-                        break;
-                    }
-
-                if (gid != -1)
-                    CV.InBuilding[2] = new TInBuilding()
-                    {
-                        Gid = gid,
-                        Level = Convert.ToInt32(m.Groups[2].Value),
-                        FinishTime = DateTime.Now.Add(TimeSpanParse(m.Groups[3].Value))
-                    };
-                if (CV.RB[2] != null &&
-                    CV.Buildings.ContainsKey(CV.RB[2].ABid) &&
-                    CV.RB[2].Gid == CV.Buildings[CV.RB[2].ABid].Gid &&
-                    CV.RB[2].Level == CV.Buildings[CV.RB[2].ABid].Level)
-                {
-                    CV.Buildings[CV.RB[2].ABid].InBuilding = true;
-                    TD.Dirty = true;
-                }
-                else
-                {
-                    int ibbid = 0, ibbcount = 0;
-                    foreach (var x in CV.Buildings)
-                        if (x.Value.Gid == CV.InBuilding[2].Gid && x.Value.Level == CV.InBuilding[2].Level + 1)
-                        {
-                            ibbid = x.Key;
-                            ibbcount++;
-                        }
-                    if (ibbid != 0 && ibbcount == 1)
-                    {
-                        CV.InBuilding[2].ABid = ibbid;
-                        CV.Buildings[ibbid].InBuilding = true;
-                        TD.Dirty = true;
-                    }
-                }
-                m = Regex.Match(data, @"build\.php\?gid=15&.*?del=\d+");
-                if (m.Success)
-                    CV.InBuilding[2].CancelURL = m.Groups[0].Value.Replace("&amp;", "&");
-            }
-            CV.isDestroyInitialized = 2;
-        }
-
         //	表示不同种类村庄的资源田的类型排序：1=木；2=泥；3=铁；4=粮
         private static int[][] NewDorf1Data = new int[][]
         {
@@ -547,7 +490,7 @@ namespace libTravian
         //	设置兵种的名称
         private void NewParseALanguage(int VillageID, string data)
         {
-            var mc = Regex.Matches(data, "Popup\\((\\d*),1\\);\">\\s?([^<]*)</a>");
+            var mc = Regex.Matches(data, "Popup\\((\\d*),1\\);\">\\s*([^<]*?)</a>");
             
             foreach (Match m in mc)
             {
@@ -571,9 +514,12 @@ namespace libTravian
             }
         }
 
-        //	解析中心大楼页面
+        //	解析中心大楼页面（同时也是拆除页面）
         private void NewParseTownHall(int VillageID, string data)
         {
+        	if (this.GetBuildingLevel(15, data) < 0)
+                return;
+        	
             if (!data.Contains("<div id=\"build\" class=\"gid15\">"))
                 return;
             
@@ -600,27 +546,9 @@ namespace libTravian
             	}
             }
             
-            if (gid == 0)
+            if (gid == 0 || lvl == -1)
             	return;
-            
-            //	获取所拆除单位的位置
-            int bid = 0;
-            if (lvl != -1)
-            {
-            	foreach (var unit in CV.Buildings)
-            	{
-            		TBuilding building = (TBuilding)unit.Value;
-            		if (building.Gid == gid && building.Level == lvl + 1)
-            		{
-            			bid = unit.Key;
-            			break;
-            		}
-            	}
-            }
-            
-            if (bid == 0)
-            	return;
-            
+                      
             //	解析拆除的完成剩余时间
             m = Regex.Match(data, "<td\\sclass=\"times\"><span\\sid=\"timer\\d+\">([0-9:]+)</span>");
             DateTime tm;
@@ -633,11 +561,50 @@ namespace libTravian
                 tm = DateTime.MinValue;
             }
             
+            //	解析取消链接
+            m = Regex.Match(data, @"build\.php\?gid=15&amp;del=\d+");
+            if (!m.Success)
+            	return;
+            
+            string URL = m.Groups[0].Value.Replace("&amp;", "&");
+            
             CV.InBuilding[2] = new TInBuilding()
             {
             	Gid = gid,
-                FinishTime = tm
+            	Level = lvl,
+                FinishTime = tm,
+                CancelURL = URL
             };
+            
+            //	获取拆除建筑的位置
+            if (CV.RB[2] != null &&
+                CV.Buildings.ContainsKey(CV.RB[2].ABid) &&
+                CV.RB[2].Gid == CV.Buildings[CV.RB[2].ABid].Gid &&
+                CV.RB[2].Level == CV.Buildings[CV.RB[2].ABid].Level)
+            {
+            	CV.InBuilding[2].ABid = CV.RB[2].ABid;
+                CV.Buildings[CV.RB[2].ABid].InBuilding = true;
+                TD.Dirty = true;
+            }
+            else
+            {
+                int ibbid = 0, ibbcount = 0;
+                foreach (var x in CV.Buildings)
+                {
+                    if (x.Value.Gid == CV.InBuilding[2].Gid && x.Value.Level == CV.InBuilding[2].Level + 1)
+                    {
+                        ibbid = x.Key;
+                        ibbcount++;
+                    }
+                }
+                
+                if (ibbid != 0 && ibbcount == 1)
+                {
+                    CV.InBuilding[2].ABid = ibbid;
+                    CV.Buildings[ibbid].InBuilding = true;
+                    TD.Dirty = true;
+                }
+            }
         }
         
         private void NewParseUpgrade(int VillageID, string data)
@@ -911,7 +878,7 @@ namespace libTravian
             Match ownerMatch = Regex.Match(headerColumns[0], @"<a href=""(.+?)"">(.+?)</a>");
             if (!ownerMatch.Success)
             {
-                return null;
+            	return ParseNatureTroops(troopDetail, headerColumns, postInVillageTroops);
             }
 
             string owner = ownerMatch.Groups[2].Value;
@@ -1044,107 +1011,127 @@ namespace libTravian
                 TroopType = type,
             };
         }
-
-        private void ParseTroops(int VillageID, string data)
+        
+        private TTInfo ParseNatureTroops(string troopDetail, string[] headerColumns, bool postInVillageTroops)
         {
-            if (GetBuildingLevel(16, data) < 0 && !data.Contains("<h1>Rally point"))
-                return;
-            var CV = TD.Villages[VillageID];
-            CV.Troop.Troops.Clear();
-            var items = data.Split(new string[] { "<table class=" }, StringSplitOptions.None);
-            foreach (var item in items)
+        	Match ownerMatch = Regex.Match(headerColumns[0], "<strong>(\\w+)</strong>");
+        	if (!ownerMatch.Success)
+        	{
+        		return null;
+        	}
+        	string owner = ownerMatch.Groups[1].Value;
+        	
+        	Match nameMatch = Regex.Match(headerColumns[1], "<a>([^<]*?)</a>");
+        	if (!nameMatch.Success)
+        	{
+        		return null;
+        	}
+        	string name = nameMatch.Groups[1].Value;
+        	
+        	//	获得部队单位类型
+            string unitsBody = HtmlUtility.GetElementWithClass(troopDetail, "tbody", "units");
+            if (unitsBody == null)
             {
-                var m = Regex.Match(item
-            	                    , "<td\\sclass=\"role\"><a\\shref=\".*?\">" +
-            	                    "(.*?)</a></td><td colspan=\"1[01]\">" +
-            	                    "(.*?)</a></td>.*?class=\"unit\\s\\w(\\d+)\".*?" +
-            	                    "(?:<td[^>]*>(\\d+|\\?)</td>){10,11}.*?" +
-            	                    "(?:>(\\d+)<img\\sclass=\"r4|.*?<span\\sid=\"?timer\\d+\"?>(.*?)</span>)"
-            	                    , RegexOptions.Singleline);
-                //                var m = Regex.Match(item, "<td\\sclass=\"role\"><a\\shref=\".*?\">(.*?)</a></td><td colspan=\"1[01]\"><a\\shref=\".*?\">(.*?)</a></td>.*?class=\"unit\\s\\w(\\d+)\".*?(?:<td[^>]*>(\\d+|\\?)</td>){10,11}.*?(?:>(\\d+)<img\\sclass=\"r4|.*?<span\\sid=\"?timer\\d+\"?>(.*?)</span>)", RegexOptions.Singleline);
-                /*
-                 * @@1 from vname	军队来自的村庄名
-                 * @@2 to vname		军队前往的村庄名
-                 * @@3 gif index for tribe	军队的gif图片
-                 * @@4 troopcount	部队的数量
-                 * @@5 cropcost		部队消耗的粮食
-                 * @@6 time on way	行军需要的时间
-                 */
-                var r = Regex.Match(item, "(a2b.php\\?d=.*?&c=.*?)\"", RegexOptions.Singleline);
-                string returnlink = r.Groups[1].Value;
-                if (!m.Success)
-                    continue;
-                int[] tro = new int[11];
-                for (int i = 0; i < m.Groups[4].Captures.Count; i++)
-				{
-                    if (m.Groups[4].Captures[i].Value == "?")
-                        tro[i] = -1;
-                    else
-                        tro[i] = Convert.ToInt32(m.Groups[4].Captures[i].Value);
-				}
-                /*
-               uid  time  	mark	troopcount  cropcost	returnlink
-                -     O      R		 	O      	-			-		MyReturnWay
-                -     O      			O      	-			-		MyAttackWay
-                -     O      S			O      	-			-		MySupportWay // MyOtherSupportMeWay
-                -     -      S			O      	O			O		MySupportOther
-                -     O    			    -      	-			-		BeAttackedWay
-                -     O    	 S		    -      	-			-		BeSupportedWay
-                O     -    	 		    O      	O			-		MySelf // MyOtherSupportMe
-                O     -    	 		    O       O       	O		BeSupportMe
-                 */
-                bool hasuid = m.Groups[2].Value.Contains("uid");
-				bool hassupport = m.Groups[2].Value.StartsWith("增援到") || m.Groups[2].Value.EndsWith("支援") || m.Groups[2].Value.StartsWith("Reinforcement for");
-				bool hasretrun = m.Groups[2].Value.EndsWith("回歸") || m.Groups[2].Value.EndsWith("返回") || m.Groups[2].Value.StartsWith("Return from");
-				bool hasspy = m.Groups[2].Value.EndsWith("偵察") || m.Groups[2].Value.EndsWith("侦察") || m.Groups[2].Value.StartsWith("Scouting of");
-				bool hasraid = m.Groups[2].Value.StartsWith("搶奪") || m.Groups[2].Value.EndsWith("抢夺") || m.Groups[2].Value.StartsWith("Raid against");
-				bool hasattack = m.Groups[2].Value.StartsWith("攻擊") || m.Groups[2].Value.EndsWith("攻击") || m.Groups[2].Value.StartsWith("Attack against");
-                bool hasTime = m.Groups[6].Success;
-                bool hasCount = tro[0] != -1;
-				bool hasCrop = m.Groups[5].Success;
-                string vvname = CV.Name;
-                string vname;
-                TTroopType trooptype = hasuid ?
-                    TTroopType.BeSupportMe :
-                    (hasTime ?
-                    (hasCount ?
-                    (hasretrun ? TTroopType.MyReturnWay : (hassupport ? TTroopType.MySupportWay : TTroopType.MyAttackWay)) :
-                    (hassupport ? TTroopType.BeSupportedWay : TTroopType.BeAttackedWay)) :
-                     TTroopType.MySupportOther);
-                if (trooptype == TTroopType.BeAttackedWay || trooptype == TTroopType.BeSupportedWay || trooptype == TTroopType.BeSupportMe)
-                    vname = m.Groups[1].Value;
-                else
-                    vname = Regex.Replace(m.Groups[2].Value, "<[^>]+>", "");
-                if (trooptype == TTroopType.MySupportWay && vname.Contains(vvname))
+                return null;
+            }
+
+            string unitTypeRow = HtmlUtility.GetElement(unitsBody, "tr");
+            if (unitTypeRow == null)
+            {
+                return null;
+            }
+
+            Match unitTypeMatch = Regex.Match(unitTypeRow, @"class=""unit u(\d+)""");
+            if (!unitTypeMatch.Success)
+            {
+                return null;
+            }
+
+            int unitType = Convert.ToInt32(unitTypeMatch.Groups[1].Value);
+            int tribe = unitType / 10 + 1;
+
+            //	获得部队单位数
+            string unitsdataBody = HtmlUtility.GetElementWithClass(troopDetail, "tbody", "units last");
+            if (unitsdataBody == null)
+            {
+                return null;
+            }
+            
+            string unitdataRow = HtmlUtility.GetElement(unitsdataBody, "tr");
+            if (unitdataRow == null)
+            {
+                return null;
+            }
+            
+            string[] unitColumns = HtmlUtility.GetElements(unitdataRow, "td");
+            if (unitColumns.Length < 10)
+            {
+                return null;
+            }
+
+            int[] units = new int[11];
+            for (int i = 0; i < unitColumns.Length; i++)
+            {
+                Match match = Regex.Match(unitColumns[i], @"(\d+)");
+                if (match.Success)
                 {
-                    trooptype = TTroopType.MyOtherSupportMeWay;
-                    vname = m.Groups[1].Value;
+                    units[i] = Convert.ToInt32(match.Groups[1].Value);
                 }
-                if (trooptype == TTroopType.BeSupportMe)
+                else if (unitColumns[i].Contains("?"))
                 {
-                    if (vvname == vname && !r.Success)
-                        trooptype = TTroopType.MySelf;
-                    else if (m.Groups[2].Value.Contains(TD.Username))
-                        trooptype = TTroopType.MyOtherSupportMe;
+                    units[i] = -1;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            string[] infoBodies = HtmlUtility.GetElementsWithClass(troopDetail, "tbody", "infos");
+            if (infoBodies.Length == 0)
+            {
+                return null;
+            }
+
+            DateTime arrival = DateTime.MinValue;
+            foreach (string infosBody in infoBodies)
+            {
+                string inDiv = HtmlUtility.GetElementWithClass(infosBody, "div", "in");
+                if (inDiv == null)
+                {
+                    inDiv = HtmlUtility.GetElementWithClass(infosBody, "div", "in small");
                 }
 
-                DateTime finishTime = DateTime.MinValue;
-                int tribe = Convert.ToInt32(m.Groups[3].Value) / 10 + 1;
-                if (hasTime)
-                    finishTime = DateTime.Now.Add(TimeSpanParse(m.Groups[6].Value)).AddSeconds(20);
-                TTInfo ttro = new TTInfo
+                if (inDiv != null)
                 {
-                    Tribe = tribe,
-                    Troops = tro,
-                    TroopType = trooptype,
-                    FinishTime = finishTime,
-                    VillageName = vname
-                };
-                CV.Troop.Troops.Add(ttro);
-                Console.WriteLine(ttro.VillageName);
+                    Match match = Regex.Match(inDiv, @"\d+:\d+:\d+");
+                    if (match.Success)
+                    {
+                        arrival = DateTime.Now + TimeSpanParse(match.Groups[0].Value);
+                        arrival.AddSeconds(20);
+                    }
+                }
             }
-            StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Villages });
+
+            TTroopType type = postInVillageTroops ? TTroopType.InOtherVillages : TTroopType.InVillage;
+            if (arrival != DateTime.MinValue)
+            {
+                type = postInVillageTroops ? TTroopType.Outgoing : TTroopType.Incoming;
+            }
+
+            return new TTInfo()
+            {
+                Tribe = tribe,
+                Owner = owner,
+                OwnerVillageZ = 0,
+                OwnerVillageUrl = "",
+                VillageName = name,
+                Troops = units,
+                FinishTime = arrival,
+                TroopType = type,
+            };
         }
+
         
         private void NewParseOasis(int VillageID, string data)
         {

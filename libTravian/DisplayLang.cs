@@ -83,7 +83,6 @@ namespace libTravian
                         string[] data = pairs[1].Split(',');
                         for (int i = 0; i < data.Length; i++)
                             SetAidLang(Tribe, i + 1, data[i]);
-                        //AidLang[aid] = pairs[1];
                     }
                     catch (Exception)
                     {

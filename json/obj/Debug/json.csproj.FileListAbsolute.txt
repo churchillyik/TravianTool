@@ -13,3 +13,8 @@ E:\Resources\stran\json\bin\Debug\json.pdb
 E:\Resources\stran\json\obj\Debug\ResolveAssemblyReference.cache
 E:\Resources\stran\json\obj\Debug\json.dll
 E:\Resources\stran\json\obj\Debug\json.pdb
+E:\Travian\stran\json\bin\Debug\json.dll
+E:\Travian\stran\json\bin\Debug\json.pdb
+E:\Travian\stran\json\obj\Debug\ResolveAssemblyReference.cache
+E:\Travian\stran\json\obj\Debug\json.dll
+E:\Travian\stran\json\obj\Debug\json.pdb
