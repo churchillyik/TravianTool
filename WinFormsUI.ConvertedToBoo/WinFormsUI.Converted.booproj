@@ -1,0 +1,198 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8002D9C1-F0C8-4364-B893-AAE49B0801A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
+    <AssemblyName>WeifenLuo.WinFormsUI.Docking</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Combat|AnyCPU' ">
+    <OutputPath>bin\Combat\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Docking\AutoHideStripBase.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockAreasEditor.boo" />
+    <Compile Include="Docking\DockContent.boo">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\DockContentCollection.boo" />
+    <Compile Include="Docking\DockContentEventArgs.boo" />
+    <Compile Include="Docking\DockContentHandler.boo" />
+    <Compile Include="Docking\DockOutlineBase.boo" />
+    <Compile Include="Docking\DockPane.boo">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPane.SplitterControl.boo">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPaneCaptionBase.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPaneCollection.boo" />
+    <Compile Include="Docking\DockPanel.AutoHideWindow.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanel.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanel.DockDragHandler.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanel.DragHandler.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanel.FocusManager.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanel.MdiClientController.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanel.Persistor.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanel.SplitterDragHandler.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockPanelExtender.boo" />
+    <Compile Include="Docking\DockPaneStripBase.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockWindow.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockWindow.SplitterControl.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\DockWindowCollection.boo" />
+    <Compile Include="Docking\DragForm.boo">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\DummyControl.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\Enums.boo" />
+    <Compile Include="Docking\FloatWindow.boo">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\FloatWindowCollection.boo" />
+    <Compile Include="Docking\Helpers\DockHelper.boo" />
+    <Compile Include="Docking\Helpers\DrawHelper.boo" />
+    <Compile Include="Docking\Helpers\ResourceHelper.boo" />
+    <Compile Include="Docking\Helpers\Win32Helper.boo" />
+    <Compile Include="Docking\InertButtonBase.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\Interfaces.boo" />
+    <Compile Include="Docking\Localization.boo" />
+    <Compile Include="Docking\Measures.boo" />
+    <Compile Include="Docking\NestedDockingStatus.boo" />
+    <Compile Include="Docking\NestedPaneCollection.boo" />
+    <Compile Include="Docking\Resources.Designer.boo">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\SplitterBase.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\Strings.Designer.boo">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\VisibleNestedPaneCollection.boo" />
+    <Compile Include="Docking\VS2005AutoHideStrip.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2005DockPaneCaption.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2005DockPaneStrip.boo">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\Win32\Enums.boo" />
+    <Compile Include="Docking\Win32\NativeMethods.boo" />
+    <Compile Include="Properties\AssemblyInfo.boo" />
+    <EmbeddedResource Include="Docking\DockPanel.bmp" />
+    <EmbeddedResource Include="Docking\Resources.resx">
+      <LastGenOutput>Resources.Designer.boo</LastGenOutput>
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\Strings.resx">
+      <LastGenOutput>Strings.Designer.boo</LastGenOutput>
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
+    <None Include="Docking\Resources\Dockindicator_PaneDiamond_Fill.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Hotspot.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Left.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Right.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Top.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelBottom.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelBottom_Active.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelFill.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelFill_Active.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelLeft.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelLeft_Active.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelRight.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelRight_Active.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelTop.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PanelTop_Active.bmp" />
+    <None Include="Docking\Resources\DockPane_AutoHide.bmp" />
+    <None Include="Docking\Resources\DockPane_Close.bmp" />
+    <None Include="Docking\Resources\DockPane_Dock.bmp" />
+    <None Include="Docking\Resources\DockPane_Option.bmp" />
+    <None Include="Docking\Resources\DockPane_OptionOverflow.bmp" />
+    <None Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(BooBinPath)\Boo.Microsoft.Build.targets" />
+</Project>
