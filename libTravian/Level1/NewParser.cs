@@ -56,6 +56,7 @@ namespace libTravian
             DB.Instance.Snapshot(this);
         }
 
+        //	解析资源
         private void NewParseResource(int VillageID, string data)
         {
             if (VillageID == 0)
@@ -76,6 +77,7 @@ namespace libTravian
             }
         }
 
+        //	解析种族
         private int NewParseTribe()
         {
             string data = this.pageQuerier.PageQuery(0, "a2b.php", null, true, true);
@@ -85,62 +87,87 @@ namespace libTravian
             return Convert.ToInt32(m.Groups[1].Value) / 10 + 1;
         }
 
+        //	刷新村子的基本信息以及解析新的村子
         private void NewRefreshVillages(int VillageID, string data)
         {
             int i;
             if (data == null)
                 return;
             MatchCollection mc;
-            mc = Regex.Matches(data, "&#x25CF;.*?newdid=(\\d*).*?>([^<]*?)</a>.*?\\((-?\\d*?)<.*?\">(-?\\d*?)\\)", RegexOptions.Singleline);
+            mc = Regex.Matches(
+            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)\\|(\\-?\\d*)\\)\"[^>]*?>([^<]*?)</a>");
+            /*
+             * Groups:
+             * [1]: village id
+             * [2&3]: position
+             * [4]: village name
+             */
             if (mc.Count == 0)
                 return;
-            else
+            
+            Dictionary<int, TVillage> NEWTV = new Dictionary<int, TVillage>();
+			bool newv = false;
+            for (i = 0; i < mc.Count; i++)
             {
-				Dictionary<int, TVillage> NEWTV = new Dictionary<int, TVillage>();
-				bool newv = false;
-                for (i = 0; i < mc.Count; i++)
+                Match m = mc[i];
+                int vid = Convert.ToInt32(m.Groups[1].Value);
+                //	已有的村子改了名
+                if (TD.Villages.ContainsKey(vid))
                 {
-                    Match m = mc[i];
-                    int vid = Convert.ToInt32(m.Groups[1].Value);
-                    if (TD.Villages.ContainsKey(vid))
+                    if (TD.Villages[vid].Name != m.Groups[4].Value)
                     {
-                        if (TD.Villages[vid].Name != m.Groups[2].Value)
-                        {
-							TD.Villages[vid].Name = m.Groups[2].Value;
-							TD.Dirty = true;
-							newv = true;
-                        }
-                    }
-                    else
-                    {
-                        TD.Villages[vid] = new TVillage()
-                        {
-                            ID = vid,
-							Name = m.Groups[2].Value,
-                            X = Convert.ToInt32(m.Groups[3].Value),
-                            Y = Convert.ToInt32(m.Groups[4].Value),
-							UpCall = this,
-							Sort = i
-                        };
-                        TD.Dirty = true;
+						TD.Villages[vid].Name = m.Groups[4].Value;
+						TD.Dirty = true;
 						newv = true;
                     }
-					if (TD.Villages[vid].Sort != i)
-					{
-						TD.Villages[vid].Sort = i;
-						TD.Dirty = true;
                 }
-					NEWTV.Add(vid, TD.Villages[vid]);
-				}
-				if (newv == true || TD.Villages.Count != NEWTV.Count)
+                //	新建立的村子
+                else
+                {
+                    TD.Villages[vid] = new TVillage()
+                    {
+                        ID = vid,
+						Name = m.Groups[4].Value,
+                        X = Convert.ToInt32(m.Groups[2].Value),
+                        Y = Convert.ToInt32(m.Groups[3].Value),
+						UpCall = this,
+						Sort = i
+                    };
+                    TD.Dirty = true;
+					newv = true;
+                }
+                
+				if (TD.Villages[vid].Sort != i)
 				{
-					TD.Villages.Clear();
-					TD.Villages = NEWTV;
+					TD.Villages[vid].Sort = i;
 					TD.Dirty = true;
-                	StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Villages });
             	}
+				NEWTV.Add(vid, TD.Villages[vid]);
 			}
-            return;
+            
+			if (newv == true || TD.Villages.Count != NEWTV.Count)
+			{
+				TD.Villages.Clear();
+				TD.Villages = NEWTV;
+				
+				mc = Regex.Matches(data, "karte.php\\?d=(\\d+)\">([^<]*?)</a>\\s*?<[^>]*?>([^<]*?)</span>");
+	            int CapZ = 0;
+	            foreach (Match m in mc)
+	            {
+	                if (m.Groups[3].Value.Length > 0)
+	                    CapZ = Convert.ToInt32(m.Groups[1].Value);
+	            }
+	            foreach (KeyValuePair<int, TVillage> x in TD.Villages)
+	            {
+	                if (x.Value.Z == CapZ)
+	                    x.Value.isCapital = true;
+	                else
+	                    x.Value.isCapital = false;
+	            }
+            
+				TD.Dirty = true;
+            	StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Villages });
+        	}
         }
 
         //	解析村庄的基本信息
@@ -150,14 +177,15 @@ namespace libTravian
                 return;
             int i;
             int Currid = 0;
+            
             MatchCollection mc;
             mc = Regex.Matches(
-            	data, "newdid=(\\d*)[^=]*?=[^=]*?=[^=]*?=\"(\\w*?)\\s*?\\((\\-?\\d*)\\|(\\-?\\d*)\\)\"");
+            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)\\|(\\-?\\d*)\\)\"[^>]*?>([^<]*?)</a>");
             /*
              * Groups:
              * [1]: village id
-             * [2]: village name
-             * [3&4]: position
+             * [2&3]: position
+             * [4]: village name
              */
             data = this.pageQuerier.PageQuery(0, "spieler.php?uid=" + TD.UserID, null, true, true);
             if (data == null)
@@ -196,13 +224,13 @@ namespace libTravian
                     TD.Villages[vid] = new TVillage()
                     {
                         ID = vid,
-                        Name = m.Groups[2].Value,
-                        X = Convert.ToInt32(m.Groups[3].Value),
-                        Y = Convert.ToInt32(m.Groups[4].Value),
+                        Name = m.Groups[4].Value,
+                        X = Convert.ToInt32(m.Groups[2].Value),
+                        Y = Convert.ToInt32(m.Groups[3].Value),
                         UpCall = this
                     };
 
-                    if (m.Groups[2].Value != "")
+                    if (m.Groups[1].Value != "")
                         Currid = vid;
                 }
             }
@@ -402,7 +430,8 @@ namespace libTravian
             var CV = TD.Villages[VillageID];
             MatchCollection mc_gid = Regex.Matches(data, "class=\"building\\s*?g(\\d+)\"");
             MatchCollection mc_bid = Regex.Matches(data, "class=\"aid(\\d+)\">(\\d+)</div>");
-            if (mc_gid.Count == 0 || mc_gid.Count != mc_bid.Count)
+            if (mc_gid.Count == 0 || 
+                !(mc_gid.Count == mc_bid.Count || mc_gid.Count + 1 == mc_bid.Count))
                 return;
             
             int bid, gid, lvl;
@@ -426,6 +455,12 @@ namespace libTravian
             if (!CV.Buildings.ContainsKey(40))
             {
             	CV.Buildings[40] = new TBuilding() { Gid = 30 + TD.Tribe };
+            }
+            
+            Match m = Regex.Match(data, "class=\"wall\\s*?g(\\d+)\\w*?\"");
+            if (m.Success && mc_gid.Count + 1 == mc_bid.Count)
+            {
+            	CV.Buildings[40].Level = Convert.ToInt32(mc_bid[mc_gid.Count].Groups[2].Value);
             }
             
             foreach (var x in CV.Queue)
