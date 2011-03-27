@@ -34,3 +34,12 @@ E:\Travian\stran\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.Strings.resou
 E:\Travian\stran\WinFormsUI\obj\Debug\WinFormsUI.csproj.GenerateResource.Cache
 E:\Travian\stran\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.dll
 E:\Travian\stran\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.pdb
+E:\Resources\TravianTool\WinFormsUI\bin\Debug\license.txt
+E:\Resources\TravianTool\WinFormsUI\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+E:\Resources\TravianTool\WinFormsUI\bin\Debug\WeifenLuo.WinFormsUI.Docking.pdb
+E:\Resources\TravianTool\WinFormsUI\obj\Debug\ResolveAssemblyReference.cache
+E:\Resources\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.Resources.resources
+E:\Resources\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.Strings.resources
+E:\Resources\TravianTool\WinFormsUI\obj\Debug\WinFormsUI.csproj.GenerateResource.Cache
+E:\Resources\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.dll
+E:\Resources\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.pdb

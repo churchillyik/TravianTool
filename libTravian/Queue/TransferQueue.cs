@@ -125,18 +125,19 @@ namespace libTravian
 			{
 				UpCall.PageQuery(TargetVillageID, "build.php?gid=17");
 				CalculateResourceAmount(UpCall.TD, VillageID);
+				
 				// check if it's a crop transfer, and crop is seriously needed from target village:
 				if (UpCall.TD.Villages[TargetVillageID].Resource[3].Produce < 0)
 				{
-				var temp = NeedCrop(UpCall.TD);
-				if(temp != null)
-				{
-					UpCall.DebugLog("NeedCrop rule on use. Force crop transfer.", DebugLevel.I);
-					toTransfer = temp;
-				}
-				else if(ExceedTargetCapacity(UpCall.TD))
-				{
-					return;
+					var temp = NeedCrop(UpCall.TD);
+					if(temp != null)
+					{
+						UpCall.DebugLog("NeedCrop rule on use. Force crop transfer.", DebugLevel.I);
+						toTransfer = temp;
+					}
+					else if(ExceedTargetCapacity(UpCall.TD))
+					{
+						return;
 					}
 				}
 			}
@@ -182,20 +183,9 @@ namespace libTravian
 			Dictionary<string, string> PostData = new Dictionary<string, string>();
 			var m = Regex.Match(result, "name=\"id\" value=\"(\\d+)\"");
 			if(!m.Success)
-				return -1; // Parse error!
+				return -1;
 			PostData["id"] = m.Groups[1].Value;
-			/*
-			m = Regex.Match(result, "var haendler = (\\d+);");
-			if (!m.Success)
-				return -1;
-			var MCount = Convert.ToInt32(m.Groups[1].Value);
-			m = Regex.Match(result, "var carry = (\\d+);");
-			if (!m.Success)
-				return -1;
-			var MCarry = Convert.ToInt32(m.Groups[1].Value);
-			*/
 
-			//if (Amount.TotalAmount > MCarry * MCount)
 			if(result.Contains("Popup(2,5)") && Amount.TotalAmount > CV.Market.SingleCarry * CV.Market.ActiveMerchant)
 			{
 				resumeTime = DateTime.Now.AddSeconds(rand.Next(200 + retrycount * 20, 300 + retrycount * 30));
@@ -227,7 +217,6 @@ namespace libTravian
 			PostData["dname"] = "";
 			PostData["x"] = TargetPos.X.ToString();
 			PostData["y"] = TargetPos.Y.ToString();
-			//PostData["s1"] = "ok";
 			PostData["s1.x"] = "0";
 			PostData["s1.y"] = "0";
 
@@ -247,12 +236,6 @@ namespace libTravian
 			}
 			PostData["s1.x"] = "0";
 			PostData["s1.y"] = "0";
-			/*m = Regex.Match(result, "name=\"sz\" value=\"(\\d+)\"");
-			if(!m.Success)
-				return -1; // Parse error!
-			PostData["sz"] = m.Groups[1].Value;
-			PostData["kid"] = TargetPos.Z.ToString();
-			PostData["a"] = VillageID.ToString();*/
 			m = Regex.Match(result, "<td>([0-9:]{6,})</td>");
 			if(!m.Success)
 				return -1; // Parse error!
@@ -263,21 +246,8 @@ namespace libTravian
 				var distance = CV.Coord * TargetPos;
 				UpCall.TD.Dirty = true;
 				UpCall.TD.MarketSpeed = Convert.ToInt32(Math.Round(distance * 3600 / TimeCost));
-				/*
-				if(DB.Instance.GetInt(UpCall.TD.Server, "MarketSpeedX", -1) == -1)
-				{
-					int StdSpeed;
-					if(UpCall.TD.Tribe == 1)
-						StdSpeed = 16;
-					else if(UpCall.TD.Tribe == 2)
-						StdSpeed = 12;
-					else
-						StdSpeed = 24;
-					DB.Instance.SetInt(UpCall.TD.Server, "MarketSpeedX", UpCall.TD.MarketSpeed / StdSpeed);
-				}
-				 */
 			}
-			UpCall.JustTransferredData = Amount;
+
 			result = UpCall.PageQuery(VillageID, "build.php", PostData);
 			UpCall.BuildCount();
 
@@ -440,6 +410,7 @@ namespace libTravian
 
 			return false;
 		}
+		
 		[Obsolete("Don't use this before fixing")]
 		private TResAmount NeedCrop(Data travianData)
 		{
@@ -537,14 +508,14 @@ namespace libTravian
 				for(int i = 0; i < fulltime.Length; i++)
 				{
 					fulltime[i] = Convert.ToInt32(TV.Resource[i].LeftTime.TotalSeconds);
-					//Console.Write("{0}, ", fulltime[i]);
+
 					maxtime = Math.Max(maxtime, fulltime[i]);
 				}
-				//Console.WriteLine(totaltime);
+
 				for(int i = 0; i < fulltime.Length; i++)
 				{
 					targetAmount.Resources[i] = Convert.ToInt32(Convert.ToInt64(TV.Resource[i].Produce) * (maxtime - fulltime[i]) / 3600);
-					//Console.Write("{0}, ", targetAmount.Resources[i]);
+
 					total2 += targetAmount.Resources[i];
 					totalproduce += TV.Resource[i].Produce;
 				}
@@ -560,7 +531,6 @@ namespace libTravian
 				{
 
 					double seconds = Convert.ToDouble(total - total2) / totalproduce;
-					//Console.WriteLine(total2);
 					for(int i = 0; i < fulltime.Length; i++)
 					{
 						targetAmount.Resources[i] += Convert.ToInt32(TV.Resource[i].Produce * seconds);
@@ -569,18 +539,9 @@ namespace libTravian
 				}
 				targetAmount.Resources[slots - 1] += total - total3;
 				targetAmount.NoNegative();
-				/*
-				for(int i = 0; i < fulltime.Length - 1; i++)
-					if(TV.Market.LowerLimit != null)
-					{
-						targetAmount.Resources[i] -= TV.Market.LowerLimit.Resources[i];
-					}
 
-				 */
-				//Debug.Assert(total2 >= 0);
 			}
 			ResourceAmount = targetAmount;
-			//this.DoBalance(targetAmount);
 		}
 
 		private void EvenlyDistibuteResource()

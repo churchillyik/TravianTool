@@ -265,7 +265,7 @@ namespace libTravian
 			
 			if(Q.Bid == bid)
 			{
-				if(Q.TargetLevel == 0 || Q.TargetLevel <= CV.Buildings[bid].Level + 1)
+				if(Q.TargetLevel == 0 || Q.TargetLevel <= CV.Buildings[bid].Level)
 				{
 					Q.MarkDeleted = true;
 					UpCall.CallStatusUpdate(this, new Travian.StatusChanged() { ChangedData = Travian.ChangedType.Queue, VillageID = VillageID });

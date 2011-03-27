@@ -18,3 +18,8 @@ E:\Travian\stran\json\bin\Debug\json.pdb
 E:\Travian\stran\json\obj\Debug\ResolveAssemblyReference.cache
 E:\Travian\stran\json\obj\Debug\json.dll
 E:\Travian\stran\json\obj\Debug\json.pdb
+E:\Resources\TravianTool\json\bin\Debug\json.dll
+E:\Resources\TravianTool\json\bin\Debug\json.pdb
+E:\Resources\TravianTool\json\obj\Debug\ResolveAssemblyReference.cache
+E:\Resources\TravianTool\json\obj\Debug\json.dll
+E:\Resources\TravianTool\json\obj\Debug\json.pdb

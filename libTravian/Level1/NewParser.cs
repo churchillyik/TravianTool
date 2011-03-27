@@ -679,8 +679,6 @@ namespace libTravian
             }
         }
 
-        public TResAmount JustTransferredData = null;
-
         //	解析市场页面
         private void NewParseMarket(int VillageID, string data)
         {
@@ -709,78 +707,94 @@ namespace libTravian
             int MCount = Convert.ToInt32(m.Groups[1].Value);
             int MLevel = Convert.ToInt32(m.Groups[2].Value);
 
-            // Market: 0 as other, 1 as my
-            string t1 = "<h4>";
-            string[] sp = data.Split(new string[] { t1 }, StringSplitOptions.None);
-            if (sp.Length == 3)
-            {
-                // Write out langfile
-                if (Market[0] == null)
-                    Market[0] = sp[1].Split(new string[] { "</h4>" }, StringSplitOptions.None)[0];
-                if (Market[1] == null)
-                    Market[1] = sp[2].Split(new string[] { "</h4>" }, StringSplitOptions.None)[0];
-            }
-
             CV.Market.ActiveMerchant = MCount;
             CV.Market.SingleCarry = MCarry;
             CV.Market.MaxMerchant = MLevel;
+            
+            // Market: 0 as other, 1 as my
+            string t1 = "<h4 class=";
+            string[] sp = data.Split(new string[] { t1 }, StringSplitOptions.None);
+
             CV.Market.MarketInfo.Clear();
             for (int i = 1; i < sp.Length; i++)
             {
-                TMType MType;
-                if (sp[i].Contains("21%") && Market[1] == null)
-                    Market[1] = sp[i].Split(new string[] { "</h4>" }, StringSplitOptions.None)[0];
-                var mc = Regex.Matches(sp[i],
-                    "spieler.php\\?uid=\\d+\">(.*?)</a>.*?karte.php\\?d=(\\d+)&c=[^>]*\">([^<]+)</a>.*?<span id=\"?timer\\d+\"?>([0-9:]{5,})</span>.*?(<span class=\"none\">|)(?:<img .*?>(\\d+)[^<]*){4,4}",
-                     RegexOptions.Singleline);
-                /// @@1 Username
-                /// @@2 Target Pos
-                /// @@3 Target VName
-                /// @@4 TransferTime
-                /// @@5 "" for MyOut, "c " for MyBack
-                /// @@6 Amounts
-                foreach (Match m1 in mc)
+                string[] MarketTables = HtmlUtility.GetElementsWithClass(
+                	sp[i], "table", "traders");
+                
+                for (int j = 0; j < MarketTables.Length; j++)
                 {
-                    var am = new int[4];
-                    for (int j = 0; j < 4; j++)
-                        am[j] = Convert.ToInt32(m1.Groups[6].Captures[j].Value);
-
-                    if (JustTransferredData != null &&
-                        Market[1] == null &&
-                        am[0] == JustTransferredData.Resources[0] &&
-                        am[1] == JustTransferredData.Resources[1] &&
-                        am[2] == JustTransferredData.Resources[2] &&
-                        am[3] == JustTransferredData.Resources[3])
-                        Market[1] = sp[1].Split(new string[] { "</h4>" }, StringSplitOptions.None)[0];
-
-                    if (sp.Length == 3)
-                        MType = i == 1 ? TMType.OtherCome : TMType.MyOut;
-                    else if (Market[0] != null && sp[i].Contains(Market[0]) || Market[1] != null && !sp[i].Contains(Market[1]))
-                        MType = TMType.OtherCome;
-                    else if (Market[1] != null && sp[i].Contains(Market[1]))
-                        MType = TMType.MyOut;
-                    else if (MCount == MLevel || !m1.Groups[1].Value.Equals(TD.Username, StringComparison.OrdinalIgnoreCase))
+                	//	解析交易者部分
+                	string traders_seg = HtmlUtility.GetElement(MarketTables[j], "thead");
+                	if (traders_seg == null)
+                		continue;
+                	
+                	m = Regex.Match(traders_seg
+                	                , "<a href=\"spieler.php\\?uid=\\d+\">(.*?)</a>");
+                	if (!m.Success)
+                		continue;
+                	string Username = m.Groups[1].Value;
+                	
+                	m = Regex.Match(traders_seg
+                	                , "<a href=\"karte.php\\?d=(\\d+)\">([^<]+)</a>");
+                	if (!m.Success)
+                		continue;
+                	int TargetPos = Convert.ToInt32(m.Groups[1].Value);
+                	string TargetVName = m.Groups[2].Value;
+                	
+                	//	解析到达所需时间的部分
+                	string arrival_seg = HtmlUtility.GetElementWithClass(MarketTables[j], "div", "in");
+                	if (arrival_seg == null)
+                		continue;
+                	
+                	m = Regex.Match(arrival_seg, "<span id=timer\\d+>([^<]*?)</span>");
+                	if (!m.Success)
+                		continue;
+                	string arr_time = m.Groups[1].Value;
+                	
+                	//	解析资源运送的部分
+                	string resource_seg = HtmlUtility.GetElementWithClass(MarketTables[j], "tr", "res");
+                	MatchCollection mc = Regex.Matches(resource_seg, "<img[^>]*?>\\s(\\d+)&");
+                	if (mc.Count != 4)
+                		continue;
+                	int[] am = new int[4];
+                	int k = 0;
+                	foreach (Match m_res in mc)
+                	{
+                		am[k] = Convert.ToInt32(m_res.Groups[1].Value);
+                		k++;
+                	}
+                	
+                	//	解析运送类型部分
+                	TMType MType;
+                	m = Regex.Match(resource_seg, "<span class=\"none\">");
+                	if (m.Success)
+                	{
+                		MType = TMType.MyBack;
+                	}
+                	else
+                	{
+	                	m = Regex.Match(resource_seg, "<td colspan=\"\\d+\"><span>");
+	                	if (m.Success)
+	                	{
+	                		MType = TMType.OtherCome;
+	                	}
+	                	else
+	                	{
+	                		MType = TMType.MyOut;
+	                	}
+                	}
+                	//	添加进运送集合
+                	TMInfo m_info = new TMInfo()
                     {
-                        if (Market[0] == null)
-                            Market[0] = sp[1].Split(new string[] { "</h4>" }, StringSplitOptions.None)[0];
-                        MType = TMType.OtherCome;
-                    }
-                    else
-                        MType = TMType.MyOut;
-
-                    if (m1.Groups[5].Value.Length != 0)
-                        MType = TMType.MyBack;
-					var vname = m1.Groups[3].Value;
-                    
-                    CV.Market.MarketInfo.Add(new TMInfo()
-                    {
-                        Coord = Convert.ToInt32(m1.Groups[2].Value),
-						VillageName = vname,
+                        Coord = TargetPos,
+						VillageName = TargetVName,
                         MType = MType,
                         CarryAmount = new TResAmount(am),
-                        FinishTime = DateTime.Now.Add(TimeSpanParse(m1.Groups[4].Value)).AddSeconds(15)
-                    });
+                        FinishTime = DateTime.Now.Add(TimeSpanParse(arr_time)).AddSeconds(15)
+                    };
+                    CV.Market.MarketInfo.Add(m_info);
                 }
+                
             }
 
         }

@@ -1490,7 +1490,6 @@ namespace Stran
                 if (CV.isBuildingInitialized == 2)
                 {
                     for (int i = m_queuelist.listViewQueue.SelectedIndices.Count - 1; i >= 0; i--)
-                    //for(int i = 0; i < m_queuelist.listViewQueue.SelectedIndices.Count; i++)
                     {
                         int n = m_queuelist.listViewQueue.SelectedIndices[i];
                         CV.Queue.Reverse(n, 2);

@@ -51,15 +51,7 @@ namespace Stran
 			else
 				button1.Enabled = false;
 		}
-		/*
-		public static int B2I(TBuilding b)
-		{
-			if(b != null)
-				return b.Gid;
-			else
-				return 0;
-		}
-		 */
+
 		private void button1_Click(object sender, EventArgs e)
 		{
 			OutGid = Convert.ToInt32(comboBox1.SelectedItem.ToString().Split('.')[0]);

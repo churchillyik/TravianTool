@@ -149,8 +149,13 @@ namespace libTravian
 							task.Action();
 					}
 					for(int i = CV.Queue.Count - 1; i >= 0; i--)
+					{
 						if(CV.Queue[i].MarkDeleted)
+						{
 							CV.Queue.RemoveAt(i);
+							TD.Dirty = true;
+						}
+					}
 				}
 			}
 			catch(InvalidOperationException e)
