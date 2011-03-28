@@ -276,7 +276,7 @@ namespace libTravian
 
             MatchCollection m;
             m = Regex.Matches(data, "<a\\shref=\"([^\"]*?)\">" +
-                              "[^>]*?></a></td><td>(\\w+\\s?\\w*?)\\s" +
+                              "[^>]*?></a></td><td>(.*?)\\s" +
                               "<span\\sclass=\"lvl\">\\s*Level\\s(\\d+)</span></td><[^<]*?" +
                               "<span\\sid=\"timer\\d+\">(\\d+:\\d+:\\d+)</span>");
             /*
@@ -286,15 +286,14 @@ namespace libTravian
              * [4]: build.lefttime
              */
             
-            /*
-            Match m1 = Regex.Match(data, @"class="".*rf(\d+).level(\d+)""");
-            Match m2 = Regex.Match(data, @"class=""building\sd(\d+)\sg(\d+)[b]?""");
+            //	如果解析的是资源田或内城建筑页面的话，先清空当前正在建造的建筑
+            Match m1 = Regex.Match(data, "<div id=\"content\"\\sclass=\"village1\">");
+            Match m2 = Regex.Match(data, "<div id=\"content\"\\sclass=\"village2\">");
             if (m1.Success || m2.Success)
             {
                 CV.InBuilding[0] = null;
                 CV.InBuilding[1] = null;
             }
-            */
             
             for (int i = 0; i < m.Count; i++)
             {
@@ -321,7 +320,11 @@ namespace libTravian
                 }
                 else
                 {
-                    DebugLog("Cannot recognize Gid", DebugLevel.E);
+                	if (CV.Buildings.Count > 18)
+                	{
+                    	DebugLog("Cannot recognize Gid", DebugLevel.E);
+                	}
+                	
                     continue;
                 }
                 
@@ -428,7 +431,7 @@ namespace libTravian
                 return;
 
             var CV = TD.Villages[VillageID];
-            MatchCollection mc_gid = Regex.Matches(data, "class=\"building\\s*?g(\\d+)\"");
+            MatchCollection mc_gid = Regex.Matches(data, "class=\"building\\s*?g(\\d+)b*\"");
             MatchCollection mc_bid = Regex.Matches(data, "class=\"aid(\\d+)\">(\\d+)</div>");
             if (mc_gid.Count == 0 || 
                 !(mc_gid.Count == mc_bid.Count || mc_gid.Count + 1 == mc_bid.Count))
@@ -496,7 +499,7 @@ namespace libTravian
             		return;
             	
             	bIsInbuilding = true;
-            	mc = Regex.Matches(data, "<area\\salt=\"(\\w+\\s*?\\w*?)\\s\\w+\\s\\d+\"" +
+            	mc = Regex.Matches(data, "<area\\salt=\"(.*?)\\sLevel\\s\\d+\"" +
             	                   "[^=]*?=[^=]*?=[^=]*?=[^=]*?=\"build.php\\?id=(\\d+)\"");
             }
 

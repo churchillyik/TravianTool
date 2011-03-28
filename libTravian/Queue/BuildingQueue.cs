@@ -93,14 +93,6 @@ namespace libTravian
 				return;
 			Q.NextExec = DateTime.Now.AddSeconds(60);
 			
-			//	防止队列达到目标后继续建造
-			if(Q.TargetLevel == 0 || Q.TargetLevel <= CV.Buildings[Q.Bid].Level)
-			{
-				Q.MarkDeleted = true;
-				UpCall.CallStatusUpdate(this, new Travian.StatusChanged() { ChangedData = Travian.ChangedType.Queue, VillageID = VillageID });
-				return;
-			}
-			
 			int Bid = UpCall.testPossibleNow(VillageID, Q);
 			//	-1表示目前无法建造
 			if(Bid == -1)

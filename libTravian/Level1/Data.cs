@@ -180,7 +180,7 @@ namespace libTravian
             Depends.Add(28, new TBL[] { new TBL(17, 20), new TBL(20, 10) });
             Depends.Add(29, new TBL[] { new TBL(19, 20) });
             Depends.Add(30, new TBL[] { new TBL(20, 20) });
-            Depends.Add(34, new TBL[] { new TBL(15, 5), new TBL(26, 3) });
+            Depends.Add(34, new TBL[] { new TBL(15, 5) });
             Depends.Add(35, new TBL[] { new TBL(11, 20), new TBL(16, 10) });
             Depends.Add(36, new TBL[] { new TBL(16, 1) });
             Depends.Add(37, new TBL[] { new TBL(15, 3), new TBL(16, 1) });
