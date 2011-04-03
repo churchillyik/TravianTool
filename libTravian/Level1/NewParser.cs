@@ -95,7 +95,7 @@ namespace libTravian
                 return;
             MatchCollection mc;
             mc = Regex.Matches(
-            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)\\|(\\-?\\d*)\\)\"[^>]*?>([^<]*?)</a>");
+            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^1-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
             /*
              * Groups:
              * [1]: village id
@@ -180,7 +180,7 @@ namespace libTravian
             
             MatchCollection mc;
             mc = Regex.Matches(
-            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)\\|(\\-?\\d*)\\)\"[^>]*?>([^<]*?)</a>");
+            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^1-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
             /*
              * Groups:
              * [1]: village id
