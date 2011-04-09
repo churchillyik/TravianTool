@@ -123,8 +123,8 @@ namespace libTravian
             BuildingCost[9] = new rinfo_array(5, 1.8, new TResAmount(1200, 1480, 870, 1600));				//	面包房
             BuildingCost[10] = new rinfo_array(20, 1.28, new TResAmount(130, 160, 90, 40));					//	仓库
             BuildingCost[11] = new rinfo_array(20, 1.28, new TResAmount(80, 100, 70, 20));					//	粮仓
-            BuildingCost[12] = new rinfo_array(20, 1.28, new TResAmount(180, 250, 500, 160));				//	铁匠铺，原为(170, 200, 380, 130)
-            BuildingCost[13] = new rinfo_array(20, 1.28, new TResAmount(130, 210, 410, 130));				//	防具铺（已废）
+            BuildingCost[12] = new rinfo_array(20, 1.28, new TResAmount(180, 250, 500, 160));				//	防具铺（已废）
+            BuildingCost[13] = new rinfo_array(20, 1.28, new TResAmount(180, 250, 500, 160));				//	铁匠铺，原为(170, 200, 380, 130)
             BuildingCost[14] = new rinfo_array(20, 1.28, new TResAmount(1750, 2250, 1530, 240));			//	竞技场
             BuildingCost[15] = new rinfo_array(20, 1.28, new TResAmount(70, 40, 60, 20));					//	中心大楼
             BuildingCost[16] = new rinfo_array(20, 1.28, new TResAmount(110, 160, 90, 70));					//	集结点
@@ -170,7 +170,7 @@ namespace libTravian
             Depends.Add(17, new TBL[] { new TBL(10, 1), new TBL(11, 1), new TBL(15, 3) });
             Depends.Add(18, new TBL[] { new TBL(15, 1) });
             Depends.Add(19, new TBL[] { new TBL(16, 1) });
-            Depends.Add(20, new TBL[] { new TBL(12, 3), new TBL(22, 5) });
+            Depends.Add(20, new TBL[] { new TBL(13, 3), new TBL(22, 5) });
             Depends.Add(21, new TBL[] { new TBL(22, 10), new TBL(15, 5) });
             Depends.Add(22, new TBL[] { new TBL(19, 3), new TBL(16, 1) });
             Depends.Add(24, new TBL[] { new TBL(22, 10), new TBL(15, 10) });

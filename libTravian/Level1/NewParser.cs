@@ -44,6 +44,7 @@ namespace libTravian
                 NewParseInbuilding(VillageID, data);
                 NewParseUpgrade(VillageID, data);
                 NewParseTownHall(VillageID, data);
+                NewParseMainBuilding(VillageID, data);
                 NewParseMarket(VillageID, data);
                 NewParseTroops(VillageID, data);
                 NewParseOasis(VillageID, data);
@@ -553,7 +554,7 @@ namespace libTravian
         }
 
         //	解析中心大楼页面（同时也是拆除页面）
-        private void NewParseTownHall(int VillageID, string data)
+        private void NewParseMainBuilding(int VillageID, string data)
         {
         	if (this.GetBuildingLevel(15, data) < 0)
                 return;
@@ -715,6 +716,31 @@ namespace libTravian
                     CV.Upgrades[AID].InUpgrading = true;
                 }
             }
+        }
+        
+        //	解析市政厅页面
+        private void NewParseTownHall(int VillageID, string data)
+        {
+        	if (this.GetBuildingLevel(24, data) < 0)
+                return;
+        	
+            if (!data.Contains("<div id=\"build\" class=\"gid24\">"))
+                return;
+            
+            var CV = TD.Villages[VillageID];
+            Match m_desc = Regex.Match(data, "<td class=\"desc\">(.*?)</td>");
+            Match m_dur = Regex.Match(data, "<td class=\"dur\"><span id=\"timer\\d+\">([0-9:]+)</span></td>");
+            if (!m_desc.Success || !m_dur.Success)
+            {
+            	return;
+            }
+            
+            if (CV.InBuilding[6] == null)
+            {
+            	CV.InBuilding[6] = new TInBuilding();
+            }
+            CV.InBuilding[6].PartyDesc = m_desc.Groups[1].Value;
+            CV.InBuilding[6].FinishTime = DateTime.Now.Add(TimeSpanParse(m_dur.Groups[1].Value));
         }
 
         //	解析市场页面
@@ -934,6 +960,7 @@ namespace libTravian
             }
 
             string owner = ownerMatch.Groups[2].Value;
+            
             int ownerVillageZ = 0;
             string ownerVillageUrl = "";
             Match ownerVillageZMatch = Regex.Match(ownerMatch.Groups[1].Value, @"karte.php\?d=(\d+)");
@@ -950,14 +977,29 @@ namespace libTravian
             }
 
             string name = nameMatch.Groups[2].Value;
-            
-            Match textMatch = Regex.Match(name, "<span class=\"text\">(.*?)</span>");
-            Match coordsMatch = Regex.Match(name, "<span class=\"coords\">(.*?)</span>");
-            if (textMatch.Success && coordsMatch.Success)
+            if (name.Contains("<span class=\"coordinates coordinatesWithText\">"))
             {
-            	string text = textMatch.Groups[1].Value;
-            	string coords = coordsMatch.Groups[1].Value;
-            	name = text + coords;
+            	string raw_name = name;
+            	Match nameMch = Regex.Match(raw_name, "<span class=\"coordText\">(.+?)</span>");
+            	if (!nameMch.Success)
+            	{
+            		return null;
+            	}
+            	name = nameMch.Groups[1].Value;
+            	
+            	nameMch = Regex.Match(raw_name, "<span class=\"xCoord\">(.+?)</span>");
+            	if (!nameMch.Success)
+            	{
+            		return null;
+            	}
+            	name = name + nameMch.Groups[1].Value + "|";
+            	
+            	nameMch = Regex.Match(raw_name, "<span class=\"yCoord\">(.+?)</span>");
+            	if (!nameMch.Success)
+            	{
+            		return null;
+            	}
+            	name = name + nameMch.Groups[1].Value;
             }
 
             //	获得部队单位类型

@@ -497,6 +497,8 @@ namespace libTravian
         [Json]
         public int Level { get; set; }
         [Json]
+        public string PartyDesc { get; set; }
+        [Json]
         public DateTime FinishTime { get; set; }
         public TInBuilding() { }
         public override string ToString()

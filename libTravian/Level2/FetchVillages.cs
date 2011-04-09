@@ -78,8 +78,9 @@ namespace libTravian
             {
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isUpgradeInitialized = 1;
-                PageQuery(VillageID, "build.php?gid=12");	//	铁匠铺
+                PageQuery(VillageID, "build.php?gid=13");	//	铁匠铺
                 PageQuery(VillageID, "build.php?gid=22");	//	研究院
+                PageQuery(VillageID, "build.php?gid=24");	//	市政厅
                 TD.Villages[VillageID].isUpgradeInitialized = 2;
                 StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Research, VillageID = VillageID });
                 TD.Dirty = true;

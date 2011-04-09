@@ -495,10 +495,20 @@ namespace Stran
                             c_text = dl.GetAidLang(TravianData.Tribe, x.ABid);
                         else
                             c_text = "";
-                        c_text += string.Format(" {0} {1:0}:{2:00}:{3:00} -> {4}",
-                            x.Level,
-                            Math.Floor(ts.TotalHours), ts.Minutes, ts.Seconds,
-                            x.FinishTime.ToLongTimeString());
+                        if (i != 6)
+                        {
+	                        c_text += string.Format(" {0} {1:0}:{2:00}:{3:00} -> {4}",
+	                            x.Level,
+	                            Math.Floor(ts.TotalHours), ts.Minutes, ts.Seconds,
+	                            x.FinishTime.ToLongTimeString());
+                        }
+                        else
+                        {
+                        	c_text = string.Format(" {0} {1:0}:{2:00}:{3:00} -> {4}",
+	                            x.PartyDesc,
+	                            Math.Floor(ts.TotalHours), ts.Minutes, ts.Seconds,
+	                            x.FinishTime.ToLongTimeString());
+                        }
                     }
 
                     if (m_inbuildinglist.listViewInBuilding.Items[i].SubItems[1].Text != c_text)
