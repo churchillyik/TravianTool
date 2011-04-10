@@ -32,17 +32,15 @@
 			this.columnHeader22 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader23 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader24 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader25 = new System.Windows.Forms.ColumnHeader();
 			this.SuspendLayout();
 			// 
 			// listViewUpgrade
 			// 
 			this.listViewUpgrade.AllowColumnReorder = true;
 			this.listViewUpgrade.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24,
-            this.columnHeader25});
+									this.columnHeader22,
+									this.columnHeader23,
+									this.columnHeader24});
 			this.listViewUpgrade.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewUpgrade.FullRowSelect = true;
 			this.listViewUpgrade.GridLines = true;
@@ -68,15 +66,9 @@
 			// 
 			// columnHeader24
 			// 
-			this.columnHeader24.Tag = "offence";
-			this.columnHeader24.Text = "攻击";
+			this.columnHeader24.Tag = "troop_lvl";
+			this.columnHeader24.Text = "兵种等级";
 			this.columnHeader24.Width = 95;
-			// 
-			// columnHeader25
-			// 
-			this.columnHeader25.Tag = "defence";
-			this.columnHeader25.Text = "防御";
-			this.columnHeader25.Width = 95;
 			// 
 			// ResearchStatus
 			// 
@@ -85,9 +77,9 @@
 			this.ClientSize = new System.Drawing.Size(472, 448);
 			this.CloseButton = false;
 			this.Controls.Add(this.listViewUpgrade);
-			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
 									| WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "ResearchStatus";
@@ -97,7 +89,6 @@
 			this.Text = "研发状态";
 			this.Load += new System.EventHandler(this.ResearchStatus_Load);
 			this.ResumeLayout(false);
-
 		}
 
 		#endregion
@@ -106,6 +97,5 @@
 		private System.Windows.Forms.ColumnHeader columnHeader22;
 		private System.Windows.Forms.ColumnHeader columnHeader23;
 		private System.Windows.Forms.ColumnHeader columnHeader24;
-		private System.Windows.Forms.ColumnHeader columnHeader25;
 	}
 }

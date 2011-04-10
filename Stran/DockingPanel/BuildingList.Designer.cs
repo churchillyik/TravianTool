@@ -45,9 +45,9 @@
 			this.listViewBuilding.AllowColumnReorder = true;
 			this.listViewBuilding.BackColor = System.Drawing.SystemColors.Window;
 			this.listViewBuilding.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader4});
+									this.columnHeader1,
+									this.columnHeader2,
+									this.columnHeader4});
 			this.listViewBuilding.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewBuilding.FullRowSelect = true;
 			this.listViewBuilding.GridLines = true;
@@ -69,7 +69,7 @@
 			// 
 			this.columnHeader2.Tag = "gname";
 			this.columnHeader2.Text = "建筑名";
-			this.columnHeader2.Width = 200;
+			this.columnHeader2.Width = 150;
 			// 
 			// columnHeader4
 			// 
@@ -150,9 +150,9 @@
 			this.CloseButton = false;
 			this.Controls.Add(this.listViewBuilding);
 			this.Controls.Add(this.flowLayoutPanel1);
-			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
 									| WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "BuildingList";
@@ -165,7 +165,6 @@
 			this.flowLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
 
 		#endregion

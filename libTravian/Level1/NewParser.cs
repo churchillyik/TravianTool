@@ -540,7 +540,9 @@ namespace libTravian
         //	解析正在执行的任务
         private DateTime NewParseInDoing(string data, out int aid)
         {
-            var m2 = Regex.Match(data, "under_progress.*?<tbody>[^<]*?<tr>.*?<img class=\"unit u\\d?(\\d)\".*?timer\\d+\"?>([0-9:]+)<", RegexOptions.Singleline);
+            var m2 = Regex.Match(data, "under_progress.*?<tbody>[^<]*?<tr>.*?" +
+        	                     "<img class=\"unit u\\d?(\\d)\".*?timer\\d+\"?>([0-9:]+)<"
+        	                     , RegexOptions.Singleline);
             if (m2.Success)
             {
                 aid = Convert.ToInt32(m2.Groups[1].Value);
@@ -646,9 +648,11 @@ namespace libTravian
             }
         }
         
+        //	解析研究院和铁匠铺的研发和升级情况
         private void NewParseUpgrade(int VillageID, string data)
         {
-            List<int> AllowGid = new List<int>() { 22, 12, 13 };
+        	//
+            List<int> AllowGid = new List<int>() { 22, 13 };
             int level = 0, gid = -1;
             foreach (var ngid in AllowGid)
             {
@@ -667,52 +671,64 @@ namespace libTravian
 
             if (gid == 22)
             {
-                var mc = Regex.Matches(data, "Popup\\(\\d?(\\d),1", RegexOptions.Singleline);
+            	string[] str_split = data.Split(
+            		new string[] { "<div id=\"researchFuture\" class=\"researches hide\">" }
+            		, StringSplitOptions.None);
+            	if (str_split.Length != 2)
+            	{
+					return;
+            	}
+            	
+            	var mc = Regex.Matches(str_split[0],
+            		 "onclick=\"return Travian.iPopup\\(\\d?(\\d),1\\);\">[^<]*?</a>",
+            		 RegexOptions.Singleline);
                 foreach (Match m in mc)
                 {
                     var TroopID = Convert.ToInt32(m.Groups[1].Value);
                     CV.Upgrades[TroopID].CanResearch = true;
                 }
+                
                 int AID = 0;
                 DateTime FinishedTime = NewParseInDoing(data, out AID);
                 if (AID > 0)
                 {
-                    CV.InBuilding[5] = new TInBuilding() { ABid = AID, FinishTime = FinishedTime, Level = 0 };
+                    CV.InBuilding[4] = new TInBuilding() 
+                    { 
+                    	ABid = AID, 
+                    	FinishTime = FinishedTime, 
+                    	Level = 0 
+                    };
                     CV.Upgrades[AID].InUpgrading = true;
                 }
             }
             else
             {
-                if (gid == 12)
-                    CV.BlacksmithLevel = level;
-                else
-                    CV.ArmouryLevel = level;
-                var mc = Regex.Matches(data, "Popup\\(\\d?(\\d),1\\).*?\\([^<]*?(\\d+).*?\\)", RegexOptions.Singleline);
+                CV.SmithyLevel = level;
+                
+                //	解析当前能够升级的兵种及其当前级别
+                var mc = Regex.Matches(data, "iPopup\\(\\d?(\\d),1\\)[^<]*?</a>" +
+                                       "[^>]*?>.*?(\\d+)</span>");
                 foreach (Match m in mc)
                 {
                     /// @@1 TroopID
                     /// @@2 Level
                     var TroopID = Convert.ToInt32(m.Groups[1].Value);
                     CV.Upgrades[TroopID].Researched = true;
-                    if (gid == 12)
-                        CV.Upgrades[TroopID].AttackLevel = Convert.ToInt32(m.Groups[2].Value);
-                    else
-                        CV.Upgrades[TroopID].DefenceLevel = Convert.ToInt32(m.Groups[2].Value);
+                    CV.Upgrades[TroopID].troop_lvl = Convert.ToInt32(m.Groups[2].Value);
                 }
+                
                 int AID = 0;
                 DateTime FinishedTime = NewParseInDoing(data, out AID);
                 if (AID > 0)
                 {
-                    if (gid == 12)
-                    {
-                        CV.Upgrades[AID].AttackLevel++;
-                        CV.InBuilding[3] = new TInBuilding() { ABid = AID, FinishTime = FinishedTime, Level = CV.Upgrades[AID].AttackLevel };
-                    }
-                    else
-                    {
-                        CV.Upgrades[AID].DefenceLevel++;
-                        CV.InBuilding[4] = new TInBuilding() { ABid = AID, FinishTime = FinishedTime, Level = CV.Upgrades[AID].DefenceLevel };
-                    }
+                	CV.Upgrades[AID].troop_lvl++;
+                    CV.InBuilding[3] = new TInBuilding() 
+                    { 
+                    	ABid = AID, 
+                    	FinishTime = FinishedTime,
+                    	Level = CV.Upgrades[AID].troop_lvl 
+                    };
+                    
                     CV.Upgrades[AID].InUpgrading = true;
                 }
             }
@@ -735,12 +751,12 @@ namespace libTravian
             	return;
             }
             
-            if (CV.InBuilding[6] == null)
+            if (CV.InBuilding[5] == null)
             {
-            	CV.InBuilding[6] = new TInBuilding();
+            	CV.InBuilding[5] = new TInBuilding();
             }
-            CV.InBuilding[6].PartyDesc = m_desc.Groups[1].Value;
-            CV.InBuilding[6].FinishTime = DateTime.Now.Add(TimeSpanParse(m_dur.Groups[1].Value));
+            CV.InBuilding[5].PartyDesc = m_desc.Groups[1].Value;
+            CV.InBuilding[5].FinishTime = DateTime.Now.Add(TimeSpanParse(m_dur.Groups[1].Value));
         }
 
         //	解析市场页面

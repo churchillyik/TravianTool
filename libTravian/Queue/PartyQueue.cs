@@ -44,8 +44,8 @@ namespace libTravian
 				int timecost = CV.TimeCost(Buildings.PartyCos[(int)PartyType - 1]);
 				if(NextExec != DateTime.MinValue && NextExec > DateTime.Now)
 					timecost = Math.Max(timecost, Convert.ToInt32(NextExec.Subtract(DateTime.Now).TotalSeconds));
-				if(CV.InBuilding[6] != null)
-					return Math.Max(timecost, Convert.ToInt32(CV.InBuilding[6].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 30);
+				if(CV.InBuilding[5] != null)
+					return Math.Max(timecost, Convert.ToInt32(CV.InBuilding[5].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 30);
 				else
 					return timecost;
 			}
@@ -58,7 +58,7 @@ namespace libTravian
 			var CV = UpCall.TD.Villages[VillageID];
 			UpCall.PageQuery(VillageID, "build.php?gid=24&a=" + ((int)PartyType).ToString());
 			LastExec = DateTime.Now;
-			if(CV.InBuilding[6] == null || CV.InBuilding[6].FinishTime < DateTime.Now)
+			if(CV.InBuilding[5] == null || CV.InBuilding[5].FinishTime < DateTime.Now)
 			{
 				// error occurred!
 				retrycount++;

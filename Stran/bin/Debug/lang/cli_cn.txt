@@ -1,6 +1,6 @@
 ﻿// global const
 tribelist=自动探测,罗马,日尔曼,高卢
-typelist=资源田,建筑,拆除,攻击,防御,研究,活动,运输,平仓
+typelist=资源田,建筑,拆除,攻防,研究,活动
 // main form
 username=用户名
 server=服务器
@@ -44,8 +44,7 @@ qdelay=延迟
 // list view upgrade
 troopname=兵种
 research=研发
-offence=攻击
-defence=防御
+troop_lvl=兵种升级
 finished=已完成
 notavailable=不可升级
 upgrading=正在升级
@@ -102,10 +101,8 @@ snapshot=&S. 获取当前村庄快照
 snapall=&A. 获取所有村庄快照
 
 mresearch=&R. 研发
-upgradeatk=&A. 升级攻击
-upgradeatkto=&T. 升级攻击至…
-upgradedef=&D. 升级防御
-upgradedefto=&O. 升级防御至…
+upgradetrooplvl=&U. 升级兵种等级
+upgradetrooplvlto=&T. 升级兵种等级至…
 
 market=市场运输
 reallyexittext=真的要关闭程序吗？

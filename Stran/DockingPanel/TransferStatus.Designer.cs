@@ -40,11 +40,11 @@
 			// 
 			this.listViewMarket.AllowColumnReorder = true;
 			this.listViewMarket.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader18,
-            this.columnHeader19,
-            this.columnHeader20,
-            this.columnHeader21,
-            this.columnHeader26});
+									this.columnHeader18,
+									this.columnHeader19,
+									this.columnHeader20,
+									this.columnHeader21,
+									this.columnHeader26});
 			this.listViewMarket.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewMarket.FullRowSelect = true;
 			this.listViewMarket.GridLines = true;
@@ -66,7 +66,7 @@
 			// 
 			this.columnHeader19.Tag = "resamount";
 			this.columnHeader19.Text = "资源量";
-			this.columnHeader19.Width = 125;
+			this.columnHeader19.Width = 70;
 			// 
 			// columnHeader20
 			// 
@@ -93,9 +93,9 @@
 			this.ClientSize = new System.Drawing.Size(492, 468);
 			this.CloseButton = false;
 			this.Controls.Add(this.listViewMarket);
-			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
 									| WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "TransferStatus";
@@ -105,7 +105,6 @@
 			this.Text = "市场运输";
 			this.Load += new System.EventHandler(this.TransferStatus_Load);
 			this.ResumeLayout(false);
-
 		}
 
 		#endregion

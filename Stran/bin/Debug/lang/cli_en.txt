@@ -1,6 +1,6 @@
 ﻿// global const
 tribelist=Auto,Romans,Teutons,Gauls
-typelist=ResField,Building,Destroy,Attack,Defence,Research,Party,Transfer,NpcTrade
+typelist=ResField,Building,Destroy,Off&Def,Research,Party
 // main form
 username=Username
 server=Server
@@ -44,8 +44,7 @@ qdelay=Delay
 // list view upgrade
 troopname=Troop
 research=Research
-offence=Attack
-defence=Defence
+troop_lvl=Troop Upgrade
 finished=Finished
 notavailable=N/A
 upgrading=Upgrading
@@ -102,10 +101,8 @@ snapshot=&Snapshot this village
 snapall=Snapshot &all villages
 
 mresearch=&Research
-upgradeatk=Upgrade &Attack
-upgradeatkto=Upgrade Attack &To...
-upgradedef=Upgrade &Defense
-upgradedefto=Upgrade Defense T&o...
+upgradetrooplvl=&Upgrade TroopLevel
+upgradetrooplvlto=Upgrade TroopLevel &To...
 
 market=Market
 reallyexittext=Sure to close application?

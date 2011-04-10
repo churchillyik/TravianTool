@@ -77,11 +77,9 @@
 			this.contextMenuResearch = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.CMRResearch = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-			this.CMRUpgradeAtk = new System.Windows.Forms.ToolStripMenuItem();
-			this.CMRUpgradeAtkTo = new System.Windows.Forms.ToolStripMenuItem();
+			this.CMRUpgradeTroopLvl = new System.Windows.Forms.ToolStripMenuItem();
+			this.CMRUpgradeTroopLvlTo = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-			this.CMRUpgradeDef = new System.Windows.Forms.ToolStripMenuItem();
-			this.CMRUpgradeDefTo = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
 			this.CMRRefresh = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuQueue = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -509,23 +507,21 @@
 			this.contextMenuResearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.CMRResearch,
 									this.toolStripSeparator6,
-									this.CMRUpgradeAtk,
-									this.CMRUpgradeAtkTo,
+									this.CMRUpgradeTroopLvl,
+									this.CMRUpgradeTroopLvlTo,
 									this.toolStripSeparator7,
-									this.CMRUpgradeDef,
-									this.CMRUpgradeDefTo,
 									this.toolStripSeparator10,
 									this.CMRRefresh});
 			this.contextMenuResearch.Name = "contextMenuResearch";
 			this.contextMenuResearch.ShowImageMargin = false;
-			this.contextMenuResearch.Size = new System.Drawing.Size(130, 154);
+			this.contextMenuResearch.Size = new System.Drawing.Size(148, 132);
 			this.contextMenuResearch.Tag = "mresearch";
 			this.contextMenuResearch.Opening += new System.ComponentModel.CancelEventHandler(this.CMR_Opening);
 			// 
 			// CMRResearch
 			// 
 			this.CMRResearch.Name = "CMRResearch";
-			this.CMRResearch.Size = new System.Drawing.Size(129, 22);
+			this.CMRResearch.Size = new System.Drawing.Size(147, 22);
 			this.CMRResearch.Tag = "mresearch";
 			this.CMRResearch.Text = "research";
 			this.CMRResearch.Click += new System.EventHandler(this.CMRResearch_Click);
@@ -533,54 +529,38 @@
 			// toolStripSeparator6
 			// 
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
-			this.toolStripSeparator6.Size = new System.Drawing.Size(126, 6);
+			this.toolStripSeparator6.Size = new System.Drawing.Size(144, 6);
 			// 
-			// CMRUpgradeAtk
+			// CMRUpgradeTroopLvl
 			// 
-			this.CMRUpgradeAtk.Name = "CMRUpgradeAtk";
-			this.CMRUpgradeAtk.Size = new System.Drawing.Size(129, 22);
-			this.CMRUpgradeAtk.Tag = "upgradeatk";
-			this.CMRUpgradeAtk.Text = "upgradeatk";
-			this.CMRUpgradeAtk.Click += new System.EventHandler(this.CMRUpgradeAtk_Click);
+			this.CMRUpgradeTroopLvl.Name = "CMRUpgradeTroopLvl";
+			this.CMRUpgradeTroopLvl.Size = new System.Drawing.Size(147, 22);
+			this.CMRUpgradeTroopLvl.Tag = "upgradetrooplvl";
+			this.CMRUpgradeTroopLvl.Text = "upgradetrooplvl";
+			this.CMRUpgradeTroopLvl.Click += new System.EventHandler(this.CMRUpgradeTroopLvl_Click);
 			// 
-			// CMRUpgradeAtkTo
+			// CMRUpgradeTroopLvlTo
 			// 
-			this.CMRUpgradeAtkTo.Name = "CMRUpgradeAtkTo";
-			this.CMRUpgradeAtkTo.Size = new System.Drawing.Size(129, 22);
-			this.CMRUpgradeAtkTo.Tag = "upgradeatkto";
-			this.CMRUpgradeAtkTo.Text = "upgradeatkto";
-			this.CMRUpgradeAtkTo.Click += new System.EventHandler(this.CMRUpgradeAtkTo_Click);
+			this.CMRUpgradeTroopLvlTo.Name = "CMRUpgradeTroopLvlTo";
+			this.CMRUpgradeTroopLvlTo.Size = new System.Drawing.Size(147, 22);
+			this.CMRUpgradeTroopLvlTo.Tag = "upgradetrooplvlto";
+			this.CMRUpgradeTroopLvlTo.Text = "upgradetrooplvlto";
+			this.CMRUpgradeTroopLvlTo.Click += new System.EventHandler(this.CMRUpgradeTroopLvlTo_Click);
 			// 
 			// toolStripSeparator7
 			// 
 			this.toolStripSeparator7.Name = "toolStripSeparator7";
-			this.toolStripSeparator7.Size = new System.Drawing.Size(126, 6);
-			// 
-			// CMRUpgradeDef
-			// 
-			this.CMRUpgradeDef.Name = "CMRUpgradeDef";
-			this.CMRUpgradeDef.Size = new System.Drawing.Size(129, 22);
-			this.CMRUpgradeDef.Tag = "upgradedef";
-			this.CMRUpgradeDef.Text = "upgradedef";
-			this.CMRUpgradeDef.Click += new System.EventHandler(this.CMRUpgradeDef_Click);
-			// 
-			// CMRUpgradeDefTo
-			// 
-			this.CMRUpgradeDefTo.Name = "CMRUpgradeDefTo";
-			this.CMRUpgradeDefTo.Size = new System.Drawing.Size(129, 22);
-			this.CMRUpgradeDefTo.Tag = "upgradedefto";
-			this.CMRUpgradeDefTo.Text = "upgradedefto";
-			this.CMRUpgradeDefTo.Click += new System.EventHandler(this.CMRUpgradeDefTo_Click);
+			this.toolStripSeparator7.Size = new System.Drawing.Size(144, 6);
 			// 
 			// toolStripSeparator10
 			// 
 			this.toolStripSeparator10.Name = "toolStripSeparator10";
-			this.toolStripSeparator10.Size = new System.Drawing.Size(126, 6);
+			this.toolStripSeparator10.Size = new System.Drawing.Size(144, 6);
 			// 
 			// CMRRefresh
 			// 
 			this.CMRRefresh.Name = "CMRRefresh";
-			this.CMRRefresh.Size = new System.Drawing.Size(129, 22);
+			this.CMRRefresh.Size = new System.Drawing.Size(147, 22);
 			this.CMRRefresh.Tag = "refreshupgrade";
 			this.CMRRefresh.Text = "refreshupgrade";
 			this.CMRRefresh.Click += new System.EventHandler(this.CMRRefresh_Click);
@@ -718,7 +698,7 @@
 									this.CMVFindOasis});
 			this.contextMenuVillage.Name = "contextMenuStrip1";
 			this.contextMenuVillage.ShowImageMargin = false;
-			this.contextMenuVillage.Size = new System.Drawing.Size(166, 330);
+			this.contextMenuVillage.Size = new System.Drawing.Size(166, 308);
 			this.contextMenuVillage.Opening += new System.ComponentModel.CancelEventHandler(this.CMV_Opening);
 			// 
 			// CMVRefresh
@@ -1080,6 +1060,8 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeTroopLvlTo;
+		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeTroopLvl;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
 		private System.Windows.Forms.ToolStripMenuItem CMVFindOasis;
 		private System.Windows.Forms.ToolStripMenuItem CMTAlarm;
@@ -1123,12 +1105,8 @@
 		private System.Windows.Forms.ToolStripMenuItem CMVSnapshot;
 		private System.Windows.Forms.ToolStripMenuItem CMVSnapAll;
 		private System.Windows.Forms.ToolStripMenuItem CMRResearch;
-		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeAtk;
-		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeAtkTo;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeDef;
-		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeDefTo;
 		private System.Windows.Forms.ToolStripMenuItem CMBAI_C;
 		private System.Windows.Forms.ToolStripMenuItem CMBAI_L;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;

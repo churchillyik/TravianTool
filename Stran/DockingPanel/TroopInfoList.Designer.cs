@@ -39,10 +39,10 @@
 			// 
 			this.listViewTroop.AllowColumnReorder = true;
 			this.listViewTroop.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader18,
-            this.columnHeader19,
-            this.columnHeader20,
-            this.columnHeader26});
+									this.columnHeader18,
+									this.columnHeader19,
+									this.columnHeader20,
+									this.columnHeader26});
 			this.listViewTroop.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewTroop.FullRowSelect = true;
 			this.listViewTroop.GridLines = true;
@@ -64,13 +64,13 @@
 			// 
 			this.columnHeader19.Tag = "troopamount";
 			this.columnHeader19.Text = "军队数量";
-			this.columnHeader19.Width = 210;
+			this.columnHeader19.Width = 232;
 			// 
 			// columnHeader20
 			// 
 			this.columnHeader20.Tag = "vname";
 			this.columnHeader20.Text = "村名";
-			this.columnHeader20.Width = 70;
+			this.columnHeader20.Width = 99;
 			// 
 			// columnHeader26
 			// 
@@ -85,9 +85,9 @@
 			this.ClientSize = new System.Drawing.Size(492, 468);
 			this.CloseButton = false;
 			this.Controls.Add(this.listViewTroop);
-			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
 									| WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "TroopInfoList";
@@ -97,7 +97,6 @@
 			this.Text = "TroopInfoList";
 			this.Load += new System.EventHandler(this.TroopInfoList_Load);
 			this.ResumeLayout(false);
-
 		}
 
 		#endregion

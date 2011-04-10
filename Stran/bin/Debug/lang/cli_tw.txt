@@ -1,6 +1,6 @@
 ﻿// global const
 tribelist=自動偵測,羅馬,條頓,高盧
-typelist=資源,建築,拆除,攻擊,防禦,研發,派對,運輸,平倉
+typelist=資源,建築,拆除,攻防,研發,派對
 // main form
 username=帳號
 server=伺服器
@@ -44,8 +44,7 @@ qdelay=延遲
 // list view upgrade
 troopname=兵種
 research=研究
-offence=攻擊
-defence=防禦
+troop_lvl=兵種升級
 finished=研發完成
 notavailable=無法研發
 upgrading=正在升級
@@ -102,10 +101,8 @@ snapshot=目前村莊的詳細資訊(&S)
 snapall=全部村莊的詳細資訊(&A)
 
 mresearch=研發(&R)
-upgradeatk=升級攻擊(&A)
-upgradeatkto=升級攻擊至(&T)...
-upgradedef=升級防禦(&D)
-upgradedefto=升級防禦至(&O)...
+upgradetrooplvl=升級兵種等級(&A)
+upgradetrooplvlto=升級兵種等級至(&T)...
 
 market=市場運輸
 reallyexittext=是否確定關閉程式?

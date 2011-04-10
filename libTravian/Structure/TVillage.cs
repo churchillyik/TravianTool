@@ -27,9 +27,7 @@ namespace libTravian
         [Json]
         public Dictionary<int, TRU> Upgrades { get; set; }
         [Json]
-        public int BlacksmithLevel { get; set; }
-        [Json]
-        public int ArmouryLevel { get; set; }
+        public int SmithyLevel { get; set; }
         [Json]
         public TResource[] Resource { get; set; }
         [Json]
@@ -173,7 +171,7 @@ namespace libTravian
         public TVillage()
         {
             Resource = new TResource[4];
-            InBuilding = new TInBuilding[7];
+            InBuilding = new TInBuilding[6];
             Queue = new List<IQueue>();
             Upgrades = new Dictionary<int, TRU>();
             Market = new TMarket();
@@ -677,15 +675,12 @@ namespace libTravian
         [Json]
         public bool Researched { get; set; }
         [Json]
-        public int AttackLevel { get; set; }
-        [Json]
-        public int DefenceLevel { get; set; }
+        public int troop_lvl { get; set; }
         [Json]
         public bool InUpgrading { get; set; }
         public TRU()
         {
-            AttackLevel = -1;
-            DefenceLevel = -1;
+            troop_lvl = -1;
         }
         public override string ToString()
         {

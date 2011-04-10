@@ -51,7 +51,7 @@ namespace Stran
         private static Color[] ResColor = new Color[] { Color.ForestGreen, Color.Chocolate, Color.SlateGray, Color.Gold };
         private static readonly Color RedBGColor = Color.FromArgb(255, 192, 192);
         private static readonly Color YellowBGColor = Color.FromArgb(255, 255, 192);
-        public static string[] typelist = new string[] { "资源田", "建筑", "拆除", "攻击", "防御", "研究", "活动", "运输", "平仓" };
+        public static string[] typelist = new string[] { "资源田", "建筑", "拆除", "攻防", "研究", "活动" };
 
         private static object QueueLock = new object();
 
@@ -69,7 +69,7 @@ namespace Stran
             reslabel = new ResourceLabel[] { m_resourceshow.resourceLabel1, m_resourceshow.resourceLabel2, m_resourceshow.resourceLabel3, m_resourceshow.resourceLabel4 };
             //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
             //Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 6; i++)
             {
                 var lvi = m_inbuildinglist.listViewInBuilding.Items.Add(typelist[i]);
                 lvi.SubItems.Add("");
@@ -491,11 +491,11 @@ namespace Stran
                         {
                             c_text = dl.GetGidLang(x.Gid);
                         }
-                        else if (i < 6)
+                        else if (i < 5)
                             c_text = dl.GetAidLang(TravianData.Tribe, x.ABid);
                         else
                             c_text = "";
-                        if (i != 6)
+                        if (i != 5)
                         {
 	                        c_text += string.Format(" {0} {1:0}:{2:00}:{3:00} -> {4}",
 	                            x.Level,
@@ -578,15 +578,15 @@ namespace Stran
                     lvi.SubItems[1].ForeColor = Color.DarkRed;
                 }
                 #endregion
-                #region Attack
-                if (x.Value.AttackLevel >= 20)
+                #region Troop Level
+                if (x.Value.troop_lvl >= 20)
                 {
                     lvi.SubItems.Add(mui._("finished"));
                     lvi.SubItems[2].BackColor = Color.White;
                 }
-                else if (x.Value.Researched && x.Value.AttackLevel < CV.BlacksmithLevel && x.Value.AttackLevel >= 0)
+                else if (x.Value.Researched && x.Value.troop_lvl < CV.SmithyLevel && x.Value.troop_lvl >= 0)
                 {
-                    int TimeCost = CV.TimeCost(Buildings.UpCost[(TravianData.Tribe - 1) * 10 + x.Key][x.Value.AttackLevel]);
+                    int TimeCost = CV.TimeCost(Buildings.UpCost[(TravianData.Tribe - 1) * 10 + x.Key][x.Value.troop_lvl]);
                     if (TimeCost > 0)
                     {
                         lvi.SubItems.Add(TimeToString(TimeCost));
@@ -604,37 +604,8 @@ namespace Stran
                     lvi.SubItems[2].BackColor = Color.White;
                     lvi.SubItems[2].ForeColor = Color.DarkRed;
                 }
-                if (x.Value.AttackLevel >= 0 && x.Value.AttackLevel < 20)
-                    lvi.SubItems[2].Text = x.Value.AttackLevel.ToString() + " " + lvi.SubItems[2].Text;
-                #endregion
-                #region Defense
-                if (x.Value.DefenceLevel >= 20)
-                {
-                    lvi.SubItems.Add(mui._("finished"));
-                    lvi.SubItems[3].BackColor = Color.White;
-                }
-                else if (x.Value.Researched && x.Value.DefenceLevel < CV.ArmouryLevel && x.Value.DefenceLevel >= 0)
-                {
-                    int TimeCost = CV.TimeCost(Buildings.UpCost[(TravianData.Tribe - 1) * 10 + x.Key][x.Value.DefenceLevel]);
-                    if (TimeCost > 0)
-                    {
-                        lvi.SubItems.Add(TimeToString(TimeCost));
-                        lvi.SubItems[3].BackColor = RedBGColor;
-                    }
-                    else
-                    {
-                        lvi.SubItems.Add(mui._("available"));
-                        lvi.SubItems[3].BackColor = YellowBGColor;
-                    }
-                }
-                else
-                {
-                    lvi.SubItems.Add(mui._("notavailable"));
-                    lvi.SubItems[3].BackColor = Color.White;
-                    lvi.SubItems[3].ForeColor = Color.DarkRed;
-                }
-                if (x.Value.DefenceLevel >= 0 && x.Value.DefenceLevel < 20)
-                    lvi.SubItems[3].Text = x.Value.DefenceLevel.ToString() + " " + lvi.SubItems[3].Text;
+                if (x.Value.troop_lvl >= 0 && x.Value.troop_lvl < 20)
+                    lvi.SubItems[2].Text = x.Value.troop_lvl.ToString() + " " + lvi.SubItems[2].Text;
                 #endregion
             }
 
@@ -1617,15 +1588,12 @@ namespace Stran
             if (!TravianData.Villages.ContainsKey(SelectVillage))
                 return;
             CMRResearch.Enabled = false;
-            CMRUpgradeAtk.Enabled = false;
-            CMRUpgradeAtkTo.Enabled = false;
-            CMRUpgradeDef.Enabled = false;
-            CMRUpgradeDefTo.Enabled = false;
+            CMRUpgradeTroopLvl.Enabled = false;
+            CMRUpgradeTroopLvlTo.Enabled = false;
             foreach (ListViewItem x in m_researchstatus.listViewUpgrade.SelectedItems)
             {
                 CMRResearch.Enabled |= x.SubItems[1].BackColor != Color.White;
-                CMRUpgradeAtkTo.Enabled = CMRUpgradeAtk.Enabled |= x.SubItems[2].BackColor != Color.White;
-                CMRUpgradeDefTo.Enabled = CMRUpgradeDef.Enabled |= x.SubItems[3].BackColor != Color.White;
+                CMRUpgradeTroopLvlTo.Enabled = CMRUpgradeTroopLvl.Enabled |= x.SubItems[2].BackColor != Color.White;
             }
         }
         private void CMRResearch_Click(object sender, EventArgs e)
@@ -1648,9 +1616,10 @@ namespace Stran
                 }
             }
         }
-        private void CMRUpgradeAtk_Click(object sender, EventArgs e)
-        {
-            if (!TravianData.Villages.ContainsKey(SelectVillage))
+        
+        void CMRUpgradeTroopLvl_Click(object sender, EventArgs e)
+		{
+			if (!TravianData.Villages.ContainsKey(SelectVillage))
                 return;
             foreach (ListViewItem x in m_researchstatus.listViewUpgrade.SelectedItems)
             {
@@ -1660,37 +1629,19 @@ namespace Stran
                     {
                         UpCall = tr,
                         VillageID = SelectVillage,
-                        ResearchType = ResearchQueue.TResearchType.UpAttack,
+                        ResearchType = ResearchQueue.TResearchType.UpTroopLevel,
                         Aid = m_researchstatus.listViewUpgrade.Items.IndexOf(x) + 1
                     };
                     TravianData.Villages[SelectVillage].Queue.Add(Q);
                     lvi(Q);
                 }
             }
-        }
-        private void CMRUpgradeDef_Click(object sender, EventArgs e)
-        {
-            if (!TravianData.Villages.ContainsKey(SelectVillage))
-                return;
-            foreach (ListViewItem x in m_researchstatus.listViewUpgrade.SelectedItems)
-            {
-                if (x.SubItems[3].BackColor != Color.White)
-                {
-                    var Q = new ResearchQueue
-                    {
-                        UpCall = tr,
-                        VillageID = SelectVillage,
-                        ResearchType = ResearchQueue.TResearchType.UpDefence,
-                        Aid = m_researchstatus.listViewUpgrade.Items.IndexOf(x) + 1
-                    };
-                    TravianData.Villages[SelectVillage].Queue.Add(Q);
-                    lvi(Q);
-                }
-            }
-        }
-        private void CMRUpgradeAtkTo_Click(object sender, EventArgs e)
-        {
-            if (!TravianData.Villages.ContainsKey(SelectVillage))
+		}
+        
+        		
+		void CMRUpgradeTroopLvlTo_Click(object sender, EventArgs e)
+		{
+			if (!TravianData.Villages.ContainsKey(SelectVillage))
                 return;
             var CV = TravianData.Villages[SelectVillage];
             foreach (ListViewItem x in m_researchstatus.listViewUpgrade.SelectedItems)
@@ -1703,10 +1654,11 @@ namespace Stran
                     {
                         BuildingName = tr.GetAidLang(TravianData.Tribe, Bid),
                         DisplayName = dl.GetAidLang(TravianData.Tribe, Bid),
-                        CurrentLevel = CV.Upgrades[Bid].AttackLevel,
-                        TargetLevel = CV.BlacksmithLevel,
+                        CurrentLevel = CV.Upgrades[Bid].troop_lvl,
+                        TargetLevel = CV.SmithyLevel,
                         mui = mui
                     };
+                    
                     if (btl.ShowDialog() == DialogResult.OK)
                     {
                         if (btl.Return < 0)
@@ -1717,7 +1669,7 @@ namespace Stran
                             UpCall = tr,
                             VillageID = SelectVillage,
                             TargetLevel = btl.Return,
-                            ResearchType = ResearchQueue.TResearchType.UpAttack,
+                            ResearchType = ResearchQueue.TResearchType.UpTroopLevel,
                             Aid = m_researchstatus.listViewUpgrade.Items.IndexOf(x) + 1
                         };
                         CV.Queue.Add(Q);
@@ -1725,45 +1677,8 @@ namespace Stran
                     }
                 }
             }
-        }
-        private void CMRUpgradeDefTo_Click(object sender, EventArgs e)
-        {
-            if (!TravianData.Villages.ContainsKey(SelectVillage))
-                return;
-            var CV = TravianData.Villages[SelectVillage];
-            foreach (ListViewItem x in m_researchstatus.listViewUpgrade.SelectedItems)
-            {
-                if (x.SubItems[3].BackColor != Color.White)
-                {
-                    int Bid = m_researchstatus.listViewUpgrade.Items.IndexOf(x) + 1;
+		}
 
-                    BuildToLevel btl = new BuildToLevel()
-                    {
-                        BuildingName = tr.GetAidLang(TravianData.Tribe, Bid),
-                        DisplayName = dl.GetAidLang(TravianData.Tribe, Bid),
-                        CurrentLevel = CV.Upgrades[Bid].DefenceLevel,
-                        TargetLevel = CV.ArmouryLevel,
-                        mui = mui
-                    };
-                    if (btl.ShowDialog() == DialogResult.OK)
-                    {
-                        if (btl.Return < 0)
-                            continue;
-
-                        var Q = new ResearchQueue
-                        {
-                            UpCall = tr,
-                            VillageID = SelectVillage,
-                            TargetLevel = btl.Return,
-                            ResearchType = ResearchQueue.TResearchType.UpDefence,
-                            Aid = m_researchstatus.listViewUpgrade.Items.IndexOf(x) + 1
-                        };
-                        CV.Queue.Add(Q);
-                        lvi(Q);
-                    }
-                }
-            }
-        }
         private void CMRRefresh_Click(object sender, EventArgs e)
         {
             if (!TravianData.Villages.ContainsKey(SelectVillage))
@@ -2186,5 +2101,6 @@ namespace Stran
             
 			TravianData.Villages[SelectVillage].FindOasis();
 		}
+		
     }
 }
