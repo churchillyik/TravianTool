@@ -193,3 +193,4 @@ E:\Resources\TravianTool\Stran\obj\Debug\Stran.ActionTiming.resources
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.csproj.GenerateResource.Cache
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.exe
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.pdb
+E:\Resources\TravianTool\Stran\obj\Debug\Stran.DockingPanel.TroopTraining.resources

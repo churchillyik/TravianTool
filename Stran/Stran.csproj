@@ -128,6 +128,10 @@
     <Compile Include="DockingPanel\TroopInfoList.Designer.cs">
       <DependentUpon>TroopInfoList.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockingPanel\TroopTraining.cs" />
+    <Compile Include="DockingPanel\TroopTraining.Designer.cs">
+      <DependentUpon>TroopTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockingPanel\VillageList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +220,9 @@
     <EmbeddedResource Include="DockingPanel\TroopInfoList.resx">
       <DependentUpon>TroopInfoList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\TroopTraining.resx">
+      <DependentUpon>TroopTraining.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockingPanel\VillageList.resx">
       <DependentUpon>VillageList.cs</DependentUpon>
