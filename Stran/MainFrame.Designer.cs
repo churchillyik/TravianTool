@@ -68,7 +68,6 @@
 			this.CMBParty500 = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMBParty2000 = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-			this.CMBProduceTroop = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMBRaid = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMBAttack = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMBAlarm = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,12 +128,14 @@
 			this.contextMenuInbuilding = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.CMICancel = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuTroop = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CMTProduceTroop = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMTRaid = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMTAttack = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMTAlarm = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
 			this.CMTRefresh = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenuTroopTraining = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.trainingTroopsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.refreshTroopTrainingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl2.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -147,6 +148,7 @@
 			this.contextMenuMarket.SuspendLayout();
 			this.contextMenuInbuilding.SuspendLayout();
 			this.contextMenuTroop.SuspendLayout();
+			this.contextMenuTroopTraining.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl2
@@ -263,7 +265,6 @@
 									this.toolStripSeparator9,
 									this.CMBParty,
 									this.toolStripSeparator13,
-									this.CMBProduceTroop,
 									this.CMBRaid,
 									this.CMBAttack,
 									this.CMBAlarm,
@@ -271,7 +272,7 @@
 									this.CMBEnableCoin});
 			this.contextMenuBuilding.Name = "contextMenuStrip2";
 			this.contextMenuBuilding.ShowImageMargin = false;
-			this.contextMenuBuilding.Size = new System.Drawing.Size(190, 398);
+			this.contextMenuBuilding.Size = new System.Drawing.Size(190, 376);
 			this.contextMenuBuilding.Text = "添加到队列";
 			// 
 			// CMBUp
@@ -455,14 +456,6 @@
 			this.toolStripSeparator13.Name = "toolStripSeparator13";
 			this.toolStripSeparator13.Size = new System.Drawing.Size(186, 6);
 			// 
-			// CMBProduceTroop
-			// 
-			this.CMBProduceTroop.Name = "CMBProduceTroop";
-			this.CMBProduceTroop.Size = new System.Drawing.Size(189, 22);
-			this.CMBProduceTroop.Tag = "CMBProduceTroop";
-			this.CMBProduceTroop.Text = "造兵";
-			this.CMBProduceTroop.Click += new System.EventHandler(this.CMBProduceTroop_Click);
-			// 
 			// CMBRaid
 			// 
 			this.CMBRaid.Name = "CMBRaid";
@@ -514,7 +507,7 @@
 									this.CMRRefresh});
 			this.contextMenuResearch.Name = "contextMenuResearch";
 			this.contextMenuResearch.ShowImageMargin = false;
-			this.contextMenuResearch.Size = new System.Drawing.Size(148, 132);
+			this.contextMenuResearch.Size = new System.Drawing.Size(148, 110);
 			this.contextMenuResearch.Tag = "mresearch";
 			this.contextMenuResearch.Opening += new System.ComponentModel.CancelEventHandler(this.CMR_Opening);
 			// 
@@ -975,7 +968,6 @@
 			// contextMenuTroop
 			// 
 			this.contextMenuTroop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.CMTProduceTroop,
 									this.CMTRaid,
 									this.CMTAttack,
 									this.CMTAlarm,
@@ -983,16 +975,8 @@
 									this.CMTRefresh});
 			this.contextMenuTroop.Name = "contextMenuTroop";
 			this.contextMenuTroop.ShowImageMargin = false;
-			this.contextMenuTroop.Size = new System.Drawing.Size(130, 120);
+			this.contextMenuTroop.Size = new System.Drawing.Size(130, 98);
 			this.contextMenuTroop.Tag = "mtroop";
-			// 
-			// CMTProduceTroop
-			// 
-			this.CMTProduceTroop.Name = "CMTProduceTroop";
-			this.CMTProduceTroop.Size = new System.Drawing.Size(129, 22);
-			this.CMTProduceTroop.Tag = "CMBProduceTroop";
-			this.CMTProduceTroop.Text = "produce troops";
-			this.CMTProduceTroop.Click += new System.EventHandler(this.CMBProduceTroop_Click);
 			// 
 			// CMTRaid
 			// 
@@ -1031,6 +1015,31 @@
 			this.CMTRefresh.Text = "refresh troops";
 			this.CMTRefresh.Click += new System.EventHandler(this.CMTRefresh_Click);
 			// 
+			// contextMenuTroopTraining
+			// 
+			this.contextMenuTroopTraining.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.trainingTroopsToolStripMenuItem,
+									this.refreshTroopTrainingToolStripMenuItem});
+			this.contextMenuTroopTraining.Name = "contextMenuTroopTraining";
+			this.contextMenuTroopTraining.ShowImageMargin = false;
+			this.contextMenuTroopTraining.Size = new System.Drawing.Size(178, 70);
+			// 
+			// trainingTroopsToolStripMenuItem
+			// 
+			this.trainingTroopsToolStripMenuItem.Name = "trainingTroopsToolStripMenuItem";
+			this.trainingTroopsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+			this.trainingTroopsToolStripMenuItem.Tag = "trainingtroops";
+			this.trainingTroopsToolStripMenuItem.Text = "training troops";
+			this.trainingTroopsToolStripMenuItem.Click += new System.EventHandler(this.TrainingTroopsToolStripMenuItemClick);
+			// 
+			// refreshTroopTrainingToolStripMenuItem
+			// 
+			this.refreshTroopTrainingToolStripMenuItem.Name = "refreshTroopTrainingToolStripMenuItem";
+			this.refreshTroopTrainingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+			this.refreshTroopTrainingToolStripMenuItem.Tag = "refreshtrooptraining";
+			this.refreshTroopTrainingToolStripMenuItem.Text = "refresh troop training";
+			this.refreshTroopTrainingToolStripMenuItem.Click += new System.EventHandler(this.RefreshTroopTrainingToolStripMenuItemClick);
+			// 
 			// MainFrame
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1057,9 +1066,13 @@
 			this.contextMenuMarket.ResumeLayout(false);
 			this.contextMenuInbuilding.ResumeLayout(false);
 			this.contextMenuTroop.ResumeLayout(false);
+			this.contextMenuTroopTraining.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem refreshTroopTrainingToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem trainingTroopsToolStripMenuItem;
+		public System.Windows.Forms.ContextMenuStrip contextMenuTroopTraining;
 		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeTroopLvlTo;
 		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeTroopLvl;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
@@ -1153,10 +1166,8 @@
 		private System.Windows.Forms.CheckBox checkBoxVerbose;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
 		private System.Windows.Forms.ToolStripMenuItem CMBEnableCoin;
-		private System.Windows.Forms.ToolStripMenuItem CMBProduceTroop;
 		private System.Windows.Forms.ToolStripMenuItem CMBNewCap;
         public System.Windows.Forms.ContextMenuStrip contextMenuTroop;
-        private System.Windows.Forms.ToolStripMenuItem CMTProduceTroop;
         private System.Windows.Forms.ToolStripMenuItem CMTRaid;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripMenuItem CMTRefresh;

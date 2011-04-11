@@ -43,6 +43,7 @@ namespace Stran
         private TransferStatus m_transferstatus = new TransferStatus();
         private VillageList m_villagelist = new VillageList();
         private TroopInfoList m_troopinfolist = new TroopInfoList();
+        private TroopTraining m_trooptraining = new TroopTraining();
 
         private delegate void StatusEvent_d(object sender, Travian.StatusChanged e);
         private delegate void LogEvent_d(TDebugInfo e);
@@ -669,6 +670,27 @@ namespace Stran
             m_troopinfolist.listViewTroop.ResumeLayout();
         }
         
+        private void DisplayTroopTraining()
+        {
+        	if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+        	
+            var CV = TravianData.Villages[SelectVillage];
+            if (CV.isTroopInitialized != 2)
+                return;
+            
+            m_trooptraining.listViewTroopTraining.Items.Clear();
+            m_trooptraining.listViewTroopTraining.SuspendLayout();
+            
+			//	Insert items to list view
+            //foreach ()
+            //{
+            	
+            //}
+            
+            m_trooptraining.listViewTroopTraining.ResumeLayout();
+        }
+        
         private void DisplayOasisFound()
         {
         	if (!TravianData.Villages.ContainsKey(SelectVillage))
@@ -859,14 +881,15 @@ namespace Stran
             mui.RefreshLanguage(this);
             //throw new Exception("a");
 
-            m_buildinglist.UpCall =
-                m_queuelist.UpCall =
-                m_researchstatus.UpCall =
-                m_transferstatus.UpCall =
-                m_resourceshow.UpCall =
-                m_inbuildinglist.UpCall =
-                m_villagelist.UpCall =
-                m_troopinfolist.UpCall = this;
+            m_buildinglist.UpCall 	=
+            m_queuelist.UpCall 		=
+            m_researchstatus.UpCall =
+            m_transferstatus.UpCall =
+            m_resourceshow.UpCall 	=
+            m_inbuildinglist.UpCall =
+            m_villagelist.UpCall 	=
+            m_troopinfolist.UpCall 	= 
+            m_trooptraining.UpCall	= this;
 
 
             string fn = GetStyleFilename();
@@ -885,16 +908,16 @@ namespace Stran
                 m_researchstatus.Show(dockPanel1);
                 m_villagelist.Show(dockPanel1);
                 m_troopinfolist.Show(dockPanel1);
+                m_trooptraining.Show(dockPanel1);
             }
-            if (!dockPanel1.Contains(m_troopinfolist))
-                m_troopinfolist.Show(dockPanel1);
+
             m_buildinglist.Activate();
             ResumeLayout();
         }
 
         private IDockContent FindDocument(string text)
         {
-            foreach (var x in new DockContent[] { m_buildinglist, m_inbuildinglist, m_queuelist, m_researchstatus, m_resourceshow, m_transferstatus, m_villagelist })
+            foreach (var x in new DockContent[] { m_buildinglist, m_inbuildinglist, m_queuelist, m_researchstatus, m_resourceshow, m_transferstatus, m_villagelist, m_troopinfolist, m_trooptraining })
             {
                 if (text == x.GetType().ToString())
                     return x;
@@ -1867,39 +1890,6 @@ namespace Stran
             tr.FetchVillageMarket(SelectVillage);
         }
 
-        private void CMBProduceTroop_Click(object sender, EventArgs e)
-        {
-            if (!TravianData.Villages.ContainsKey(SelectVillage))
-                return;
-            var CV = TravianData.Villages[SelectVillage];
-            if (CV.isUpgradeInitialized < 2)
-            {
-                CV.InitializeUpgrade();
-                MessageBox.Show("程序正在读取研发信息，请重新操作一次");
-                return;
-            }
-            List<TroopInfo> CanProduce = new List<TroopInfo>();
-            foreach (var x in CV.Upgrades)
-                //if(x.Value.Researched)
-                if (x.Key <= 10)
-                    CanProduce.Add(new TroopInfo { Aid = x.Key, Name = dl.GetAidLang(TravianData.Tribe, x.Key), Researched = x.Value.Researched });
-            ProduceTroopSetting pts = new ProduceTroopSetting
-            {
-                RUVillageID = this.SelectVillage,
-                TravianData = this.TravianData,
-                mui = mui,
-                CanProduce = CanProduce
-            };
-            if (pts.ShowDialog() == DialogResult.OK && pts.Result != null)
-            {
-                // continue
-                pts.Result.VillageID = CV.ID;
-                pts.Result.UpCall = tr;
-                CV.Queue.Add(pts.Result);
-                lvi(pts.Result);
-            }
-        }
-
         private void CMTRefresh_Click(object sender, EventArgs e)
         {
             if (!TravianData.Villages.ContainsKey(SelectVillage))
@@ -2086,6 +2076,7 @@ namespace Stran
 				}
 			}
 		}
+		
 		private void CMVRefreshAll_Click(object sender, EventArgs e)
         {
 			foreach (var v in TravianData.Villages)
@@ -2102,5 +2093,57 @@ namespace Stran
 			TravianData.Villages[SelectVillage].FindOasis();
 		}
 		
+		
+		void TrainingTroopsToolStripMenuItemClick(object sender, EventArgs e)
+		{
+            if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+            
+            var CV = TravianData.Villages[SelectVillage];
+            if (CV.isUpgradeInitialized < 2)
+            {
+                CV.InitializeUpgrade();
+                MessageBox.Show("程序正在读取研发信息，请重新操作一次");
+                return;
+            }
+            
+            List<TroopInfo> CanProduce = new List<TroopInfo>();
+            foreach (var x in CV.Upgrades)
+            {
+                if (x.Key <= 10)
+                {
+                    CanProduce.Add(
+                		new TroopInfo 
+                		{ 
+                			Aid = x.Key, 
+                			Name = dl.GetAidLang(TravianData.Tribe, x.Key), 
+                			Researched = x.Value.Researched 
+                		}
+                	);
+                }
+            }
+            
+            ProduceTroopSetting pts = new ProduceTroopSetting
+            {
+                RUVillageID = this.SelectVillage,
+                TravianData = this.TravianData,
+                mui = mui,
+                CanProduce = CanProduce
+            };
+            
+            if (pts.ShowDialog() == DialogResult.OK && pts.Result != null)
+            {
+                // continue
+                pts.Result.VillageID = CV.ID;
+                pts.Result.UpCall = tr;
+                CV.Queue.Add(pts.Result);
+                lvi(pts.Result);
+            }
+		}
+		
+		void RefreshTroopTrainingToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			
+		}
     }
 }

@@ -72,7 +72,7 @@ namespace Stran.DockingPanel
 			// 
 			this.columnHeader_CurrentAmount.Tag = "currentamount";
 			this.columnHeader_CurrentAmount.Text = "当前总数";
-			this.columnHeader_CurrentAmount.Width = 117;
+			this.columnHeader_CurrentAmount.Width = 136;
 			// 
 			// columnHeader_TrainAmount
 			// 
@@ -102,6 +102,7 @@ namespace Stran.DockingPanel
 			this.TabText = "军队训练";
 			this.Tag = "trooptraining";
 			this.Text = "TroopTraining";
+			this.Load += new System.EventHandler(this.TroopTrainingLoad);
 			this.ResumeLayout(false);
 		}
 		public System.Windows.Forms.ListView listViewTroopTraining;

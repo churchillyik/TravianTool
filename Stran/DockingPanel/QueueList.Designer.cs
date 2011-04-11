@@ -39,10 +39,10 @@
 			// 
 			this.listViewQueue.AllowColumnReorder = true;
 			this.listViewQueue.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader6,
-            this.columnHeader7});
+									this.columnHeader8,
+									this.columnHeader9,
+									this.columnHeader6,
+									this.columnHeader7});
 			this.listViewQueue.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewQueue.FullRowSelect = true;
 			this.listViewQueue.GridLines = true;
@@ -65,7 +65,7 @@
 			// 
 			this.columnHeader9.Tag = "gname";
 			this.columnHeader9.Text = "建筑名";
-			this.columnHeader9.Width = 120;
+			this.columnHeader9.Width = 139;
 			// 
 			// columnHeader6
 			// 
@@ -77,7 +77,7 @@
 			// 
 			this.columnHeader7.Tag = "qdelay";
 			this.columnHeader7.Text = "延迟";
-			this.columnHeader7.Width = 80;
+			this.columnHeader7.Width = 117;
 			// 
 			// QueueList
 			// 
@@ -87,9 +87,9 @@
 			this.ClientSize = new System.Drawing.Size(507, 418);
 			this.CloseButton = false;
 			this.Controls.Add(this.listViewQueue);
-			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
-									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
 									| WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "QueueList";
@@ -99,7 +99,6 @@
 			this.Text = "队列";
 			this.Load += new System.EventHandler(this.QueueList_Load);
 			this.ResumeLayout(false);
-
 		}
 
 		#endregion

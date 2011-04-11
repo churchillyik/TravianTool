@@ -49,8 +49,9 @@
 			this.listViewTroop.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listViewTroop.Location = new System.Drawing.Point(0, 0);
 			this.listViewTroop.Name = "listViewTroop";
-			this.listViewTroop.Size = new System.Drawing.Size(492, 468);
+			this.listViewTroop.Size = new System.Drawing.Size(540, 468);
 			this.listViewTroop.TabIndex = 8;
+			this.listViewTroop.Tag = "";
 			this.listViewTroop.UseCompatibleStateImageBehavior = false;
 			this.listViewTroop.View = System.Windows.Forms.View.Details;
 			// 
@@ -64,25 +65,25 @@
 			// 
 			this.columnHeader19.Tag = "troopamount";
 			this.columnHeader19.Text = "军队数量";
-			this.columnHeader19.Width = 232;
+			this.columnHeader19.Width = 260;
 			// 
 			// columnHeader20
 			// 
 			this.columnHeader20.Tag = "vname";
 			this.columnHeader20.Text = "村名";
-			this.columnHeader20.Width = 99;
+			this.columnHeader20.Width = 107;
 			// 
 			// columnHeader26
 			// 
 			this.columnHeader26.Tag = "trooptype";
 			this.columnHeader26.Text = "类型";
-			this.columnHeader26.Width = 70;
+			this.columnHeader26.Width = 100;
 			// 
 			// TroopInfoList
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(492, 468);
+			this.ClientSize = new System.Drawing.Size(540, 468);
 			this.CloseButton = false;
 			this.Controls.Add(this.listViewTroop);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
@@ -92,9 +93,9 @@
 			this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "TroopInfoList";
 			this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document;
-			this.TabText = "TroopInfoList";
+			this.TabText = "军队信息";
 			this.Tag = "troopinfo";
-			this.Text = "TroopInfoList";
+			this.Text = "军队信息";
 			this.Load += new System.EventHandler(this.TroopInfoList_Load);
 			this.ResumeLayout(false);
 		}

@@ -170,6 +170,15 @@ troopinfo=军队信息
 troopamount=军队数量
 trooptype=军队类型
 
+// trooptraining
+trooptraining=军队训练
+troopname=兵种名称
+currentamount=当前总数
+trainamount=训练的数目
+lefttraintime=训练剩余时长
+trainingtroops=&T. 训练军队
+refreshtrooptraining=&R. 刷新军队训练
+
 // quick panel
 QPParty=&P. 自动派对模块
 QPAILevel=&L. 人工智能以资源田等级
@@ -183,7 +192,6 @@ enabled= (已启用)
 
 autonormalizemetime=自动平衡我的爆仓时间
 forcetransfer=无视爆仓检查
-CMBProduceTroop=&O. 造兵
 CMBRaid=&S. 出兵
 vres=资源
 newcap=&C. 刷新主村
@@ -203,6 +211,7 @@ restoreRES=&I. 汇入资源限制
 refreshall=&L. 全部刷新
 deleteVillage=&D. 删除村庄
 //alarm
+alarmmail=警报邮件
 CMBAlarm=&W. 报警
 mailsender=邮件服务器设置
 mailuser=发件人：

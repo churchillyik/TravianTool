@@ -170,6 +170,15 @@ troopinfo=Troop info
 troopamount=Troop amount
 trooptype=Troop type
 
+// trooptraining
+trooptraining=Troop Training
+troopname=Troop name
+currentamount=Current amount
+trainamount=Amount to train
+lefttraintime=Left time to train
+trainingtroops=&T. Training troops
+refreshtrooptraining=&R. Refresh troop training
+
 // quick panel
 QPParty=Enable &Party module
 QPAILevel=Enable &level based AI module
@@ -203,6 +212,7 @@ restoreRES=&Import Resource Limit
 refreshall=Refresh A&ll Villages
 deleteVillage=&Delete Village
 //alarm
+alarmmail=Alarm Mail
 CMBAlarm=&Warning
 mailsender=mail sender
 mailuser=account:

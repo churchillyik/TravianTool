@@ -56,7 +56,7 @@
 			this.listViewVillage.MultiSelect = false;
 			this.listViewVillage.Name = "listViewVillage";
 			this.listViewVillage.ShowItemToolTips = true;
-			this.listViewVillage.Size = new System.Drawing.Size(342, 368);
+			this.listViewVillage.Size = new System.Drawing.Size(321, 368);
 			this.listViewVillage.TabIndex = 16;
 			this.listViewVillage.UseCompatibleStateImageBehavior = false;
 			this.listViewVillage.View = System.Windows.Forms.View.Details;
@@ -67,36 +67,36 @@
 			// 
 			this.columnHeader14.Tag = "vid";
 			this.columnHeader14.Text = "ID";
-			this.columnHeader14.Width = 45;
+			this.columnHeader14.Width = 47;
 			// 
 			// columnHeader15
 			// 
 			this.columnHeader15.Tag = "qcount";
 			this.columnHeader15.Text = "队列";
-			this.columnHeader15.Width = 39;
+			this.columnHeader15.Width = 40;
 			// 
 			// columnHeader12
 			// 
 			this.columnHeader12.Tag = "vname";
 			this.columnHeader12.Text = "村名";
-			this.columnHeader12.Width = 86;
+			this.columnHeader12.Width = 104;
 			// 
 			// columnHeader13
 			// 
 			this.columnHeader13.Tag = "coord";
 			this.columnHeader13.Text = "坐标";
+			this.columnHeader13.Width = 65;
 			// 
 			// columnHeader1
 			// 
 			this.columnHeader1.Tag = "vres";
 			this.columnHeader1.Text = "资源";
-			this.columnHeader1.Width = 49;
 			// 
 			// VillageList
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(342, 368);
+			this.ClientSize = new System.Drawing.Size(321, 368);
 			this.CloseButton = false;
 			this.Controls.Add(this.listViewVillage);
 			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)));

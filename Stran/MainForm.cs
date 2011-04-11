@@ -43,7 +43,7 @@ namespace Stran
 			Assembly myAsm = Assembly.Load("Stran");
 			AssemblyName aName = myAsm.GetName();
 			Version v = aName.Version;
-			VERSION = Text = string.Format("Stran {0}.{1}.{2} [Travian4 版本]", v.Major, v.Minor, v.Build);
+			VERSION = Text = string.Format("Stran {0}.{1}.{2} [For Travian4]", v.Major, v.Minor, v.Build);
 			notifyIcon1.Text = Text;
 			Buildings.Init();
 		}

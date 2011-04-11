@@ -27,5 +27,12 @@ namespace Stran.DockingPanel
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		void TroopTrainingLoad(object sender, EventArgs e)
+		{
+			listViewTroopTraining.ContextMenuStrip = UpCall.contextMenuTroopTraining;
+			UpCall.mui.RefreshLanguage(this);
+			TabText = Text;
+		}
 	}
 }

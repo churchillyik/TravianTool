@@ -170,6 +170,15 @@ troopinfo=軍隊訊息
 troopamount=軍隊數量
 trooptype=軍隊類型
 
+// trooptraining
+trooptraining=軍隊訓練
+troopname=兵種名稱
+currentamount=當前總數
+trainamount=訓練的數目
+lefttraintime=訓練剩餘時長
+trainingtroops=&T. 訓練軍隊
+refreshtrooptraining=&R. 刷新軍隊訓練
+
 // quick panel
 QPParty=自動派對功能(&P)
 QPAILevel=根據資源田等級自動建設(&L)
@@ -203,6 +212,7 @@ restoreRES=匯入資源限制(&I)
 refreshall=更新全部村莊的資訊(&L)
 deleteVillage=刪除村莊(&D)
 //alarm
+alarmmail=警報郵件
 CMBAlarm=自動警報(&W)
 mailsender=發信設定
 mailuser=帳號:

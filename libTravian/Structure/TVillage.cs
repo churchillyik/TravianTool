@@ -846,6 +846,9 @@ namespace libTravian
         public TResAmount ResLimit { get; set; }
         [Json]
         public List<TTInfo> Troops { get; set; }
+        [Json]
+        public TTroopTraining TroopTraining { get; set; }
+        
         public bool ShouldRefresh { get; set; }
         public void tick(TVillage CV)
         {
@@ -885,6 +888,7 @@ namespace libTravian
         {
             TournamentLevel = 0;
             Troops = new List<TTInfo>();
+            TroopTraining = new TTroopTraining();
         }
 
         public int GetUsedSlots(TVillage village)
@@ -1079,4 +1083,44 @@ namespace libTravian
     	public int addon {get; set;}
     	public TOasisInfo()	{}
     }
+    
+    public class TTroopTraining
+    {
+    	[Json]
+        public Dictionary<int, int> cur_amounts { get; set; }
+    	[Json]
+    	public List<TrainingInfo> cur_training { get; set; }
+    	
+    	public TTroopTraining()
+    	{
+    		cur_amounts = new Dictionary<int, int>();
+    		cur_training = new List<TrainingInfo>();
+    	}
+    }
+    
+    public class TrainingInfo
+    {
+    	[Json]
+    	public int aid;
+    	[Json]
+    	public int amount_to_train;
+    	[Json]
+        public DateTime finish_time;
+        
+        public Travian UpCall { get; set; }
+        public string troop_name
+        {
+        	get
+        	{
+        		string name = String.Format("T{0}", aid);
+                if (DisplayLang.Instance != null && UpCall != null)
+                {
+                    name = DisplayLang.Instance.GetAidLang(UpCall.TD.Tribe, aid);
+                }
+                return name;
+        	}
+        }
+        
+    }
+    
 }

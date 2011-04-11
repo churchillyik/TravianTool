@@ -60,31 +60,31 @@
 			// 
 			this.columnHeader18.Tag = "lefttimetobuild";
 			this.columnHeader18.Text = "剩余时间";
-			this.columnHeader18.Width = 70;
+			this.columnHeader18.Width = 87;
 			// 
 			// columnHeader19
 			// 
 			this.columnHeader19.Tag = "resamount";
 			this.columnHeader19.Text = "资源量";
-			this.columnHeader19.Width = 70;
+			this.columnHeader19.Width = 100;
 			// 
 			// columnHeader20
 			// 
 			this.columnHeader20.Tag = "vname";
 			this.columnHeader20.Text = "村名";
-			this.columnHeader20.Width = 100;
+			this.columnHeader20.Width = 108;
 			// 
 			// columnHeader21
 			// 
 			this.columnHeader21.Tag = "coord";
 			this.columnHeader21.Text = "坐标";
-			this.columnHeader21.Width = 70;
+			this.columnHeader21.Width = 89;
 			// 
 			// columnHeader26
 			// 
 			this.columnHeader26.Tag = "mtype";
 			this.columnHeader26.Text = "运输类型";
-			this.columnHeader26.Width = 70;
+			this.columnHeader26.Width = 100;
 			// 
 			// TransferStatus
 			// 
