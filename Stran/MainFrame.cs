@@ -234,6 +234,7 @@ namespace Stran
                 }
             }
             else if (e.VillageID == SelectVillage)
+            {
                 switch (e.ChangedData)
                 {
                     case Travian.ChangedType.Buildings:
@@ -252,6 +253,7 @@ namespace Stran
                         DisplayOasisFound();
                         break;
                 }
+            }
         }
 
         private void RefreshBuildings()
@@ -650,7 +652,8 @@ namespace Stran
                 var lvi = m_troopinfolist.listViewTroop.Items.Add("-");
                 if (x.FinishTime != DateTime.MinValue)
                 {
-                	TimeSpan ts = new TimeSpan((long)x.FinishTime.Subtract(DateTime.Now).TotalSeconds * 10000000 + 5);
+                	TimeSpan ts = new TimeSpan(
+                		(long)x.FinishTime.Subtract(DateTime.Now).TotalSeconds * 10000000 + 5);
                 	if (ts.Days == 0)
                 	{
                 		lvi.Text = string.Format(
@@ -683,10 +686,37 @@ namespace Stran
             m_trooptraining.listViewTroopTraining.SuspendLayout();
             
 			//	Insert items to list view
-            //foreach ()
-            //{
+            foreach (var x in CV.Troop.TroopTraining.cur_training)
+            {
+            	var lvi = m_trooptraining.listViewTroopTraining.Items.Add(x.troop_name);
             	
-            //}
+            	int cur_cnt = 0;
+            	if (CV.Troop.TroopTraining.cur_amounts.ContainsKey(x.aid))
+            	{
+            		cur_cnt = CV.Troop.TroopTraining.cur_amounts[x.aid];
+            	}
+            	
+            	lvi.SubItems.Add(cur_cnt.ToString());
+            	lvi.SubItems.Add(x.amount_to_train.ToString());
+            	
+                lvi.SubItems.Add("-");
+            	if (x.finish_time != DateTime.MinValue)
+                {
+                	TimeSpan ts = new TimeSpan(
+            			(long)x.finish_time.Subtract(DateTime.Now).TotalSeconds * 10000000 + 5);
+                	if (ts.Days == 0)
+                	{
+                		lvi.Text = string.Format(
+                			"{0}:{1}:{2}", ts.Hours, ts.Minutes, ts.Seconds);
+                	}
+                	else
+                	{
+	            		lvi.Text = string.Format(
+                			"{0}天{1}:{2}:{3}", ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
+                	}
+                	
+                }
+            }
             
             m_trooptraining.listViewTroopTraining.ResumeLayout();
         }
@@ -757,6 +787,7 @@ namespace Stran
             DisplayUpgrade();
             DisplayMarket();
             DisplayTroop();
+            DisplayTroopTraining();
         }
 
         public void listViewVillage_Click(object sender, EventArgs e)
@@ -780,6 +811,7 @@ namespace Stran
                 DisplayQueue();
                 DisplayMarket();
                 DisplayTroop();
+                DisplayTroopTraining();
                 tr.Tick();
                 int QCount = 0;
                 foreach (var x in TravianData.Villages)
@@ -2143,7 +2175,9 @@ namespace Stran
 		
 		void RefreshTroopTrainingToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			
+			if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+            TravianData.Villages[SelectVillage].InitializeTroop();
 		}
     }
 }

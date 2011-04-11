@@ -879,6 +879,19 @@ namespace libTravian
                         refreshTime = troop.FinishTime;
                     }
                 }
+                
+                foreach (TrainingInfo info in this.TroopTraining.cur_training)
+                {
+                	if (info.finish_time == DateTime.MinValue)
+                    {
+                        continue;
+                    }
+
+                    if (info.finish_time < refreshTime)
+                    {
+                        refreshTime = info.finish_time;
+                    }
+                }
 
                 return refreshTime;
             }

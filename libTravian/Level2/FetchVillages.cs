@@ -135,6 +135,9 @@ namespace libTravian
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isTroopInitialized = 1;
                 PageQuery(VillageID, "build.php?gid=16");	//	集结点
+                PageQuery(VillageID, "build.php?gid=19");	//	兵营
+                PageQuery(VillageID, "build.php?gid=20");	//	马厩
+                PageQuery(VillageID, "build.php?gid=21");	//	工场
                 TD.Villages[VillageID].isTroopInitialized = 2;
                 TD.Dirty = true;
             }
