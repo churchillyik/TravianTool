@@ -53,6 +53,7 @@ namespace Stran
 
 		private void textBox3_Leave(object sender, EventArgs e)
 		{
+			//	把类似 de1.travian.com 转换为 welt1.travian.com
 			var m = Regex.Match(textBox3.Text.ToLower(), "^([a-zA-Z]{2,3})(\\d{1,3}|x)$");
 			if(m.Success)
 			{
@@ -64,11 +65,15 @@ namespace Stran
 					textBox4.Text = m.Groups[1].Value;
 				return;
 			}
+			
+			//	去掉 http://
 			m = Regex.Match(textBox3.Text.ToLower(), "http://(.*)");
 			if(m.Success)
 			{
 				textBox3.Text = m.Groups[1].Value;
 			}
+			
+			//	语言选择缺省为域名的最后几位
 			if(textBox4.Text == "")
 			{
 				m = Regex.Match(textBox3.Text.ToLower(), "travian.(.*)");

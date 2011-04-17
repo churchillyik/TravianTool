@@ -72,9 +72,9 @@ namespace Stran
 		{
 			if(this.ActionTime > 0)
 			{
-				this.labelDetail.Text = this.ActionAt.AddSeconds(this.ActionTime).ToString("yyyy-MM-dd  HH:mm:ss");
+				this.labelDetail.Text = this.ActionAt.AddSeconds(this.ActionTime).ToString("yyyy-MM-dd HH:mm:ss");
 				if(this.ActionTime < 86400)
-					labelDetail.Text += " (+" + DateTime.MinValue.AddSeconds(this.ActionTime).ToLongTimeString() + ")";
+					labelDetail.Text += " (" + DateTime.MinValue.AddSeconds(this.ActionTime).ToLongTimeString() + ")";
 				else
 					labelDetail.Text += " ( > 1 day )";
 			}

@@ -25,6 +25,7 @@ namespace Stran
 	public class MUI
 	{
 		public Dictionary<string, string> Lang;
+		
 		public string _(string tag)
 		{
 			if(Lang.ContainsKey(tag))
@@ -32,8 +33,10 @@ namespace Stran
 			else
 				return "?" + tag;
 		}
+		
 		public MUI(string language)
 		{
+			//	载入多国语言文件
 			Lang = new Dictionary<string, string>(64);
 			string lang_file = string.Format("lang\\cli_{0}.txt", language);
 			if(!File.Exists(lang_file))
@@ -56,20 +59,32 @@ namespace Stran
 				}
 			}
 		}
+		
 		public void RefreshLanguage(Control t)
 		{
+			//	控件队列
 			Queue<Control> qc = new Queue<Control>();
+			//	按钮、组合框、文本框或标签队列
 			Queue<ToolStripItem> qt = new Queue<ToolStripItem>();
+			
+			//	本地化控件t及其子控件的显示文本
 			qc.Enqueue(t);
 			while(qc.Count != 0)
 			{
 				var x = qc.Dequeue();
+				//	替换为多国语言
 				if(x.Tag is string)
+				{
 					x.Text = _(x.Tag as string);
+				}
+				
+				//	把子控件加入队列
 				foreach(Control y in x.Controls)
 				{
 					qc.Enqueue(y);
 				}
+				
+				//	stran的控件以列表控件为主
 				if(x is ListView)
 				{
 					foreach(ColumnHeader y in (x as ListView).Columns)
@@ -79,20 +94,30 @@ namespace Stran
 					}
 					var n = x as ListView;
 					if(n.ContextMenuStrip != null)
+					{
 						foreach(ToolStripItem y in n.ContextMenuStrip.Items)
+						{
 							if(y is ToolStripMenuItem)
 								qt.Enqueue(y);
+						}
+					}
 				}
 			}
+			
+			//	本地化右键菜单
 			while(qt.Count != 0)
 			{
 				var x = qt.Dequeue();
 				if(x.Tag is string)
 					x.Text = _(x.Tag as string);
 				if(x is ToolStripMenuItem && (x as ToolStripMenuItem).DropDownItems != null)
+				{
 					foreach(ToolStripItem y in (x as ToolStripMenuItem).DropDownItems)
 						qt.Enqueue(y);
+				}
 			}
+			
+			//	本地化种族列表和正在执行的任务的类别
 			MainForm.tribelist = _("tribelist").Split(',');
 			MainFrame.typelist = _("typelist").Split(',');
 		}
