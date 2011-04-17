@@ -686,36 +686,40 @@ namespace Stran
             m_trooptraining.listViewTroopTraining.SuspendLayout();
             
 			//	Insert items to list view
-            foreach (var x in CV.Troop.TroopTraining.cur_training)
+            foreach (var tt in CV.Troop.TroopTrainings)
             {
-            	var lvi = m_trooptraining.listViewTroopTraining.Items.Add(x.troop_name);
-            	
-            	int cur_cnt = 0;
-            	if (CV.Troop.TroopTraining.cur_amounts.ContainsKey(x.aid))
+            	foreach (var x in tt.Value.cur_training)
             	{
-            		cur_cnt = CV.Troop.TroopTraining.cur_amounts[x.aid];
+	            	var lvi = m_trooptraining.listViewTroopTraining.Items.Add(x.troop_name);
+	            	
+	            	int cur_cnt = 0;
+	            	if (tt.Value.cur_amounts.ContainsKey(x.aid))
+	            	{
+	            		cur_cnt = tt.Value.cur_amounts[x.aid];
+	            	}
+	            	
+	            	lvi.SubItems.Add(cur_cnt.ToString());
+	            	lvi.SubItems.Add(x.amount_to_train.ToString());
+	            	
+	                string fin = "-";
+	            	if (x.finish_time != DateTime.MinValue)
+	                {
+	                	TimeSpan ts = new TimeSpan(
+	            			(long)x.finish_time.Subtract(DateTime.Now).TotalSeconds * 10000000 + 5);
+	                	if (ts.Days == 0)
+	                	{
+	                		fin = string.Format(
+	                			"{0}:{1}:{2}", ts.Hours, ts.Minutes, ts.Seconds);
+	                	}
+	                	else
+	                	{
+		            		fin = string.Format(
+	                			"{0}天{1}:{2}:{3}", ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
+	                	}
+	                	
+	            	}
+	            	lvi.SubItems.Add(fin);
             	}
-            	
-            	lvi.SubItems.Add(cur_cnt.ToString());
-            	lvi.SubItems.Add(x.amount_to_train.ToString());
-            	
-                lvi.SubItems.Add("-");
-            	if (x.finish_time != DateTime.MinValue)
-                {
-                	TimeSpan ts = new TimeSpan(
-            			(long)x.finish_time.Subtract(DateTime.Now).TotalSeconds * 10000000 + 5);
-                	if (ts.Days == 0)
-                	{
-                		lvi.Text = string.Format(
-                			"{0}:{1}:{2}", ts.Hours, ts.Minutes, ts.Seconds);
-                	}
-                	else
-                	{
-	            		lvi.Text = string.Format(
-                			"{0}天{1}:{2}:{3}", ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
-                	}
-                	
-                }
             }
             
             m_trooptraining.listViewTroopTraining.ResumeLayout();

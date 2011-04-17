@@ -47,6 +47,7 @@ namespace libTravian
                 NewParseMainBuilding(VillageID, data);
                 NewParseMarket(VillageID, data);
                 NewParseTroops(VillageID, data);
+                NewParseTroopTraining(VillageID, data);
                 NewParseOasis(VillageID, data);
             }
             catch (Exception ex)
@@ -899,7 +900,7 @@ namespace libTravian
                 return -1;
             }
 
-            Match levelMatch = Regex.Match(pageContent, "<span\\sclass=\"level\">Level\\s(\\d+)</span>");
+            Match levelMatch = Regex.Match(pageContent, "<span\\sclass=\"level\">[^\\d]*?(\\d+)</span>");
             if (!levelMatch.Success)
             {
                 return -1;
@@ -1003,14 +1004,14 @@ namespace libTravian
             	}
             	name = nameMch.Groups[1].Value;
             	
-            	nameMch = Regex.Match(raw_name, "<span class=\"xCoord\">(.+?)</span>");
+            	nameMch = Regex.Match(raw_name, "<span class=\"coordinateX\">(.+?)</span>");
             	if (!nameMch.Success)
             	{
             		return null;
             	}
             	name = name + nameMch.Groups[1].Value + "|";
             	
-            	nameMch = Regex.Match(raw_name, "<span class=\"yCoord\">(.+?)</span>");
+            	nameMch = Regex.Match(raw_name, "<span class=\"coordinateY\">(.+?)</span>");
             	if (!nameMch.Success)
             	{
             		return null;
@@ -1242,6 +1243,81 @@ namespace libTravian
             };
         }
 
+        
+        //	解析兵营、马厩或工场页面
+        private void NewParseTroopTraining(int VillageID, string data)
+        {
+        	int gid = -1;
+        	if (this.GetBuildingLevel(19, data) >= 0)
+            {
+                gid = 19;
+            }
+        	else if (this.GetBuildingLevel(20, data) >= 0)
+            {
+                gid = 20;
+            }
+        	else if (this.GetBuildingLevel(21, data) >= 0)
+            {
+                gid = 21;
+            }
+        	else
+        	{
+        		return;
+        	}
+        	
+        	TVillage CV = this.TD.Villages[VillageID];
+        	TTroopTraining tt = new TTroopTraining();
+        	
+        	var mc = Regex.Matches(data,
+        	         "onclick=\"return Travian.iPopup\\(\\d?(\\d),1\\);\">[^<]*?</a>" +
+            		 "[^<]*?<span class=\"furtherInfo\">\\(.*?(\\d+)\\)</span>");
+        	
+        	foreach (Match m in mc)
+        	{
+        		int aid = Convert.ToInt32(m.Groups[1].Value);
+        		int amount = Convert.ToInt32(m.Groups[2].Value);
+        		if (tt.cur_amounts.ContainsKey(aid))
+        		{
+        			tt.cur_amounts[aid] = amount;
+        		}
+        		else
+        		{
+        			tt.cur_amounts.Add(aid, amount);
+        		}
+        	}
+        	
+        	mc = Regex.Matches(data,
+        	    "<td class=\"desc\">" + 
+        	    "[^<]*?<img class=\"unit u(\\d+)\"[^>]*?>" +
+				"[^0-9]*?(\\d+)[^<]*?</td>" + 
+				"[^<]*?<td class=\"dur\"><span id=\"timer\\d+\">([0-9:]+?)</span></td>");
+        	foreach (Match m in mc)
+        	{
+        		int aid = Convert.ToInt32(m.Groups[1].Value);
+        		int amount = Convert.ToInt32(m.Groups[2].Value);
+        		string time = m.Groups[3].Value;
+        		DateTime fin = DateTime.Now + TimeSpanParse(time);
+                fin.AddSeconds(20);
+        		TrainingInfo tr_info = new TrainingInfo()
+        		{
+        			aid = aid,
+        			amount_to_train = amount,
+        			finish_time = fin,
+        			UpCall = this
+        		};
+        		
+        		tt.cur_training.Add(tr_info);
+        	}
+        	
+        	if (CV.Troop.TroopTrainings.ContainsKey(gid))
+        	{
+        		CV.Troop.TroopTrainings[gid] = tt;
+        	}
+        	else
+        	{
+        		CV.Troop.TroopTrainings.Add(gid, tt);
+        	}
+        }
         
         private void NewParseOasis(int VillageID, string data)
         {

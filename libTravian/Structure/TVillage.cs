@@ -847,7 +847,7 @@ namespace libTravian
         [Json]
         public List<TTInfo> Troops { get; set; }
         [Json]
-        public TTroopTraining TroopTraining { get; set; }
+        public Dictionary<int, TTroopTraining> TroopTrainings { get; set; }
         
         public bool ShouldRefresh { get; set; }
         public void tick(TVillage CV)
@@ -880,17 +880,20 @@ namespace libTravian
                     }
                 }
                 
-                foreach (TrainingInfo info in this.TroopTraining.cur_training)
+                foreach (var tt in TroopTrainings)
                 {
-                	if (info.finish_time == DateTime.MinValue)
-                    {
-                        continue;
-                    }
-
-                    if (info.finish_time < refreshTime)
-                    {
-                        refreshTime = info.finish_time;
-                    }
+	                foreach (TrainingInfo info in tt.Value.cur_training)
+	                {
+	                	if (info.finish_time == DateTime.MinValue)
+	                    {
+	                        continue;
+	                    }
+	
+	                    if (info.finish_time < refreshTime)
+	                    {
+	                        refreshTime = info.finish_time;
+	                    }
+	                }
                 }
 
                 return refreshTime;
@@ -901,7 +904,7 @@ namespace libTravian
         {
             TournamentLevel = 0;
             Troops = new List<TTInfo>();
-            TroopTraining = new TTroopTraining();
+            TroopTrainings = new Dictionary<int, TTroopTraining>();
         }
 
         public int GetUsedSlots(TVillage village)
