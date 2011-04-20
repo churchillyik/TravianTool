@@ -121,7 +121,7 @@
 			// 
 			this.columnHeader8.Tag = "tribe";
 			this.columnHeader8.Text = "种族";
-			this.columnHeader8.Width = 80;
+			this.columnHeader8.Width = 123;
 			// 
 			// contextMenuStrip1
 			// 
@@ -134,7 +134,7 @@
 									this.deleteAccountToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.ShowImageMargin = false;
-			this.contextMenuStrip1.Size = new System.Drawing.Size(136, 142);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(136, 120);
 			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
 			// 
 			// loginToolStripMenuItem

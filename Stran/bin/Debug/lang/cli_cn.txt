@@ -223,3 +223,7 @@ recvaccounts=接收地址（逗号分隔）：
 trustfuluser=信任帐号：
 //by Churchill
 findoasis=&O. 搜田（会较费时间）
+//dbgmsg
+dbgmsg=调试信息
+copytoclip=拷贝到剪切板
+closedbgmsg=关闭信息窗口

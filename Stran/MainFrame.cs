@@ -67,9 +67,14 @@ namespace Stran
         public MainFrame()
         {
             InitializeComponent();
-            reslabel = new ResourceLabel[] { m_resourceshow.resourceLabel1, m_resourceshow.resourceLabel2, m_resourceshow.resourceLabel3, m_resourceshow.resourceLabel4 };
-            //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
-            //Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
+            reslabel = new ResourceLabel[] 
+            { 
+            	m_resourceshow.resourceLabel1, 
+            	m_resourceshow.resourceLabel2, 
+            	m_resourceshow.resourceLabel3, 
+            	m_resourceshow.resourceLabel4 
+            };
+            
             for (int i = 0; i < 6; i++)
             {
                 var lvi = m_inbuildinglist.listViewInBuilding.Items.Add(typelist[i]);
@@ -749,7 +754,11 @@ namespace Stran
         		sb.Append("%");
         	}
 
-            MsgBox mb = new MsgBox() { message = sb.ToString() };
+            MsgBox mb = new MsgBox() 
+            { 
+            	message = sb.ToString(),
+            	mui = mui
+            };
             mb.ShowDialog();
         }
 
@@ -908,7 +917,11 @@ namespace Stran
                     DB.Text);
             }
 
-            MsgBox fe = new MsgBox() { message = sb.ToString() };
+            MsgBox fe = new MsgBox() 
+            { 
+            	message = sb.ToString(),
+            	mui = mui
+            };
             fe.ShowDialog();
         }
 
@@ -1047,7 +1060,11 @@ namespace Stran
             sb.AppendLine("这是一份村庄快照。如有需要，请您复制并稍后张贴到论坛，谢谢。");
             sb.AppendLine("This is a snapshot of your village. If necessary, please copy this and post to developers' forum later.");
             sb.AppendLine(TravianData.Villages[SelectVillage].Snapshot());
-            MsgBox mb = new MsgBox() { message = sb.ToString() };
+            MsgBox mb = new MsgBox() 
+            { 
+            	message = sb.ToString(),
+            	mui = mui
+            };
             mb.ShowDialog();
         }
         private void CMVSnapAll_Click(object sender, EventArgs e)
@@ -1057,7 +1074,11 @@ namespace Stran
             sb.AppendLine("This is a snapshot of your village. If necessary, please copy this and post to developers' forum later.");
             foreach (var v in TravianData.Villages)
                 sb.AppendLine(v.Value.Snapshot());
-            MsgBox mb = new MsgBox() { message = sb.ToString() };
+            MsgBox mb = new MsgBox() 
+            { 
+            	message = sb.ToString(),
+            	mui = mui
+            };
             mb.ShowDialog();
         }
         private void CMBNewCap_Click(object sender, EventArgs e)

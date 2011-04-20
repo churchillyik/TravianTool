@@ -224,3 +224,7 @@ recvaccounts=接收郵件位址(逗號分隔)：
 trustfuluser=信任帳號(不會報警)：
 //by Churchill
 findoasis=&O. 搜田（會較費時間）
+//dbgmsg
+dbgmsg=調試信息
+copytoclip=拷貝到剪切板
+closedbgmsg=關閉信息窗口

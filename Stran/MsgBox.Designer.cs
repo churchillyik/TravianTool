@@ -48,26 +48,27 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(157, 326);
+			this.button1.Location = new System.Drawing.Point(131, 326);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(80, 32);
+			this.button1.Size = new System.Drawing.Size(113, 40);
 			this.button1.TabIndex = 1;
+			this.button1.Tag = "copytoclip";
 			this.button1.Text = "Copy";
 			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Visible = false;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(357, 326);
+			this.button2.Location = new System.Drawing.Point(338, 326);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(80, 32);
+			this.button2.Size = new System.Drawing.Size(118, 40);
 			this.button2.TabIndex = 2;
+			this.button2.Tag = "closedbgmsg";
 			this.button2.Text = "Close";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
-			// FatalError
+			// MsgBox
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -79,15 +80,15 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "FatalError";
+			this.Name = "MsgBox";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Tag = "dbgmsg";
 			this.Text = "Debug Message";
 			this.TopMost = true;
 			this.Load += new System.EventHandler(this.FatalError_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
 
 		#endregion

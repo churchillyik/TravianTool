@@ -22,6 +22,7 @@ using System.Text;
 using System.Windows.Forms;
 using libTravian;
 using Stran.Properties;
+using System.Windows.Forms.Design
 
 namespace Stran
 {
@@ -58,6 +59,41 @@ namespace Stran
 				ListViewItem lvi = listView1.Items.Add(accounts[i].Username);
 				lvi.SubItems.Add(accounts[i].Server);
 				lvi.SubItems.Add(tribelist[accounts[i].Tribe]);
+			}
+			AutoResizeColumnWidth(listView1);
+		}
+		
+		private void AutoResizeColumnWidth(ListView lv)
+		{  
+			int count = lv.Columns.Count;  
+			int MaxWidth = 0;  
+			Graphics graphics=lv.CreateGraphics();
+			Font font = lv.Font;
+			ListView.ListViewItemCollection items = lv.Items;
+			
+			lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+			
+			string str;
+			int width;
+			for (int i = 0; i < count; i++)
+			{
+				str = lv.Columns[i].Text;
+				MaxWidth = lv.Columns[i].Width;
+				
+				foreach (ListViewItem item in items)
+				{
+					str = item.SubItems[i].Text;
+					width = (int)graphics.MeasureString(str, font).Width;
+					if (width > MaxWidth)
+					{
+						MaxWidth = width;
+					}
+				}
+				if (i == 0)
+				{  
+					lv.Columns[i].Width = lv.SmallImageList.ImageSize.Width + MaxWidth;
+				}  
+				lv.Columns[i].Width = MaxWidth;
 			}
 		}
 
@@ -249,7 +285,11 @@ namespace Stran
 			sb.AppendLine(DateTime.Now.ToString());
 			sb.AppendLine(ex.Message);
 			sb.AppendLine(ex.StackTrace);
-			MsgBox fe = new MsgBox() { message = sb.ToString() };
+			MsgBox fe = new MsgBox() 
+			{ 
+				message = sb.ToString(),
+					mui = mui
+			};
 			fe.ShowDialog();
 		}
 

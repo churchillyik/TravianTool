@@ -224,3 +224,7 @@ recvaccounts=receive accounts（seperated by comma）：
 trustfuluser=trustful(no alarm)：
 //by Churchill
 findoasis=&O. FindOasis(Cost much time)
+//dbgmsg
+dbgmsg=Debug Message
+copytoclip=Copy
+closedbgmsg=Close

@@ -27,24 +27,21 @@ namespace Stran
 	public partial class MsgBox : Form
 	{
 		public string message { get; set; }
+		public MUI mui { get; set; }
 		public MsgBox()
 		{
 			InitializeComponent();
 		}
 
-		[DllImport("clip32.dll")]
-		private static extern bool CopyToClipboard(string text);
-
 		private void button1_Click(object sender, EventArgs e)
 		{
-			// NOT SURE TO WORK. DISABLED FOR SAFE.
-			CopyToClipboard(textBox1.Text);
-			//Clipboard.SetText(textBox1.Text);
+			Clipboard.SetDataObject(textBox1.Text);
 			MessageBox.Show("Message copied to clipboard.", Text);
 		}
 
 		private void FatalError_Load(object sender, EventArgs e)
 		{
+			mui.RefreshLanguage(this);
 			textBox1.Text = message;
 		}
 
