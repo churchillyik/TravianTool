@@ -218,7 +218,9 @@ namespace Stran
                     }
                 }
                 if (m_villagelist.listViewVillage.SelectedIndices.Count <= 0 && i >= 0)
+                {
                     m_villagelist.listViewVillage.Items[i].Selected = true;
+                }
             }
             else if (e.ChangedData == Travian.ChangedType.Stop)
             {
@@ -406,7 +408,9 @@ namespace Stran
                 lock (QueueLock)
                 {
                     if (CV.Queue.Count == m_queuelist.listViewQueue.Items.Count - 1)
+                    {
                         m_queuelist.listViewQueue.Items.RemoveAt(QueueID);
+                    }
                 }
             }
         }
@@ -475,6 +479,7 @@ namespace Stran
                         }
                     }
                 }
+                
             }
         }
 
@@ -524,6 +529,7 @@ namespace Stran
                         m_inbuildinglist.listViewInBuilding.Items[i].SubItems[1].Text = c_text;
                     }
                 }
+                
             }
         }
         
@@ -621,6 +627,7 @@ namespace Stran
             {
                 this.m_researchstatus.listViewUpgrade.Items.RemoveAt(9);
             }
+            
         }
         
         private void DisplayMarket()
@@ -640,6 +647,7 @@ namespace Stran
                 lvi.SubItems.Add(x.Coord.ToString());
                 lvi.SubItems.Add(x.MType.ToString());
             }
+            m_transferstatus.listViewMarket.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             m_transferstatus.listViewMarket.ResumeLayout();
         }
         
@@ -675,6 +683,7 @@ namespace Stran
                 lvi.SubItems.Add(x.VillageName);
                 lvi.SubItems.Add(x.TroopType.ToString());
             }
+			m_troopinfolist.listViewTroop.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             m_troopinfolist.listViewTroop.ResumeLayout();
         }
         
@@ -726,7 +735,7 @@ namespace Stran
 	            	lvi.SubItems.Add(fin);
             	}
             }
-            
+
             m_trooptraining.listViewTroopTraining.ResumeLayout();
         }
         
@@ -859,6 +868,7 @@ namespace Stran
                     }
                 }
             }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -2110,26 +2120,6 @@ namespace Stran
 				{
 					village.RestoreQueueRes(openFileDialog.FileName);
 					TravianData.Dirty = true;
-				}
-			}
-		}
-		
-		private void CMVDelVClick(object sender, EventArgs e)
-		{
-            MessageBox.Show("尚未完成此功能");
-            return;
-			if(!TravianData.Villages.ContainsKey(SelectVillage) || TravianData.Villages.Count <= 1)
-				return;
-			
-			TVillage CV = TravianData.Villages[SelectVillage];
-			
-			if (MessageBox.Show("这将会将此村庄从资料库中删除", "强制删除村庄", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.OK)
-			{
-				lock (QueueLock)
-				{
-					TravianData.Villages.Remove(SelectVillage);
-					TravianData.Dirty = true;
-					Local_StatusUpdate(sender, new Travian.StatusChanged() { ChangedData = Travian.ChangedType.Villages });
 				}
 			}
 		}

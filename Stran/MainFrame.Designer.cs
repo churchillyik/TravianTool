@@ -108,7 +108,6 @@
 			this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
 			this.CMVSnapshot = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMVSnapAll = new System.Windows.Forms.ToolStripMenuItem();
-			this.CMVDelV = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
 			this.CMVFindOasis = new System.Windows.Forms.ToolStripMenuItem();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -686,7 +685,6 @@
 									this.toolStripSeparator11,
 									this.CMVSnapshot,
 									this.CMVSnapAll,
-									this.CMVDelV,
 									this.toolStripSeparator17,
 									this.CMVFindOasis});
 			this.contextMenuVillage.Name = "contextMenuStrip1";
@@ -791,14 +789,6 @@
 			this.CMVSnapAll.Tag = "snapall";
 			this.CMVSnapAll.Text = "snapall";
 			this.CMVSnapAll.Click += new System.EventHandler(this.CMVSnapAll_Click);
-			// 
-			// CMVDelV
-			// 
-			this.CMVDelV.Name = "CMVDelV";
-			this.CMVDelV.Size = new System.Drawing.Size(165, 22);
-			this.CMVDelV.Tag = "deleteVillage";
-			this.CMVDelV.Text = "Delete Village";
-			this.CMVDelV.Click += new System.EventHandler(this.CMVDelVClick);
 			// 
 			// toolStripSeparator17
 			// 
@@ -1022,7 +1012,7 @@
 									this.refreshTroopTrainingToolStripMenuItem});
 			this.contextMenuTroopTraining.Name = "contextMenuTroopTraining";
 			this.contextMenuTroopTraining.ShowImageMargin = false;
-			this.contextMenuTroopTraining.Size = new System.Drawing.Size(178, 70);
+			this.contextMenuTroopTraining.Size = new System.Drawing.Size(178, 48);
 			// 
 			// trainingTroopsToolStripMenuItem
 			// 
@@ -1079,7 +1069,6 @@
 		private System.Windows.Forms.ToolStripMenuItem CMVFindOasis;
 		private System.Windows.Forms.ToolStripMenuItem CMTAlarm;
 		private System.Windows.Forms.ToolStripMenuItem CMVRefreshAll;
-		private System.Windows.Forms.ToolStripMenuItem CMVDelV;
 		private System.Windows.Forms.ToolStripMenuItem CMVRestoreRES;
 		private System.Windows.Forms.ToolStripMenuItem CMVSaveRES;
 		private System.Windows.Forms.ToolStripMenuItem CMMRefresh;

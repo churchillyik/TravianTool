@@ -14,7 +14,6 @@ namespace Stran.DockingPanel
 	public partial class VillageList : DockContent
 	{
 		public MainFrame UpCall { get; set; }
-//		public ListViewSorter listviewsorter = new ListViewSorter();
 
 		public VillageList()
 		{
@@ -23,10 +22,6 @@ namespace Stran.DockingPanel
 
 		private void VillageList_Load(object sender, EventArgs e)
 		{
-//			listviewsorter.ListView = this.listViewVillage;
-//			listviewsorter.ColumnComparerCollection[UpCall.mui._("vid")] = new NumericComparer();
-//			listviewsorter.ColumnComparerCollection[UpCall.mui._("vname")] = new Yaowi.Common.Collections.StringComparer();
-//			listviewsorter.ColumnComparerCollection[UpCall.mui._("coord")] = new GermanPostalCodeCityByPostalCodeComparer();
 			listViewVillage.ContextMenuStrip = UpCall.contextMenuVillage;
 			UpCall.mui.RefreshLanguage(this);
 			TabText = Text;
