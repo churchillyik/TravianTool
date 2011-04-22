@@ -109,7 +109,6 @@
 			this.CMVSnapshot = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMVSnapAll = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-			this.CMVFindOasis = new System.Windows.Forms.ToolStripMenuItem();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.button1 = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -685,11 +684,10 @@
 									this.toolStripSeparator11,
 									this.CMVSnapshot,
 									this.CMVSnapAll,
-									this.toolStripSeparator17,
-									this.CMVFindOasis});
+									this.toolStripSeparator17});
 			this.contextMenuVillage.Name = "contextMenuStrip1";
 			this.contextMenuVillage.ShowImageMargin = false;
-			this.contextMenuVillage.Size = new System.Drawing.Size(166, 308);
+			this.contextMenuVillage.Size = new System.Drawing.Size(166, 264);
 			this.contextMenuVillage.Opening += new System.ComponentModel.CancelEventHandler(this.CMV_Opening);
 			// 
 			// CMVRefresh
@@ -794,14 +792,6 @@
 			// 
 			this.toolStripSeparator17.Name = "toolStripSeparator17";
 			this.toolStripSeparator17.Size = new System.Drawing.Size(162, 6);
-			// 
-			// CMVFindOasis
-			// 
-			this.CMVFindOasis.Name = "CMVFindOasis";
-			this.CMVFindOasis.Size = new System.Drawing.Size(165, 22);
-			this.CMVFindOasis.Tag = "findoasis";
-			this.CMVFindOasis.Text = "搜田";
-			this.CMVFindOasis.Click += new System.EventHandler(this.CMVFindOasisClick);
 			// 
 			// timer1
 			// 
@@ -1066,7 +1056,6 @@
 		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeTroopLvlTo;
 		private System.Windows.Forms.ToolStripMenuItem CMRUpgradeTroopLvl;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
-		private System.Windows.Forms.ToolStripMenuItem CMVFindOasis;
 		private System.Windows.Forms.ToolStripMenuItem CMTAlarm;
 		private System.Windows.Forms.ToolStripMenuItem CMVRefreshAll;
 		private System.Windows.Forms.ToolStripMenuItem CMVRestoreRES;

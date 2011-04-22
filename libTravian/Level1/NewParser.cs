@@ -1322,7 +1322,7 @@ namespace libTravian
         private void NewParseOasis(int VillageID, string data)
         {
         	var CV = TD.Villages[VillageID];
-        	if (CV.isOasisFoundInitialized != 0)
+        	if (CV.isOasisFoundComplete)
         		return;
         	
         	Match m = Regex.Match(data, "\"error\":false,\"errorMsg\":null,\"data\":{\"tiles\":" +
@@ -1344,8 +1344,16 @@ namespace libTravian
             foreach (Match pm_cell in mc_cell)
         	{
             	cell = pm_cell.Groups[1].Value;
+            	/*
+            		{"x":"392","y":"351","c":"{k.vt} {k.f6}","t":"
+					<span class=\"coordinates coordinatesWithText\">
+					<span class=\"coordinateX\">(392<\/span>
+					<span class=\"coordinatePipe\">|<\/span>
+					<span class=\"coordinateY\">351)<\/span>
+					<\/span>"}
+            	*/
         		m = Regex.Match(cell, "\"x\":\"(\\-?\\d+)\",\"y\":\"(\\-?\\d+)\"," +
-        		                "\"c\":\"{([^}]*?)}\\s{([^}]*?)}\",\"t\":\"\\-?\\d+\\|\\-?\\d+\"");
+        		                "\"c\":\"{([^}]*?)}\\s{([^}]*?)}\",\"t\":[^\\)]*?\\)<\\\\/span><\\\\/span>");
         		
         		if (!m.Success)
         			continue;

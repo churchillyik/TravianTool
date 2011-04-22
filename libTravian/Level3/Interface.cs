@@ -95,11 +95,27 @@ namespace libTravian
 			t.Start(new CancelOption() { VillageID = VillageID, Key = Key });
 		}
 		
-		public void FindOasis(int VillageID)
+		public void FindOasis(int VillageID, int x, int y, int num)
 		{
-			Thread t = new Thread(new ParameterizedThreadStart(doFindOasis));
-			t.Name = "FindOasis";
-			t.Start(VillageID);
+			ThrdFindOasis = new Thread(new ParameterizedThreadStart(doFindOasis));
+			ThrdFindOasis.Name = "FindOasis";
+			ThrdFindOasis.Start(new FindOasisOption() {VillageID = VillageID, axis_x = x, axis_y = y, search_num = num});
+		}
+		
+		public void StopFindOasis()
+		{
+			try
+			{
+				if (ThrdFindOasis != null)
+				{
+					ThrdFindOasis.Abort();
+					OasisFoundLog("用户停止了搜田过程！");
+				}
+			}
+			catch(Exception)
+			{
+				
+			}
 		}
 	}
 }

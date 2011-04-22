@@ -98,6 +98,10 @@
     <Compile Include="DockingPanel\InBuildingList.Designer.cs">
       <DependentUpon>InBuildingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockingPanel\OasisSearching.cs" />
+    <Compile Include="DockingPanel\OasisSearching.Designer.cs">
+      <DependentUpon>OasisSearching.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockingPanel\QueueList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +204,9 @@
     <EmbeddedResource Include="DockingPanel\InBuildingList.resx">
       <DependentUpon>InBuildingList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\OasisSearching.resx">
+      <DependentUpon>OasisSearching.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockingPanel\QueueList.resx">
       <DependentUpon>QueueList.cs</DependentUpon>

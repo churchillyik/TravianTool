@@ -222,8 +222,15 @@ serverport=port：
 recvsettings=Receive Settings
 recvaccounts=receive accounts（seperated by comma）：
 trustfuluser=trustful(no alarm)：
-//by Churchill
-findoasis=&O. FindOasis(Cost much time)
+//oasis searching
+OasisSearching=Oasis Searching
+lablestartaxis=Start Axis
+lablesearchingnum=Searching Range
+startsearching=Start
+stopsearching=Stop
+labelinstruction=Gona search 15 crop oasis from the starting axis. We recommand the searching range to be 30.
+ColHdoasisaxis=15Crop Axis
+ColHdaddon=Oasis
 //dbgmsg
 dbgmsg=Debug Message
 copytoclip=Copy

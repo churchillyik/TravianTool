@@ -79,11 +79,11 @@
 			// textLog
 			// 
 			this.textLog.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textLog.Location = new System.Drawing.Point(403, 3);
+			this.textLog.Location = new System.Drawing.Point(402, 3);
 			this.textLog.Multiline = true;
 			this.textLog.Name = "textLog";
 			this.textLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textLog.Size = new System.Drawing.Size(528, 635);
+			this.textLog.Size = new System.Drawing.Size(529, 635);
 			this.textLog.TabIndex = 1;
 			// 
 			// listView1
@@ -99,7 +99,7 @@
 			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listView1.Location = new System.Drawing.Point(3, 3);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(400, 635);
+			this.listView1.Size = new System.Drawing.Size(399, 635);
 			this.listView1.TabIndex = 0;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;

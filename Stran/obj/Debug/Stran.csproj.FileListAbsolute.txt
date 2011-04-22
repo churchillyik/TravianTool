@@ -195,3 +195,4 @@ E:\Resources\TravianTool\Stran\obj\Debug\Stran.exe
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.pdb
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.DockingPanel.TroopTraining.resources
 E:\Travian\stran\Stran\obj\Debug\Stran.DockingPanel.TroopTraining.resources
+E:\Travian\stran\Stran\obj\Debug\Stran.DockingPanel.OasisSearching.resources

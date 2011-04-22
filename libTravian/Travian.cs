@@ -42,7 +42,8 @@ namespace libTravian
             Stop,
             Market,
             PageCount,
-            OasisFound
+            OasisFound,
+            OasisFoundLog
         }
         public class StatusChanged : EventArgs
         {

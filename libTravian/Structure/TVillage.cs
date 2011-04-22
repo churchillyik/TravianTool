@@ -34,8 +34,7 @@ namespace libTravian
         public TInBuilding[] InBuilding { get; set; }
         [Json]
         public List<IQueue> Queue { get; set; }
-        [Json]
-        public List<TOasisInfo>	OasisInfo { get; set; }
+
         [Json]
         public int isVillageInitialized { get; set; }
         [Json]
@@ -48,8 +47,10 @@ namespace libTravian
         public int isTroopInitialized { get; set; }
         [Json]
         public int isMarketInitialized { get; set; }
-        [Json]
-        public int isOasisFoundInitialized { get; set; }
+        
+        public List<TOasisInfo> OasisInfo { get; set; }
+        public bool isOasisFoundComplete { get; set; }
+        
         public Travian UpCall { get; set; }
         public TPoint Coord
         {
@@ -134,9 +135,14 @@ namespace libTravian
         }
 
         //	搜田
-        public void FindOasis()
+        public void FindOasis(int x, int y, int num)
         {
-        	UpCall.FindOasis(ID);
+        	UpCall.FindOasis(ID, x, y, num);
+        }
+        
+        public void StopFindOasis()
+        {
+        	UpCall.StopFindOasis();
         }
         
         public int TimeCost(TResAmount ResCost)

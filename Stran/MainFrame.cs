@@ -44,9 +44,11 @@ namespace Stran
         private VillageList m_villagelist = new VillageList();
         private TroopInfoList m_troopinfolist = new TroopInfoList();
         private TroopTraining m_trooptraining = new TroopTraining();
+        private OasisSearching m_oasissearching = new OasisSearching();
 
         private delegate void StatusEvent_d(object sender, Travian.StatusChanged e);
         private delegate void LogEvent_d(TDebugInfo e);
+        private delegate void OasisFoundLogEvent_d(string e);
         private delegate void Void_d();
 
         private static Color[] ResColor = new Color[] { Color.ForestGreen, Color.Chocolate, Color.SlateGray, Color.Gold };
@@ -117,6 +119,7 @@ namespace Stran
             DisplayLang.Instance = dl;
             tr.StatusUpdate += new EventHandler<Travian.StatusChanged>(tr_StatusUpdate);
             tr.OnError += new EventHandler<LogArgs>(tr_OnError);
+            tr.OnOasisFoundLog += new EventHandler<OasisFoundLogArgs>(tr_OnOasisFoundLog);
 
             m_villagelist.listViewVillage.Items.Clear();
             m_buildinglist.listViewBuilding.Items.Clear();
@@ -138,6 +141,16 @@ namespace Stran
             try
             {
                 Invoke(new LogEvent_d(DebugWriteError), new object[] { e.DebugInfo });
+            }
+            catch (Exception)
+            { }
+        }
+        
+        void tr_OnOasisFoundLog(object sender, OasisFoundLogArgs e)
+        {
+            try
+            {
+                Invoke(new OasisFoundLogEvent_d(DisplayOasisFoundLog), new object[] { e.arg_log });
             }
             catch (Exception)
             { }
@@ -258,6 +271,9 @@ namespace Stran
                         break;
                     case Travian.ChangedType.OasisFound:
                         DisplayOasisFound();
+                        break;
+                    case Travian.ChangedType.OasisFoundLog:
+                        
                         break;
                 }
             }
@@ -744,31 +760,27 @@ namespace Stran
         	if (!TravianData.Villages.ContainsKey(SelectVillage))
                 return;
         	var CV = TravianData.Villages[SelectVillage];
-            if (CV.isOasisFoundInitialized != 2)
-                return;
-            
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("这是已经找到的绿洲之情况：");
-        	sb.AppendLine("X轴坐标\tY轴坐标\t绿洲加成");
         	
-        	foreach (var o in CV.OasisInfo)
+        	m_oasissearching.listView_SearchingResult.SuspendLayout();
+        	
+        	m_oasissearching.listView_SearchingResult.Items.Clear();
+        	for (int i = m_oasissearching.listView_SearchingResult.Items.Count;
+        		     i < CV.OasisInfo.Count; i++)
         	{
-        		TOasisInfo oasis = o as TOasisInfo;
-        		sb.AppendLine("");
-        		sb.Append(oasis.axis_x);
-        		sb.Append("\t");
-        		sb.Append(oasis.axis_y);
-        		sb.Append("\t");
-        		sb.Append(oasis.addon);
-        		sb.Append("%");
+        		TOasisInfo oasis = CV.OasisInfo[i];
+        		string axis = "(" + oasis.axis_x + "|" + oasis.axis_y + ")";
+        		var lvi = m_oasissearching.listView_SearchingResult.Items.Add(axis);
+        		
+        		string addon = oasis.addon + "%";
+        		lvi.SubItems.Add(addon);
         	}
-
-            MsgBox mb = new MsgBox() 
-            { 
-            	message = sb.ToString(),
-            	mui = mui
-            };
-            mb.ShowDialog();
+        	m_oasissearching.listView_SearchingResult.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        	m_oasissearching.listView_SearchingResult.ResumeLayout();
+        }
+        
+        private void DisplayOasisFoundLog(string e)
+        {
+        	m_oasissearching.textBox_Log.AppendText(e + "\r\n");
         }
 
         private string TimeToString(long timecost)
@@ -948,7 +960,8 @@ namespace Stran
             m_inbuildinglist.UpCall =
             m_villagelist.UpCall 	=
             m_troopinfolist.UpCall 	= 
-            m_trooptraining.UpCall	= this;
+            m_trooptraining.UpCall	= 
+            m_oasissearching.UpCall	= this;
 
 
             string fn = GetStyleFilename();
@@ -968,6 +981,7 @@ namespace Stran
                 m_villagelist.Show(dockPanel1);
                 m_troopinfolist.Show(dockPanel1);
                 m_trooptraining.Show(dockPanel1);
+                m_oasissearching.Show(dockPanel1);
             }
 
             m_buildinglist.Activate();
@@ -976,7 +990,19 @@ namespace Stran
 
         private IDockContent FindDocument(string text)
         {
-            foreach (var x in new DockContent[] { m_buildinglist, m_inbuildinglist, m_queuelist, m_researchstatus, m_resourceshow, m_transferstatus, m_villagelist, m_troopinfolist, m_trooptraining })
+            foreach (var x in new DockContent[] 
+        	         { 
+        	         	m_buildinglist,
+        	         	m_inbuildinglist, 
+        	         	m_queuelist, 
+        	         	m_researchstatus, 
+        	         	m_resourceshow, 
+        	         	m_transferstatus, 
+        	         	m_villagelist, 
+        	         	m_troopinfolist, 
+        	         	m_trooptraining,
+        	         	m_oasissearching
+        	         })
             {
                 if (text == x.GetType().ToString())
                     return x;
@@ -2132,12 +2158,20 @@ namespace Stran
             }
         }
 		
-		void CMVFindOasisClick(object sender, EventArgs e)
+		public void FindOasisClick(int x, int y, int num)
 		{
 			if (!TravianData.Villages.ContainsKey(SelectVillage))
                 return;
             
-			TravianData.Villages[SelectVillage].FindOasis();
+			TravianData.Villages[SelectVillage].FindOasis(x, y, num);
+		}
+		
+		public void StopFindOasisClick()
+		{
+			if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+            
+			TravianData.Villages[SelectVillage].StopFindOasis();
 		}
 		
 		

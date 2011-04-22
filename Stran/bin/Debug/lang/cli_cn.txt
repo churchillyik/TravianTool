@@ -221,8 +221,15 @@ serverport=端口：
 recvsettings=接收设置
 recvaccounts=接收地址（逗号分隔）：
 trustfuluser=信任帐号：
-//by Churchill
-findoasis=&O. 搜田（会较费时间）
+//oasis searching
+OasisSearching=搜索15田
+lablestartaxis=起始坐标
+lablesearchingnum=搜索重数
+startsearching=开始搜索
+stopsearching=停止搜索
+labelinstruction=本功能将按蜗牛式的方式搜索15田，起始坐标为中心坐标，搜索重数表示搜索的范围广度（推荐30重即可）
+ColHdoasisaxis=坐标
+ColHdaddon=绿洲加成
 //dbgmsg
 dbgmsg=调试信息
 copytoclip=拷贝到剪切板
