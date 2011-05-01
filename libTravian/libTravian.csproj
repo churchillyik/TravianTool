@@ -61,6 +61,7 @@
     <Compile Include="Level2\FetchVillages.cs" />
     <Compile Include="DisplayLang.cs" />
     <Compile Include="Level2\FindOasis.cs" />
+    <Compile Include="Level2\HeroAdvantures.cs" />
     <Compile Include="Level3\Interface.cs" />
     <Compile Include="Queue\AIQueue.cs" />
     <Compile Include="Queue\AlarmQueue.cs" />

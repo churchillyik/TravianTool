@@ -196,3 +196,5 @@ E:\Resources\TravianTool\Stran\obj\Debug\Stran.pdb
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.DockingPanel.TroopTraining.resources
 E:\Travian\stran\Stran\obj\Debug\Stran.DockingPanel.TroopTraining.resources
 E:\Travian\stran\Stran\obj\Debug\Stran.DockingPanel.OasisSearching.resources
+E:\Resources\TravianTool\Stran\obj\Debug\Stran.DockingPanel.OasisSearching.resources
+E:\Resources\TravianTool\Stran\obj\Debug\Stran.DockingPanel.HeroAdvanture.resources

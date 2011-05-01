@@ -38,6 +38,8 @@ namespace libTravian
 		[Json]
 		public int ActiveDid { get; set; }
 		[Json]
+		public HeroAdventureStatus Adv_Sta { get; set; }
+		[Json]
 		public Dictionary<int, TVillage> Villages { get; set; }
 
 		public bool Dirty;
@@ -79,6 +81,7 @@ namespace libTravian
 			Villages = new Dictionary<int, TVillage>();
 			ActiveDid = -1;
 			IGMData = new Dictionary<int, TIGM>();
+			Adv_Sta = new HeroAdventureStatus();
 		}
 	}
 
@@ -89,6 +92,35 @@ namespace libTravian
 		string Text { get; set; }
 	}
 
+	public class HeroAdventureStatus
+	{
+		[Json]
+		public int HeroLocate { get; set; }
+		[Json]
+        public List<HeroAdventureInfo> HeroAdventures { get; set; }
+        public HeroAdventureStatus()
+        {
+        	HeroLocate = 0;
+        	HeroAdventures = new List<HeroAdventureInfo>();
+        }	
+	}
+	
+	public class HeroAdventureInfo
+    {
+    	[Json]
+    	public int axis_x;
+    	[Json]
+    	public int axis_y;
+    	[Json]
+    	public string duration;
+    	[Json]
+    	public string danger;
+    	[Json]
+    	public DateTime finish_time;
+    	[Json]
+    	public string link;
+    }
+	
 	public static class TypeViewer
 	{
 		public static string ToString(object sender)

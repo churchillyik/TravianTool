@@ -91,7 +91,7 @@
         	this.MaximizeBox = false;
         	this.Name = "Rename";
         	this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-        	this.Tag = "Rename";
+        	this.Tag = "DlgRename";
         	this.Text = "Rename";
         	this.Load += new System.EventHandler(this.Rename_Load);
         	this.ResumeLayout(false);

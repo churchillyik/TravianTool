@@ -44,6 +44,7 @@ namespace Stran
         private VillageList m_villagelist = new VillageList();
         private TroopInfoList m_troopinfolist = new TroopInfoList();
         private TroopTraining m_trooptraining = new TroopTraining();
+        private HeroAdvanture m_heroadventure = new HeroAdvanture();
         private OasisSearching m_oasissearching = new OasisSearching();
 
         private delegate void StatusEvent_d(object sender, Travian.StatusChanged e);
@@ -755,6 +756,47 @@ namespace Stran
             m_trooptraining.listViewTroopTraining.ResumeLayout();
         }
         
+        private void DisplayHeroAdvantures()
+        {
+        	if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+        	
+            var CV = TravianData.Villages[SelectVillage];
+            if (CV.isTroopInitialized != 2)
+                return;
+            
+            m_heroadventure.listViewHeroAdventure.Items.Clear();
+            m_heroadventure.listViewHeroAdventure.SuspendLayout();
+            //	Insert items to list view
+            foreach (var adv in CV.UpCall.TD.Adv_Sta.HeroAdventures)
+            {
+            	var lvi = m_heroadventure.listViewHeroAdventure.Items.Add(
+            		"(" + adv.axis_x + "|" + adv.axis_y + ")");
+            	lvi.SubItems.Add(adv.duration);
+            	lvi.SubItems.Add(adv.danger);
+            	string fin = "-";
+            	if (adv.finish_time != DateTime.MinValue)
+                {
+                	TimeSpan ts = new TimeSpan(
+            			(long)adv.finish_time.Subtract(DateTime.Now).TotalSeconds * 10000000 + 5);
+                	if (ts.Days == 0)
+                	{
+                		fin = string.Format(
+                			"{0}:{1}:{2}", ts.Hours, ts.Minutes, ts.Seconds);
+                	}
+                	else
+                	{
+	            		fin = string.Format(
+                			"{0}天{1}:{2}:{3}", ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
+                	}
+                	
+            	}
+            	lvi.SubItems.Add(fin);
+            }
+            
+            m_heroadventure.listViewHeroAdventure.ResumeLayout();
+        }
+        
         private void DisplayOasisFound()
         {
         	if (!TravianData.Villages.ContainsKey(SelectVillage))
@@ -822,6 +864,7 @@ namespace Stran
             DisplayMarket();
             DisplayTroop();
             DisplayTroopTraining();
+            DisplayHeroAdvantures();
         }
 
         public void listViewVillage_Click(object sender, EventArgs e)
@@ -846,6 +889,7 @@ namespace Stran
                 DisplayMarket();
                 DisplayTroop();
                 DisplayTroopTraining();
+                DisplayHeroAdvantures();
                 tr.Tick();
                 int QCount = 0;
                 foreach (var x in TravianData.Villages)
@@ -961,8 +1005,8 @@ namespace Stran
             m_villagelist.UpCall 	=
             m_troopinfolist.UpCall 	= 
             m_trooptraining.UpCall	= 
+            m_heroadventure.UpCall	=
             m_oasissearching.UpCall	= this;
-
 
             string fn = GetStyleFilename();
             if (!File.Exists(fn))
@@ -981,6 +1025,7 @@ namespace Stran
                 m_villagelist.Show(dockPanel1);
                 m_troopinfolist.Show(dockPanel1);
                 m_trooptraining.Show(dockPanel1);
+                m_heroadventure.Show(dockPanel1);
                 m_oasissearching.Show(dockPanel1);
             }
 
@@ -1001,7 +1046,8 @@ namespace Stran
         	         	m_villagelist, 
         	         	m_troopinfolist, 
         	         	m_trooptraining,
-        	         	m_oasissearching
+        	         	m_oasissearching,
+        	         	m_heroadventure
         	         })
             {
                 if (text == x.GetType().ToString())
@@ -2227,6 +2273,28 @@ namespace Stran
 			if (!TravianData.Villages.ContainsKey(SelectVillage))
                 return;
             TravianData.Villages[SelectVillage].InitializeTroop();
+		}
+		
+		void RefreshAdvanturesToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (tr == null)
+                return;
+			tr.FetchHeroAdvantures(SelectVillage);
+		}
+		
+		void StartAdvantureToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (tr == null)
+                return;
+            if (m_heroadventure.listViewHeroAdventure.SelectedIndices.Count == 1)
+            {
+            	HeroAdventureStatus adv_sta = tr.TD.Adv_Sta;
+                int key = m_heroadventure.listViewHeroAdventure.SelectedIndices[0];
+                if (adv_sta.HeroAdventures[key] != null && adv_sta.HeroLocate != 0)
+                {
+                	tr.ExecuteHeroAdvanture(key);
+                }
+            }
 		}
     }
 }

@@ -168,7 +168,7 @@ namespace libTravian
                 TD.Villages[VillageID].isTroopInitialized = 2;
                 TD.Dirty = true;
             }
-        } 
+        }
         
     }
 }

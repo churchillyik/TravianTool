@@ -88,6 +88,20 @@ namespace libTravian
             t.Start(VillageID);
         }
         
+        public void FetchHeroAdvantures(int VillageID)
+		{
+			Thread t = new Thread(new ParameterizedThreadStart(doFetchHeroAdventures));
+			t.Name = "FetchHeroAdventures";
+			t.Start(VillageID);
+		}
+        
+        public void ExecuteHeroAdvanture(int key)
+		{
+			Thread t = new Thread(new ParameterizedThreadStart(doHeroAdventure));
+			t.Name = "ExecuteHeroAdvanture";
+			t.Start(key);
+		}
+        
 		public void Cancel(int VillageID, int Key)
 		{
 			Thread t = new Thread(new ParameterizedThreadStart(doCancelWrapper));

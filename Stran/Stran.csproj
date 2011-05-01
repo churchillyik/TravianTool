@@ -92,6 +92,10 @@
     <Compile Include="DockingPanel\BuildingList.Designer.cs">
       <DependentUpon>BuildingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockingPanel\HeroAdvanture.cs" />
+    <Compile Include="DockingPanel\HeroAdvanture.Designer.cs">
+      <DependentUpon>HeroAdvanture.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockingPanel\InBuildingList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +204,9 @@
     <EmbeddedResource Include="DockingPanel\BuildingList.resx">
       <DependentUpon>BuildingList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\HeroAdvanture.resx">
+      <DependentUpon>HeroAdvanture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockingPanel\InBuildingList.resx">
       <DependentUpon>InBuildingList.cs</DependentUpon>

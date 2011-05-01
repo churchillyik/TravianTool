@@ -813,11 +813,11 @@ namespace LitJson
 				return;
 			}
 
-			if(obj is DateTime)
+			/*if(obj is DateTime)
 			{
 				writer.Write(((DateTime)obj).Ticks);
 				return;
-			}
+			}*/
 
 			if(obj is Array)
 			{

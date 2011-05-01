@@ -134,6 +134,9 @@
 			this.contextMenuTroopTraining = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.trainingTroopsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.refreshTroopTrainingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenuHeroAdventure = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.refreshAdvanturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.startAdvantureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl2.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -147,6 +150,7 @@
 			this.contextMenuInbuilding.SuspendLayout();
 			this.contextMenuTroop.SuspendLayout();
 			this.contextMenuTroopTraining.SuspendLayout();
+			this.contextMenuHeroAdventure.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl2
@@ -1020,6 +1024,31 @@
 			this.refreshTroopTrainingToolStripMenuItem.Text = "refresh troop training";
 			this.refreshTroopTrainingToolStripMenuItem.Click += new System.EventHandler(this.RefreshTroopTrainingToolStripMenuItemClick);
 			// 
+			// contextMenuHeroAdventure
+			// 
+			this.contextMenuHeroAdventure.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.refreshAdvanturesToolStripMenuItem,
+									this.startAdvantureToolStripMenuItem});
+			this.contextMenuHeroAdventure.Name = "contextMenuHeroAdventure";
+			this.contextMenuHeroAdventure.ShowImageMargin = false;
+			this.contextMenuHeroAdventure.Size = new System.Drawing.Size(128, 70);
+			// 
+			// refreshAdvanturesToolStripMenuItem
+			// 
+			this.refreshAdvanturesToolStripMenuItem.Name = "refreshAdvanturesToolStripMenuItem";
+			this.refreshAdvanturesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+			this.refreshAdvanturesToolStripMenuItem.Tag = "CMSrefreshadvantures";
+			this.refreshAdvanturesToolStripMenuItem.Text = "刷新探险位置";
+			this.refreshAdvanturesToolStripMenuItem.Click += new System.EventHandler(this.RefreshAdvanturesToolStripMenuItemClick);
+			// 
+			// startAdvantureToolStripMenuItem
+			// 
+			this.startAdvantureToolStripMenuItem.Name = "startAdvantureToolStripMenuItem";
+			this.startAdvantureToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+			this.startAdvantureToolStripMenuItem.Tag = "CMSstartadvanture";
+			this.startAdvantureToolStripMenuItem.Text = "开始探险";
+			this.startAdvantureToolStripMenuItem.Click += new System.EventHandler(this.StartAdvantureToolStripMenuItemClick);
+			// 
 			// MainFrame
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1047,9 +1076,13 @@
 			this.contextMenuInbuilding.ResumeLayout(false);
 			this.contextMenuTroop.ResumeLayout(false);
 			this.contextMenuTroopTraining.ResumeLayout(false);
+			this.contextMenuHeroAdventure.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem startAdvantureToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem refreshAdvanturesToolStripMenuItem;
+		public System.Windows.Forms.ContextMenuStrip contextMenuHeroAdventure;
 		private System.Windows.Forms.ToolStripMenuItem refreshTroopTrainingToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem trainingTroopsToolStripMenuItem;
 		public System.Windows.Forms.ContextMenuStrip contextMenuTroopTraining;
