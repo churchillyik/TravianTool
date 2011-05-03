@@ -681,7 +681,7 @@ namespace libTravian
             	}
             	
             	var mc = Regex.Matches(str_split[0],
-            		 "onclick=\"return Travian.iPopup\\(\\d?(\\d),1\\);\">[^<]*?</a>",
+            		 "iPopup\\(\\d?(\\d),1\\);\">[^<]*?</a>",
             		 RegexOptions.Singleline);
                 foreach (Match m in mc)
                 {
@@ -1269,7 +1269,7 @@ namespace libTravian
         	TTroopTraining tt = new TTroopTraining();
         	
         	var mc = Regex.Matches(data,
-        	         "onclick=\"return Travian.iPopup\\(\\d?(\\d),1\\);\">[^<]*?</a>" +
+        	         "iPopup\\(\\d?(\\d),1\\);\">[^<]*?</a>" +
             		 "[^<]*?<span class=\"furtherInfo\">\\(.*?(\\d+)\\)</span>");
         	
         	foreach (Match m in mc)
