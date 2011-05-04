@@ -708,7 +708,7 @@ namespace libTravian
                 
                 //	解析当前能够升级的兵种及其当前级别
                 var mc = Regex.Matches(data, "iPopup\\(\\d?(\\d),1\\)[^<]*?</a>" +
-                                       "[^>]*?>.*?(\\d+)</span>");
+                                       "[^>]*?>.*?(\\d+)\\s?\\+?\\s?\\d?</span>");
                 foreach (Match m in mc)
                 {
                     /// @@1 TroopID
