@@ -858,12 +858,15 @@ namespace libTravian
         public bool ShouldRefresh { get; set; }
         public void tick(TVillage CV)
         {
-            if (this.RefreshTime < DateTime.Now)
+        	DateTime ThisRefreshTime = this.RefreshTime;
+            if (LastRefreshTime < ThisRefreshTime && ThisRefreshTime < DateTime.Now)
             {
                 ShouldRefresh = true;
-                // could be written better in the future
+                LastRefreshTime = ThisRefreshTime;
             }
         }
+        
+        public DateTime LastRefreshTime { get; set; }
 
         /// <summary>
         /// When will we refresh the troop info
@@ -909,6 +912,7 @@ namespace libTravian
         public TTroop()
         {
             TournamentLevel = 0;
+            LastRefreshTime = DateTime.MinValue;
             Troops = new List<TTInfo>();
             TroopTrainings = new Dictionary<int, TTroopTraining>();
         }
