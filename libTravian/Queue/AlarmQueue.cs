@@ -332,7 +332,9 @@ namespace libTravian
             string name = "", ally = "";
             int uid = 0, popu = 0;
 
-            string pattern = @"<table.*id=""village_info"".*allianz\.php\?aid=\d+"">(.*)</a>.*spieler\.php\?uid=(\d+)"">(.*)</a>.*<td>(\d+)</td>.*</table>";
+            string pattern = "allianz\\.php\\?aid=\\d+\">(.*?)</a></td>" +
+            	"[^<*?]</tr>[^<*?]<tr>[^<*?]<th>[^<*?]</th>[^<*?]<td><a href=\"spieler\\.php\\?uid=(\\d+)\">(.*)</a></td>" +
+            	"[^<*?]</tr>[^<*?]<tr>[^<*?]<th>[^<*?]</th>[^<*?]<td>(\\d+)</td>";
             Regex reg = new Regex(pattern);
             Match m = reg.Match(data);
             if (m.Success)

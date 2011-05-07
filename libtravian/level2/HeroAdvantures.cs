@@ -130,8 +130,8 @@ namespace libTravian
 			lock (Level2Lock)
             {
 				int HeroLoc = TD.Adv_Sta.HeroLocate;
-				int Key = (int)o;			
-				string lnk = TD.Adv_Sta.HeroAdventures[Key].link;
+				int Key = (int)o;
+				/*string lnk = TD.Adv_Sta.HeroAdventures[Key].link;
 				lnk = lnk.Replace("amp;", "");
 				string data = PageQuery(HeroLoc, lnk);
 				string[] options = HtmlUtility.GetElementsWithClass(data, "div", "option");
@@ -157,9 +157,16 @@ namespace libTravian
 					DebugLog("英雄目前还无法进行探险！", DebugLevel.II);
 					return;
 				}
-				lnk = lnk.Replace("amp;", "");
-				data = PageQuery(HeroLoc, lnk);
+				lnk = lnk.Replace("amp;", "");*/
+				TPoint tp = new TPoint(TD.Adv_Sta.HeroAdventures[Key].axis_x, TD.Adv_Sta.HeroAdventures[Key].axis_y);
+				string data = PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");
 				
+                Match m_test = Regex.Match(data, "type=\"submit\" value=\"ok\" name=\"h1\"");
+                if (!m_test.Success)
+                {
+                	DebugLog("英雄目前还无法进行探险！", DebugLevel.II);
+					return;
+                }
 				Dictionary<string, string> PostData = new Dictionary<string, string>();
 				MatchCollection mc = Regex.Matches(
 					data, "<input type=\"hidden\" name=\"([^\"]*?)\" value=\"([^\"]*?)\" />");

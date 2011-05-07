@@ -67,7 +67,7 @@ namespace libTravian
             {
                 var result = UpCall.PageQuery(VillageID, "a2b.php?id=" + Targets[TargetID].Z.ToString() + "&s=1");
                 Match m;
-                m = Regex.Match(result, "type=\"image\" value=\"ok\" name=\"s1\"");
+                m = Regex.Match(result, "type=\"submit\" value=\"ok\" name=\"s1\"");
                 if (m.Success)
                 {
                     Dictionary<string, string> PostDataST = new Dictionary<string, string>();
