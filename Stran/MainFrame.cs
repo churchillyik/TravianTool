@@ -2135,7 +2135,6 @@ namespace Stran
                 var q = a.Return;
                 q.UpCall = tr;
                 q.VillageID = CV.ID;
-                q.dl = this.dl;
                 CV.Queue.Add(q);
                 lvi(q);
 

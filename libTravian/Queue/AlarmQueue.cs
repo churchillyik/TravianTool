@@ -85,6 +85,7 @@ namespace libTravian
 
         public void Action()
         {
+        	//	当前时刻还未到唤醒时刻
             if (MinimumDelay > 0)
                 return;
 
@@ -119,6 +120,7 @@ namespace libTravian
             else
                 this.MinimumDelay = this.MinimumInterval + new Random().Next(60, 300);
 
+            //	延迟时间需要超过最小时间间隔，唤醒时刻到达后才会重新刷新集结点
             HasGetAll = !(this.MinimumDelay > this.MinimumInterval);
         }
 
@@ -170,9 +172,13 @@ namespace libTravian
         /// </summary>
         [Json]
         public string Host { set; get; }
-
+		/// <summary>
+        /// Enable ssl or not
+        /// </summary>
+        [Json]
+        public bool SSLEnable { set; get; }
         /// <summary>
-        /// smtp port:gmail=587
+        /// smtp port: defalt = 25
         /// </summary>
         [Json]
         public int Port { set; get; }
@@ -205,7 +211,16 @@ namespace libTravian
         }
         #endregion
 
-        public DisplayLang dl { set; get; }
+        public DisplayLang dl 
+        {
+        	get
+        	{
+        		if (DisplayLang.Instance != null)
+        			return DisplayLang.Instance;
+        		
+        		return new DisplayLang("cn");
+        	}
+        }
 
         bool HasGetAll = false;
 
@@ -279,14 +294,38 @@ namespace libTravian
             if (troop.TroopType != TTroopType.Incoming)
                 return false;
 
+            bool result = false;
             var CV = UpCall.TD.Villages[VillageID];
             int index = troop.VillageName.IndexOf(CV.Name);
-            if (index > 0 && dl.Tags.ContainsKey(attType))
+            string test_str = troop.VillageName.Remove(index, CV.Name.Length);
+            
+            if (index > 0)
             {
-                return troop.VillageName.Remove(index, CV.Name.Length).Contains(dl.Tags[attType]);
+            	if (attType == "attack")
+            	{
+            		foreach (string atk_lang in dl.AtkLang)
+            		{
+            			if (test_str.Contains(atk_lang))
+            			{
+            				result = true;
+            				break;
+            			}
+            		}
+            	}
+                else if (attType == "raid")
+            	{
+            		foreach (string raid_lang in dl.RaidLang)
+            		{
+            			if (test_str.Contains(raid_lang))
+            			{
+            				result = true;
+            				break;
+            			}
+            		}
+            	}
             }
 
-            return false;
+            return result;
         }
 
         bool IsRaid(TTInfo troop)
@@ -332,9 +371,9 @@ namespace libTravian
             string name = "", ally = "";
             int uid = 0, popu = 0;
 
-            string pattern = "allianz\\.php\\?aid=\\d+\">(.*?)</a></td>" +
-            	"[^<*?]</tr>[^<*?]<tr>[^<*?]<th>[^<*?]</th>[^<*?]<td><a href=\"spieler\\.php\\?uid=(\\d+)\">(.*)</a></td>" +
-            	"[^<*?]</tr>[^<*?]<tr>[^<*?]<th>[^<*?]</th>[^<*?]<td>(\\d+)</td>";
+            string pattern = "allianz\\.php\\?aid=\\d+\">(.*?)</a></td>"+
+            	"[^<]*?</tr>[^<]*?<tr>[^<]*?<th>[^<]*?</th>[^<]*?<td><a href=\"spieler\\.php\\?uid=(\\d+)\">(.*?)</a></td>"+
+            	"[^<]*?</tr>[^<]*?<tr>[^<]*?<th>[^<]*?</th>[^<]*?<td>(\\d+)</td>";
             Regex reg = new Regex(pattern);
             Match m = reg.Match(data);
             if (m.Success)
@@ -400,7 +439,7 @@ namespace libTravian
             client.Credentials = new System.Net.NetworkCredential(From, Password);
             client.Port = this.Port;
             client.Host = this.Host;
-            client.EnableSsl = true;
+            client.EnableSsl = this.SSLEnable;
             object userState = msg;
             try
             {

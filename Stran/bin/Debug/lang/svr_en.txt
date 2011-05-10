@@ -4,5 +4,5 @@ aid2=Clubswinger,Spearman,Axeman,Scout,Paladin,Teutonic Knight,Ram,Catapult,Chie
 aid3=Phalanx,Swordsman,Pathfinder,Theutates Thunder,Druidrider,Haeduan,Ram,Trebuchet,Chieftain,Settler,Hero
 aid4=Rat,Spider,Snake,Bat,Wild Boar,Wolf,Bear,Crocodile,Tiger,Elephant,
 author=sone
-attack=Attack against
-raid=Raid against
+attack=进行攻击,Attack against,攻擊
+raid=进行抢夺,Raid against,搶奪

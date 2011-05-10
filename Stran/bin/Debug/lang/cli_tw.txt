@@ -220,6 +220,7 @@ mailuser=帳號:
 mailpass=密碼：
 smtpserver=寄信伺服器：
 serverport=連接埠：
+sslenable=此SMTP伺服器需要安全鏈接(SSL)
 recvsettings=接收設定
 recvaccounts=接收郵件位址(逗號分隔)：
 trustfuluser=信任帳號(不會報警)：

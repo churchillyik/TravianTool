@@ -38,10 +38,11 @@ namespace Stran
         {
             AlarmQueue queue = new AlarmQueue
             {
-                From = tbFrom.Text + "@" + comboBox1.Text,
+                From = tbFrom.Text + "@" + tbDomain.Text,
                 Host = tbServer.Text,
                 Port = int.Parse(tbPort.Text),
                 Password = tbPass.Text,
+                SSLEnable = checkBox_SSLEnable.Checked,
                 MinimumInterval = int.Parse(numericUpDown1.Value.ToString("f0")) * 60,
                 To = tbRecv.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries),
                 TrustfulUsers = tbTrust.Text,

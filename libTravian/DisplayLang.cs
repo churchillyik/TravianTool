@@ -28,6 +28,8 @@ namespace libTravian
         
         public Dictionary<int, string> GidLang;	//	建筑
         public Dictionary<int, string> AidLang;	//	兵种
+        public List<string> AtkLang;				//	攻击
+        public List<string> RaidLang;				//	抢夺
         public Dictionary<string, string> Tags;	//	
 
         public string Auther {get; private set;}	//	
@@ -59,6 +61,8 @@ namespace libTravian
         {
             GidLang = new Dictionary<int, string>(40);
             AidLang = new Dictionary<int, string>(33);
+            AtkLang = new List<string>();
+            RaidLang = new List<string>();
             Tags = new Dictionary<string, string>();
             
             string lang_file = string.Format("lang\\svr_{0}.txt", language);
@@ -98,6 +102,38 @@ namespace libTravian
                         string[] data = pairs[1].Split(',');
                         for (int i = 0; i < data.Length; i++)
                             SetAidLang(Tribe, i + 1, data[i]);
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+            	}
+                //	攻击以attack开头
+                else if (pairs[0].StartsWith("attack"))
+                {
+                    try
+                    {
+                        string[] data = pairs[1].Split(',');
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                        	AtkLang.Add(data[i]);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+            	}
+                //	抢夺以raid开头
+                else if (pairs[0].StartsWith("raid"))
+                {
+                    try
+                    {
+                        string[] data = pairs[1].Split(',');
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                        	RaidLang.Add(data[i]);
+                        }
                     }
                     catch (Exception)
                     {

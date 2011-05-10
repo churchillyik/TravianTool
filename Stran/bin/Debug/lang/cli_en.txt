@@ -220,6 +220,7 @@ mailuser=account:
 mailpass=password：
 smtpserver=smtp Server：
 serverport=port：
+sslenable=this SMTP server need SSL
 recvsettings=Receive Settings
 recvaccounts=receive accounts（seperated by comma）：
 trustfuluser=trustful(no alarm)：

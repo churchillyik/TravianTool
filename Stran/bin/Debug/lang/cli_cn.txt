@@ -219,6 +219,7 @@ mailuser=发件人：
 mailpass=登录密码：
 smtpserver=服务器：
 serverport=端口：
+sslenable=此SMTP服务器要求安全连接(SSL)
 recvsettings=接收设置
 recvaccounts=接收地址（逗号分隔）：
 trustfuluser=信任帐号：

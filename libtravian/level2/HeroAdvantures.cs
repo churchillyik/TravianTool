@@ -131,33 +131,7 @@ namespace libTravian
             {
 				int HeroLoc = TD.Adv_Sta.HeroLocate;
 				int Key = (int)o;
-				/*string lnk = TD.Adv_Sta.HeroAdventures[Key].link;
-				lnk = lnk.Replace("amp;", "");
-				string data = PageQuery(HeroLoc, lnk);
-				string[] options = HtmlUtility.GetElementsWithClass(data, "div", "option");
-				if (options.Length == 0)
-					return;
-				
-				bool bFound = false;
-				for (int i = 0; i < options.Length; i++)
-				{
-					Match m = Regex.Match(
-						options[i], "<a href=\"([^\"]*?)\" class=\"[^\"]*?\"" +
-						" title=\"Start adventure\\.\">");
-					if (m.Success)
-					{
-						bFound = true;
-						lnk = m.Groups[1].Value;
-						break;
-					}
-				}
-				
-				if (!bFound)
-				{
-					DebugLog("英雄目前还无法进行探险！", DebugLevel.II);
-					return;
-				}
-				lnk = lnk.Replace("amp;", "");*/
+
 				TPoint tp = new TPoint(TD.Adv_Sta.HeroAdventures[Key].axis_x, TD.Adv_Sta.HeroAdventures[Key].axis_y);
 				string data = PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");
 				
