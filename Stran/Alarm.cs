@@ -58,5 +58,18 @@ namespace Stran
         {
 
         }
+        
+        void TbDomainLeave(object sender, EventArgs e)
+        {
+        	if (tbDomain.Text == "")
+        	{
+        		tbDomain.Text = "126.com";
+        		tbServer.Text = "smtp.126.com";
+        	}
+        	else
+        	{
+        		tbServer.Text = "smtp." + tbDomain.Text;
+        	}
+        }
     }
 }

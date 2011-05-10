@@ -171,6 +171,7 @@
         	this.tbDomain.Name = "tbDomain";
         	this.tbDomain.Size = new System.Drawing.Size(79, 21);
         	this.tbDomain.TabIndex = 2;
+        	this.tbDomain.Leave += new System.EventHandler(this.TbDomainLeave);
         	// 
         	// grpTargets
         	// 

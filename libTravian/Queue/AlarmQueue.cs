@@ -444,6 +444,7 @@ namespace libTravian
             try
             {
                 client.SendAsync(msg, userState);
+                UpCall.DebugLog("已发送警报邮件:\r\n" + this.SmsBody, DebugLevel.II);
                 return true;
             }
             catch (System.Net.Mail.SmtpException ex)
