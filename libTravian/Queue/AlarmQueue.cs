@@ -297,10 +297,10 @@ namespace libTravian
             bool result = false;
             var CV = UpCall.TD.Villages[VillageID];
             int index = troop.VillageName.IndexOf(CV.Name);
-            string test_str = troop.VillageName.Remove(index, CV.Name.Length);
             
             if (index > 0)
             {
+            	string test_str = troop.VillageName.Remove(index, CV.Name.Length);
             	if (attType == "attack")
             	{
             		foreach (string atk_lang in dl.AtkLang)
