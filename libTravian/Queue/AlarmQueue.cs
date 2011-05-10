@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using LitJson;
 using System.Net.Mail;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -440,6 +441,8 @@ namespace libTravian
             client.Port = this.Port;
             client.Host = this.Host;
             client.EnableSsl = this.SSLEnable;
+            client.SendCompleted += new 
+            	SendCompletedEventHandler(SendCompletedCallback);
             object userState = msg;
             try
             {
@@ -453,6 +456,29 @@ namespace libTravian
                 return false;
             }
         }
+        
+        public void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
+        {
+        	// Get the unique identifier for this asynchronous operation.
+        	MailMessage msg = (MailMessage)e.UserState;
+            string token = msg.Subject;
+            
+            if (e.Cancelled)
+            {
+            	string dbg_log = string.Format("[{0}] Send canceled.", token);
+            	UpCall.DebugLog(dbg_log, DebugLevel.II);
+            }
+            if (e.Error != null)
+            {
+            	string dbg_log = string.Format("[{0}] {1}", token, e.Error.ToString());
+            	UpCall.DebugLog(dbg_log, DebugLevel.II);
+            }
+            else
+            {
+            	UpCall.DebugLog("Message sent.", DebugLevel.II);
+            }
+        }
+        
         #endregion
     }
 }

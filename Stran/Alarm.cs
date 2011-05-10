@@ -27,9 +27,9 @@ namespace Stran
             mui.RefreshLanguage(this);
             SuspendLayout();
 
-            numericUpDown1.Minimum = 30;
+            numericUpDown1.Minimum = 3;
             numericUpDown1.Maximum = 360;
-            numericUpDown1.Increment = (360 - 30) / 20;
+            numericUpDown1.Increment = 3;
 
             ResumeLayout();
         }
