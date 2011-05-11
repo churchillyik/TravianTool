@@ -442,11 +442,12 @@ namespace libTravian
             client.Credentials = new System.Net.NetworkCredential(From, Password);
             client.Port = this.Port;
             client.EnableSsl = this.SSLEnable;
-            client.SendCompleted += new 
-            	SendCompletedEventHandler(SendCompletedCallback);
+            //client.SendCompleted += new 
+            //	SendCompletedEventHandler(SendCompletedCallback);
             try
             {
-                client.SendAsync(msg, msg);
+                client.Send(msg);
+                UpCall.DebugLog("Message sent.", DebugLevel.II);
                 return true;
             }
             catch (System.Net.Mail.SmtpException ex)
@@ -456,7 +457,7 @@ namespace libTravian
             }
         }
         
-        public void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
+        /*public void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
         {
         	MailMessage msg = (MailMessage)e.UserState;
 
@@ -476,7 +477,7 @@ namespace libTravian
             }
             
             msg.Dispose();
-        }
+        }*/
         
         #endregion
     }
