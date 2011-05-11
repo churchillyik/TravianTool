@@ -831,6 +831,7 @@
 			// 
 			// LastDebug
 			// 
+			this.LastDebug.AutoSize = false;
 			this.LastDebug.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
 									| System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
 									| System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
@@ -1031,12 +1032,12 @@
 									this.startAdvantureToolStripMenuItem});
 			this.contextMenuHeroAdventure.Name = "contextMenuHeroAdventure";
 			this.contextMenuHeroAdventure.ShowImageMargin = false;
-			this.contextMenuHeroAdventure.Size = new System.Drawing.Size(128, 70);
+			this.contextMenuHeroAdventure.Size = new System.Drawing.Size(118, 48);
 			// 
 			// refreshAdvanturesToolStripMenuItem
 			// 
 			this.refreshAdvanturesToolStripMenuItem.Name = "refreshAdvanturesToolStripMenuItem";
-			this.refreshAdvanturesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+			this.refreshAdvanturesToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
 			this.refreshAdvanturesToolStripMenuItem.Tag = "CMSrefreshadvantures";
 			this.refreshAdvanturesToolStripMenuItem.Text = "刷新探险位置";
 			this.refreshAdvanturesToolStripMenuItem.Click += new System.EventHandler(this.RefreshAdvanturesToolStripMenuItemClick);
@@ -1044,7 +1045,7 @@
 			// startAdvantureToolStripMenuItem
 			// 
 			this.startAdvantureToolStripMenuItem.Name = "startAdvantureToolStripMenuItem";
-			this.startAdvantureToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+			this.startAdvantureToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
 			this.startAdvantureToolStripMenuItem.Tag = "CMSstartadvanture";
 			this.startAdvantureToolStripMenuItem.Text = "开始探险";
 			this.startAdvantureToolStripMenuItem.Click += new System.EventHandler(this.StartAdvantureToolStripMenuItemClick);

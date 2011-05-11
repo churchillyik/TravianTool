@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using LitJson;
 using System.Net.Mail;
+using System.Net.Mime;
+using System.Threading;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -94,7 +96,7 @@ namespace libTravian
 
             if (!HasGetAll)
             {
-                cv.InitializeTroop();
+            	string data = UpCall.PageQuery(VillageID, "build.php?gid=16");
                 InitAttackers();
             }
 
@@ -427,8 +429,8 @@ namespace libTravian
         bool SendMail()
         {
             MailMessage msg = new MailMessage();
+            msg.From = new MailAddress(From, UpCall.TD.Server, System.Text.Encoding.UTF8);
             msg.To.Add(To.Join(","));
-            msg.From = new MailAddress(From, UpCall.TD.Server, Encoding.UTF8);
             msg.Subject = string.Format("{0}@{1}", UpCall.TD.Server, UpCall.TD.Username);
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
             msg.Body = this.SmsBody;
@@ -436,18 +438,15 @@ namespace libTravian
             msg.IsBodyHtml = false;
             msg.Priority = MailPriority.High;
 
-            SmtpClient client = new SmtpClient();
+            SmtpClient client = new SmtpClient(this.Host);
             client.Credentials = new System.Net.NetworkCredential(From, Password);
             client.Port = this.Port;
-            client.Host = this.Host;
             client.EnableSsl = this.SSLEnable;
             client.SendCompleted += new 
             	SendCompletedEventHandler(SendCompletedCallback);
-            object userState = msg;
             try
             {
-                client.SendAsync(msg, userState);
-                UpCall.DebugLog("已发送警报邮件:\r\n" + this.SmsBody, DebugLevel.II);
+                client.SendAsync(msg, msg);
                 return true;
             }
             catch (System.Net.Mail.SmtpException ex)
@@ -459,24 +458,24 @@ namespace libTravian
         
         public void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
         {
-        	// Get the unique identifier for this asynchronous operation.
         	MailMessage msg = (MailMessage)e.UserState;
-            string token = msg.Subject;
-            
+
             if (e.Cancelled)
             {
-            	string dbg_log = string.Format("[{0}] Send canceled.", token);
+            	string dbg_log = string.Format("[{0}] Send canceled.", msg.Subject);
             	UpCall.DebugLog(dbg_log, DebugLevel.II);
             }
             if (e.Error != null)
             {
-            	string dbg_log = string.Format("[{0}] {1}", token, e.Error.ToString());
+            	string dbg_log = string.Format("{0}", e.Error.ToString());
             	UpCall.DebugLog(dbg_log, DebugLevel.II);
             }
             else
             {
             	UpCall.DebugLog("Message sent.", DebugLevel.II);
             }
+            
+            msg.Dispose();
         }
         
         #endregion
