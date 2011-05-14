@@ -70,6 +70,8 @@ namespace libTravian
                 	//	坐标
                 	string coords = HtmlUtility.GetElementWithClass(
                 		places[i], "td", "coords");
+                	if (coords == null)
+                		continue;
                 	m = Regex.Match(coords, "karte.php\\?x=(\\-?\\d+)&amp;y=(\\-?\\d+)");
                 	if (!m.Success)
                 		continue;
@@ -79,6 +81,8 @@ namespace libTravian
                 	//	持续时间
                 	string move_time = HtmlUtility.GetElementWithClass(
                 		places[i], "td", "moveTime");
+                	if (move_time == null)
+                		continue;
                 	m = Regex.Match(move_time, "\\d+:\\d+:\\d+");
                 	if (!m.Success)
                 		continue;
@@ -87,6 +91,8 @@ namespace libTravian
                 	//	难度
                 	string difficulty = HtmlUtility.GetElementWithClass(
                 		places[i], "td", "difficulty");
+                	if (difficulty == null)
+                		continue;
                 	m = Regex.Match(difficulty, "alt=\"([^\"]*?)\"");
                 	if (!m.Success)
                 		continue;
@@ -95,6 +101,8 @@ namespace libTravian
                 	//	难度
                 	string timeLeft = HtmlUtility.GetElementWithClass(
                 		places[i], "td", "timeLeft");
+                	if (timeLeft == null)
+                		continue;
                 	m = Regex.Match(timeLeft, "\\d+:\\d+:\\d+");
                 	if (!m.Success)
                 		continue;
@@ -103,6 +111,8 @@ namespace libTravian
                 	//	链接
                 	string goTo = HtmlUtility.GetElementWithClass(
                 		places[i], "td", "goTo");
+                	if (goTo == null)
+                		continue;
                 	m = Regex.Match(goTo, "href=\"([^\"]*?)\"");
                 	if (!m.Success)
                 		continue;
