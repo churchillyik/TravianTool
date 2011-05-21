@@ -2295,5 +2295,23 @@ namespace Stran
                 }
             }
 		}
+		
+		void CMB_PMMailClick(object sender, EventArgs e)
+		{
+			var CV = TravianData.Villages[SelectVillage];
+            PMMail a = new PMMail()
+            {
+                mui = this.mui,
+                dl = this.dl
+            };
+            if (a.ShowDialog() == DialogResult.OK && a.Return != null)
+            {
+                var q = a.Return;
+                q.UpCall = tr;
+                q.VillageID = CV.ID;
+                CV.Queue.Add(q);
+                lvi(q);
+            }
+		}
     }
 }
