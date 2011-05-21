@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace libTravian
-{
+{	
     public class AlarmQueue : IQueue
     {
         #region IQueue 成员

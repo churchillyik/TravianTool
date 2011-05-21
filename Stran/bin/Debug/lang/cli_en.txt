@@ -245,3 +245,6 @@ colhddifficulty=Difficulty
 colhdlefttime=Left Time
 CMSrefreshadvantures=&R. Refresh Advantures
 CMSstartadvanture=&S. Start Advanture
+//PMMail
+CMB_PMMail=&M. Auto Send PM EMail
+PMMail=Auto Send PM EMail

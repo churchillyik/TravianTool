@@ -71,6 +71,7 @@
     <Compile Include="Queue\IQueue.cs" />
     <Compile Include="Queue\NpcTradeQueue.cs" />
     <Compile Include="Queue\PartyQueue.cs" />
+    <Compile Include="Queue\PMMailQueue.cs" />
     <Compile Include="Queue\ProduceTroopQueue.cs" />
     <Compile Include="Queue\RaidQueue.cs" />
     <Compile Include="Queue\ResearchQueue.cs" />

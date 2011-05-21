@@ -100,6 +100,6 @@ namespace libTravian
 		public PartyQueue()
 		{
 		}
-		public int QueueGUID { get { return 6; } }
+		public int QueueGUID { get { return 12; } }
 	}
 }

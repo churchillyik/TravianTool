@@ -244,3 +244,6 @@ colhddifficulty=难易度
 colhdlefttime=过期剩余时间
 CMSrefreshadvantures=&R. 刷新探险位置
 CMSstartadvanture=&S. 开始探险
+//PMMail
+CMB_PMMail=&M. 自动发送PM
+PMMail=自动发送PM

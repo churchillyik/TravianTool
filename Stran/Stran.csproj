@@ -177,6 +177,10 @@
     <Compile Include="NpcTradeSetting.Designer.cs">
       <DependentUpon>NpcTradeSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="PMMail.cs" />
+    <Compile Include="PMMail.Designer.cs">
+      <DependentUpon>PMMail.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProduceTroopSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +265,9 @@
     <EmbeddedResource Include="NpcTradeSetting.resx">
       <DependentUpon>NpcTradeSetting.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PMMail.resx">
+      <DependentUpon>PMMail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProduceTroopSetting.resx">
       <DependentUpon>ProduceTroopSetting.cs</DependentUpon>

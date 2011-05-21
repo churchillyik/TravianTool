@@ -71,6 +71,7 @@
 			this.CMBRaid = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMBAttack = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMBAlarm = new System.Windows.Forms.ToolStripMenuItem();
+			this.CMB_PMMail = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
 			this.CMBEnableCoin = new System.Windows.Forms.ToolStripMenuItem();
 			this.contextMenuResearch = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -270,11 +271,12 @@
 									this.CMBRaid,
 									this.CMBAttack,
 									this.CMBAlarm,
+									this.CMB_PMMail,
 									this.toolStripSeparator15,
 									this.CMBEnableCoin});
 			this.contextMenuBuilding.Name = "contextMenuStrip2";
 			this.contextMenuBuilding.ShowImageMargin = false;
-			this.contextMenuBuilding.Size = new System.Drawing.Size(190, 376);
+			this.contextMenuBuilding.Size = new System.Drawing.Size(190, 420);
 			this.contextMenuBuilding.Text = "添加到队列";
 			// 
 			// CMBUp
@@ -481,6 +483,14 @@
 			this.CMBAlarm.Tag = "CMBAlarm";
 			this.CMBAlarm.Text = "自动报警";
 			this.CMBAlarm.Click += new System.EventHandler(this.CMBAlarm_Click);
+			// 
+			// CMB_PMMail
+			// 
+			this.CMB_PMMail.Name = "CMB_PMMail";
+			this.CMB_PMMail.Size = new System.Drawing.Size(189, 22);
+			this.CMB_PMMail.Tag = "CMB_PMMail";
+			this.CMB_PMMail.Text = "自动发送PM";
+			this.CMB_PMMail.Click += new System.EventHandler(this.CMB_PMMailClick);
 			// 
 			// toolStripSeparator15
 			// 
@@ -1081,6 +1091,7 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem CMB_PMMail;
 		private System.Windows.Forms.ToolStripMenuItem startAdvantureToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem refreshAdvanturesToolStripMenuItem;
 		public System.Windows.Forms.ContextMenuStrip contextMenuHeroAdventure;
