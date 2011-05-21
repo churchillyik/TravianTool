@@ -426,9 +426,10 @@ namespace libTravian
             return TrustfulUsers.Contains(user);
         }
 
+        private MailMessage msg = new MailMessage();
+        private SmtpClient client = new SmtpClient();
         bool SendMail()
         {
-            MailMessage msg = new MailMessage();
             msg.From = new MailAddress(From, UpCall.TD.Server, System.Text.Encoding.UTF8);
             msg.To.Add(To.Join(","));
             msg.Subject = string.Format("{0}@{1}", UpCall.TD.Server, UpCall.TD.Username);
@@ -438,14 +439,15 @@ namespace libTravian
             msg.IsBodyHtml = false;
             msg.Priority = MailPriority.High;
 
-            SmtpClient client = new SmtpClient(this.Host);
             client.Credentials = new System.Net.NetworkCredential(From, Password);
+            client.Host = this.Host;
             client.Port = this.Port;
             client.EnableSsl = this.SSLEnable;
             //client.SendCompleted += new 
             //	SendCompletedEventHandler(SendCompletedCallback);
             try
             {
+            	//client.SendAsync(msg, msg);
                 client.Send(msg);
                 UpCall.DebugLog("Message sent.", DebugLevel.II);
                 return true;
@@ -456,8 +458,8 @@ namespace libTravian
                 return false;
             }
         }
-        
-        /*public void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
+        /*
+        public void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
         {
         	MailMessage msg = (MailMessage)e.UserState;
 
@@ -477,8 +479,8 @@ namespace libTravian
             }
             
             msg.Dispose();
-        }*/
-        
+        }
+        */
         #endregion
     }
 }
