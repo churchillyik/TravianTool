@@ -84,6 +84,9 @@ edit=编辑
 add=添加
 save=保存
 cancel=取消
+GrpBxSafety=防封号设置
+LBLGetOrPostTimesThreshold=最多可连续执行通讯操作的次数
+LBLGetOrPostDelaySeconds=每段连续通讯之间的间隔(秒)
 
 // new building form
 newbuilding=新建建筑

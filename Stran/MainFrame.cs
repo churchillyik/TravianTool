@@ -97,6 +97,8 @@ namespace Stran
             TravianData.Password = LoginInfo.Password;
             TravianData.Tribe = LoginInfo.Tribe;
             TravianData.Server = LoginInfo.Server;
+            TravianData.GetOrPostTimesThreshold = LoginInfo.GetOrPostTimesThreshold;
+            TravianData.GetOrPostDelaySeconds = LoginInfo.GetOrPostDelaySeconds;
             if (MainForm.Options.ContainsKey("proxy"))
             {
                 string proxy = MainForm.Options["proxy"];

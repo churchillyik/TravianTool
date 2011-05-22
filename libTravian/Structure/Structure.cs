@@ -49,6 +49,10 @@ namespace libTravian
 		public string Server { get; set; }
 		public string Username { get; set; }
 		public string Password { get; set; }
+		public int GetOrPostTimesThreshold { get; set; }
+		public int GetOrPostDelaySeconds { get; set; }
+		public int CurGetOrPostTimes { get; set; }
+		public DateTime LastGetOrPost { get; set; }
 		public bool isRomans
 		{
 			get
@@ -82,6 +86,8 @@ namespace libTravian
 			ActiveDid = -1;
 			IGMData = new Dictionary<int, TIGM>();
 			Adv_Sta = new HeroAdventureStatus();
+			CurGetOrPostTimes = 0;
+			LastGetOrPost = DateTime.MinValue;
 		}
 	}
 

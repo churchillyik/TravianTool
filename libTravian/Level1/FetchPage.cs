@@ -86,11 +86,49 @@ namespace libTravian
 			OnError(this, new LogArgs() { DebugInfo = db });
 		}
 		
+		private void CheckForSafety(int VillageID, string Uri)
+		{
+			if (VillageID != 0 && TD.LastGetOrPost != DateTime.MinValue)
+			{
+				if (TD.CurGetOrPostTimes > 0 && 
+				    DateTime.Now.Subtract(TD.LastGetOrPost).TotalSeconds
+				    >= TD.GetOrPostDelaySeconds)
+				{
+					TD.CurGetOrPostTimes = 1;
+				}
+				else
+				{
+					TD.CurGetOrPostTimes ++;
+				}
+				if (TD.GetOrPostTimesThreshold != 0 
+				    && TD.CurGetOrPostTimes > TD.GetOrPostTimesThreshold)
+				{
+					DateTime resume_time = TD.LastGetOrPost.AddSeconds(TD.GetOrPostDelaySeconds);
+					DebugLog("为防封号延迟至：" 
+					         + resume_time.Hour + ":" 
+					         + resume_time.Minute + ":"
+					         + resume_time.Second + "...", DebugLevel.II);
+					while (true)
+					{
+						if (DateTime.Now >= resume_time)
+						{
+							TD.CurGetOrPostTimes = 1;
+							DebugLog("恢复工作，访问" + Uri + "(" + VillageID.ToString() + ")"
+							         , DebugLevel.II);
+							break;
+						}
+					}
+				}
+			}
+			TD.LastGetOrPost = DateTime.Now;
+		}
+		
 		string _LastQueryPageURI = null;
 		public string PageQuery(int VillageID, string Uri, Dictionary<string, string> Data, bool CheckLogin, bool NoParser)
 		{
 			try
 			{
+				CheckForSafety(VillageID, Uri);
 				PageQueryDebugLog(VillageID, Uri);
 				if(wc == null)
 				{

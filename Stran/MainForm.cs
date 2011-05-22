@@ -167,12 +167,15 @@ namespace Stran
 			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 			for(int i = 0; i < accounts.Count; i++)
 			{
-				sw.WriteLine("{0}:{1}:{2}:{3}:{4}",
+				sw.WriteLine("{0}:{1}:{2}:{3}:{4}:{5}:{6}",
 					accounts[i].Username,
 					Convert.ToBase64String(Encoding.UTF8.GetBytes(accounts[i].Server)),
 					Convert.ToBase64String(Encoding.UTF8.GetBytes(accounts[i].Password)),
 					accounts[i].Tribe,
-					accounts[i].Language);
+					accounts[i].Language,
+					accounts[i].GetOrPostTimesThreshold,
+					accounts[i].GetOrPostDelaySeconds
+				);
 				accounts[i].Changed = false;
 			}
 			sw.Close();
@@ -303,6 +306,8 @@ namespace Stran
 				accounts[listView1.SelectedIndices[0]].Language = na.accountresult.Language;
 				if(na.accountresult.Password != "")
 					accounts[listView1.SelectedIndices[0]].Password = na.accountresult.Password;
+				accounts[listView1.SelectedIndices[0]].GetOrPostTimesThreshold = na.accountresult.GetOrPostTimesThreshold;
+				accounts[listView1.SelectedIndices[0]].GetOrPostDelaySeconds = na.accountresult.GetOrPostDelaySeconds;
 				listView1_Refresh();
 				saveAccountInfo();
 			}
@@ -357,6 +362,8 @@ namespace Stran
 		public string Server { get; set; }
 		public string Username { get; set; }
 		public string Password { get; set; }
+		public int GetOrPostTimesThreshold { get; set; }
+		public int GetOrPostDelaySeconds { get; set; }
 		public int Tribe
 		{
 			get
@@ -382,6 +389,11 @@ namespace Stran
 				Tribe = Convert.ToInt32(accountdata[3]);
 			if(accountdata.Length > 4)
 				Language = accountdata[4];
+			if(accountdata.Length > 6)
+			{
+				GetOrPostTimesThreshold = Convert.ToInt32(accountdata[5]);
+				GetOrPostDelaySeconds = Convert.ToInt32(accountdata[6]);
+			}
 		}
 		string invalidchar = "\\/:*?\"<>|";
 		public string GetKey()

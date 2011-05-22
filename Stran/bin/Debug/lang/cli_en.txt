@@ -84,6 +84,9 @@ edit=Edit
 add=Add
 save=Save
 cancel=Cancel
+GrpBxSafety=Safety Option
+LBLGetOrPostTimesThreshold=Packet Sending Limit
+LBLGetOrPostDelaySeconds=Packet Sending Delay
 
 // new building form
 newbuilding=New Building

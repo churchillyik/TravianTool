@@ -46,7 +46,9 @@ namespace Stran
 					Username = textBox2.Text,
 					Password = textBox1.Text,
 					Tribe = comboBox1.SelectedIndex,
-					Language = textBox4.Text
+					Language = textBox4.Text,
+					GetOrPostTimesThreshold = Convert.ToInt32(numericUpDown1.Value),
+					GetOrPostDelaySeconds = Convert.ToInt32(numericUpDown2.Value)
 				};
 			}
 		}
@@ -97,6 +99,8 @@ namespace Stran
 				textBox2.Text = logininfo.Username;
 				comboBox1.SelectedIndex = logininfo.Tribe;
 				textBox4.Text = logininfo.Language;
+				numericUpDown1.Value = logininfo.GetOrPostTimesThreshold;
+				numericUpDown2.Value = logininfo.GetOrPostDelaySeconds;
 			}
 		}
 

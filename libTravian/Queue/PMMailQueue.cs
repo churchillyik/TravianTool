@@ -205,9 +205,49 @@ namespace libTravian
         {
             get
             {
-                return "";
+            	StringBuilder sb = new StringBuilder();
+            	foreach(KeyValuePair<int, PMSender> x in DicPMSender)
+            	{
+            		PMSender sender = x.Value; 
+            		if (sender == null || sender._uid == 0)
+            			continue;
+            		
+            		sb.AppendLine("来自" + sender._name 
+            		              + "[" + UpCall.TD.Server 
+            		              + "/spieler.php?uid=" + sender._uid + "]的消息：");
+            		
+            		foreach(PMInfo info in sender.PMInfoList)
+            		{
+            			sb.AppendLine("标题：" + info._subject);
+            			sb.AppendLine("时间：" + info._date);
+            			sb.AppendLine("内容：");
+            			string content = info._content.Replace("<br />", "");
+            			content = content.Replace("&#39;", "'");
+            			content = ReplacePatten(content, "<span[^>]*?>");
+						content = ReplacePatten(content, "<img[^>]*?>");
+            			content = content.Replace("</span>", "");
+            			content = ReplacePatten(content, "<a [^>]*?>");
+            			content = content.Replace("</a>", "");
+            			sb.AppendLine(content);
+            			sb.AppendLine("");
+            		}
+            		sb.AppendLine("-----------------------------------------------");
+            	}
+            	
+            	return sb.ToString();
             }
         }
+        
+        private string ReplacePatten(string oldstring, string patten)
+        {
+        	MatchCollection mc = Regex.Matches(oldstring, patten);
+        	foreach(Match m in mc)
+			{
+        		oldstring.Replace(m.Groups[0].Value, "");
+			}
+        	return oldstring;
+        }
+        
         #endregion
         
 		public PMMailQueue()
