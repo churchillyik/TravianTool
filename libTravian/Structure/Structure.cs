@@ -43,7 +43,7 @@ namespace libTravian
 		public Dictionary<int, TVillage> Villages { get; set; }
 
 		public bool Dirty;
-
+		[Json]
 		public int Tribe { get; set; }
 		public WebProxy Proxy { get; set; }
 		public string Server { get; set; }

@@ -95,7 +95,8 @@ namespace Stran
                 TravianData = new Data();
             TravianData.Username = LoginInfo.Username;
             TravianData.Password = LoginInfo.Password;
-            TravianData.Tribe = LoginInfo.Tribe;
+            if (TravianData.Tribe == 0)
+            	TravianData.Tribe = LoginInfo.Tribe;
             TravianData.Server = LoginInfo.Server;
             TravianData.GetOrPostTimesThreshold = LoginInfo.GetOrPostTimesThreshold;
             TravianData.GetOrPostDelaySeconds = LoginInfo.GetOrPostDelaySeconds;
