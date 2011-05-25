@@ -90,9 +90,10 @@ namespace libTravian
 		{
 			if (VillageID != 0 && TD.LastGetOrPost != DateTime.MinValue)
 			{
+				int rand_delay = TD.GetOrPostDelaySeconds + new Random().Next(1, 10);
 				if (TD.CurGetOrPostTimes > 0 && 
 				    DateTime.Now.Subtract(TD.LastGetOrPost).TotalSeconds
-				    >= TD.GetOrPostDelaySeconds)
+				    >= rand_delay)
 				{
 					TD.CurGetOrPostTimes = 1;
 				}
@@ -103,8 +104,8 @@ namespace libTravian
 				if (TD.GetOrPostTimesThreshold != 0 
 				    && TD.CurGetOrPostTimes > TD.GetOrPostTimesThreshold)
 				{
-					DateTime resume_time = TD.LastGetOrPost.AddSeconds(TD.GetOrPostDelaySeconds);
-					DebugLog("为防封号延迟至：" 
+					DateTime resume_time = TD.LastGetOrPost.AddSeconds(rand_delay);
+					DebugLog("为防封号延迟至（延迟" + rand_delay + "秒）："
 					         + resume_time.Hour + ":" 
 					         + resume_time.Minute + ":"
 					         + resume_time.Second + "...", DebugLevel.II);

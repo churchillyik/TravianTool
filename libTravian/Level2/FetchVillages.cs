@@ -188,7 +188,10 @@ namespace libTravian
         	}
         	else
         	{
-        		DebugLog("因找不到gid=" + gid.ToString() + "的建筑，跳过抓取网页。", DebugLevel.II);
+        		string building_name = DisplayLang.Instance.GetGidLang(gid);
+        		DebugLog("因找不到" + building_name
+        		         + "(gid=" + gid.ToString() + ")，跳过抓取该建筑的网页。",
+        		         DebugLevel.II);
         	}
         }
     }

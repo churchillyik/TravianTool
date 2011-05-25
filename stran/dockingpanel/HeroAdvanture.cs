@@ -19,6 +19,7 @@ namespace Stran.DockingPanel
 	public partial class HeroAdvanture : DockContent
 	{
 		public MainFrame UpCall { get; set; }
+		public bool bShouldRefresh { get; set; }
 		
 		public HeroAdvanture()
 		{

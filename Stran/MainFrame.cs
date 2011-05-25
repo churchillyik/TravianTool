@@ -768,6 +768,9 @@ namespace Stran
             if (CV.isTroopInitialized != 2)
                 return;
             
+            if (!m_heroadventure.bShouldRefresh)
+            	return;
+            
             m_heroadventure.listViewHeroAdventure.Items.Clear();
             m_heroadventure.listViewHeroAdventure.SuspendLayout();
             //	Insert items to list view
@@ -798,6 +801,7 @@ namespace Stran
             }
             
             m_heroadventure.listViewHeroAdventure.ResumeLayout();
+            m_heroadventure.bShouldRefresh = false;
         }
         
         private void DisplayOasisFound()
@@ -867,6 +871,8 @@ namespace Stran
             DisplayMarket();
             DisplayTroop();
             DisplayTroopTraining();
+            
+            m_heroadventure.bShouldRefresh = true;
             DisplayHeroAdvantures();
         }
 
@@ -2281,6 +2287,7 @@ namespace Stran
 		{
 			if (tr == null)
                 return;
+			m_heroadventure.bShouldRefresh = true;
 			tr.FetchHeroAdvantures(SelectVillage);
 		}
 		

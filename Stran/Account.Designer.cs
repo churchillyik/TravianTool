@@ -41,13 +41,13 @@ namespace Stran
 			this.label2 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
 			this.groupBox1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -177,6 +177,30 @@ namespace Stran
 			this.groupBox1.Tag = "GrpBxSafety";
 			this.groupBox1.Text = "防封号设置";
 			// 
+			// numericUpDown2
+			// 
+			this.numericUpDown2.Location = new System.Drawing.Point(197, 60);
+			this.numericUpDown2.Name = "numericUpDown2";
+			this.numericUpDown2.Size = new System.Drawing.Size(105, 22);
+			this.numericUpDown2.TabIndex = 12;
+			this.numericUpDown2.Value = new decimal(new int[] {
+									20,
+									0,
+									0,
+									0});
+			// 
+			// numericUpDown1
+			// 
+			this.numericUpDown1.Location = new System.Drawing.Point(198, 27);
+			this.numericUpDown1.Name = "numericUpDown1";
+			this.numericUpDown1.Size = new System.Drawing.Size(105, 22);
+			this.numericUpDown1.TabIndex = 12;
+			this.numericUpDown1.Value = new decimal(new int[] {
+									1,
+									0,
+									0,
+									0});
+			// 
 			// label7
 			// 
 			this.label7.Location = new System.Drawing.Point(12, 62);
@@ -196,20 +220,6 @@ namespace Stran
 			this.label3.Tag = "LBLGetOrPostTimesThreshold";
 			this.label3.Text = "最多可连续执行通讯操作的次数";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// numericUpDown1
-			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(198, 27);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(105, 22);
-			this.numericUpDown1.TabIndex = 12;
-			// 
-			// numericUpDown2
-			// 
-			this.numericUpDown2.Location = new System.Drawing.Point(197, 60);
-			this.numericUpDown2.Name = "numericUpDown2";
-			this.numericUpDown2.Size = new System.Drawing.Size(105, 22);
-			this.numericUpDown2.TabIndex = 12;
 			// 
 			// NewAccount
 			// 
@@ -243,8 +253,8 @@ namespace Stran
 			this.Text = "帐号";
 			this.Load += new System.EventHandler(this.NewAccount_Load);
 			this.groupBox1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}

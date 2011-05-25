@@ -89,14 +89,19 @@ namespace Stran
 			mui.RefreshLanguage(this);
 			comboBox1.Items.AddRange(MainForm.tribelist);
 			if(_ismodify)
+			{
 				Text = mui._("edit") + Text;
+			}
 			else
+			{
 				Text = mui._("add") + Text;
+			}
 			comboBox1.SelectedIndex = 0;
 			if(logininfo != null)
 			{
 				textBox3.Text = logininfo.Server;
 				textBox2.Text = logininfo.Username;
+				textBox1.Text = logininfo.Password;
 				comboBox1.SelectedIndex = logininfo.Tribe;
 				textBox4.Text = logininfo.Language;
 				numericUpDown1.Value = logininfo.GetOrPostTimesThreshold;
