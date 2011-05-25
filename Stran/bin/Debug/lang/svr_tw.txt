@@ -6,3 +6,4 @@ aid4=老鼠,蜘蛛,蛇,蝙蝠,野豬,狼,熊,鱷魚,老虎,大象,
 author=Lien
 attack=进行攻击,Attack against,攻擊
 raid=进行抢夺,Raid against,搶奪
+level=等級

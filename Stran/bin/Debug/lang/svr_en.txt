@@ -6,3 +6,4 @@ aid4=Rat,Spider,Snake,Bat,Wild Boar,Wolf,Bear,Crocodile,Tiger,Elephant,
 author=sone
 attack=进行攻击,Attack against,攻擊
 raid=进行抢夺,Raid against,搶奪
+level=Level

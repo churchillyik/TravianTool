@@ -64,7 +64,9 @@ namespace libTravian
             if (VillageID == 0)
                 return;
             MatchCollection m;
-            m = Regex.Matches(data, "Production:\\s*(\\-?\\d+)\">[^>]*?>[^>]*?>[^>]*?>(\\d+)/(\\d+)</span>");
+            m = Regex.Matches(data, "<li class=\"[^\"]*?\" title=\"[^\\d\\-]*?(\\-?\\d+)\">"
+				+ "[^<]*?<p>[^<]*?<img src=\"[^\"]*?\" alt=\"[^\"]*?\"/>"
+				+ "[^<]*?<span id=\"[^\"]*?\" class=\"[^\"]*?\">(\\d+)/(\\d+)</span>", RegexOptions.Singleline);
             if (m.Count == 4)
             {
                 for (int i = 0; i < 4; i++)
@@ -97,7 +99,7 @@ namespace libTravian
                 return;
             MatchCollection mc;
             mc = Regex.Matches(
-            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^1-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
+            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^0-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
             /*
              * Groups:
              * [1]: village id
@@ -182,7 +184,7 @@ namespace libTravian
             
             MatchCollection mc;
             mc = Regex.Matches(
-            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^1-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
+            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^0-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
             /*
              * Groups:
              * [1]: village id
@@ -279,7 +281,7 @@ namespace libTravian
             MatchCollection m;
             m = Regex.Matches(data, "<a\\shref=\"([^\"]*?)\">" +
                               "[^>]*?></a></td><td>(.*?)\\s" +
-                              "<span\\sclass=\"lvl\">\\s*Level\\s(\\d+)</span></td><[^<]*?" +
+                              "<span\\sclass=\"lvl\">[^\\d]*?(\\d+)</span></td><[^<]*?" +
                               "<span\\sid=\"timer\\d+\">(\\d+:\\d+:\\d+)</span>");
             /*
              * [1]: cancel url
@@ -412,7 +414,7 @@ namespace libTravian
                 CV.Buildings[i + 1] = new TBuilding() { Gid = NewDorf1Data[dorfType - 1][i] };
 
             MatchCollection mc = Regex.Matches
-            	(data, "<area href=\"build\\.php\\?id=(\\d+)[^\\|]*?\\|\\|Level\\s(\\d+)\"");
+            	(data, "<area href=\"build\\.php\\?id=(\\d+)[^\\|]*?\\|\\|[^\\d\\-]*?(\\d+)\"");
             if (mc.Count == 0)
                 return;
             
@@ -501,7 +503,7 @@ namespace libTravian
             		return;
             	
             	bIsInbuilding = true;
-            	mc = Regex.Matches(data, "<area\\salt=\"(.*?)\\sLevel\\s\\d+\"" +
+            	mc = Regex.Matches(data, "<area\\salt=\"([^\\d]*?)\\d+\"" +
             	                   "[^=]*?=[^=]*?=[^=]*?=[^=]*?=\"build.php\\?id=(\\d+)\"");
             }
 
@@ -517,9 +519,16 @@ namespace libTravian
                 else
                 {
                 	id = Convert.ToInt32(m.Groups[1].Value);
-					name = m.Groups[2].Value;
+                	name = m.Groups[2].Value;
                 }
                 
+                string rp = "";
+            	if (DisplayLang.Instance.Tags.ContainsKey("level"))
+            	{
+            		rp = DisplayLang.Instance.Tags["level"];
+            	}
+            	name = name.Replace(rp, "").Trim();
+            	
                 if (!GidLang.ContainsKey(TD.Villages[VillageID].Buildings[id].Gid))
                 {
                     SetGidLang(TD.Villages[VillageID].Buildings[id].Gid, name);

@@ -78,9 +78,9 @@ namespace libTravian
             {
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isUpgradeInitialized = 1;
-                PageQuery(VillageID, "build.php?gid=13");	//	铁匠铺
-                PageQuery(VillageID, "build.php?gid=22");	//	研究院
-                PageQuery(VillageID, "build.php?gid=24");	//	市政厅
+                CheckBuildingExistAndQuery(VillageID, 13);	//	铁匠铺
+                CheckBuildingExistAndQuery(VillageID, 22);	//	研究院
+                CheckBuildingExistAndQuery(VillageID, 24);	//	市政厅
                 TD.Villages[VillageID].isUpgradeInitialized = 2;
                 StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Research, VillageID = VillageID });
                 TD.Dirty = true;
@@ -93,7 +93,7 @@ namespace libTravian
             {
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isDestroyInitialized = 1;
-                PageQuery(VillageID, "build.php?gid=15");	//	中心大楼
+                CheckBuildingExistAndQuery(VillageID, 15);	//	中心大楼
                 TD.Villages[VillageID].isDestroyInitialized = 2;
                 TD.Dirty = true;
             }
@@ -105,7 +105,7 @@ namespace libTravian
             {
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isMarketInitialized = 1;
-                PageQuery(VillageID, "build.php?gid=17");	//	市场
+                CheckBuildingExistAndQuery(VillageID, 17);	//	市场
                 TD.Villages[VillageID].isMarketInitialized = 2;
                 TD.Dirty = true;
             }
@@ -134,10 +134,10 @@ namespace libTravian
             {
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isTroopInitialized = 1;
-                PageQuery(VillageID, "build.php?gid=16");	//	集结点
-                PageQuery(VillageID, "build.php?gid=19");	//	兵营
-                PageQuery(VillageID, "build.php?gid=20");	//	马厩
-                PageQuery(VillageID, "build.php?gid=21");	//	工场
+                CheckBuildingExistAndQuery(VillageID, 16);	//	集结点
+                CheckBuildingExistAndQuery(VillageID, 19);	//	兵营
+                CheckBuildingExistAndQuery(VillageID, 20);	//	马厩
+                CheckBuildingExistAndQuery(VillageID, 21);	//	工场
                 TD.Villages[VillageID].isTroopInitialized = 2;
                 TD.Dirty = true;
             }
@@ -170,5 +170,26 @@ namespace libTravian
             }
         }
         
+        private void CheckBuildingExistAndQuery(int VillageID, int gid)
+        {
+        	bool bExist = false;
+        	if (TD.Villages[VillageID].isBuildingInitialized == 2)
+        	{
+	        	foreach (TBuilding tb in TD.Villages[VillageID].Buildings.Values)
+	        	{
+	        		if (tb.Gid == gid && tb.Level != 0)
+	        			bExist = true;
+	        	}
+        	}
+        	
+        	if (bExist)
+        	{
+        		PageQuery(VillageID, "build.php?gid=" + gid.ToString());
+        	}
+        	else
+        	{
+        		DebugLog("因找不到gid=" + gid.ToString() + "的建筑，跳过抓取网页。", DebugLevel.II);
+        	}
+        }
     }
 }
