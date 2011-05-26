@@ -2299,7 +2299,8 @@ namespace Stran
             {
             	HeroAdventureStatus adv_sta = tr.TD.Adv_Sta;
                 int key = m_heroadventure.listViewHeroAdventure.SelectedIndices[0];
-                if (adv_sta.HeroAdventures[key] != null && adv_sta.HeroLocate != 0)
+                if (key >= 0 && key < adv_sta.HeroAdventures.Count 
+                    && adv_sta.HeroAdventures[key] != null && adv_sta.HeroLocate != 0)
                 {
                 	tr.ExecuteHeroAdvanture(key);
                 }

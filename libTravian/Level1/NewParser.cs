@@ -154,6 +154,9 @@ namespace libTravian
 				TD.Villages.Clear();
 				TD.Villages = NEWTV;
 				
+				data = this.pageQuerier.PageQuery(0, "spieler.php?uid=" + TD.UserID, null, true, true);
+            	if (data == null)
+                	return;
 				mc = Regex.Matches(data, "karte.php\\?d=(\\d+)\">([^<]*?)</a>\\s*?<[^>]*?>([^<]*?)</span>");
 	            int CapZ = 0;
 	            foreach (Match m in mc)
@@ -958,6 +961,16 @@ namespace libTravian
                         }
                     }
                 }
+            }
+            
+            if (VillageID == TD.Adv_Sta.HeroLocate)
+            {
+	            bool bIsNowInAdvanture = bCheckIfInAdventure(VillageID);
+	            if (bIsHeroInAdventure && !bIsNowInAdvanture)
+	            {
+	            	bShouldRefreshAdventurePlaces = true;
+	            }
+	            bIsHeroInAdventure = bIsNowInAdvanture;
             }
             
             TD.Dirty = true;

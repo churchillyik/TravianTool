@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Threading;
 using System.Drawing;
+using System.IO;
 
 namespace libTravian
 {
@@ -63,7 +64,7 @@ namespace libTravian
         {
             this.pageQuerier = this;
 
-            //Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
+            Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
         }
 
         public Travian(Data TravianData, Dictionary<string, string> Options)
@@ -91,8 +92,8 @@ namespace libTravian
             LoadOptions(Options);
             TD.Dirty = true;
 
-            //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-            //Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
         }
 
         public void LoadOptions(Dictionary<string, string> Options)
@@ -119,10 +120,30 @@ namespace libTravian
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+        	Exception ex = e.ExceptionObject as Exception;
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine("请您把该日志发送给那山一猪，谢谢。");
+			sb.AppendLine(DateTime.Now.ToString());
+			sb.AppendLine(ex.Message);
+			sb.AppendLine(ex.StackTrace);
+			FileStream fs = new FileStream("Crash.log", FileMode.Create, FileAccess.Write);
+			StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);
+			sw.Write(sb.ToString());
+			sw.Close();
         }
 
         static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+        	Exception ex = e.ExceptionObject as Exception;
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine("请您把该日志发送给那山一猪，谢谢。");
+			sb.AppendLine(DateTime.Now.ToString());
+			sb.AppendLine(ex.Message);
+			sb.AppendLine(ex.StackTrace);
+			FileStream fs = new FileStream("Crash.log", FileMode.Create, FileAccess.Write);
+			StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);
+			sw.Write(sb.ToString());
+			sw.Close();
         }
 
         /// <summary>

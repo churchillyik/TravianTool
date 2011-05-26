@@ -54,6 +54,18 @@ namespace libTravian
 					{
 						DebugLog(ex, DebugLevel.W);
 					}
+					try
+					{
+						if(bShouldRefreshAdventurePlaces && vid == TD.Adv_Sta.HeroLocate)
+						{
+							bShouldRefreshAdventurePlaces = false;
+							FetchHeroAdvantures(vid);
+						}
+					}
+					catch(Exception ex)
+					{
+						DebugLog(ex, DebugLevel.W);
+					}
 				}
 			}
 			catch (InvalidOperationException e)

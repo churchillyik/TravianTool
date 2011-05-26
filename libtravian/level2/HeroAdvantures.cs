@@ -14,15 +14,19 @@ using System.Text.RegularExpressions;
 
 namespace libTravian
 {
-	public class HeroAdvantureOption
-	{
-		public int VillageID { get; set; }
-		public int Key { get; set; }
-	}
-
-
 	partial class Travian
 	{
+		public bool bIsHeroInAdventure = false;
+		public bool bShouldRefreshAdventurePlaces = true;
+		private bool bCheckIfInAdventure(int VillageID)
+		{
+			TVillage CV = TD.Villages[VillageID];
+			foreach (TTroop trp in CV.Troop.Troops)
+			{
+				if ()
+			}
+		}
+		
 		private void doFetchHeroAdventures(object o)
         {
         	lock (Level2Lock)
@@ -142,6 +146,10 @@ namespace libTravian
 				int HeroLoc = TD.Adv_Sta.HeroLocate;
 				int Key = (int)o;
 
+				if (Key <  0 || Key >= TD.Adv_Sta.HeroAdventures.Count)
+				{
+					return;
+				}
 				TPoint tp = new TPoint(TD.Adv_Sta.HeroAdventures[Key].axis_x, TD.Adv_Sta.HeroAdventures[Key].axis_y);
 				string data = PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");
 				
