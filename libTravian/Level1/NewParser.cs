@@ -963,14 +963,15 @@ namespace libTravian
                 }
             }
             
-            if (VillageID == TD.Adv_Sta.HeroLocate)
+            HeroStatus status = CheckIfInAdventure(VillageID);
+            if (status != HeroStatus.HERO_NOT_BELONG_HERE)
             {
-	            bool bIsNowInAdvanture = bCheckIfInAdventure(VillageID);
-	            if (bIsHeroInAdventure && !bIsNowInAdvanture)
+	            if (TD.Adv_Sta.bIsHeroInAdventure && status == 
+            	    HeroStatus.HERO_NOT_IN_ADVANTURE)
 	            {
-	            	bShouldRefreshAdventurePlaces = true;
+	            	TD.Adv_Sta.bShouldRefreshAdventurePlaces = true;
 	            }
-	            bIsHeroInAdventure = bIsNowInAdvanture;
+	            TD.Adv_Sta.bIsHeroInAdventure = (status == HeroStatus.HERO_IN_ADVANTURE);
             }
             
             TD.Dirty = true;

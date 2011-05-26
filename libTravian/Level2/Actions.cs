@@ -56,9 +56,10 @@ namespace libTravian
 					}
 					try
 					{
-						if(bShouldRefreshAdventurePlaces && vid == TD.Adv_Sta.HeroLocate)
+						if(TD.Adv_Sta.bShouldRefreshAdventurePlaces 
+						   && vid == TD.Adv_Sta.HeroLocate)
 						{
-							bShouldRefreshAdventurePlaces = false;
+							TD.Adv_Sta.bShouldRefreshAdventurePlaces = false;
 							FetchHeroAdvantures(vid);
 						}
 					}

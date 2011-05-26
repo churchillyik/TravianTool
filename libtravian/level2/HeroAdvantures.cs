@@ -11,20 +11,40 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using LitJson;
 
 namespace libTravian
 {
 	partial class Travian
 	{
-		public bool bIsHeroInAdventure = false;
-		public bool bShouldRefreshAdventurePlaces = true;
-		private bool bCheckIfInAdventure(int VillageID)
+		enum HeroStatus
+		{
+			HERO_NOT_BELONG_HERE,
+			HERO_IN_ADVANTURE,
+			HERO_NOT_IN_ADVANTURE
+		};
+		private HeroStatus CheckIfInAdventure(int VillageID)
 		{
 			TVillage CV = TD.Villages[VillageID];
-			foreach (TTroop trp in CV.Troop.Troops)
+			
+			HeroStatus status = HeroStatus.HERO_NOT_BELONG_HERE;
+			foreach (TTInfo info in CV.Troop.Troops)
 			{
-				if ()
+				if (info.OwnerVillageZ != CV.Z && info.Troops[10] != 1)
+					continue;
+				if (TD.Adv_Sta.HeroLocate != VillageID)
+				{
+					TD.Adv_Sta.HeroLocate = VillageID;
+					DebugLog("探测到英雄所在村，更正为：" + CV.Name 
+					         + "(" + VillageID.ToString() + ")", DebugLevel.II);
+				}
+				if (info.VillageName.Contains("英雄冒险") 
+				    && info.TroopType == TTroopType.Outgoing)
+					status = HeroStatus.HERO_IN_ADVANTURE;
+				else
+					status = HeroStatus.HERO_NOT_IN_ADVANTURE;
 			}
+			return status;
 		}
 		
 		private void doFetchHeroAdventures(object o)
@@ -61,6 +81,8 @@ namespace libTravian
                 }
                 
                 data = PageQuery(hero_loc, "hero_adventure.php");	//	查询探险地点
+                if (string.IsNullOrEmpty(data))
+                    return;
                 string[] places = HtmlUtility.GetElements(data, "tr");
                 if (places.Length <= 1)
                 	return;
@@ -135,6 +157,7 @@ namespace libTravian
                 	TD.Adv_Sta.HeroAdventures.Add(adv_info);
                 }
                 
+                TD.Adv_Sta.bShouldRefreshAdventureDisplay = true;
                 TD.Dirty = true;
         	}
         }

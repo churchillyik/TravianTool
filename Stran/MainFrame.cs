@@ -768,7 +768,7 @@ namespace Stran
             if (CV.isTroopInitialized != 2)
                 return;
             
-            if (!m_heroadventure.bShouldRefresh)
+            if (!tr.TD.Adv_Sta.bShouldRefreshAdventureDisplay)
             	return;
             
             m_heroadventure.listViewHeroAdventure.Items.Clear();
@@ -801,7 +801,7 @@ namespace Stran
             }
             
             m_heroadventure.listViewHeroAdventure.ResumeLayout();
-            m_heroadventure.bShouldRefresh = false;
+            tr.TD.Adv_Sta.bShouldRefreshAdventureDisplay = false;
         }
         
         private void DisplayOasisFound()
@@ -872,7 +872,7 @@ namespace Stran
             DisplayTroop();
             DisplayTroopTraining();
             
-            m_heroadventure.bShouldRefresh = true;
+            tr.TD.Adv_Sta.bShouldRefreshAdventureDisplay = true;
             DisplayHeroAdvantures();
         }
 
@@ -2287,7 +2287,6 @@ namespace Stran
 		{
 			if (tr == null)
                 return;
-			m_heroadventure.bShouldRefresh = true;
 			tr.FetchHeroAdvantures(SelectVillage);
 		}
 		
