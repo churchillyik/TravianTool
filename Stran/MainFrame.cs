@@ -2323,5 +2323,17 @@ namespace Stran
                 lvi(q);
             }
 		}
+		
+		void AutoAdventureToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			var CV = TravianData.Villages[SelectVillage];
+			AdventureQueue q = new AdventureQueue()
+			{
+				UpCall = tr,
+				VillageID = CV.ID
+			};
+			CV.Queue.Add(q);
+			lvi(q);
+		}
     }
 }

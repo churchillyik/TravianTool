@@ -30,7 +30,7 @@ namespace libTravian
 			HeroStatus status = HeroStatus.HERO_NOT_BELONG_HERE;
 			foreach (TTInfo info in CV.Troop.Troops)
 			{
-				if (info.OwnerVillageZ != CV.Z && info.Troops[10] != 1)
+				if (info.OwnerVillageZ != CV.Z || info.Troops[10] != 1)
 					continue;
 				if (TD.Adv_Sta.HeroLocate != VillageID)
 				{
@@ -43,11 +43,12 @@ namespace libTravian
 					status = HeroStatus.HERO_IN_ADVANTURE;
 				else
 					status = HeroStatus.HERO_NOT_IN_ADVANTURE;
+				break;
 			}
 			return status;
 		}
 		
-		private void doFetchHeroAdventures(object o)
+		public void doFetchHeroAdventures(object o)
         {
         	lock (Level2Lock)
             {
@@ -157,6 +158,7 @@ namespace libTravian
                 	TD.Adv_Sta.HeroAdventures.Add(adv_info);
                 }
                 
+                TD.Adv_Sta.bIsHeroAdventureInitialize = true;
                 TD.Adv_Sta.bShouldRefreshAdventureDisplay = true;
                 TD.Dirty = true;
         	}

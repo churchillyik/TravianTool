@@ -138,6 +138,7 @@
 			this.contextMenuHeroAdventure = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.refreshAdvanturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.startAdvantureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.AutoAdventureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl2.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -276,7 +277,7 @@
 									this.CMBEnableCoin});
 			this.contextMenuBuilding.Name = "contextMenuStrip2";
 			this.contextMenuBuilding.ShowImageMargin = false;
-			this.contextMenuBuilding.Size = new System.Drawing.Size(190, 420);
+			this.contextMenuBuilding.Size = new System.Drawing.Size(190, 398);
 			this.contextMenuBuilding.Text = "添加到队列";
 			// 
 			// CMBUp
@@ -1039,15 +1040,16 @@
 			// 
 			this.contextMenuHeroAdventure.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.refreshAdvanturesToolStripMenuItem,
-									this.startAdvantureToolStripMenuItem});
+									this.startAdvantureToolStripMenuItem,
+									this.AutoAdventureToolStripMenuItem});
 			this.contextMenuHeroAdventure.Name = "contextMenuHeroAdventure";
 			this.contextMenuHeroAdventure.ShowImageMargin = false;
-			this.contextMenuHeroAdventure.Size = new System.Drawing.Size(118, 48);
+			this.contextMenuHeroAdventure.Size = new System.Drawing.Size(128, 92);
 			// 
 			// refreshAdvanturesToolStripMenuItem
 			// 
 			this.refreshAdvanturesToolStripMenuItem.Name = "refreshAdvanturesToolStripMenuItem";
-			this.refreshAdvanturesToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+			this.refreshAdvanturesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
 			this.refreshAdvanturesToolStripMenuItem.Tag = "CMSrefreshadvantures";
 			this.refreshAdvanturesToolStripMenuItem.Text = "刷新探险位置";
 			this.refreshAdvanturesToolStripMenuItem.Click += new System.EventHandler(this.RefreshAdvanturesToolStripMenuItemClick);
@@ -1055,10 +1057,18 @@
 			// startAdvantureToolStripMenuItem
 			// 
 			this.startAdvantureToolStripMenuItem.Name = "startAdvantureToolStripMenuItem";
-			this.startAdvantureToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+			this.startAdvantureToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
 			this.startAdvantureToolStripMenuItem.Tag = "CMSstartadvanture";
 			this.startAdvantureToolStripMenuItem.Text = "开始探险";
 			this.startAdvantureToolStripMenuItem.Click += new System.EventHandler(this.StartAdvantureToolStripMenuItemClick);
+			// 
+			// AutoAdventureToolStripMenuItem
+			// 
+			this.AutoAdventureToolStripMenuItem.Name = "AutoAdventureToolStripMenuItem";
+			this.AutoAdventureToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+			this.AutoAdventureToolStripMenuItem.Tag = "CMSAutoAdventure";
+			this.AutoAdventureToolStripMenuItem.Text = "自动开始探险";
+			this.AutoAdventureToolStripMenuItem.Click += new System.EventHandler(this.AutoAdventureToolStripMenuItemClick);
 			// 
 			// MainFrame
 			// 
@@ -1091,6 +1101,7 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem AutoAdventureToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem CMB_PMMail;
 		private System.Windows.Forms.ToolStripMenuItem startAdvantureToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem refreshAdvanturesToolStripMenuItem;

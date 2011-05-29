@@ -170,7 +170,7 @@ namespace libTravian
             }
         }
         
-        private void CheckBuildingExistAndQuery(int VillageID, int gid)
+        public string CheckBuildingExistAndQuery(int VillageID, int gid)
         {
         	bool bExist = false;
         	if (TD.Villages[VillageID].isBuildingInitialized == 2)
@@ -184,7 +184,7 @@ namespace libTravian
         	
         	if (bExist)
         	{
-        		PageQuery(VillageID, "build.php?gid=" + gid.ToString());
+        		return PageQuery(VillageID, "build.php?gid=" + gid.ToString());
         	}
         	else
         	{
@@ -192,6 +192,7 @@ namespace libTravian
         		DebugLog("因找不到" + building_name
         		         + "(gid=" + gid.ToString() + ")，跳过抓取该建筑的网页。",
         		         DebugLevel.II);
+        		return null;
         	}
         }
     }

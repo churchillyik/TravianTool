@@ -106,12 +106,14 @@ namespace libTravian
         public List<HeroAdventureInfo> HeroAdventures { get; set; }
         [Json]
 		public bool bIsHeroInAdventure { get; set; }
+		public bool bIsHeroAdventureInitialize;
 		public bool bShouldRefreshAdventurePlaces;
 		public bool bShouldRefreshAdventureDisplay;
         public HeroAdventureStatus()
         {
         	HeroLocate = 0;
         	HeroAdventures = new List<HeroAdventureInfo>();
+        	bIsHeroAdventureInitialize = false;
         	bShouldRefreshAdventurePlaces = true;
         	bShouldRefreshAdventureDisplay = false;
         }	
