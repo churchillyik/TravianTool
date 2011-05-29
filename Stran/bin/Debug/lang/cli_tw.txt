@@ -233,6 +233,7 @@ lablestartaxis=起始座標
 lablesearchingnum=搜索重數
 startsearching=開始搜索
 stopsearching=停止搜索
+fileout=導出文件
 labelinstruction=本功能將按蝸牛式的方式搜索15田，起始座標為中心座標，搜索重數表示搜索的範圍廣度（推薦30重即可）
 ColHdoasisaxis=座標
 ColHdaddon=綠洲加成

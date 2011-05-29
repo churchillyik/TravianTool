@@ -56,6 +56,7 @@ namespace Stran.DockingPanel
 			UpCall.FindOasisClick(x, y, num);
 			this.button1.Enabled = false;
 			this.button2.Enabled = true;
+			this.button3.Enabled = true;
 		}
 		
 		void Button2Click(object sender, EventArgs e)
@@ -63,6 +64,12 @@ namespace Stran.DockingPanel
 			UpCall.StopFindOasisClick();
 			this.button1.Enabled = true;
 			this.button2.Enabled = false;
+			this.button3.Enabled = false;
+		}
+		
+		void Button3Click(object sender, EventArgs e)
+		{
+			UpCall.FileOutOasisClick();
 		}
 	}
 }

@@ -2228,6 +2228,28 @@ namespace Stran
 			TravianData.Villages[SelectVillage].StopFindOasis();
 		}
 		
+		public void FileOutOasisClick()
+		{
+			if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+			
+			var CV = TravianData.Villages[SelectVillage];
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine("坐标\t粮食绿洲加成");
+			for (int i = 0; i < CV.OasisInfo.Count; i++)
+        	{
+        		TOasisInfo oasis = CV.OasisInfo[i];
+        		string axis = "(" + oasis.axis_x + "|" + oasis.axis_y + ")";
+        		string addon = oasis.addon + "%";
+        		sb.AppendLine(axis + "\t" + addon);
+        	}
+			
+			FileStream fs = new FileStream("15田.txt", FileMode.Create, FileAccess.Write);
+			StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);
+			sw.Write(sb.ToString());
+			sw.Close();
+		}
+		
 		
 		void TrainingTroopsToolStripMenuItemClick(object sender, EventArgs e)
 		{

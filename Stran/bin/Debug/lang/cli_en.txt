@@ -233,6 +233,7 @@ lablestartaxis=Start Axis
 lablesearchingnum=Searching Range
 startsearching=Start
 stopsearching=Stop
+fileout=File Out
 labelinstruction=Gona search 15 crop oasis from the starting axis. We recommand the searching range to be 30.
 ColHdoasisaxis=15Crop Axis
 ColHdaddon=Oasis
