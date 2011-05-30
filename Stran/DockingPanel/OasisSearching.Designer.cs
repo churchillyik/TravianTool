@@ -49,6 +49,8 @@ namespace Stran.DockingPanel
 			this.label3 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// listView_SearchingResult
@@ -62,7 +64,7 @@ namespace Stran.DockingPanel
 			this.listView_SearchingResult.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listView_SearchingResult.Location = new System.Drawing.Point(0, 0);
 			this.listView_SearchingResult.Name = "listView_SearchingResult";
-			this.listView_SearchingResult.Size = new System.Drawing.Size(307, 319);
+			this.listView_SearchingResult.Size = new System.Drawing.Size(224, 319);
 			this.listView_SearchingResult.TabIndex = 0;
 			this.listView_SearchingResult.UseCompatibleStateImageBehavior = false;
 			this.listView_SearchingResult.View = System.Windows.Forms.View.Details;
@@ -80,7 +82,7 @@ namespace Stran.DockingPanel
 			// textBox_Log
 			// 
 			this.textBox_Log.Dock = System.Windows.Forms.DockStyle.Top;
-			this.textBox_Log.Location = new System.Drawing.Point(307, 0);
+			this.textBox_Log.Location = new System.Drawing.Point(224, 0);
 			this.textBox_Log.Multiline = true;
 			this.textBox_Log.Name = "textBox_Log";
 			this.textBox_Log.ReadOnly = true;
@@ -89,7 +91,7 @@ namespace Stran.DockingPanel
 			// 
 			// textBox_AxisX
 			// 
-			this.textBox_AxisX.Location = new System.Drawing.Point(389, 143);
+			this.textBox_AxisX.Location = new System.Drawing.Point(300, 140);
 			this.textBox_AxisX.Name = "textBox_AxisX";
 			this.textBox_AxisX.Size = new System.Drawing.Size(43, 21);
 			this.textBox_AxisX.TabIndex = 2;
@@ -97,7 +99,7 @@ namespace Stran.DockingPanel
 			// 
 			// textBox_AxisY
 			// 
-			this.textBox_AxisY.Location = new System.Drawing.Point(438, 143);
+			this.textBox_AxisY.Location = new System.Drawing.Point(349, 140);
 			this.textBox_AxisY.Name = "textBox_AxisY";
 			this.textBox_AxisY.Size = new System.Drawing.Size(42, 21);
 			this.textBox_AxisY.TabIndex = 3;
@@ -105,7 +107,7 @@ namespace Stran.DockingPanel
 			// 
 			// textBox_SearchingNum
 			// 
-			this.textBox_SearchingNum.Location = new System.Drawing.Point(570, 143);
+			this.textBox_SearchingNum.Location = new System.Drawing.Point(300, 170);
 			this.textBox_SearchingNum.Name = "textBox_SearchingNum";
 			this.textBox_SearchingNum.Size = new System.Drawing.Size(52, 21);
 			this.textBox_SearchingNum.TabIndex = 4;
@@ -113,7 +115,7 @@ namespace Stran.DockingPanel
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(330, 146);
+			this.label1.Location = new System.Drawing.Point(241, 143);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(53, 14);
 			this.label1.TabIndex = 3;
@@ -122,7 +124,7 @@ namespace Stran.DockingPanel
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(511, 146);
+			this.label2.Location = new System.Drawing.Point(241, 173);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(59, 14);
 			this.label2.TabIndex = 3;
@@ -131,9 +133,9 @@ namespace Stran.DockingPanel
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(330, 176);
+			this.button1.Location = new System.Drawing.Point(3, 3);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(102, 33);
+			this.button1.Size = new System.Drawing.Size(90, 33);
 			this.button1.TabIndex = 5;
 			this.button1.Tag = "startsearching";
 			this.button1.Text = "开始搜索";
@@ -143,9 +145,9 @@ namespace Stran.DockingPanel
 			// label3
 			// 
 			this.label3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label3.Location = new System.Drawing.Point(450, 201);
+			this.label3.Location = new System.Drawing.Point(397, 138);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(172, 81);
+			this.label3.Size = new System.Drawing.Size(172, 89);
 			this.label3.TabIndex = 5;
 			this.label3.Tag = "labelinstruction";
 			this.label3.Text = "本功能将按蜗牛式的方式搜索15田，起始坐标为中心坐标，搜索重数表示搜索的范围广度（推荐30重即可）";
@@ -153,9 +155,9 @@ namespace Stran.DockingPanel
 			// button2
 			// 
 			this.button2.Enabled = false;
-			this.button2.Location = new System.Drawing.Point(330, 214);
+			this.button2.Location = new System.Drawing.Point(99, 3);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(102, 34);
+			this.button2.Size = new System.Drawing.Size(87, 34);
 			this.button2.TabIndex = 6;
 			this.button2.Tag = "stopsearching";
 			this.button2.Text = "停止搜索";
@@ -165,25 +167,35 @@ namespace Stran.DockingPanel
 			// button3
 			// 
 			this.button3.Enabled = false;
-			this.button3.Location = new System.Drawing.Point(330, 254);
+			this.button3.Location = new System.Drawing.Point(192, 3);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(102, 34);
+			this.button3.Size = new System.Drawing.Size(89, 34);
 			this.button3.TabIndex = 6;
 			this.button3.Tag = "fileout";
 			this.button3.Text = "导出文件";
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(this.Button3Click);
 			// 
+			// flowLayoutPanel1
+			// 
+			this.flowLayoutPanel1.AutoSize = true;
+			this.flowLayoutPanel1.Controls.Add(this.button1);
+			this.flowLayoutPanel1.Controls.Add(this.button2);
+			this.flowLayoutPanel1.Controls.Add(this.button3);
+			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(224, 279);
+			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(345, 40);
+			this.flowLayoutPanel1.TabIndex = 7;
+			// 
 			// OasisSearching
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(652, 319);
+			this.ClientSize = new System.Drawing.Size(569, 319);
 			this.CloseButton = false;
+			this.Controls.Add(this.flowLayoutPanel1);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.button3);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.textBox_SearchingNum);
@@ -201,9 +213,11 @@ namespace Stran.DockingPanel
 			this.Tag = "OasisSearching";
 			this.Text = "搜索15田";
 			this.Load += new System.EventHandler(this.OasisSearchingLoad);
+			this.flowLayoutPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Button button3;
 		public System.Windows.Forms.ListView listView_SearchingResult;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
