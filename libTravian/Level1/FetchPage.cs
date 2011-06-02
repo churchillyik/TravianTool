@@ -194,7 +194,10 @@ namespace libTravian
 				if(result.Contains("login"))
 				{
 					if(!Login())
+					{
+						DebugLog("无法抓取网页：" + _LastQueryPageURI, DebugLevel.II);
 						return null;
+					}
 					if(Data != null)
 					{
 						wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
@@ -229,13 +232,16 @@ namespace libTravian
 					TD.ServerTimeOffset = Convert.ToInt32(timeoff.TotalSeconds);
 				}
 				if(!NoParser)
+				{
 					NewParseEntry(VillageID, result);
+				}
 				return result;
 			}
 			catch(Exception e)
 			{
 				DebugLog(e);
 			}
+			DebugLog("无法抓取网页：" + _LastQueryPageURI, DebugLevel.II);
 			return null;
 		}
 	}

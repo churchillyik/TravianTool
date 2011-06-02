@@ -221,6 +221,8 @@ namespace libTravian
 				}
 				else
 				{
+					if (info.FinishTime == DateTime.MinValue)
+						MinimumDelay = 3600;
 					return 1;
 				}
 			}

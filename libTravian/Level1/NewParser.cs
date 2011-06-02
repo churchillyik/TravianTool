@@ -791,7 +791,7 @@ namespace libTravian
 
             int MCarry = Convert.ToInt32(m.Groups[1].Value);
 
-            m = Regex.Match(data, "Merchants\\s(\\d+)\\s/\\s(\\d+)\\s*?</div>");
+            m = Regex.Match(data, "<div class=\"boxes-contents\">[^\\d]*?(\\d+)\\s/\\s(\\d+)\\s*?</div>");
             if (!m.Success)
             {
                 return;
