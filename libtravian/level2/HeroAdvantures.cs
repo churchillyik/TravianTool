@@ -60,6 +60,8 @@ namespace libTravian
                 
                 string hero_status = HtmlUtility.GetElementWithClass(
                 	data, "div", "attribute heroStatus");
+                if (string.IsNullOrEmpty(hero_status))
+                	return;
                 Match m = Regex.Match(hero_status, "karte.php\\?d=(\\d+)");
                 int hero_loc = 0;
                 if (m.Success)
