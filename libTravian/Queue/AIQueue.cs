@@ -92,6 +92,8 @@ namespace libTravian
                 int min_level = Int32.MaxValue;
                 for (i = 1; i <= 18; i++)
                 {
+                	if (!CV.Buildings.ContainsKey(i))
+                		continue;
                     if (CV.Buildings[i].Gid == gid)
                     {
                         if (CV.Buildings[i].Level < min_level)
