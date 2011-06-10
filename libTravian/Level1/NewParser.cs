@@ -827,12 +827,15 @@ namespace libTravian
                 		continue;
                 	string Username = m.Groups[1].Value;
                 	
+                	int TargetPos = 801 * 400 + 401;
+                	string TargetVName = Username;
                 	m = Regex.Match(traders_seg
                 	                , "<a href=\"karte.php\\?d=(\\d+)\">([^<]+)</a>");
-                	if (!m.Success)
-                		continue;
-                	int TargetPos = Convert.ToInt32(m.Groups[1].Value);
-                	string TargetVName = m.Groups[2].Value;
+                	if (m.Success)
+                	{
+	                	TargetPos = Convert.ToInt32(m.Groups[1].Value);
+	                	TargetVName = m.Groups[2].Value;
+                	}
                 	
                 	//	解析到达所需时间的部分
                 	string arrival_seg = HtmlUtility.GetElementWithClass(MarketTables[j], "div", "in");
