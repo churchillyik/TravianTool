@@ -195,7 +195,8 @@ enabled= (已启用)
 
 autonormalizemetime=自动平衡我的爆仓时间
 forcetransfer=无视爆仓检查
-CMBRaid=&S. 出兵
+CMBRaid=&R. 抢劫
+CMBAttack=&A. 攻击
 vres=资源
 newcap=&C. 刷新主村
 showallarmy=&A. 显示所有军种
@@ -208,8 +209,6 @@ Settlers=开拓者
 raidtypelist=增援,攻击: 普通,攻击: 抢夺,侦察: 资源&军队,侦察: 防御&军队,无,随机
 raidtype=攻击类型
 katatarget=投石机目标
-SendTroops=出兵
-Description=简单描述
 saveRES=&E. 汇出资源限制
 restoreRES=&I. 汇入资源限制
 refreshall=&L. 全部刷新
@@ -252,3 +251,24 @@ CMSAutoAdventure=&A. 自动开始探险
 //PMMail
 CMB_PMMail=&M. 自动发送PM
 PMMail=自动发送PM
+//抢劫设置
+SendTroopsRaid=掠夺
+GrpTroops=部队配置
+GrpRaidType=攻击类型
+RBDReinforce=增援
+RDBAttackNormal=普通攻击
+RDBAttackRaid=掠夺攻击
+Description=简单描述
+GrpSpyOptions=侦察类型
+RDBSpyResource=资源，军队
+RDBSpyDefense=城防，军队
+GrpSchedule=行程设置
+LBLCount=重复掠夺的次数
+LBLMaxSlots=集结点攻击波数限制
+CKBMultipleRaids=并行多目标抢劫
+GrpTargets=攻击目标
+BTNSort=排序
+BTNCopy=复制
+BTNPaste=粘贴
+//攻击配置
+SendTroopsAttack=攻击

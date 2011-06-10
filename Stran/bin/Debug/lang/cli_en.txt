@@ -196,7 +196,8 @@ enabled= (Enabled)
 autonormalizemetime=Nml this village (Time)
 forcetransfer=Skip full check
 CMBProduceTroop=Pr&oduce troops
-CMBRaid=&Send troops
+CMBRaid=&Raid
+CMBAttack=&Attack
 vres=Res
 newcap=Refresh &Capital Information
 showallarmy=Show &All Army
@@ -253,3 +254,24 @@ CMSAutoAdventure=&A. Auto Advanture
 //PMMail
 CMB_PMMail=&M. Auto Send PM EMail
 PMMail=Auto Send PM EMail
+//Raid
+SendTroopsRaid=Raid
+GrpTroops=Troops
+GrpRaidType=Raid Type
+RBDReinforce=Reinforce
+RDBAttackNormal=Attack Normal
+RDBAttackRaid=Attack Raid
+Description=Description
+GrpSpyOptions=Spy Options
+RDBSpyResource=Resource
+RDBSpyDefense=Defense
+GrpSchedule=Schedule
+LBLCount=Repeat
+LBLMaxSlots=Max Slots
+CKBMultipleRaids=Multi Raids
+GrpTargets=Targets
+BTNSort=Sort
+BTNCopy=Copy
+BTNPaste=Paste
+//攻擊配置
+SendTroopsAttack=Attack

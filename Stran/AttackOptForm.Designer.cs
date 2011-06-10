@@ -63,7 +63,7 @@ namespace Stran
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
 			this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 8);
@@ -87,7 +87,7 @@ namespace Stran
 			// label2
 			// 
 			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label2.Location = new System.Drawing.Point(67, 1);
+			this.label2.Location = new System.Drawing.Point(66, 1);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(54, 37);
 			this.label2.TabIndex = 1;
@@ -100,7 +100,7 @@ namespace Stran
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(4, 1);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(56, 37);
+			this.label1.Size = new System.Drawing.Size(55, 37);
 			this.label1.TabIndex = 0;
 			this.label1.Tag = "troopname";
 			this.label1.Text = "troopname troopname";
@@ -293,7 +293,7 @@ namespace Stran
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "AttackOptForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Tag = "SendTroops";
+			this.Tag = "SendTroopsAttack";
 			this.Text = "AttackOptForm";
 			this.Load += new System.EventHandler(this.AttackOptForm_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);

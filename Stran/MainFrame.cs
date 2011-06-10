@@ -1449,6 +1449,7 @@ namespace Stran
                 RaidType = RaidType.AttackRaid,
                 SpyOption = SpyOption.Resource,
                 MaxCount = 1,
+                MultipeRaids = true
             };
 
             if (this.EditRaidQueue(village, task))
