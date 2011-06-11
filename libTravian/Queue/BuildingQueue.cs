@@ -217,8 +217,8 @@ namespace libTravian
 				result = UpCall.PageQuery(VillageID, "build.php?id=" + bid.ToString());
 				if(result == null)
 					return;
-				m = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + gid + "&id=" + bid + "&c=[^\']*?)'");
-				n = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + bid + "&c=[^']*?)'");
+				m = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + gid + "&amp;id=" + bid + "&c=[^\']*?)'");
+				n = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + bid + "&amp;c=[^\']*?)'");
 				if(!m.Success && !n.Success)
 				{
 					UpCall.DebugLog("Unknown error on building " + Q.Title, DebugLevel.E);

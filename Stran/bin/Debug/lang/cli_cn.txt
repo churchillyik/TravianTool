@@ -61,7 +61,7 @@ cmpup9=&9. 添加 9 次
 cmpupto=&L. 升级建筑到指定等级...
 cmpdestroy=&D. 拆除建筑
 cmbnew=&N. 新建建筑
-cmbai=&E. 启用人工智能模块
+cmbai=&E. 启用人工智能
 // context menu queue
 cmqedit=&E. 编辑
 cmqdel=&D. 删除
@@ -184,7 +184,7 @@ refreshtrooptraining=&R. 刷新军队训练
 
 // quick panel
 QPParty=&P. 自动派对模块
-QPAILevel=&L. 人工智能以资源田等级
+QPAILevel=&L. 人工智能普田
 QPUpTop=&U. 升级到最高等级
 QPRefreshRes=&R. 刷新资源/市场情况
 

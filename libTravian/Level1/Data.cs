@@ -191,28 +191,27 @@ namespace libTravian
         static private void InitPrefer()
         {
             PreferPos = new Dictionary<int, int[]>(32);
-            PreferPos[5] = new int[] { 28 };
-            PreferPos[6] = new int[] { 24 };
-            PreferPos[7] = new int[] { 19 };
-            PreferPos[8] = new int[] { 32 };
-            PreferPos[9] = new int[] { 20 };
-            PreferPos[10] = new int[] { 35, 37, 32, 33, 28, 24, 19 };
-            PreferPos[11] = new int[] { 36, 38, 20, 29 };
-            PreferPos[12] = new int[] { 30 };
-            PreferPos[13] = new int[] { 25 };
-            PreferPos[14] = new int[] { 22 };
-            PreferPos[15] = new int[] { 26 };
-            PreferPos[16] = new int[] { 39 };
-            PreferPos[17] = new int[] { 27 };
-            PreferPos[18] = new int[] { 33 };
-            PreferPos[19] = new int[] { 34 };
-            PreferPos[20] = new int[] { 31 };
-            PreferPos[21] = new int[] { 31 };
-            PreferPos[22] = new int[] { 23 };
-            PreferPos[24] = new int[] { 33 };
-            PreferPos[25] = new int[] { 21 };
-            PreferPos[26] = new int[] { 21 };
-            PreferPos[28] = new int[] { 22 };
+            PreferPos[5] = new int[] { 28 };								//	木材厂
+            PreferPos[6] = new int[] { 24 };								//	砖块厂
+            PreferPos[7] = new int[] { 19 };								//	铸造厂
+            PreferPos[8] = new int[] { 32 };								//	磨坊
+            PreferPos[9] = new int[] { 20 };								//	面包房
+            PreferPos[10] = new int[] { 35, 37, 32, 33, 28, 24, 19 };		//	仓库
+            PreferPos[11] = new int[] { 36, 38, 20, 29 };					//	粮仓
+            PreferPos[13] = new int[] { 25 };								//	铁匠铺
+            PreferPos[14] = new int[] { 22 };								//	竞技场
+            PreferPos[15] = new int[] { 26 };								//	中心大楼
+            PreferPos[16] = new int[] { 39 };								//	集结点
+            PreferPos[17] = new int[] { 27 };								//	市场
+            PreferPos[18] = new int[] { 33 };								//	外交所
+            PreferPos[19] = new int[] { 34 };								//	兵营
+            PreferPos[20] = new int[] { 31 };								//	马厩
+            PreferPos[21] = new int[] { 31 };								//	工场
+            PreferPos[22] = new int[] { 23 };								//	研究院
+            PreferPos[24] = new int[] { 33 };								//	市政厅
+            PreferPos[25] = new int[] { 21 };								//	行宫
+            PreferPos[26] = new int[] { 21 };								//	皇宫
+            PreferPos[28] = new int[] { 22 };								//	交易所
         }
         static private void InitUpCost()
         {
