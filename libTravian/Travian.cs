@@ -57,7 +57,7 @@ namespace libTravian
         public IPageQuerier pageQuerier;
 
         static public bool NoMB = false;
-        static public double[] resrate = new double[4] { 10, 10, 9, 7 };
+        static public double[] resrate = new double[4] { 10, 10, 9, 8 };
 
         public Data TD { get; set; }
         public Travian()

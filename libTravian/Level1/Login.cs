@@ -33,7 +33,10 @@ namespace libTravian
 			string Username = TD.Username;
 			string Password = TD.Password;
 			if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+			{
+				DebugLog("用户名和密码为空？", DebugLevel.F);
 				return false;
+			}
 			try
 			{
 				//WriteInfo("Logging in as '" + Username + "', may take a few seconds...");
@@ -81,7 +84,7 @@ namespace libTravian
 				string result = this.pageQuerier.PageQuery(0, "dorf1.php?ok", PostData, false, true);
 
 				//if (result.Contains("login"))
-				if (result.Contains("<span class=\"error\">"))
+				if (result || result.Contains("<span class=\"error\">"))
 				{
 					DebugLog("Username or Password error!", DebugLevel.F);
 					//MessageBox.Show("Login failed.");
@@ -96,6 +99,7 @@ namespace libTravian
 			}
 			catch (Exception e)
 			{
+				DebugLog("扑捉到异常：" + e.ToString(), DebugLevel.F);
 				DebugLog(e);
 				return false;
 			}

@@ -154,7 +154,9 @@ namespace libTravian
 				}
 				
 				TPoint tp = new TPoint(InfoList[i].axis_x, InfoList[i].axis_y);
-				data = UpCall.PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");			
+				data = UpCall.PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");
+				if (data == null)
+					continue;
                 Match m_test = Regex.Match(data, "type=\"submit\" value=\"ok\" name=\"h1\"");
                 if (!m_test.Success)
                 	continue;

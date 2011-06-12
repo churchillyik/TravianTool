@@ -44,11 +44,25 @@ namespace libTravian
 				var Cinb = CV.InBuilding;
 				int delay = 0;
 				if(Cinb[0] != null && Cinb[0].FinishTime != DateTime.MinValue)
-					delay = Math.Max(delay, Convert.ToInt32(Cinb[0].FinishTime.Subtract(DateTime.Now).TotalSeconds));
-				if(!UpCall.TD.isRomans && Cinb[1] != null && Cinb[1].FinishTime != DateTime.MinValue)
-					delay = Math.Max(delay, Convert.ToInt32(Cinb[1].FinishTime.Subtract(DateTime.Now).TotalSeconds));
+					delay = Math.Max(delay, Convert.ToInt32(
+						Cinb[0].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 10);
+
+				//	对罗马以外不能双建的种族，需要等待内城建筑建造完毕
+				if(!UpCall.TD.isRomans)
+					if (Cinb[1] != null && Cinb[1].FinishTime != DateTime.MinValue)
+						delay = Math.Max(delay, Convert.ToInt32(
+							Cinb[1].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 10);
+				else
+				{
+					if (Cinb[1] != null && Cinb[1].FinishTime != DateTime.MinValue)
+						delay = Math.Min(delay, Convert.ToInt32(
+							Cinb[1].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 10);
+					else
+						delay = 0;
+				}
 				if(NextExec != DateTime.MinValue)
-					delay = Math.Max(delay, Convert.ToInt32(NextExec.Subtract(DateTime.Now).TotalSeconds));
+					delay = Math.Max(delay, Convert.ToInt32(
+						NextExec.Subtract(DateTime.Now).TotalSeconds));
 				return delay;
 			}
 		}
@@ -62,123 +76,212 @@ namespace libTravian
 
 			this.NextExec = DateTime.Now.AddSeconds(50);
 
-			int bid = -1, gid = 0;
+			int gid, bid;
 			
-			//	计算仓库容量和粮仓容量的比值
-			double extrarate = (double)CV.Resource[0].Capacity / CV.Resource[3].Capacity;
-
 			if(AIType == TAIType.Resource)
 			{
-				//	按资源总量
-				int i;
-				if(CV.isBuildingInitialized != 2)
+				if (!FetchAvailGidAndBidWithRes(CV, out gid, out bid))
 					return;
-                double min_ratio = double.MaxValue;
-				for(i = 0; i < 3; i++)
-                {
-                    double ratio = CV.Resource[i].CurrAmount / Travian.resrate[i];
-                    if (ratio < min_ratio)
-                    {
-                        gid = i + 1;
-                        min_ratio = ratio;
-                    }
-                }
-
-                // Crop
-                if (CV.Resource[3].Produce <= 2 ||
-                    CV.Resource[3].CurrAmount * extrarate / Travian.resrate[3] < min_ratio)
-                {
-                    gid = 4;
-                }
-
-                int min_level = Int32.MaxValue;
-                for (i = 1; i <= 18; i++)
-                {
-                	if (!CV.Buildings.ContainsKey(i))
-                		continue;
-                    if (CV.Buildings[i].Gid == gid)
-                    {
-                        if (CV.Buildings[i].Level < min_level)
-                        {
-                            bid = i;
-                            min_level = CV.Buildings[i].Level;
-                        }
-                    }
-                }
 			}
 			else
 			{
-				//	按资源田等级
-				int i;
-				int minlevel = 10;
-				int[] buildpriority = new int[5];
-				
-				//	找到所有资源田的最低等级，如果粮食和其他资源同级的话，会认为粮食比其他资源高1级
-				for(i = 1; i <= 18; i++)
-				{
-					if(!CV.Buildings.ContainsKey(i))
-						continue;
-					var tlevel = CV.Buildings[i].Gid != 4 ? CV.Buildings[i].Level : CV.Buildings[i].Level + 1;
-					if(tlevel < minlevel)
-						minlevel = tlevel;
-				}
-				
-				//	找到等级最低资源田的种类和坑号
-				int min = 1;
-				for(i = 1; i <= 18; i++)
-				{
-					if(!CV.Buildings.ContainsKey(i))
-						continue;
-					var tlevel = CV.Buildings[i].Gid != 4 ? CV.Buildings[i].Level : CV.Buildings[i].Level + 1;
-					if(tlevel == minlevel && buildpriority[CV.Buildings[i].Gid] == 0)
-					{
-						min = CV.Buildings[i].Gid - 1;
-						buildpriority[CV.Buildings[i].Gid] = i;
-					}
-				}
-				
-				//	如果有多种资源田同级，则按资源的评估比率确定升级的资源田
-				for(i = 0; i < 4; i++)
-					if(CV.Resource[min].CurrAmount / Travian.resrate[min] > 
-					   CV.Resource[i].CurrAmount / Travian.resrate[i] 
-					   && buildpriority[i + 1] != 0)
-						min = i;
-				gid = min + 1;
-				bid = buildpriority[gid];
+				if (!FetchAvailGidAndBidWithlvl(CV, out gid, out bid))
+					return;
+			}
+			
+			int[] costs = Buildings.Cost(gid, CV.Buildings[bid].Level + 1).Resources;
+			int inside_gid, insid_bid;
+			if (FetchAvailInsideBuilding(CV, costs, out inside_gid, out insid_bid))
+			{
+				gid = inside_gid;
+				bid = insid_bid;
+			}
+			
+			UpCall.DebugLog("AIQueue准备建造 " + DisplayLang.Instance.GetGidLang(gid) 
+			                + " @" + bid, DebugLevel.II);
+			var BQ = new BuildingQueue()
+			{
+				Bid = bid,
+				Gid = gid,
+				UpCall = UpCall,
+				VillageID = VillageID
+			};
+			Gid = gid;
 
-				//	如果最低等级为10级，则查找等级低于10级的粮食
-				if(minlevel == 10)
+			int cd = BQ.CountDown;
+			if(cd <= 0)
+			{
+				UpCall.DebugLog("AIQueue建筑队列启动！", DebugLevel.II);
+				BQ.Action();
+			}
+			else
+			{
+				int delay = Math.Min(15 * 60, cd);
+				UpCall.DebugLog("AIQueue建筑队列未能启动，建造该单位尚需等待" + cd 
+				                + "秒；将于" + delay + "秒后再检查一次。"
+				                , DebugLevel.II);
+				this.NextExec = DateTime.Now.AddSeconds(delay);
+				//	为了防止资源未刷新而引起的问题
+				UpCall.PageQuery(VillageID, "dorf1.php");
+			}
+		}
+		
+		private bool FetchAvailGidAndBidWithRes(TVillage CV, out int gid, out int bid)
+		{
+			bid = -1;
+			gid = 0;
+			
+			//	计算仓库容量和粮仓容量的比值
+			double extrarate = (double)CV.Resource[0].Capacity / CV.Resource[3].Capacity;
+			
+			//	按资源总量
+			int i;
+			if(CV.isBuildingInitialized != 2)
+				return false;
+            double min_ratio = double.MaxValue;
+			for(i = 0; i < 3; i++)
+            {
+                double ratio = CV.Resource[i].CurrAmount / Travian.resrate[i];
+                if (ratio < min_ratio)
+                {
+                    gid = i + 1;
+                    min_ratio = ratio;
+                }
+            }
+
+            // Crop
+            if (CV.Resource[3].Produce <= 2 ||
+                CV.Resource[3].CurrAmount * extrarate / Travian.resrate[3] < min_ratio)
+            {
+                gid = 4;
+            }
+
+            int min_level = Int32.MaxValue;
+            for (i = 1; i <= 18; i++)
+            {
+            	if (!CV.Buildings.ContainsKey(i))
+            		continue;
+                if (CV.Buildings[i].Gid == gid)
+                {
+                    if (CV.Buildings[i].Level < min_level)
+                    {
+                        bid = i;
+                        min_level = CV.Buildings[i].Level;
+                    }
+                }
+            }
+            
+            return true;
+		}
+		
+		private bool FetchAvailGidAndBidWithlvl(TVillage CV, out int gid, out int bid)
+		{
+			bid = -1;
+			gid = 0;
+			
+			//	按资源田等级
+			int i;
+			int minlevel = 10;
+			int[] buildpriority = new int[5];
+			bool bIsCroopsAbove5 = false;
+			
+			//	以粮食的最低等级划分判定区域，避免初期粮食过少
+			for(i = 1; i <= 18; i++)
+			{
+				if(!CV.Buildings.ContainsKey(i) || CV.Buildings[i].Gid != 4)
+					continue;
+				var tlevel = CV.Buildings[i].Level;
+				if(tlevel < minlevel)
+					minlevel = tlevel;
+			}
+			
+			if (minlevel >= 5)
+				bIsCroopsAbove5 = true;
+			
+			minlevel = 10;
+			
+			//	找到所有资源田的最低等级
+			for(i = 1; i <= 18; i++)
+			{
+				if(!CV.Buildings.ContainsKey(i))
+					continue;
+				
+				var tlevel = 0;
+				if (bIsCroopsAbove5)
+					tlevel = CV.Buildings[i].Gid != 4 ? CV.Buildings[i].Level : CV.Buildings[i].Level + 1;
+				else
+					tlevel = CV.Buildings[i].Level;
+				if(tlevel < minlevel)
+					minlevel = tlevel;
+			}
+			
+			//	找到等级最低资源田的种类和坑号
+			int min = 1;
+			for(i = 1; i <= 18; i++)
+			{
+				if(!CV.Buildings.ContainsKey(i))
+					continue;
+
+				var tlevel = 0;
+				if (bIsCroopsAbove5)
+					tlevel = CV.Buildings[i].Gid != 4 ? CV.Buildings[i].Level : CV.Buildings[i].Level + 1;
+				else
+					tlevel = CV.Buildings[i].Level;
+				if(tlevel == minlevel && buildpriority[CV.Buildings[i].Gid] == 0)
 				{
-                    bool croop = false;
-                    for (i = 1; i <= 18; i++)
-                    {
-                        if (!CV.Buildings.ContainsKey(i))
-                            continue;
-                        var tlevel = CV.Buildings[i].Level;
-                        if (tlevel < 10)
-                        {
-                            gid = CV.Buildings[i].Gid;
-                            bid = i;
-                            croop = true;
-                            break;
-                        }
-                    }
-                    
-                    //	如果所有资源田都满级了，那么删除掉该任务
-                    if (croop == false && CV.Queue.Contains(this))
-                    {
-                        MarkDeleted = true;
-                        UpCall.TD.Dirty = true;
-                        UpCall.CallStatusUpdate(this, new Travian.StatusChanged() 
-                                                { 
-                                                	ChangedData = Travian.ChangedType.Queue, 
-                                                	VillageID = VillageID 
-                                                });
-                        return;
-                    }
+					min = CV.Buildings[i].Gid - 1;
+					buildpriority[CV.Buildings[i].Gid] = i;
 				}
 			}
 			
+			//	如果有多种资源田同级，则按资源的评估比率确定升级的资源田
+			for(i = 0; i < 4; i++)
+				if(CV.Resource[min].CurrAmount / Travian.resrate[min] > 
+				   CV.Resource[i].CurrAmount / Travian.resrate[i] 
+				   && buildpriority[i + 1] != 0)
+					min = i;
+			gid = min + 1;
+			bid = buildpriority[gid];
+
+			//	如果最低等级为10级，则查找等级低于10级的粮食
+			if(minlevel == 10)
+			{
+                bool croop = false;
+                for (i = 1; i <= 18; i++)
+                {
+                    if (!CV.Buildings.ContainsKey(i))
+                        continue;
+                    var tlevel = CV.Buildings[i].Level;
+                    if (tlevel < 10)
+                    {
+                        gid = CV.Buildings[i].Gid;
+                        bid = i;
+                        croop = true;
+                        break;
+                    }
+                }
+                
+                //	如果所有资源田都满级了，那么删除掉该任务
+                if (croop == false && CV.Queue.Contains(this))
+                {
+                    MarkDeleted = true;
+                    UpCall.TD.Dirty = true;
+                    UpCall.CallStatusUpdate(this, new Travian.StatusChanged() 
+                                            { 
+                                            	ChangedData = Travian.ChangedType.Queue, 
+                                            	VillageID = VillageID 
+                                            });
+                    return false;
+                }
+			}
+			
+			return true;
+		}
+		
+		private bool FetchAvailInsideBuilding(TVillage CV, int[] costs, out int gid, out int bid)
+		{
+			bid = -1;
+			gid = 0;
 			//	根据当前村庄的数量平衡建造资源田所需的资源和仓库容量
 			//	村数	仓库容量 / 需要资源的最高项		粮仓容量 / 需要粮食量	仓库容量 / 中心大楼等级
 			//	1 ~ 5		2							3						3000（中心大楼9到10级，需要仓库先到27000）
@@ -194,10 +297,10 @@ namespace libTravian
 
 			//	检查仓库和粮仓
 			int tgid, tbid;
-
-			//	罗马双建
+			//	罗马双建：
+			//	在内城建筑为空的情况下，优先建造内城建筑，
+			//	那么在下轮再Tick的时候，将会跳过下面这块而开始造外城资源田
 			TInBuilding[] Cinb = CV.InBuilding;
-            int[] costs = Buildings.Cost(gid, CV.Buildings[bid].Level + 1).Resources;
 			if(Cinb[1] == null || Convert.ToInt32(Cinb[1].FinishTime.Subtract(DateTime.Now).TotalSeconds) <= 0)
 			{
 				//	找到建造当前建筑需要最多的资源
@@ -219,6 +322,7 @@ namespace libTravian
 					{
 						gid = tgid;
 						bid = tbid;
+						return true;
 					}
 				}
 				//	如果粮仓的总容量低于粮食需求的rate2[1]倍，则需要升级粮仓
@@ -230,6 +334,7 @@ namespace libTravian
 					{
 						gid = tgid;
 						bid = tbid;
+						return true;
 					}
 				}
 				//	如果中心大楼等级的rate2[2]倍低于仓库容量，则需要升级中心大楼
@@ -242,19 +347,12 @@ namespace libTravian
 					{
 						gid = tgid;
 						bid = tbid;
+						return true;
 					}
 				}
 			}
-			var BQ = new BuildingQueue()
-			{
-				Bid = bid,
-				Gid = gid,
-				UpCall = UpCall,
-				VillageID = VillageID
-			};
-			Gid = gid;
-			if(BQ.CountDown <= 0)
-				BQ.Action();
+			
+			return false;
 		}
 
 		#endregion

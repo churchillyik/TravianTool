@@ -239,6 +239,7 @@ namespace libTravian
 			}
 			catch(Exception e)
 			{
+				DebugLog("扑捉到异常：" + e.ToString(), DebugLevel.F);
 				DebugLog(e);
 			}
 			DebugLog("无法抓取网页：" + _LastQueryPageURI, DebugLevel.II);
