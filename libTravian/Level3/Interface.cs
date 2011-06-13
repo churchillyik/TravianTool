@@ -131,5 +131,12 @@ namespace libTravian
 				
 			}
 		}
+		
+		public void FindRaidTargets(int VillageID, int Range, int Population)
+		{
+			Thread t = new Thread(new ParameterizedThreadStart(doFindRaidTargets));
+			t.Name = "FindRaidTargets";
+			t.Start(new SearchingRaidTargetOption() {VillageID = VillageID, Range = Range, Population = Population});
+		}
 	}
 }

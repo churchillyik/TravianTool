@@ -91,14 +91,14 @@ namespace Stran
 			this.nudMaxSlots = new System.Windows.Forms.NumericUpDown();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.tbDesc = new System.Windows.Forms.TextBox();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.textBoxSearchingLog = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.NUD_Range = new System.Windows.Forms.NumericUpDown();
 			this.groupBox_Searching = new System.Windows.Forms.GroupBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.NUDPopulation = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.grpTroops.SuspendLayout();
 			this.grpRaidType.SuspendLayout();
@@ -110,7 +110,7 @@ namespace Stran
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.NUD_Range)).BeginInit();
 			this.groupBox_Searching.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.NUDPopulation)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnOk
@@ -800,15 +800,15 @@ namespace Stran
 			this.tbDesc.Size = new System.Drawing.Size(129, 22);
 			this.tbDesc.TabIndex = 0;
 			// 
-			// textBox1
+			// textBoxSearchingLog
 			// 
-			this.textBox1.Location = new System.Drawing.Point(15, 21);
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(207, 144);
-			this.textBox1.TabIndex = 74;
+			this.textBoxSearchingLog.Location = new System.Drawing.Point(15, 21);
+			this.textBoxSearchingLog.Multiline = true;
+			this.textBoxSearchingLog.Name = "textBoxSearchingLog";
+			this.textBoxSearchingLog.ReadOnly = true;
+			this.textBoxSearchingLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBoxSearchingLog.Size = new System.Drawing.Size(207, 144);
+			this.textBoxSearchingLog.TabIndex = 74;
 			// 
 			// label1
 			// 
@@ -837,9 +837,9 @@ namespace Stran
 			this.groupBox_Searching.Controls.Add(this.button2);
 			this.groupBox_Searching.Controls.Add(this.button1);
 			this.groupBox_Searching.Controls.Add(this.listBox1);
-			this.groupBox_Searching.Controls.Add(this.numericUpDown1);
+			this.groupBox_Searching.Controls.Add(this.NUDPopulation);
 			this.groupBox_Searching.Controls.Add(this.NUD_Range);
-			this.groupBox_Searching.Controls.Add(this.textBox1);
+			this.groupBox_Searching.Controls.Add(this.textBoxSearchingLog);
 			this.groupBox_Searching.Controls.Add(this.label2);
 			this.groupBox_Searching.Controls.Add(this.label1);
 			this.groupBox_Searching.Location = new System.Drawing.Point(155, 376);
@@ -859,6 +859,7 @@ namespace Stran
 			this.button2.Tag = "BTNAddToRaid";
 			this.button2.Text = "加入抢劫";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.Button2Click);
 			// 
 			// button1
 			// 
@@ -869,6 +870,7 @@ namespace Stran
 			this.button1.Tag = "BTNSearching";
 			this.button1.Text = "搜索";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
 			// listBox1
 			// 
@@ -879,13 +881,13 @@ namespace Stran
 			this.listBox1.Size = new System.Drawing.Size(191, 144);
 			this.listBox1.TabIndex = 77;
 			// 
-			// numericUpDown1
+			// NUDPopulation
 			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(289, 65);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(59, 22);
-			this.numericUpDown1.TabIndex = 76;
-			this.numericUpDown1.Value = new decimal(new int[] {
+			this.NUDPopulation.Location = new System.Drawing.Point(289, 65);
+			this.NUDPopulation.Name = "NUDPopulation";
+			this.NUDPopulation.Size = new System.Drawing.Size(59, 22);
+			this.NUDPopulation.TabIndex = 76;
+			this.NUDPopulation.Value = new decimal(new int[] {
 									50,
 									0,
 									0,
@@ -941,18 +943,18 @@ namespace Stran
 			((System.ComponentModel.ISupportInitialize)(this.NUD_Range)).EndInit();
 			this.groupBox_Searching.ResumeLayout(false);
 			this.groupBox_Searching.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.NUDPopulation)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.NumericUpDown NUDPopulation;
+		private System.Windows.Forms.TextBox textBoxSearchingLog;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.GroupBox groupBox_Searching;
 		private System.Windows.Forms.NumericUpDown NUD_Range;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
 
 		#endregion
 

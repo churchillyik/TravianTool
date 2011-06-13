@@ -99,6 +99,9 @@ namespace Stran
             }
 
             ResumeLayout();
+            
+            this.Village.UpCall.OnRaidTargetFoundLog += 
+            	new EventHandler<RaidTargetFoundLogArgs>(tr_OnRaidTargetFoundLog);
         }
 
         private void CreateControlArrays()
@@ -317,5 +320,44 @@ namespace Stran
             }
         }
         #endregion
+		
+        private bool bIsInSearching = false;
+		void Button1Click(object sender, EventArgs e)
+		{
+			bIsInSearching = true;
+			int Range, Population;
+			try 
+			{
+				Range = Convert.ToInt32(this.NUD_Range.Value);
+				Population = Convert.ToInt32(this.NUDPopulation.Value); 
+			}
+            catch
+            {
+            	return;
+            }
+			this.Village.UpCall.FindRaidTargets(this.Village.ID, Range, Population);
+		}
+		
+		void Button2Click(object sender, EventArgs e)
+		{
+			
+		}
+		
+		private delegate void RaidTargetLogEvent_d(string e);
+		void tr_OnRaidTargetFoundLog(object sender, RaidTargetFoundLogArgs e)
+        {
+            try
+            {
+                Invoke(new RaidTargetLogEvent_d(DisplayRaidTargetFoundLog), 
+            	       new object[] { e.arg_log });
+            }
+            catch (Exception)
+            { }
+        }
+		
+		void DisplayRaidTargetFoundLog(string log)
+		{
+			textBoxSearchingLog.AppendText(log + "\r\n");
+		}
     }
 }

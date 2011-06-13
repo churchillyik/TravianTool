@@ -27,6 +27,18 @@ namespace libTravian
 	{
 		public string arg_log { get; set; }
 	}
+	
+	public class SearchingRaidTargetOption
+	{
+		public int VillageID { get; set; }
+		public int Range { get; set; }
+		public int Population { get; set; }
+	}
+	
+	public class RaidTargetFoundLogArgs : EventArgs
+	{
+		public string arg_log { get; set; }
+	}
 
 	partial class Travian
 	{
@@ -208,6 +220,32 @@ namespace libTravian
         	
         	return Math.Min(bigcnt, 3) * 50 + Math.Min(smallcnt, 3 - Math.Min(bigcnt, 3)) * 25;
         	
+        }
+        
+        //	搜索抢劫目标功能
+        
+        public event EventHandler<RaidTargetFoundLogArgs> OnRaidTargetFoundLog;
+        private void RaidTargetFoundLog(string log)
+		{
+			if (this.OnRaidTargetFoundLog != null)
+			{
+				OnRaidTargetFoundLog(this, new RaidTargetFoundLogArgs {arg_log = log});
+			}
+		}
+        
+        private void doFindRaidTargets(object o)
+        {
+        	lock (Level2Lock)
+        	{
+	        	SearchingRaidTargetOption search_option = o as SearchingRaidTargetOption;
+	        	int VillageID = search_option.VillageID;
+	        	int Range = search_option.Range;
+	        	int Population = search_option.Population;
+                
+	        	RaidTargetFoundLog("开始查找" + TD.Villages[VillageID].Name 
+	        	                   + "周围范围为" + Range + "的绿洲和人口低于"
+	        	                   + Population + "的死羊。");
+        	}
         }
 	}
 }
