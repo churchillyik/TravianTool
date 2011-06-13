@@ -91,6 +91,15 @@ namespace Stran
 			this.nudMaxSlots = new System.Windows.Forms.NumericUpDown();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.tbDesc = new System.Windows.Forms.TextBox();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.NUD_Range = new System.Windows.Forms.NumericUpDown();
+			this.groupBox_Searching = new System.Windows.Forms.GroupBox();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.label2 = new System.Windows.Forms.Label();
 			this.grpTroops.SuspendLayout();
 			this.grpRaidType.SuspendLayout();
 			this.grpTargets.SuspendLayout();
@@ -99,14 +108,17 @@ namespace Stran
 			this.grpSchedule.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudMaxSlots)).BeginInit();
 			this.groupBox1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.NUD_Range)).BeginInit();
+			this.groupBox_Searching.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnOk
 			// 
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOk.Location = new System.Drawing.Point(12, 384);
+			this.btnOk.Location = new System.Drawing.Point(17, 417);
 			this.btnOk.Name = "btnOk";
-			this.btnOk.Size = new System.Drawing.Size(80, 30);
+			this.btnOk.Size = new System.Drawing.Size(113, 44);
 			this.btnOk.TabIndex = 20;
 			this.btnOk.Tag = "ok";
 			this.btnOk.Text = "ok";
@@ -116,9 +128,9 @@ namespace Stran
 			// btnCancel
 			// 
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(98, 384);
+			this.btnCancel.Location = new System.Drawing.Point(17, 475);
 			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(80, 30);
+			this.btnCancel.Size = new System.Drawing.Size(113, 42);
 			this.btnCancel.TabIndex = 21;
 			this.btnCancel.Tag = "cancel";
 			this.btnCancel.Text = "cancel";
@@ -574,9 +586,8 @@ namespace Stran
 			this.lstTargets.FormattingEnabled = true;
 			this.lstTargets.ItemHeight = 14;
 			this.lstTargets.Location = new System.Drawing.Point(186, 24);
-			this.lstTargets.MultiColumn = true;
 			this.lstTargets.Name = "lstTargets";
-			this.lstTargets.Size = new System.Drawing.Size(112, 172);
+			this.lstTargets.Size = new System.Drawing.Size(120, 186);
 			this.lstTargets.TabIndex = 66;
 			// 
 			// btnAdd
@@ -789,13 +800,115 @@ namespace Stran
 			this.tbDesc.Size = new System.Drawing.Size(129, 22);
 			this.tbDesc.TabIndex = 0;
 			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(15, 21);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
+			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox1.Size = new System.Drawing.Size(207, 144);
+			this.textBox1.TabIndex = 74;
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(228, 25);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(59, 21);
+			this.label1.TabIndex = 75;
+			this.label1.Tag = "LBLSearchingRange";
+			this.label1.Text = "搜索重数";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// NUD_Range
+			// 
+			this.NUD_Range.Location = new System.Drawing.Point(289, 25);
+			this.NUD_Range.Name = "NUD_Range";
+			this.NUD_Range.Size = new System.Drawing.Size(59, 22);
+			this.NUD_Range.TabIndex = 76;
+			this.NUD_Range.Value = new decimal(new int[] {
+									3,
+									0,
+									0,
+									0});
+			// 
+			// groupBox_Searching
+			// 
+			this.groupBox_Searching.Controls.Add(this.button2);
+			this.groupBox_Searching.Controls.Add(this.button1);
+			this.groupBox_Searching.Controls.Add(this.listBox1);
+			this.groupBox_Searching.Controls.Add(this.numericUpDown1);
+			this.groupBox_Searching.Controls.Add(this.NUD_Range);
+			this.groupBox_Searching.Controls.Add(this.textBox1);
+			this.groupBox_Searching.Controls.Add(this.label2);
+			this.groupBox_Searching.Controls.Add(this.label1);
+			this.groupBox_Searching.Location = new System.Drawing.Point(155, 376);
+			this.groupBox_Searching.Name = "groupBox_Searching";
+			this.groupBox_Searching.Size = new System.Drawing.Size(557, 175);
+			this.groupBox_Searching.TabIndex = 77;
+			this.groupBox_Searching.TabStop = false;
+			this.groupBox_Searching.Tag = "GrpSearching";
+			this.groupBox_Searching.Text = "搜索";
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(273, 136);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 26);
+			this.button2.TabIndex = 78;
+			this.button2.Tag = "BTNAddToRaid";
+			this.button2.Text = "加入抢劫";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(273, 99);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 25);
+			this.button1.TabIndex = 78;
+			this.button1.Tag = "BTNSearching";
+			this.button1.Text = "搜索";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// listBox1
+			// 
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.ItemHeight = 14;
+			this.listBox1.Location = new System.Drawing.Point(354, 21);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(191, 144);
+			this.listBox1.TabIndex = 77;
+			// 
+			// numericUpDown1
+			// 
+			this.numericUpDown1.Location = new System.Drawing.Point(289, 65);
+			this.numericUpDown1.Name = "numericUpDown1";
+			this.numericUpDown1.Size = new System.Drawing.Size(59, 22);
+			this.numericUpDown1.TabIndex = 76;
+			this.numericUpDown1.Value = new decimal(new int[] {
+									50,
+									0,
+									0,
+									0});
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(228, 60);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(59, 32);
+			this.label2.TabIndex = 75;
+			this.label2.Tag = "LBLPopulation";
+			this.label2.Text = "死羊人口上限";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// RaidOptForm
 			// 
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(730, 428);
+			this.ClientSize = new System.Drawing.Size(730, 563);
+			this.Controls.Add(this.groupBox_Searching);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.grpSchedule);
 			this.Controls.Add(this.grpSpyOptions);
@@ -825,8 +938,21 @@ namespace Stran
 			((System.ComponentModel.ISupportInitialize)(this.nudMaxSlots)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.NUD_Range)).EndInit();
+			this.groupBox_Searching.ResumeLayout(false);
+			this.groupBox_Searching.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.GroupBox groupBox_Searching;
+		private System.Windows.Forms.NumericUpDown NUD_Range;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox textBox1;
 
 		#endregion
 

@@ -270,5 +270,10 @@ GrpTargets=攻击目标
 BTNSort=排序
 BTNCopy=复制
 BTNPaste=粘贴
+GrpSearching=搜索
+LBLSearchingRange=搜索重数
+LBLPopulation=死羊人口上限
+BTNSearching=搜索
+BTNAddToRaid=加入抢劫
 //攻击配置
 SendTroopsAttack=攻击

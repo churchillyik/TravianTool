@@ -184,7 +184,7 @@ namespace Stran
 			this.numericUpDown2.Size = new System.Drawing.Size(105, 22);
 			this.numericUpDown2.TabIndex = 12;
 			this.numericUpDown2.Value = new decimal(new int[] {
-									20,
+									5,
 									0,
 									0,
 									0});

@@ -273,5 +273,10 @@ GrpTargets=Targets
 BTNSort=Sort
 BTNCopy=Copy
 BTNPaste=Paste
+GrpSearching=Search
+LBLSearchingRange=Searching Range
+LBLPopulation=Population
+BTNSearching=Search
+BTNAddToRaid=Add To Raid
 //攻擊配置
 SendTroopsAttack=Attack

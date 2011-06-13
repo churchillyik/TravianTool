@@ -84,7 +84,7 @@ namespace libTravian
 				string result = this.pageQuerier.PageQuery(0, "dorf1.php?ok", PostData, false, true);
 
 				//if (result.Contains("login"))
-				if (result || result.Contains("<span class=\"error\">"))
+				if (result == null || result.Contains("<span class=\"error\">"))
 				{
 					DebugLog("Username or Password error!", DebugLevel.F);
 					//MessageBox.Show("Login failed.");

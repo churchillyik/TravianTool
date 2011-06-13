@@ -76,6 +76,9 @@ namespace libTravian
 
 			this.NextExec = DateTime.Now.AddSeconds(50);
 
+			if(CV.isBuildingInitialized != 2)
+				return;
+						
 			int gid, bid;
 			
 			if(AIType == TAIType.Resource)
@@ -136,8 +139,6 @@ namespace libTravian
 			
 			//	按资源总量
 			int i;
-			if(CV.isBuildingInitialized != 2)
-				return false;
             double min_ratio = double.MaxValue;
 			for(i = 0; i < 3; i++)
             {
@@ -261,8 +262,25 @@ namespace libTravian
                     }
                 }
                 
+               	int finish_cnt = 0;
+               	for (i = 19; i <= 40; i++)
+               	{
+               		if (!CV.Buildings.ContainsKey(i))
+                        continue;
+               		
+               		for (int j = 0; j < Goal.Length; j++)
+               		{
+               			if (CV.Buildings[i].Gid == Goal[j].gid 
+               			    && CV.Buildings[i].Level == Goal[j].limit_lvl)
+               			{
+               				finish_cnt++;
+               				break;
+               			}
+               		}
+               	}
+                
                 //	如果所有资源田都满级了，那么删除掉该任务
-                if (croop == false && CV.Queue.Contains(this))
+                if (croop == false && finish_cnt == Goal.Length && CV.Queue.Contains(this))
                 {
                     MarkDeleted = true;
                     UpCall.TD.Dirty = true;
@@ -342,13 +360,99 @@ namespace libTravian
 				{
 					tgid = 15;
 					tbid = findDorf2Building(CV.Buildings, tgid);
-					if(tbid != -1 && CV.Buildings[tbid].Level < 10 
-					   && CV.Buildings[tbid].Level * rate2[2] < CV.Resource[0].Capacity)
+					if(tbid != -1 && (!CV.Buildings.ContainsKey(tbid) ||
+					   CV.Buildings.ContainsKey(tbid) && CV.Buildings[tbid].Level < 10
+					   && CV.Buildings[tbid].Level * rate2[2] < CV.Resource[0].Capacity))
 					{
 						gid = tgid;
 						bid = tbid;
 						return true;
 					}
+				}
+				
+				if (FetchAdditionalConstruction(CV, out gid, out bid))
+					return true;
+			}
+			
+			return false;
+		}
+		
+		private class ConstructGoal
+		{
+			public bool bPossible;
+			public int req_gid;
+			public int req_lvl;
+			public int gid;
+			public int limit_lvl;
+			public ConstructGoal(bool bPossible, int req_gid, int req_lvl, int gid, int limit_lvl)
+			{
+				this.bPossible = bPossible;
+				this.req_gid = req_gid;
+				this.req_lvl = req_lvl;
+				this.gid = gid;
+				this.limit_lvl = limit_lvl;
+			}
+		};
+		
+		//					0		1		2		3		4		5		6
+		//	建造优先级：木柴厂 > 砖块厂 > 铸造厂 > 行宫 > 市场 > 磨坊 > 面包房
+		private static ConstructGoal[] Goal = new ConstructGoal[7]
+		{
+			//	木柴厂需要10级伐木场，造到5级
+			new ConstructGoal(false, 1, 10, 5, 5),
+			//	砖块厂需要10级粘土矿，造到5级
+			new ConstructGoal(false, 2, 10, 6, 5),
+			//	铸造厂需要10级铁矿，造到5级
+			new ConstructGoal(false, 3, 10, 7, 5),
+			//	行宫在铸造厂5级以后开始建造，造到10级
+			new ConstructGoal(false, 7, 5, 25, 10),
+			//	市场在行宫10级以后开始建造，造到10级
+			new ConstructGoal(false, 25, 10, 17, 10),
+			//	磨坊在市场10级以后开始建造，造到5级
+			new ConstructGoal(false, 17, 10, 8, 5),
+			//	面包房在磨坊5级以后开始建造，造到5级
+			new ConstructGoal(false, 8, 5, 9, 5)
+		};
+		
+		private bool FetchAdditionalConstruction(TVillage CV, out int gid, out int bid)
+		{
+			bid = -1;
+			gid = 0;
+			
+			int tgid, tbid;
+			
+			for (int i = 0; i < Goal.Length; i++)
+			{
+				Goal[i].bPossible = false;
+			}
+			
+			for (int i = 1; i <= 40; i++)
+			{
+				if(!CV.Buildings.ContainsKey(i))
+					continue;
+				
+				for (int j = 0; j < Goal.Length; j++)
+				{
+					if (CV.Buildings[i].Gid == Goal[j].req_gid 
+					    && CV.Buildings[i].Level == Goal[j].req_lvl)
+					{
+						Goal[j].bPossible = true;
+					}
+				}
+			}
+			
+			for (int i = 0; i < Goal.Length; i++)
+			{
+				if (!Goal[i].bPossible)
+					continue;
+				tgid = Goal[i].gid;
+				tbid = findDorf2Building(CV.Buildings, tgid);
+				if (tbid != -1 && (!CV.Buildings.ContainsKey(tbid) ||
+				                  CV.Buildings.ContainsKey(tbid) && CV.Buildings[tbid].Level < Goal[i].limit_lvl))
+				{
+					gid = tgid;
+					bid = tbid;
+					return true;
 				}
 			}
 			

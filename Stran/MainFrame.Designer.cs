@@ -473,7 +473,7 @@
 			// 
 			this.CMBAttack.Name = "CMBAttack";
 			this.CMBAttack.Size = new System.Drawing.Size(189, 22);
-			this.CMBAttack.Tag = "CMBRaid";
+			this.CMBAttack.Tag = "CMBAttack";
 			this.CMBAttack.Text = "出兵";
 			this.CMBAttack.Click += new System.EventHandler(this.CMBAttackClick);
 			// 
@@ -971,7 +971,7 @@
 									this.CMTRefresh});
 			this.contextMenuTroop.Name = "contextMenuTroop";
 			this.contextMenuTroop.ShowImageMargin = false;
-			this.contextMenuTroop.Size = new System.Drawing.Size(130, 120);
+			this.contextMenuTroop.Size = new System.Drawing.Size(130, 98);
 			this.contextMenuTroop.Tag = "mtroop";
 			// 
 			// CMTRaid
