@@ -102,6 +102,9 @@ namespace Stran
             
             this.Village.UpCall.OnRaidTargetFoundLog += 
             	new EventHandler<RaidTargetFoundLogArgs>(tr_OnRaidTargetFoundLog);
+            
+            this.Village.UpCall.OnRaidTargetListUpdate +=
+            	new EventHandler<RaidTargetListArgs>(tr_OnRaidTargetListUpdate);
         }
 
         private void CreateControlArrays()
@@ -340,10 +343,14 @@ namespace Stran
 		
 		void Button2Click(object sender, EventArgs e)
 		{
+			if (this.listBox1.SelectedIndex < 0)
+				return;
 			
+			RaidTargetInfo info = (RaidTargetInfo)listBox1.Items[listBox1.SelectedIndex];
+			this.lstTargets.Items.Add(info.loc_pt);
 		}
 		
-		private delegate void RaidTargetLogEvent_d(string e);
+		private delegate void RaidTargetLogEvent_d(string log);
 		void tr_OnRaidTargetFoundLog(object sender, RaidTargetFoundLogArgs e)
         {
             try
@@ -358,6 +365,27 @@ namespace Stran
 		void DisplayRaidTargetFoundLog(string log)
 		{
 			textBoxSearchingLog.AppendText(log + "\r\n");
+		}
+		
+		private delegate void RaidTargetListUpdateEvent_d(List<RaidTargetInfo> info_lst);
+		void tr_OnRaidTargetListUpdate(object sender, RaidTargetListArgs e)
+		{
+			try
+            {
+                Invoke(new RaidTargetListUpdateEvent_d(DisplayRaidTargetList), 
+            	       new object[] { e.info_lst });
+            }
+            catch (Exception)
+            { }
+		}
+		
+		void DisplayRaidTargetList(List<RaidTargetInfo> info_lst)
+		{
+			this.listBox1.Items.Clear();
+			foreach (RaidTargetInfo info in info_lst)
+			{
+				this.listBox1.Items.Add(info);
+			}
 		}
     }
 }

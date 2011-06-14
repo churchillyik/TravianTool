@@ -109,16 +109,10 @@ namespace libTravian
 					         + resume_time.Hour + ":" 
 					         + resume_time.Minute + ":"
 					         + resume_time.Second + "...", DebugLevel.II);
-					while (true)
-					{
-						if (DateTime.Now >= resume_time)
-						{
-							TD.CurGetOrPostTimes = 1;
-							DebugLog("恢复工作，访问" + Uri + "(" + VillageID.ToString() + ")"
-							         , DebugLevel.II);
-							break;
-						}
-					}
+					Thread.Sleep(rand_delay * 1000);
+					TD.CurGetOrPostTimes = 1;
+					DebugLog("恢复工作，访问" + Uri + "(" + VillageID.ToString() + ")"
+					         , DebugLevel.II);
 				}
 			}
 			TD.LastGetOrPost = DateTime.Now;

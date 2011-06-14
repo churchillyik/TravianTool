@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Globalization;
 
 namespace libTravian
 {
@@ -39,7 +40,26 @@ namespace libTravian
 	{
 		public string arg_log { get; set; }
 	}
-
+	
+	public class RaidTargetInfo
+    {
+    	public TPoint loc_pt;
+    	public int type;
+    	public int population;
+    	
+    	public override string ToString()
+		{
+			return (loc_pt.X.ToString(CultureInfo.CurrentCulture) + "|" 
+    		        + loc_pt.Y.ToString(CultureInfo.CurrentCulture)
+    		        + (type == 1 ? "; 绿洲":"; 死羊; 人口：" + population));
+		}
+    }
+	
+	public class RaidTargetListArgs : EventArgs
+	{
+		public List<RaidTargetInfo> info_lst { get; set; }
+	}
+	
 	partial class Travian
 	{
 		//	搜田功能
@@ -71,7 +91,9 @@ namespace libTravian
                 
                 string data;
                 data = FetchBlockMap(VillageID, axis_x, axis_y);
-
+				OasisFoundLog("[" + 1 + " / " + 1 + "] 搜索以(" 
+                              + axis_x + "|" + axis_y + ")为中心的地图块");
+                
                 for (int i = 1; i <= total_times; i++)
                 {
                 	OasisFoundLog("正在进行第" + i + "重扫描：");
@@ -80,11 +102,15 @@ namespace libTravian
                 		if (i % 2 == 1)
                 		{
                 			axis_y = CalcAxisTran(axis_y, 9);
+                			OasisFoundLog("[" + (j + 1) + " / " + (2 * i) + "] 搜索以("
+                			              + axis_x + "|" + axis_y + ")为中心的地图块");
                 			data = FetchBlockMap(VillageID, axis_x, axis_y);
                 		}
                 		else
                 		{
                 			axis_y = CalcAxisTran(axis_y, -9);
+                			OasisFoundLog("[" + (j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			              + axis_x + "|" + axis_y + ")为中心的地图块");
                 			data = FetchBlockMap(VillageID, axis_x, axis_y);
                 		}
                 	}
@@ -94,22 +120,31 @@ namespace libTravian
                 		if (i % 2 == 1)
                 		{
                 			axis_x = CalcAxisTran(axis_x, 11);
+                			OasisFoundLog("[" + (i + j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			              + axis_x + "|" + axis_y + ")为中心的地图块");
                 			data = FetchBlockMap(VillageID, axis_x, axis_y);
                 		}
                 		else
                 		{
                 			axis_x = CalcAxisTran(axis_x, -11);
+                			OasisFoundLog("[" + (i + j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			              + axis_x + "|" + axis_y + ")为中心的地图块");
                 			data = FetchBlockMap(VillageID, axis_x, axis_y);
                 		}
                 	}
                 }
                 
-                OasisFoundLog("总共扫描到" + TD.Villages[VillageID].OasisInfo.Count + "个１５田。");
+                int max_cnt = TD.Villages[VillageID].OasisInfo.Count;
+                OasisFoundLog("总共扫描到" + max_cnt + "个１５田。");
                 TD.Villages[VillageID].isOasisFoundComplete = true;
                 
+                int cnt = 0;
                 foreach (var oas in TD.Villages[VillageID].OasisInfo)
                 {
+                	cnt ++;
                 	TOasisInfo oasis = oas as TOasisInfo;
+                	OasisFoundLog("[" + cnt + " / " + max_cnt + "] 搜索以(" 
+                	              + oasis.axis_x + "|" + oasis.axis_y + ")为中心的地图块");
                 	data = FetchBlockMap(VillageID, oasis.axis_x, oasis.axis_y);
                 	oasis.addon = GetOasisAddon(data, oasis.axis_x, oasis.axis_y);
                 }
@@ -125,8 +160,7 @@ namespace libTravian
         	PostData["data[x]"] = center_axis_x.ToString();
 			PostData["data[y]"] = center_axis_y.ToString();
 			PostData["data[zoomLevel]"] = "1";
-			
-			OasisFoundLog("搜索以(" + center_axis_x + "|" + center_axis_y + ")为中心的地图块");
+
 			return PageQuery(VillageID, "/ajax.php?cmd=mapPositionData", PostData);
         }
         
@@ -240,12 +274,155 @@ namespace libTravian
 	        	SearchingRaidTargetOption search_option = o as SearchingRaidTargetOption;
 	        	int VillageID = search_option.VillageID;
 	        	int Range = search_option.Range;
-	        	int Population = search_option.Population;
+	        	int popu_limit = search_option.Population;
                 
-	        	RaidTargetFoundLog("开始查找" + TD.Villages[VillageID].Name 
-	        	                   + "周围范围为" + Range + "的绿洲和人口低于"
-	        	                   + Population + "的死羊。");
+	        	int axis_x = TD.Villages[VillageID].Coord.X;
+	        	int axis_y = TD.Villages[VillageID].Coord.Y;
+	        	RaidTargetFoundLog("开始以村子【" + TD.Villages[VillageID].Name 
+	        	                   + "("  + axis_x + "|" + axis_y
+	        	                   + ")】为中心，在" + Range + "范围内查找绿洲和人口低于"
+	        	                   + popu_limit + "的死羊。");
+	        	
+	        	List<RaidTargetInfo> info_lst = new List<RaidTargetInfo>();
+	        	RaidTargetFoundLog("[" + 1 + " / " + 1 + "] 搜索以(" 
+	        	                   + axis_x + "|" + axis_y + ")为中心的地图块");
+	        	string data = FetchBlockMap(VillageID, axis_x, axis_y);
+				
+                for (int i = 1; i <= Range; i++)
+                {
+                	RaidTargetFoundLog("正在进行第" + i + "重扫描：");
+                	for (int j = 0; j < i; j++)
+                	{
+                		if (i % 2 == 1)
+                		{
+                			axis_y = CalcAxisTran(axis_y, 9);
+                			RaidTargetFoundLog("[" + (j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		else
+                		{
+                			axis_y = CalcAxisTran(axis_y, -9);
+                			RaidTargetFoundLog("[" + (j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		
+                		if (data != null)
+                		{
+                			ParseRaidTarget(VillageID, data, info_lst, popu_limit);
+                		}
+                	}
+                		
+                	for (int j = 0; j < i; j++)
+                	{
+                		if (i % 2 == 1)
+                		{
+                			axis_x = CalcAxisTran(axis_x, 11);
+                			RaidTargetFoundLog("[" + (i + j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		else
+                		{
+                			axis_x = CalcAxisTran(axis_x, -11);
+                			RaidTargetFoundLog("[" + (i + j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		
+                		if (data != null)
+                		{
+                			ParseRaidTarget(VillageID, data, info_lst, popu_limit);
+                		}
+                	}
+                }
+                
+                RaidTargetFoundLog("共搜索到" + info_lst.Count + "个目标。");
+                
+                CallRaidTargetsListUpdate(info_lst);
         	}
         }
+        
+        private bool NoAnimals(int VillageID, int axis_x, int axis_y)
+        {
+        	Dictionary<string, string> PostData = new Dictionary<string, string>(3);
+        	PostData["cmd"] = "viewTileDetails";
+        	PostData["x"] = axis_x.ToString();
+			PostData["y"] = axis_y.ToString();
+
+			string data = PageQuery(VillageID, "/ajax.php?cmd=viewTileDetails", PostData);
+			
+			if (data == null)
+				return false;
+			
+			Match m = Regex.Match(data, "unit u(\\d+)");
+			if (m.Success)
+				return false;
+			
+			return true;
+        }
+        
+        private void ParseRaidTarget(int VillageID, string data, List<RaidTargetInfo> info_lst, int popu_limit)
+        {
+        	Match m = Regex.Match(data, "\"error\":false,\"errorMsg\":null,\"data\":{\"tiles\":" +
+    	                      "\\[(.*?\\])}}");
+        	if (!m.Success)
+        		return;
+        	
+        	MatchCollection mc_cell;
+            mc_cell = Regex.Matches(m.Groups[1].Value, "{(.*?)}[,\\]]");
+        	
+            if(mc_cell.Count != 99)
+            {
+            	RaidTargetFoundLog("本次搜索只返回" + mc_cell.Count + "组数据。");
+            	return;
+            }
+            
+            int axis_x, axis_y;
+            string cell, resource_info, res_type;
+            MatchCollection mc_res;
+            foreach (Match pm_cell in mc_cell)
+        	{         	
+        		cell = pm_cell.Groups[1].Value;
+        		m = Regex.Match(cell, "\"x\":\"(\\-?\\d+)\",\"y\":\"(\\-?\\d+)\"," +
+        		                "\"d\":\\-?\\d+,\"c\":\"{([^}]*?)}\",\"t\":\"[^\\)]*?\\)<\\\\/span><\\\\/span>([^\"]*?)\"");
+        	
+        		if(!m.Success)
+        			continue;
+        		
+        		axis_x = Convert.ToInt32(m.Groups[1].Value);
+        		axis_y = Convert.ToInt32(m.Groups[2].Value);
+        		if (m.Groups[3].Value != "k.fo")
+        			continue;
+        		
+        		resource_info = m.Groups[4].Value;
+        		mc_res = Regex.Matches(resource_info, "<.*?>{[^}]*?}\\s{([^}]*?)}\\s(\\d+)%");
+        		
+        		if (mc_res.Count == 2 || mc_res.Count == 1 
+        		    && Convert.ToInt32(mc_res[0].Groups[2].Value) == 50)
+        		{
+        			if (!NoAnimals(VillageID, axis_x, axis_y))
+        				continue;
+        			
+        			RaidTargetInfo info = new RaidTargetInfo()
+        			{
+        				loc_pt = new TPoint(axis_x, axis_y),
+        				type = 1,
+        				population = 0,
+        			};
+        			info_lst.Add(info);
+        		}
+        	}
+        }
+        
+        public event EventHandler<RaidTargetListArgs> OnRaidTargetListUpdate;
+        private void CallRaidTargetsListUpdate(List<RaidTargetInfo> info_lst)
+		{
+			if (this.OnRaidTargetListUpdate != null)
+			{
+				OnRaidTargetListUpdate(this, new RaidTargetListArgs {info_lst = info_lst});
+			}
+		}
 	}
 }

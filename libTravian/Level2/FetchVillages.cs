@@ -113,23 +113,6 @@ namespace libTravian
         
         private void doFetchVTroop(object o)
         {
-        	//	等待建筑完成初始化，才进行解析部队
-        	DateTime start_time = DateTime.Now;
-        	while (true)
-        	{
-        		int VillageID = (int)o;
-        		if (TD.Villages[VillageID].isBuildingInitialized == 2)
-        		{
-        			break;
-        		}
-        		
-        		if (DateTime.Now.Ticks - start_time.Ticks > (long)50000000)
-        		{
-        			DebugLog("村庄的建筑未初始化完成，无法解析部队，超时退出！",DebugLevel.E);
-        			return;
-        		}
-        	}
-        	
             lock (Level2Lock)
             {
                 int VillageID = (int)o;
