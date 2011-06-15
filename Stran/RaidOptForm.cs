@@ -327,6 +327,9 @@ namespace Stran
         private bool bIsInSearching = false;
 		void Button1Click(object sender, EventArgs e)
 		{
+			if (bIsInSearching)
+				return;
+			
 			bIsInSearching = true;
 			int Range, Population;
 			try 

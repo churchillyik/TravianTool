@@ -380,7 +380,7 @@ namespace libTravian
             }
             
             int axis_x, axis_y;
-            string cell, resource_info, res_type;
+            string cell, resource_info;
             MatchCollection mc_res;
             foreach (Match pm_cell in mc_cell)
         	{         	

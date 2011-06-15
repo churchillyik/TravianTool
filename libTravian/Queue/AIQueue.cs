@@ -44,25 +44,37 @@ namespace libTravian
 				var Cinb = CV.InBuilding;
 				int delay = 0;
 				if(Cinb[0] != null && Cinb[0].FinishTime != DateTime.MinValue)
+				{
 					delay = Math.Max(delay, Convert.ToInt32(
 						Cinb[0].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 10);
-
+				}
+				//------------------------------------------------------------------------
 				//	对罗马以外不能双建的种族，需要等待内城建筑建造完毕
 				if(!UpCall.TD.isRomans)
+				{
 					if (Cinb[1] != null && Cinb[1].FinishTime != DateTime.MinValue)
+					{
 						delay = Math.Max(delay, Convert.ToInt32(
 							Cinb[1].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 10);
+					}
+				}
 				else
 				{
 					if (Cinb[1] != null && Cinb[1].FinishTime != DateTime.MinValue)
+					{
 						delay = Math.Min(delay, Convert.ToInt32(
 							Cinb[1].FinishTime.Subtract(DateTime.Now).TotalSeconds) + 10);
+					}
 					else
+					{
 						delay = 0;
+					}
 				}
 				if(NextExec != DateTime.MinValue)
+				{
 					delay = Math.Max(delay, Convert.ToInt32(
 						NextExec.Subtract(DateTime.Now).TotalSeconds));
+				}
 				return delay;
 			}
 		}
