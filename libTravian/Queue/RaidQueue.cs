@@ -307,6 +307,12 @@ namespace libTravian
             {
                 return DoRaidResult.SkipVillage;
             }
+            
+            if (!UpCall.NoAnimals(VillageID, Targets[this.TargetID].X, Targets[this.TargetID].Y))
+            {
+            	UpCall.DebugLog("跳过有野怪的绿洲", DebugLevel.II);
+            	return DoRaidResult.SkipVillage;
+            }
 
             Dictionary<string, string> postData = RaidQueue.GetHiddenInputValues(sendTroopForm);
             postData.Add("c", ((int)this.RaidType).ToString());

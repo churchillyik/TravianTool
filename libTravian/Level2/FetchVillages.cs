@@ -24,7 +24,7 @@ namespace libTravian
 {
     partial class Travian
     {
-        private object Level2Lock = new object();
+        private static object Level2Lock = new object();
         private void doFetchVillages()
         {
             lock (Level2Lock)

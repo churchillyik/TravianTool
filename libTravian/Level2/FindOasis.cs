@@ -344,7 +344,7 @@ namespace libTravian
         	}
         }
         
-        private bool NoAnimals(int VillageID, int axis_x, int axis_y)
+        public bool NoAnimals(int VillageID, int axis_x, int axis_y)
         {
         	Dictionary<string, string> PostData = new Dictionary<string, string>(3);
         	PostData["cmd"] = "viewTileDetails";
