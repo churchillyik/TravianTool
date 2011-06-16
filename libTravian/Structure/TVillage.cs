@@ -37,6 +37,7 @@ namespace libTravian
 
         [Json]
         public int isVillageInitialized { get; set; }
+        public bool isVillageInitializing = false;
         [Json]
         public int isBuildingInitialized { get; set; }
         [Json]
@@ -93,7 +94,7 @@ namespace libTravian
 
         public void InitializeVillage()
         {
-            isVillageInitialized = 1;
+            isVillageInitializing = true;
             UpCall.FetchVillageAllDetails(ID);
         }
         

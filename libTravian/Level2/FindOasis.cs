@@ -46,12 +46,14 @@ namespace libTravian
     	public TPoint loc_pt;
     	public int type;
     	public int population;
+    	public string race;
     	
     	public override string ToString()
 		{
 			return (loc_pt.X.ToString(CultureInfo.CurrentCulture) + "|" 
     		        + loc_pt.Y.ToString(CultureInfo.CurrentCulture)
-    		        + (type == 1 ? "; 绿洲":"; 死羊; 人口：" + population));
+    		        + (type == 1 ? "; 绿洲":"; 死羊; 人口：" + population
+    		        + " " + race));
 		}
     }
 	
@@ -379,38 +381,74 @@ namespace libTravian
             	return;
             }
             
-            int axis_x, axis_y;
+            int axis_x, axis_y, popul;
             string cell, resource_info;
             MatchCollection mc_res;
+            Match m1, m2;
             foreach (Match pm_cell in mc_cell)
         	{         	
         		cell = pm_cell.Groups[1].Value;
-        		m = Regex.Match(cell, "\"x\":\"(\\-?\\d+)\",\"y\":\"(\\-?\\d+)\"," +
+        		m1 = Regex.Match(cell, "\"x\":\"(\\-?\\d+)\",\"y\":\"(\\-?\\d+)\"," +
         		                "\"d\":\\-?\\d+,\"c\":\"{([^}]*?)}\",\"t\":\"[^\\)]*?\\)<\\\\/span><\\\\/span>([^\"]*?)\"");
         	
-        		if(!m.Success)
-        			continue;
-        		
-        		axis_x = Convert.ToInt32(m.Groups[1].Value);
-        		axis_y = Convert.ToInt32(m.Groups[2].Value);
-        		if (m.Groups[3].Value != "k.fo")
-        			continue;
-        		
-        		resource_info = m.Groups[4].Value;
-        		mc_res = Regex.Matches(resource_info, "<.*?>{[^}]*?}\\s{([^}]*?)}\\s(\\d+)%");
-        		
-        		if (mc_res.Count == 2 || mc_res.Count == 1 
-        		    && Convert.ToInt32(mc_res[0].Groups[2].Value) == 50)
+        		m2 = Regex.Match(cell, "\"x\":\"(\\-?\\d+)\",\"y\":\"(\\-?\\d+)\"," + 
+        		                ".*?\"c\":\"{([^}]*?)}.*?{k\\.einwohner}\\s(\\d+)" + 
+        		                ".*?{k\\.allianz}\\s([^<]*?)<br\\s\\\\/>" +
+        		                "{k.volk}\\s{([^}]*?)}\"", RegexOptions.Singleline);
+        		if(m1.Success)
         		{
-        			if (!NoAnimals(VillageID, axis_x, axis_y))
-        				continue;
-        			
-        			RaidTargetInfo info = new RaidTargetInfo()
+	        		axis_x = Convert.ToInt32(m1.Groups[1].Value);
+	        		axis_y = Convert.ToInt32(m1.Groups[2].Value);
+	        		if (m1.Groups[3].Value != "k.fo")
+	        			continue;
+	        		
+	        		resource_info = m1.Groups[4].Value;
+	        		mc_res = Regex.Matches(resource_info, "<.*?>{[^}]*?}\\s{([^}]*?)}\\s(\\d+)%");
+	        		
+	        		if (mc_res.Count == 2 || mc_res.Count == 1 
+	        		    && Convert.ToInt32(mc_res[0].Groups[2].Value) == 50)
+	        		{
+	        			if (!NoAnimals(VillageID, axis_x, axis_y))
+	        				continue;
+	        			
+	        			RaidTargetInfo info = new RaidTargetInfo()
+	        			{
+	        				loc_pt = new TPoint(axis_x, axis_y),
+	        				type = 1,
+	        				population = 0,
+	        				race = ""
+	        			};
+	        			info_lst.Add(info);
+	        		}
+        		}
+        		else if (m2.Success)
+        		{
+        			axis_x = Convert.ToInt32(m2.Groups[1].Value);
+	        		axis_y = Convert.ToInt32(m2.Groups[2].Value);
+	        		if (m2.Groups[3].Value != "k.dt")
+	        			continue;
+	        		popul = Convert.ToInt32(m2.Groups[4].Value);
+	        		//	不攻击人口高于预设的
+	        		if (popul > popu_limit)
+	        			continue;
+	        		//	不攻击有联盟的
+	        		if (m2.Groups[5].Value.Length > 0)
+	        			continue;
+
+	        		RaidTargetInfo info = new RaidTargetInfo()
         			{
         				loc_pt = new TPoint(axis_x, axis_y),
-        				type = 1,
-        				population = 0,
+        				type = 2,
+        				population = popul
         			};
+	        		if (m2.Groups[6].Value == "a.v1")
+	        			info.race = "罗马";
+	        		else if (m2.Groups[6].Value == "a.v2")
+	        			info.race = "日族";
+	        		else if (m2.Groups[6].Value == "a.v3")
+	        			info.race = "高卢";
+	        		else
+	        			info.race = "纳塔";
         			info_lst.Add(info);
         		}
         	}

@@ -31,7 +31,14 @@ namespace libTravian
 					var CV = TD.Villages[vid];
 					
 					if (CV.isVillageInitialized != 2)
+					{
+						if (!CV.isVillageInitializing)
+						{
+							DebugLog("村庄未能完全刷新，现重新刷新。", DebugLevel.II);
+							CV.InitializeVillage();
+						}
 						continue;
+					}
 					
 					try
 					{

@@ -446,7 +446,7 @@ namespace libTravian
 				for (int j = 0; j < Goal.Length; j++)
 				{
 					if (CV.Buildings[i].Gid == Goal[j].req_gid 
-					    && CV.Buildings[i].Level == Goal[j].req_lvl)
+					    && CV.Buildings[i].Level >= Goal[j].req_lvl)
 					{
 						Goal[j].bPossible = true;
 					}

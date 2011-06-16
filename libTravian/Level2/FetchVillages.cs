@@ -52,6 +52,7 @@ namespace libTravian
         	doFetchVMarket(o);
         	doFetchVTroop(o);
         	TD.Villages[VillageID].isVillageInitialized = 2;
+        	TD.Villages[VillageID].isVillageInitializing = false;
         }
         
         private void doFetchVBuilding(object o)
