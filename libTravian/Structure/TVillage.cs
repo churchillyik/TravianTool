@@ -146,6 +146,17 @@ namespace libTravian
         	UpCall.StopFindOasis();
         }
         
+        //	找野兽
+        public void FindAnimals(int range)
+        {
+        	UpCall.FindAnimals(ID, range);
+        }
+        
+        public void StopFindAnimals()
+        {
+        	UpCall.StopFindAnimals();
+        }
+        
         public int TimeCost(TResAmount ResCost)
         {
             int time = 0;

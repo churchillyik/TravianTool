@@ -276,5 +276,15 @@ LBLSearchingRange=搜索重數
 LBLPopulation=死羊人口上限
 BTNSearching=搜索
 BTNAddToRaid=加入搶劫
+BTNAllAddToRaid=全部加入
 //攻擊配置
 SendTroopsAttack=攻擊
+//搜索野兽
+AnimalSearching=搜索野獸
+BTNFindAnimals=開始搜索
+BTNStopFindAnimal=停止搜索
+BTNClearLog=清空日誌
+BTNOutFile=導出文件到[野獸.txt]
+COLHDAxis=座標
+COLHDAnimals=野獸
+LALRange=搜索重數

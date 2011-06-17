@@ -86,6 +86,10 @@
     <Compile Include="BuildToLevel.Designer.cs">
       <DependentUpon>BuildToLevel.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockingPanel\AnimalSearching.cs" />
+    <Compile Include="DockingPanel\AnimalSearching.Designer.cs">
+      <DependentUpon>AnimalSearching.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockingPanel\BuildingList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +208,9 @@
     <EmbeddedResource Include="BuildToLevel.resx">
       <DependentUpon>BuildToLevel.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockingPanel\AnimalSearching.resx">
+      <DependentUpon>AnimalSearching.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockingPanel\BuildingList.resx">
       <DependentUpon>BuildingList.cs</DependentUpon>

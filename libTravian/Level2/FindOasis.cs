@@ -62,6 +62,53 @@ namespace libTravian
 		public List<RaidTargetInfo> info_lst { get; set; }
 	}
 	
+	public class FindAnimalsOption
+	{
+		public int VillageID { get; set; }
+		public int Range { get; set; }
+	}
+	
+	public class AnimalsFoundLogArgs : EventArgs
+	{
+		public string arg_log { get; set; }
+	}
+	
+	public class AnimalsInfo
+	{
+		public TPoint loc_pt;
+		public int[] Troops = new int[10];
+		public string FriendlyName
+		{
+			get
+	        {
+	            StringBuilder sb = new StringBuilder();
+	            for (int i = 0; i < Troops.Length; i++)
+	            {
+	                if (Troops[i] != 0)
+	                {
+	                    string troopName = String.Format("T{0}", i + 1);
+	                    if (DisplayLang.Instance != null)
+	                    {
+	                        troopName = DisplayLang.Instance.GetAidLang(4, i + 1);
+	                    }
+	
+	                    sb.AppendFormat("{0} {1}, ", troopName, Troops[i]);
+	                }
+	            }
+	            if (sb.Length > 2)
+	                sb.Remove(sb.Length - 2, 2);
+	            else
+	                return "None";
+	            return sb.ToString();
+	        }
+		}
+	}
+	
+	public class AnimalsInfoArgs : EventArgs
+	{
+		public AnimalsInfo info { get; set; }
+	}
+	
 	partial class Travian
 	{
 		//	搜田功能
@@ -289,6 +336,10 @@ namespace libTravian
 	        	RaidTargetFoundLog("[" + 1 + " / " + 1 + "] 搜索以(" 
 	        	                   + axis_x + "|" + axis_y + ")为中心的地图块");
 	        	string data = FetchBlockMap(VillageID, axis_x, axis_y);
+				if (data != null)
+        		{
+        			ParseRaidTarget(VillageID, data, info_lst, popu_limit);
+        		}
 				
                 for (int i = 1; i <= Range; i++)
                 {
@@ -460,6 +511,178 @@ namespace libTravian
 			if (this.OnRaidTargetListUpdate != null)
 			{
 				OnRaidTargetListUpdate(this, new RaidTargetListArgs {info_lst = info_lst});
+			}
+		}
+        
+        
+        //	搜索野兽功能
+        public Thread ThrdFindAnimals;
+        
+        public event EventHandler<AnimalsFoundLogArgs> OnAnimalsFoundLog;
+        private void AnimalsFoundLog(string log)
+		{
+			if (this.OnAnimalsFoundLog != null)
+			{
+				OnAnimalsFoundLog(this, new AnimalsFoundLogArgs {arg_log = log});
+			}
+		}
+        
+        private void doFindAnimals(object o)
+        {
+        	lock (Level2Lock)
+        	{
+        		FindAnimalsOption option = o as FindAnimalsOption;
+        		int VillageID = option.VillageID;
+        		int Range = option.Range;
+        		int axis_x = TD.Villages[VillageID].Coord.X;
+        		int axis_y = TD.Villages[VillageID].Coord.Y;
+        		
+        		AnimalsFoundLog("开始以村子【" + TD.Villages[VillageID].Name 
+	        	                   + "("  + axis_x + "|" + axis_x
+	        	                   + ")】为中心，在" + Range + "范围内搜索野兽。");
+        		
+        		AnimalsFoundLog("[" + 1 + " / " + 1 + "] 搜索以(" 
+	        	                   + axis_x + "|" + axis_y + ")为中心的地图块");
+	        	string data = FetchBlockMap(VillageID, axis_x, axis_y);
+				if (data != null)
+        		{
+        			ParseAnimalAreas(VillageID, data);
+        		}
+				
+				for (int i = 1; i <= Range; i++)
+                {
+                	AnimalsFoundLog("正在进行第" + i + "重扫描：");
+                	for (int j = 0; j < i; j++)
+                	{
+                		if (i % 2 == 1)
+                		{
+                			axis_y = CalcAxisTran(axis_y, 9);
+                			AnimalsFoundLog("[" + (j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		else
+                		{
+                			axis_y = CalcAxisTran(axis_y, -9);
+                			AnimalsFoundLog("[" + (j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		
+                		if (data != null)
+                		{
+                			ParseAnimalAreas(VillageID, data);
+                		}
+                	}
+                		
+                	for (int j = 0; j < i; j++)
+                	{
+                		if (i % 2 == 1)
+                		{
+                			axis_x = CalcAxisTran(axis_x, 11);
+                			AnimalsFoundLog("[" + (i + j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		else
+                		{
+                			axis_x = CalcAxisTran(axis_x, -11);
+                			AnimalsFoundLog("[" + (i + j + 1) + " / " + (2 * i) + "] 搜索以(" 
+                			                   + axis_x + "|" + axis_y + ")为中心的地图块");
+                			data = FetchBlockMap(VillageID, axis_x, axis_y);
+                		}
+                		
+                		if (data != null)
+                		{
+                			ParseAnimalAreas(VillageID, data);
+                		}
+                	}
+                }
+        	}
+        }
+        
+        private void ParseAnimalAreas(int VillageID, string data)
+        {
+        	Match m = Regex.Match(data, "\"error\":false,\"errorMsg\":null,\"data\":{\"tiles\":" +
+    	                      "\\[(.*?\\])}}");
+        	if (!m.Success)
+        		return;
+        	
+        	MatchCollection mc_cell;
+            mc_cell = Regex.Matches(m.Groups[1].Value, "{(.*?)}[,\\]]");
+        	
+            if(mc_cell.Count != 99)
+            {
+            	RaidTargetFoundLog("本次搜索只返回" + mc_cell.Count + "组数据。");
+            	return;
+            }
+            
+            int axis_x, axis_y;
+            string cell;
+            MatchCollection mc_res;
+            foreach (Match pm_cell in mc_cell)
+        	{         	
+        		cell = pm_cell.Groups[1].Value;
+        		m = Regex.Match(cell, "\"x\":\"(\\-?\\d+)\",\"y\":\"(\\-?\\d+)\"," +
+        		                "\"d\":\\-?\\d+,\"c\":\"{([^}]*?)}\",\"t\":\"[^\\)]*?\\)<\\\\/span><\\\\/span>([^\"]*?)\"");
+        	
+        		if(!m.Success)
+					continue;
+        		
+        		axis_x = Convert.ToInt32(m.Groups[1].Value);
+        		axis_y = Convert.ToInt32(m.Groups[2].Value);
+        		if (m.Groups[3].Value != "k.fo")
+        			continue;
+        		
+	        	ParseAnimals(VillageID, axis_x, axis_y);
+        	}
+        }
+        
+        private void ParseAnimals(int VillageID, int axis_x, int axis_y)
+        {
+        	Dictionary<string, string> PostData = new Dictionary<string, string>(3);
+        	PostData["cmd"] = "viewTileDetails";
+        	PostData["x"] = axis_x.ToString();
+			PostData["y"] = axis_y.ToString();
+
+			string data = PageQuery(VillageID, "/ajax.php?cmd=viewTileDetails", PostData);
+			
+			if (data == null)
+				return;
+			
+			MatchCollection mc = Regex.Matches(
+				data, "unit u(\\d+).*?<td\\sclass=[^\\d]*?(\\d+)",
+				RegexOptions.Singleline);
+			if (mc.Count == 0)
+				return;
+			
+			//	老虎
+			Match m1 = Regex.Match(data, "unit u39", RegexOptions.Singleline);
+			//	大象
+			Match m2 = Regex.Match(data, "unit u40", RegexOptions.Singleline);
+			if (!m1.Success && !m2.Success)
+				return;
+			
+			AnimalsInfo info = new AnimalsInfo()
+			{
+				loc_pt = new TPoint(axis_x, axis_y)
+			};
+			foreach (Match m in mc)
+			{
+				int aid = Convert.ToInt32(m.Groups[1].Value) - 30;
+				int ammount = Convert.ToInt32(m.Groups[2].Value);
+				if (aid - 1 >= 0 && aid - 1 < info.Troops.Length)
+					info.Troops[aid - 1] = ammount;
+			}
+			CallAnimalsInfoUpdate(info);
+        }
+        
+        public event EventHandler<AnimalsInfoArgs> OnAnimalsInfoUpdate;
+        private void CallAnimalsInfoUpdate(AnimalsInfo info)
+		{
+			if (this.OnAnimalsInfoUpdate != null)
+			{
+				OnAnimalsInfoUpdate(this, new AnimalsInfoArgs {info = info});
 			}
 		}
 	}

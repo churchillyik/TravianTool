@@ -278,5 +278,15 @@ LBLSearchingRange=Searching Range
 LBLPopulation=Population
 BTNSearching=Search
 BTNAddToRaid=Add To Raid
+BTNAllAddToRaid=All In
 //攻擊配置
 SendTroopsAttack=Attack
+//搜索野兽
+AnimalSearching=Animal Searching
+BTNFindAnimals=Start
+BTNStopFindAnimal=Stop
+BTNClearLog=Clear Log
+BTNOutFile=File out to [animals.txt]
+COLHDAxis=Axis
+COLHDAnimals=Animals
+LALRange=Range

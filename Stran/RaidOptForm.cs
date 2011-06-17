@@ -390,5 +390,14 @@ namespace Stran
 				this.listBox1.Items.Add(info);
 			}
 		}
+		
+		void Button3Click(object sender, EventArgs e)
+		{
+			foreach (object o in listBox1.Items)
+			{
+				RaidTargetInfo info = (RaidTargetInfo)o;
+				this.lstTargets.Items.Add(info.loc_pt);
+			}
+		}
     }
 }

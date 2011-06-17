@@ -138,5 +138,28 @@ namespace libTravian
 			t.Name = "FindRaidTargets";
 			t.Start(new SearchingRaidTargetOption() {VillageID = VillageID, Range = Range, Population = Population});
 		}
+		
+		public void FindAnimals(int VillageID, int Range)
+		{
+			ThrdFindAnimals = new Thread(new ParameterizedThreadStart(doFindAnimals));
+			ThrdFindAnimals.Name = "FindAnimals";
+			ThrdFindAnimals.Start(new FindAnimalsOption() {VillageID = VillageID, Range = Range});
+		}
+		
+		public void StopFindAnimals()
+		{
+			try
+			{
+				if (ThrdFindAnimals != null)
+				{
+					ThrdFindAnimals.Abort();
+					AnimalsFoundLog("用户停止了搜田过程！");
+				}
+			}
+			catch(Exception)
+			{
+				
+			}
+		}
 	}
 }

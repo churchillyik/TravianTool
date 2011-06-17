@@ -46,10 +46,13 @@ namespace Stran
         private TroopTraining m_trooptraining = new TroopTraining();
         private HeroAdvanture m_heroadventure = new HeroAdvanture();
         private OasisSearching m_oasissearching = new OasisSearching();
+        private AnimalSearching m_animalsearching = new AnimalSearching();
 
         private delegate void StatusEvent_d(object sender, Travian.StatusChanged e);
         private delegate void LogEvent_d(TDebugInfo e);
         private delegate void OasisFoundLogEvent_d(string e);
+        private delegate void AnimalsFoundLogEvent_d(string e);
+        private delegate void AnimalsInfoUpdateEvent_d(AnimalsInfo e);
         private delegate void Void_d();
 
         private static Color[] ResColor = new Color[] { Color.ForestGreen, Color.Chocolate, Color.SlateGray, Color.Gold };
@@ -124,6 +127,8 @@ namespace Stran
             tr.StatusUpdate += new EventHandler<Travian.StatusChanged>(tr_StatusUpdate);
             tr.OnError += new EventHandler<LogArgs>(tr_OnError);
             tr.OnOasisFoundLog += new EventHandler<OasisFoundLogArgs>(tr_OnOasisFoundLog);
+            tr.OnAnimalsFoundLog += new EventHandler<AnimalsFoundLogArgs>(tr_OnAnimalsFoundLog);
+            tr.OnAnimalsInfoUpdate += new EventHandler<AnimalsInfoArgs>(tr_OnAnimalsInfoUpdate);
 
             m_villagelist.listViewVillage.Items.Clear();
             m_buildinglist.listViewBuilding.Items.Clear();
@@ -155,6 +160,26 @@ namespace Stran
             try
             {
                 Invoke(new OasisFoundLogEvent_d(DisplayOasisFoundLog), new object[] { e.arg_log });
+            }
+            catch (Exception)
+            { }
+        }
+        
+        void tr_OnAnimalsFoundLog(object sender, AnimalsFoundLogArgs e)
+        {
+            try
+            {
+                Invoke(new AnimalsFoundLogEvent_d(DisplayAnimalsFoundLog), new object[] { e.arg_log });
+            }
+            catch (Exception)
+            { }
+        }
+        
+        void tr_OnAnimalsInfoUpdate(object sender, AnimalsInfoArgs e)
+        {
+            try
+            {
+                Invoke(new AnimalsInfoUpdateEvent_d(DisplayAnimalsInfo), new object[] { e.info });
             }
             catch (Exception)
             { }
@@ -831,6 +856,28 @@ namespace Stran
         {
         	m_oasissearching.textBox_Log.AppendText(e + "\r\n");
         }
+        
+        private void DisplayAnimalsFoundLog(string e)
+        {
+        	m_animalsearching.textBox1.AppendText(e + "\r\n");
+        }
+        
+        private List<AnimalsInfo> AnimalsInfoList = new List<AnimalsInfo>();
+        private void DisplayAnimalsInfo(AnimalsInfo info)
+        {
+        	if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+        	var CV = TravianData.Villages[SelectVillage];
+        	
+        	AnimalsInfoList.Add(info);
+        	m_animalsearching.listView1.SuspendLayout();
+        	
+        	var lvi = m_animalsearching.listView1.Items.Add(info.loc_pt.ToString());
+        	lvi.SubItems.Add(info.FriendlyName);
+        	
+        	m_animalsearching.listView1.ResumeLayout();
+        	
+        }
 
         private string TimeToString(long timecost)
         {
@@ -1015,7 +1062,8 @@ namespace Stran
             m_troopinfolist.UpCall 	= 
             m_trooptraining.UpCall	= 
             m_heroadventure.UpCall	=
-            m_oasissearching.UpCall	= this;
+            m_oasissearching.UpCall	= 
+            m_animalsearching.UpCall = this;
 
             string fn = GetStyleFilename();
             if (!File.Exists(fn))
@@ -1036,8 +1084,10 @@ namespace Stran
                 m_trooptraining.Show(dockPanel1);
                 m_heroadventure.Show(dockPanel1);
                 m_oasissearching.Show(dockPanel1);
+                m_animalsearching.Show(dockPanel1);
             }
-
+            
+			m_animalsearching.Activate();
             m_buildinglist.Activate();
             ResumeLayout();
         }
@@ -1055,8 +1105,9 @@ namespace Stran
         	         	m_villagelist, 
         	         	m_troopinfolist, 
         	         	m_trooptraining,
+        	         	m_heroadventure,
         	         	m_oasissearching,
-        	         	m_heroadventure
+        	         	m_animalsearching
         	         })
             {
                 if (text == x.GetType().ToString())
@@ -2357,6 +2408,34 @@ namespace Stran
 			};
 			CV.Queue.Add(q);
 			lvi(q);
+		}
+		
+		public void FindAnimalsClick(int range)
+		{
+			if (!TravianData.Villages.ContainsKey(SelectVillage))
+                return;
+            
+			AnimalsInfoList.Clear();
+			TravianData.Villages[SelectVillage].FindAnimals(range);
+		}
+		
+		public void StopFindAnimalsClick()
+		{
+			TravianData.Villages[SelectVillage].StopFindAnimals();
+		}
+		
+		public void SaveAnimalsInfoClick()
+		{
+			StringBuilder sb = new StringBuilder();
+			foreach (AnimalsInfo info in AnimalsInfoList)
+			{
+				sb.AppendLine(info.loc_pt.ToString() + "\t" + info.FriendlyName);
+			}
+			
+			FileStream fs = new FileStream("野兽.txt", FileMode.Create, FileAccess.Write);
+			StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);
+			sw.Write(sb.ToString());
+			fs.Close();
 		}
     }
 }

@@ -95,6 +95,7 @@ namespace Stran
 			this.label1 = new System.Windows.Forms.Label();
 			this.NUD_Range = new System.Windows.Forms.NumericUpDown();
 			this.groupBox_Searching = new System.Windows.Forms.GroupBox();
+			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.listBox1 = new System.Windows.Forms.ListBox();
@@ -834,6 +835,7 @@ namespace Stran
 			// 
 			// groupBox_Searching
 			// 
+			this.groupBox_Searching.Controls.Add(this.button3);
 			this.groupBox_Searching.Controls.Add(this.button2);
 			this.groupBox_Searching.Controls.Add(this.button1);
 			this.groupBox_Searching.Controls.Add(this.listBox1);
@@ -850,11 +852,22 @@ namespace Stran
 			this.groupBox_Searching.Tag = "GrpSearching";
 			this.groupBox_Searching.Text = "搜索";
 			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(281, 133);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(67, 32);
+			this.button3.TabIndex = 78;
+			this.button3.Tag = "BTNAllAddToRaid";
+			this.button3.Text = "全部加入";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.Button3Click);
+			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(273, 136);
+			this.button2.Location = new System.Drawing.Point(281, 95);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 26);
+			this.button2.Size = new System.Drawing.Size(67, 32);
 			this.button2.TabIndex = 78;
 			this.button2.Tag = "BTNAddToRaid";
 			this.button2.Text = "加入抢劫";
@@ -863,9 +876,9 @@ namespace Stran
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(273, 99);
+			this.button1.Location = new System.Drawing.Point(228, 123);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 25);
+			this.button1.Size = new System.Drawing.Size(47, 42);
 			this.button1.TabIndex = 78;
 			this.button1.Tag = "BTNSearching";
 			this.button1.Text = "搜索";
@@ -946,6 +959,7 @@ namespace Stran
 			((System.ComponentModel.ISupportInitialize)(this.NUDPopulation)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.NumericUpDown NUDPopulation;
 		private System.Windows.Forms.TextBox textBoxSearchingLog;
 		private System.Windows.Forms.Label label2;
