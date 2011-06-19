@@ -66,6 +66,10 @@ namespace libTravian
 	{
 		public int VillageID { get; set; }
 		public int Range { get; set; }
+		public int AxisX { get; set; }
+		public int AxisY { get; set; }
+		public List<int> lstIncl = new List<int>();
+		public List<int> lstExcl = new List<int>();
 	}
 	
 	public class AnimalsFoundLogArgs : EventArgs
@@ -534,8 +538,10 @@ namespace libTravian
         		FindAnimalsOption option = o as FindAnimalsOption;
         		int VillageID = option.VillageID;
         		int Range = option.Range;
-        		int axis_x = TD.Villages[VillageID].Coord.X;
-        		int axis_y = TD.Villages[VillageID].Coord.Y;
+        		int axis_x = option.AxisX;
+        		int axis_y = option.AxisY;
+        		List<int> lstIncl = option.lstIncl;
+        		List<int> lstExcl = option.lstExcl;
         		
         		AnimalsFoundLog("开始以村子【" + TD.Villages[VillageID].Name 
 	        	                   + "("  + axis_x + "|" + axis_x
@@ -546,7 +552,7 @@ namespace libTravian
 	        	string data = FetchBlockMap(VillageID, axis_x, axis_y);
 				if (data != null)
         		{
-        			ParseAnimalAreas(VillageID, data);
+        			ParseAnimalAreas(VillageID, data, lstIncl, lstExcl);
         		}
 				
 				for (int i = 1; i <= Range; i++)
@@ -571,7 +577,7 @@ namespace libTravian
                 		
                 		if (data != null)
                 		{
-                			ParseAnimalAreas(VillageID, data);
+                			ParseAnimalAreas(VillageID, data, lstIncl, lstExcl);
                 		}
                 	}
                 		
@@ -594,14 +600,15 @@ namespace libTravian
                 		
                 		if (data != null)
                 		{
-                			ParseAnimalAreas(VillageID, data);
+                			ParseAnimalAreas(VillageID, data, lstIncl, lstExcl);
                 		}
                 	}
                 }
         	}
         }
         
-        private void ParseAnimalAreas(int VillageID, string data)
+        private void ParseAnimalAreas(int VillageID, string data,
+                                      List<int> lstIncl, List<int> lstExcl)
         {
         	Match m = Regex.Match(data, "\"error\":false,\"errorMsg\":null,\"data\":{\"tiles\":" +
     	                      "\\[(.*?\\])}}");
@@ -619,7 +626,6 @@ namespace libTravian
             
             int axis_x, axis_y;
             string cell;
-            MatchCollection mc_res;
             foreach (Match pm_cell in mc_cell)
         	{         	
         		cell = pm_cell.Groups[1].Value;
@@ -634,11 +640,12 @@ namespace libTravian
         		if (m.Groups[3].Value != "k.fo")
         			continue;
         		
-	        	ParseAnimals(VillageID, axis_x, axis_y);
+	        	ParseAnimals(VillageID, axis_x, axis_y, lstIncl, lstExcl);
         	}
         }
         
-        private void ParseAnimals(int VillageID, int axis_x, int axis_y)
+        private void ParseAnimals(int VillageID, int axis_x, int axis_y,
+                                      List<int> lstIncl, List<int> lstExcl)
         {
         	Dictionary<string, string> PostData = new Dictionary<string, string>(3);
         	PostData["cmd"] = "viewTileDetails";
@@ -655,13 +662,19 @@ namespace libTravian
 				RegexOptions.Singleline);
 			if (mc.Count == 0)
 				return;
+			foreach (int aid in lstExcl)
+			{
+				Match m = Regex.Match(data, "unit u" + aid, RegexOptions.Singleline);
+				if (m.Success)
+					return;
+			}
 			
-			//	老虎
-			Match m1 = Regex.Match(data, "unit u39", RegexOptions.Singleline);
-			//	大象
-			Match m2 = Regex.Match(data, "unit u40", RegexOptions.Singleline);
-			if (!m1.Success && !m2.Success)
-				return;
+			foreach (int aid in lstIncl)
+			{
+				Match m = Regex.Match(data, "unit u" + aid, RegexOptions.Singleline);
+				if (m.Success)
+					break;
+			}
 			
 			AnimalsInfo info = new AnimalsInfo()
 			{

@@ -287,3 +287,5 @@ BTNOutFile=导出文件到[野兽.txt]
 COLHDAxis=坐标
 COLHDAnimals=野兽
 LALRange=搜索重数
+LALAxisX=X轴坐标
+LALAxisY=Y轴坐标

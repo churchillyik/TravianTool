@@ -147,9 +147,10 @@ namespace libTravian
         }
         
         //	找野兽
-        public void FindAnimals(int range)
+        public void FindAnimals(FindAnimalsOption option)
         {
-        	UpCall.FindAnimals(ID, range);
+        	option.VillageID = ID;
+        	UpCall.FindAnimals(option);
         }
         
         public void StopFindAnimals()

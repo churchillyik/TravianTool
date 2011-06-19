@@ -139,11 +139,11 @@ namespace libTravian
 			t.Start(new SearchingRaidTargetOption() {VillageID = VillageID, Range = Range, Population = Population});
 		}
 		
-		public void FindAnimals(int VillageID, int Range)
+		public void FindAnimals(FindAnimalsOption option)
 		{
 			ThrdFindAnimals = new Thread(new ParameterizedThreadStart(doFindAnimals));
 			ThrdFindAnimals.Name = "FindAnimals";
-			ThrdFindAnimals.Start(new FindAnimalsOption() {VillageID = VillageID, Range = Range});
+			ThrdFindAnimals.Start(option);
 		}
 		
 		public void StopFindAnimals()

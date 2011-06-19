@@ -874,6 +874,9 @@ namespace Stran
         	
         	var lvi = m_animalsearching.listView1.Items.Add(info.loc_pt.ToString());
         	lvi.SubItems.Add(info.FriendlyName);
+        	int last_idx = m_animalsearching.listView1.Items.Count - 1;
+        	m_animalsearching.listView1.Items[last_idx].Selected = true;
+        	m_animalsearching.listView1.Items[last_idx].EnsureVisible();
         	
         	m_animalsearching.listView1.ResumeLayout();
         	
@@ -2410,13 +2413,13 @@ namespace Stran
 			lvi(q);
 		}
 		
-		public void FindAnimalsClick(int range)
+		public void FindAnimalsClick(FindAnimalsOption option)
 		{
 			if (!TravianData.Villages.ContainsKey(SelectVillage))
                 return;
             
 			AnimalsInfoList.Clear();
-			TravianData.Villages[SelectVillage].FindAnimals(range);
+			TravianData.Villages[SelectVillage].FindAnimals(option);
 		}
 		
 		public void StopFindAnimalsClick()

@@ -1296,7 +1296,7 @@ namespace libTravian
         	
         	var mc = Regex.Matches(data,
         	         "iPopup\\(\\d?(\\d),1\\);\">[^<]*?</a>" +
-            		 "[^<]*?<span class=\"furtherInfo\">\\(.*?(\\d+)\\)</span>");
+            		 "[^<]*?<span class=\"furtherInfo\">\\([^\\d]*?(\\d+)\\)</span>");
         	
         	foreach (Match m in mc)
         	{
@@ -1314,7 +1314,7 @@ namespace libTravian
         	
         	mc = Regex.Matches(data,
         	    "<td class=\"desc\">" + 
-        	    "[^<]*?<img class=\"unit u(\\d+)\"[^>]*?>" +
+        	    "[^<]*?<img class=\"unit u\\d?(\\d)\"[^>]*?>" +
 				"[^0-9]*?(\\d+)[^<]*?</td>" + 
 				"[^<]*?<td class=\"dur\"><span id=\"timer\\d+\">([0-9:]+?)</span></td>");
         	foreach (Match m in mc)

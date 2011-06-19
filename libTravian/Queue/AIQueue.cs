@@ -104,6 +104,8 @@ namespace libTravian
 					return;
 			}
 			
+			if (!CV.Buildings.ContainsKey(bid))
+				return;
 			int[] costs = Buildings.Cost(gid, CV.Buildings[bid].Level + 1).Resources;
 			int inside_gid, insid_bid;
 			if (FetchAvailInsideBuilding(CV, costs, out inside_gid, out insid_bid))

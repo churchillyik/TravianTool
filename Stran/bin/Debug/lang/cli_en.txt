@@ -290,3 +290,5 @@ BTNOutFile=File out to [animals.txt]
 COLHDAxis=Axis
 COLHDAnimals=Animals
 LALRange=Range
+LALAxisX=Axis X
+LALAxisY=Axis Y
