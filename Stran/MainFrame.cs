@@ -2438,7 +2438,7 @@ namespace Stran
 			FileStream fs = new FileStream("野兽.txt", FileMode.Create, FileAccess.Write);
 			StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);
 			sw.Write(sb.ToString());
-			fs.Close();
+			sw.Close();
 		}
     }
 }

@@ -669,12 +669,18 @@ namespace libTravian
 					return;
 			}
 			
+			bool bAvail = false;
 			foreach (int aid in lstIncl)
 			{
 				Match m = Regex.Match(data, "unit u" + aid, RegexOptions.Singleline);
 				if (m.Success)
+				{
+					bAvail = true;
 					break;
+				}
 			}
+			if (!bAvail)
+				return;
 			
 			AnimalsInfo info = new AnimalsInfo()
 			{
