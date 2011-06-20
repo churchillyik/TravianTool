@@ -180,6 +180,8 @@ namespace libTravian
 				TPoint tp = new TPoint(TD.Adv_Sta.HeroAdventures[Key].axis_x, TD.Adv_Sta.HeroAdventures[Key].axis_y);
 				string data = PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");
 				
+				if (string.IsNullOrEmpty(data))
+                    return;
                 Match m_test = Regex.Match(data, "type=\"submit\" value=\"ok\" name=\"h1\"");
                 if (!m_test.Success)
                 {
