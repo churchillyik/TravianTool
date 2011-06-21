@@ -130,7 +130,7 @@ namespace libTravian
 			}
 		}
 
-		public int QueueGUID { get { return 12; } }
+		public int QueueGUID { get { return 14; } }
 		
 		#endregion
         

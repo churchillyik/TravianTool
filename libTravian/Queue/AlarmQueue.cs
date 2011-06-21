@@ -127,10 +127,7 @@ namespace libTravian
             HasGetAll = !(this.MinimumDelay > this.MinimumInterval);
         }
 
-        public int QueueGUID
-        {
-            get { return 11; }
-        }
+        public int QueueGUID { get { return 11; } }
 
         public bool BeAttacked
         {

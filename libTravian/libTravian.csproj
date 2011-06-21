@@ -69,6 +69,7 @@
     <Compile Include="Queue\AttackQueue.cs" />
     <Compile Include="Queue\BuildingQueue.cs" />
     <Compile Include="Queue\DestroyQueue.cs" />
+    <Compile Include="Queue\EvadeQueue.cs" />
     <Compile Include="Queue\IQueue.cs" />
     <Compile Include="Queue\NpcTradeQueue.cs" />
     <Compile Include="Queue\PartyQueue.cs" />
