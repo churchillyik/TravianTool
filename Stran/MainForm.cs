@@ -128,7 +128,7 @@ namespace Stran
 				}
 			}
 
-            if (!Options.ContainsKey("NoRaid2to7"))
+            if (Options.ContainsKey("NoRaid2to7"))
             {
                 RaidQueue.NoRaid2To7 = true;
             }
