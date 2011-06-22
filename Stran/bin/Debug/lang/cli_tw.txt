@@ -277,6 +277,7 @@ LBLPopulation=死羊人口上限
 BTNSearching=搜索
 BTNAddToRaid=加入搶劫
 BTNAllAddToRaid=全部加入
+CBInclOss=是否搜索綠洲
 //攻擊配置
 SendTroopsAttack=攻擊
 //搜索野兽

@@ -341,7 +341,14 @@ namespace Stran
             {
             	return;
             }
-			this.Village.UpCall.FindRaidTargets(this.Village.ID, Range, Population);
+            SearchingRaidTargetOption option = new SearchingRaidTargetOption()
+            {
+            	VillageID = this.Village.ID,
+            	Range = Range, 
+            	Population = Population,
+            	bInclOss = this.checkBoxInclOss.Checked
+            };
+			this.Village.UpCall.FindRaidTargets(option);
 		}
 		
 		void Button2Click(object sender, EventArgs e)

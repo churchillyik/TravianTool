@@ -34,6 +34,7 @@ namespace libTravian
 		public int VillageID { get; set; }
 		public int Range { get; set; }
 		public int Population { get; set; }
+		public bool bInclOss { get; set; }
 	}
 	
 	public class RaidTargetFoundLogArgs : EventArgs
@@ -328,6 +329,7 @@ namespace libTravian
 	        	int VillageID = search_option.VillageID;
 	        	int Range = search_option.Range;
 	        	int popu_limit = search_option.Population;
+	        	bool bInclOss = search_option.bInclOss;
                 
 	        	int axis_x = TD.Villages[VillageID].Coord.X;
 	        	int axis_y = TD.Villages[VillageID].Coord.Y;
@@ -342,7 +344,7 @@ namespace libTravian
 	        	string data = FetchBlockMap(VillageID, axis_x, axis_y);
 				if (data != null)
         		{
-        			ParseRaidTarget(VillageID, data, info_lst, popu_limit);
+        			ParseRaidTarget(VillageID, data, info_lst, popu_limit, bInclOss);
         		}
 				
                 for (int i = 1; i <= Range; i++)
@@ -367,7 +369,7 @@ namespace libTravian
                 		
                 		if (data != null)
                 		{
-                			ParseRaidTarget(VillageID, data, info_lst, popu_limit);
+                			ParseRaidTarget(VillageID, data, info_lst, popu_limit, bInclOss);
                 		}
                 	}
                 		
@@ -390,7 +392,7 @@ namespace libTravian
                 		
                 		if (data != null)
                 		{
-                			ParseRaidTarget(VillageID, data, info_lst, popu_limit);
+                			ParseRaidTarget(VillageID, data, info_lst, popu_limit, bInclOss);
                 		}
                 	}
                 }
@@ -420,7 +422,7 @@ namespace libTravian
 			return true;
         }
         
-        private void ParseRaidTarget(int VillageID, string data, List<RaidTargetInfo> info_lst, int popu_limit)
+        private void ParseRaidTarget(int VillageID, string data, List<RaidTargetInfo> info_lst, int popu_limit, bool bInclOss)
         {
         	Match m = Regex.Match(data, "\"error\":false,\"errorMsg\":null,\"data\":{\"tiles\":" +
     	                      "\\[(.*?\\])}}");
@@ -450,7 +452,7 @@ namespace libTravian
         		                ".*?\"c\":\"{([^}]*?)}.*?{k\\.einwohner}\\s(\\d+)" + 
         		                ".*?{k\\.allianz}\\s([^<]*?)<br\\s\\\\/>" +
         		                "{k.volk}\\s{([^}]*?)}\"", RegexOptions.Singleline);
-        		if(m1.Success)
+        		if(bInclOss && m1.Success)
         		{
 	        		axis_x = Convert.ToInt32(m1.Groups[1].Value);
 	        		axis_y = Convert.ToInt32(m1.Groups[2].Value);

@@ -279,6 +279,7 @@ LBLPopulation=Population
 BTNSearching=Search
 BTNAddToRaid=Add To Raid
 BTNAllAddToRaid=All In
+CBInclOss=Include Oasis
 //攻擊配置
 SendTroopsAttack=Attack
 //搜索野兽

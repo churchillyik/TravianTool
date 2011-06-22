@@ -95,6 +95,7 @@ namespace Stran
 			this.label1 = new System.Windows.Forms.Label();
 			this.NUD_Range = new System.Windows.Forms.NumericUpDown();
 			this.groupBox_Searching = new System.Windows.Forms.GroupBox();
+			this.checkBoxInclOss = new System.Windows.Forms.CheckBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
@@ -117,7 +118,7 @@ namespace Stran
 			// btnOk
 			// 
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOk.Location = new System.Drawing.Point(17, 417);
+			this.btnOk.Location = new System.Drawing.Point(17, 406);
 			this.btnOk.Name = "btnOk";
 			this.btnOk.Size = new System.Drawing.Size(113, 44);
 			this.btnOk.TabIndex = 20;
@@ -129,7 +130,7 @@ namespace Stran
 			// btnCancel
 			// 
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(17, 475);
+			this.btnCancel.Location = new System.Drawing.Point(17, 464);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(113, 42);
 			this.btnCancel.TabIndex = 21;
@@ -803,7 +804,7 @@ namespace Stran
 			// 
 			// textBoxSearchingLog
 			// 
-			this.textBoxSearchingLog.Location = new System.Drawing.Point(15, 21);
+			this.textBoxSearchingLog.Location = new System.Drawing.Point(15, 25);
 			this.textBoxSearchingLog.Multiline = true;
 			this.textBoxSearchingLog.Name = "textBoxSearchingLog";
 			this.textBoxSearchingLog.ReadOnly = true;
@@ -813,7 +814,7 @@ namespace Stran
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(228, 25);
+			this.label1.Location = new System.Drawing.Point(228, 22);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(59, 21);
 			this.label1.TabIndex = 75;
@@ -823,7 +824,7 @@ namespace Stran
 			// 
 			// NUD_Range
 			// 
-			this.NUD_Range.Location = new System.Drawing.Point(289, 25);
+			this.NUD_Range.Location = new System.Drawing.Point(289, 22);
 			this.NUD_Range.Name = "NUD_Range";
 			this.NUD_Range.Size = new System.Drawing.Size(59, 22);
 			this.NUD_Range.TabIndex = 76;
@@ -835,6 +836,7 @@ namespace Stran
 			// 
 			// groupBox_Searching
 			// 
+			this.groupBox_Searching.Controls.Add(this.checkBoxInclOss);
 			this.groupBox_Searching.Controls.Add(this.button3);
 			this.groupBox_Searching.Controls.Add(this.button2);
 			this.groupBox_Searching.Controls.Add(this.button1);
@@ -852,9 +854,19 @@ namespace Stran
 			this.groupBox_Searching.Tag = "GrpSearching";
 			this.groupBox_Searching.Text = "搜索";
 			// 
+			// checkBoxInclOss
+			// 
+			this.checkBoxInclOss.Location = new System.Drawing.Point(232, 82);
+			this.checkBoxInclOss.Name = "checkBoxInclOss";
+			this.checkBoxInclOss.Size = new System.Drawing.Size(116, 21);
+			this.checkBoxInclOss.TabIndex = 78;
+			this.checkBoxInclOss.Tag = "CBInclOss";
+			this.checkBoxInclOss.Text = "是否搜索绿洲";
+			this.checkBoxInclOss.UseVisualStyleBackColor = true;
+			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(281, 133);
+			this.button3.Location = new System.Drawing.Point(281, 138);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(67, 32);
 			this.button3.TabIndex = 78;
@@ -865,7 +877,7 @@ namespace Stran
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(281, 95);
+			this.button2.Location = new System.Drawing.Point(281, 103);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(67, 32);
 			this.button2.TabIndex = 78;
@@ -876,7 +888,7 @@ namespace Stran
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(228, 123);
+			this.button1.Location = new System.Drawing.Point(228, 127);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(47, 42);
 			this.button1.TabIndex = 78;
@@ -889,14 +901,14 @@ namespace Stran
 			// 
 			this.listBox1.FormattingEnabled = true;
 			this.listBox1.ItemHeight = 14;
-			this.listBox1.Location = new System.Drawing.Point(354, 21);
+			this.listBox1.Location = new System.Drawing.Point(354, 22);
 			this.listBox1.Name = "listBox1";
 			this.listBox1.Size = new System.Drawing.Size(191, 144);
 			this.listBox1.TabIndex = 77;
 			// 
 			// NUDPopulation
 			// 
-			this.NUDPopulation.Location = new System.Drawing.Point(289, 65);
+			this.NUDPopulation.Location = new System.Drawing.Point(289, 52);
 			this.NUDPopulation.Name = "NUDPopulation";
 			this.NUDPopulation.Size = new System.Drawing.Size(59, 22);
 			this.NUDPopulation.TabIndex = 76;
@@ -908,7 +920,7 @@ namespace Stran
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(228, 60);
+			this.label2.Location = new System.Drawing.Point(228, 47);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(59, 32);
 			this.label2.TabIndex = 75;
@@ -959,6 +971,7 @@ namespace Stran
 			((System.ComponentModel.ISupportInitialize)(this.NUDPopulation)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.CheckBox checkBoxInclOss;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.NumericUpDown NUDPopulation;
 		private System.Windows.Forms.TextBox textBoxSearchingLog;
