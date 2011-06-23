@@ -277,7 +277,8 @@ LBLPopulation=死羊人口上限
 BTNSearching=搜索
 BTNAddToRaid=加入搶劫
 BTNAllAddToRaid=全部加入
-CBInclOss=是否搜索綠洲
+CBInclOss=搜索綠洲
+CBInclTribe=搜索死羊
 //攻擊配置
 SendTroopsAttack=攻擊
 //搜索野兽
@@ -291,3 +292,12 @@ COLHDAnimals=野獸
 LALRange=搜索重數
 LALAxisX=X軸座標
 LALAxisY=Y軸座標
+//迴避攻擊
+CMBEvade=&E. 迴避攻擊
+FormEvadeAttack=迴避攻擊
+GBReinforce=增援座標
+LBLChkInterval=多少秒檢查一次：
+LBLEvadeLeadTime=受攻前多少秒迴避：
+Seconds=秒
+BTNOK=確定
+BTNCancel=取消

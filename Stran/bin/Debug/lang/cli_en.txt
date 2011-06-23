@@ -280,6 +280,7 @@ BTNSearching=Search
 BTNAddToRaid=Add To Raid
 BTNAllAddToRaid=All In
 CBInclOss=Include Oasis
+CBInclTribe=Include Tribes
 //攻擊配置
 SendTroopsAttack=Attack
 //搜索野兽
@@ -293,3 +294,12 @@ COLHDAnimals=Animals
 LALRange=Range
 LALAxisX=Axis X
 LALAxisY=Axis Y
+//Evade
+CMBEvade=&Evade
+FormEvadeAttack=Evade
+GBReinforce=Reinforce To
+LBLChkInterval=Checking Interval：
+LBLEvadeLeadTime=Lead Time：
+Seconds=Sec.
+BTNOK=OK
+BTNCancel=Cancel

@@ -242,13 +242,13 @@ namespace Stran.DockingPanel
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 									this.columnHeader1,
 									this.columnHeader2});
-			this.listView1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView1.FullRowSelect = true;
 			this.listView1.GridLines = true;
 			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listView1.Location = new System.Drawing.Point(0, 0);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(215, 354);
+			this.listView1.Size = new System.Drawing.Size(680, 354);
 			this.listView1.TabIndex = 8;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
@@ -276,7 +276,7 @@ namespace Stran.DockingPanel
 			this.flowLayoutPanel3.Controls.Add(this.groupBox1);
 			this.flowLayoutPanel3.Controls.Add(this.groupBox2);
 			this.flowLayoutPanel3.Controls.Add(this.textBox1);
-			this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+			this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
 			this.flowLayoutPanel3.Location = new System.Drawing.Point(215, 0);
 			this.flowLayoutPanel3.Name = "flowLayoutPanel3";
 			this.flowLayoutPanel3.Size = new System.Drawing.Size(465, 354);
@@ -532,10 +532,16 @@ namespace Stran.DockingPanel
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(680, 354);
+			this.CloseButton = false;
 			this.Controls.Add(this.flowLayoutPanel3);
 			this.Controls.Add(this.listView1);
+			this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
+									| WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
 			this.Name = "AnimalSearching";
-			this.TabText = "AnimalSearching";
+			this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document;
+			this.TabText = "搜索野兽";
 			this.Tag = "AnimalSearching";
 			this.Text = "搜索野兽";
 			this.Load += new System.EventHandler(this.AnimalSearchingLoad);

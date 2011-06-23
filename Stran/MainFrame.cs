@@ -1090,7 +1090,6 @@ namespace Stran
                 m_animalsearching.Show(dockPanel1);
             }
             
-			m_animalsearching.Activate();
             m_buildinglist.Activate();
             ResumeLayout();
         }
@@ -2439,6 +2438,23 @@ namespace Stran
 			StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);
 			sw.Write(sb.ToString());
 			sw.Close();
+		}
+		
+		void EvadeToolStripMenuItemClick(object sender, EventArgs e)
+		{          
+			var CV = TravianData.Villages[SelectVillage];
+            EvadeAttack ev_atk = new EvadeAttack()
+            {
+                mui = this.mui
+            };
+            
+            if (ev_atk.ShowDialog() == DialogResult.OK && ev_atk.Return != null)
+            {
+                var q = ev_atk.Return;
+                q.UpCall = tr;
+                CV.Queue.Add(q);
+                lvi(q);
+            }
 		}
     }
 }

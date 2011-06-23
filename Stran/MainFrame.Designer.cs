@@ -129,6 +129,7 @@
 			this.contextMenuTroop = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.CMTRaid = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMTAttack = new System.Windows.Forms.ToolStripMenuItem();
+			this.evadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.CMTAlarm = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
 			this.CMTRefresh = new System.Windows.Forms.ToolStripMenuItem();
@@ -966,12 +967,13 @@
 			this.contextMenuTroop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.CMTRaid,
 									this.CMTAttack,
+									this.evadeToolStripMenuItem,
 									this.CMTAlarm,
 									this.toolStripSeparator16,
 									this.CMTRefresh});
 			this.contextMenuTroop.Name = "contextMenuTroop";
 			this.contextMenuTroop.ShowImageMargin = false;
-			this.contextMenuTroop.Size = new System.Drawing.Size(130, 98);
+			this.contextMenuTroop.Size = new System.Drawing.Size(130, 142);
 			this.contextMenuTroop.Tag = "mtroop";
 			// 
 			// CMTRaid
@@ -989,6 +991,14 @@
 			this.CMTAttack.Tag = "CMBAttack";
 			this.CMTAttack.Text = "send troops";
 			this.CMTAttack.Click += new System.EventHandler(this.CMBAttackClick);
+			// 
+			// evadeToolStripMenuItem
+			// 
+			this.evadeToolStripMenuItem.Name = "evadeToolStripMenuItem";
+			this.evadeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+			this.evadeToolStripMenuItem.Tag = "CMBEvade";
+			this.evadeToolStripMenuItem.Text = "回避攻击";
+			this.evadeToolStripMenuItem.Click += new System.EventHandler(this.EvadeToolStripMenuItemClick);
 			// 
 			// CMTAlarm
 			// 
@@ -1101,6 +1111,7 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem evadeToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem AutoAdventureToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem CMB_PMMail;
 		private System.Windows.Forms.ToolStripMenuItem startAdvantureToolStripMenuItem;

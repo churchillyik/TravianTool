@@ -150,6 +150,10 @@
     <Compile Include="DockingPanel\VillageList.Designer.cs">
       <DependentUpon>VillageList.cs</DependentUpon>
     </Compile>
+    <Compile Include="EvadeAttack.cs" />
+    <Compile Include="EvadeAttack.Designer.cs">
+      <DependentUpon>EvadeAttack.cs</DependentUpon>
+    </Compile>
     <Compile Include="MsgBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +256,9 @@
     <EmbeddedResource Include="DockingPanel\VillageList.resx">
       <DependentUpon>VillageList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EvadeAttack.resx">
+      <DependentUpon>EvadeAttack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MsgBox.resx">
       <DependentUpon>MsgBox.cs</DependentUpon>

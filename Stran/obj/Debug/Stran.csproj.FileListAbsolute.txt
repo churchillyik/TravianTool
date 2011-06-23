@@ -203,3 +203,4 @@ E:\Travian\stran\Stran\obj\Debug\Stran.PMMail.resources
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.PMMail.resources
 E:\Resources\TravianTool\Stran\obj\Debug\Stran.DockingPanel.AnimalSearching.resources
 E:\Travian\stran\Stran\obj\Debug\Stran.DockingPanel.AnimalSearching.resources
+E:\Travian\stran\Stran\obj\Debug\Stran.EvadeAttack.resources

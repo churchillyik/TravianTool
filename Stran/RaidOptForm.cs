@@ -346,7 +346,8 @@ namespace Stran
             	VillageID = this.Village.ID,
             	Range = Range, 
             	Population = Population,
-            	bInclOss = this.checkBoxInclOss.Checked
+            	bInclOss = this.checkBoxInclOss.Checked,
+            	bInclTribe = this.checkBoxInclTribe.Checked,
             };
 			this.Village.UpCall.FindRaidTargets(option);
 		}
@@ -396,6 +397,7 @@ namespace Stran
 			{
 				this.listBox1.Items.Add(info);
 			}
+			this.bIsInSearching = false;
 		}
 		
 		void Button3Click(object sender, EventArgs e)
@@ -404,6 +406,22 @@ namespace Stran
 			{
 				RaidTargetInfo info = (RaidTargetInfo)o;
 				this.lstTargets.Items.Add(info.loc_pt);
+			}
+		}
+		
+		void CheckBoxInclOssCheckedChanged(object sender, EventArgs e)
+		{
+			if (!this.checkBoxInclOss.Checked && !this.checkBoxInclTribe.Checked)
+			{
+				this.checkBoxInclTribe.Checked = true;
+			}
+		}
+		
+		void CheckBoxInclTribeCheckedChanged(object sender, EventArgs e)
+		{
+			if (!this.checkBoxInclOss.Checked && !this.checkBoxInclTribe.Checked)
+			{
+				this.checkBoxInclOss.Checked = true;
 			}
 		}
     }
