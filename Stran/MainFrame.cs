@@ -2452,6 +2452,7 @@ namespace Stran
             {
                 var q = ev_atk.Return;
                 q.UpCall = tr;
+                q.VillageID = CV.ID;
                 CV.Queue.Add(q);
                 lvi(q);
             }

@@ -188,6 +188,7 @@ namespace Stran
 			// 
 			// buttonOK
 			// 
+			this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.buttonOK.Location = new System.Drawing.Point(65, 169);
 			this.buttonOK.Name = "buttonOK";
 			this.buttonOK.Size = new System.Drawing.Size(75, 23);
@@ -199,6 +200,7 @@ namespace Stran
 			// 
 			// buttonCancel
 			// 
+			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.buttonCancel.Location = new System.Drawing.Point(169, 169);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(75, 23);
@@ -222,6 +224,7 @@ namespace Stran
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "EvadeAttack";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Tag = "FormEvadeAttack";
 			this.Text = "回避攻击";
 			this.Load += new System.EventHandler(this.EvadeAttackLoad);

@@ -68,13 +68,13 @@ namespace libTravian
             			p.Z = latest_toop.OwnerVillageZ;
             			name = latest_toop.VillageName;
             		}
-            		return "检测到攻击部队来自[" + name + "(" + p.X + "|" + p.Y + ")]";
+            		return "检测到[" + name + "(" + p.X + "|" + p.Y + ")]的攻击";
             	}
             	else if (evade_status == EvadeStatus.ReadyForEvade)
             	{
             		if (nEvadePoint == null)
             			return "未知的转移位置";
-            		return "准备把部队转移至(" + nEvadePoint.X + "|" + nEvadePoint.Y + ")";
+            		return "部队准备转移至(" + nEvadePoint.X + "|" + nEvadePoint.Y + ")";
             	}
             	else if (evade_status == EvadeStatus.Evaded)
             	{
@@ -84,7 +84,7 @@ namespace libTravian
             	}
             	else if (evade_status == EvadeStatus.ReadyForBack)
             	{
-            		return "准备把部队撤回";
+            		return "部队准备撤回";
             	}
             	else if (evade_status == EvadeStatus.TroopsBack)
             	{
@@ -129,7 +129,59 @@ namespace libTravian
             if (MinimumDelay > 0)
                 return;
 
+            var cv = UpCall.TD.Villages[VillageID];
             
+            if (evade_status == EvadeStatus.NoAtkDetected 
+               || evade_status == EvadeStatus.AtkDetected)
+            {
+            	UpCall.PageQuery(VillageID, "build.php?gid=16");
+            	foreach (TTInfo tt in cv.Troop.Troops)
+		        {
+		            AnalizeAttacker(tt);
+		        }
+            	
+            	if (latest_toop != null)
+            	{
+            		int latest_atk_delay = 
+            			(int)latest_toop.FinishTime.Subtract(DateTime.Now).TotalSeconds;
+            		if (latest_atk_delay > nMinInterval + nLeadTime)
+            		{
+            			MinimumDelay = nMinInterval;
+            			evade_status = EvadeStatus.AtkDetected;
+            		}
+            		else if (latest_atk_delay > nLeadTime 
+            		         && latest_atk_delay <= nMinInterval + nLeadTime)
+            		{
+            			MinimumDelay = latest_atk_delay - nLeadTime;
+            			evade_status = EvadeStatus.ReadyForEvade;
+            		}
+            		else if (latest_atk_delay > 0 
+            		         && latest_atk_delay <= nLeadTime)
+            		{
+            			MinimumDelay = 0;
+            			evade_status = EvadeStatus.ReadyForEvade;
+            		}
+            		else
+            		{
+            			UpCall.DebugLog("由于出现异常，重置回避攻击检查队列。");
+            			latest_toop = null;
+            			MinimumDelay = nMinInterval;
+						evade_status = EvadeStatus.NoAtkDetected;
+            		}
+            		
+            	}
+            	else
+            	{
+            		MinimumDelay = nMinInterval;
+            		evade_status = EvadeStatus.NoAtkDetected;
+            	}
+            	
+            	return;
+            }
+            else if (evade_status = EvadeStatus.ReadyForEvade)
+            {
+            	
+            }
         }
 
         public int QueueGUID { get { return 15; } }
@@ -162,6 +214,75 @@ namespace libTravian
             {
                 this.resumeTime = DateTime.Now.AddSeconds(value);
             }
+        }
+		
+		public DisplayLang dl 
+        {
+        	get
+        	{
+        		if (DisplayLang.Instance != null)
+        			return DisplayLang.Instance;
+        		
+        		return new DisplayLang("cn");
+        	}
+        }
+		
+		bool IsAttackType(TTInfo troop, string attType)
+        {
+            if (troop.TroopType != TTroopType.Incoming)
+                return false;
+
+            bool result = false;
+            var CV = UpCall.TD.Villages[VillageID];
+            int index = troop.VillageName.IndexOf(CV.Name);
+            
+            if (index > 0)
+            {
+            	string test_str = troop.VillageName.Remove(index, CV.Name.Length);
+            	if (attType == "attack")
+            	{
+            		foreach (string atk_lang in dl.AtkLang)
+            		{
+            			if (test_str.Contains(atk_lang))
+            			{
+            				result = true;
+            				break;
+            			}
+            		}
+            	}
+                else if (attType == "raid")
+            	{
+            		foreach (string raid_lang in dl.RaidLang)
+            		{
+            			if (test_str.Contains(raid_lang))
+            			{
+            				result = true;
+            				break;
+            			}
+            		}
+            	}
+            }
+
+            return result;
+        }
+
+        bool IsRaid(TTInfo troop)
+        {
+            return IsAttackType(troop, "raid");
+        }
+
+        bool IsAttack(TTInfo troop)
+        {
+            return IsAttackType(troop, "attack");
+        }
+
+        void AnalizeAttacker(TTInfo troop)
+        {
+            if (!IsAttack(troop) && !IsRaid(troop))
+                return;
+
+            if (latest_toop == null || troop.FinishTime < latest_toop.FinishTime)
+                latest_toop = troop;
         }
 
         private DateTime resumeTime = DateTime.Now;
