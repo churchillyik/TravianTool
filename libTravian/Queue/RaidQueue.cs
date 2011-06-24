@@ -335,7 +335,7 @@ namespace libTravian
                 return DoRaidResult.SkipVillage;
             }
 
-            Match errorMatch = Regex.Match(confirmForm, "<p class=\"error\">(.+)</p>");
+            Match errorMatch = Regex.Match(confirmForm, "<p class=\"error\">(.+)</span>");
             if (errorMatch.Success)
             {
                 string error = String.Format(
@@ -435,7 +435,7 @@ namespace libTravian
         }
 
         private static Regex hiddenInputPattern = new Regex(@"<input\s+type=""hidden""\s+name=""(\w+)""\s+value=""(.+?)""\s+/>");
-        private static Dictionary<string, string> GetHiddenInputValues(string data)
+        public static Dictionary<string, string> GetHiddenInputValues(string data)
         {
             Dictionary<string, string> values = new Dictionary<string, string>();
             MatchCollection matches = hiddenInputPattern.Matches(data);
@@ -448,7 +448,7 @@ namespace libTravian
         }
 
         private static Regex maxTroopPattern = new Regex(@"document.snd.t(\d+).value=(\d+);");
-        private static int[] GetMaxTroops(string sendTroopForm)
+        public static int[] GetMaxTroops(string sendTroopForm)
         {
             int[] maxTroops = new int[11];
             MatchCollection matches = maxTroopPattern.Matches(sendTroopForm);
@@ -463,7 +463,7 @@ namespace libTravian
         }
 
         private static Regex timeCostPattern = new Regex(@"<div class=""in"">\D*(\d+):(\d+):(\d+)\D*</div>");
-        private static TimeSpan GetOneWayTimeCost(string confirmForm)
+        public static TimeSpan GetOneWayTimeCost(string confirmForm)
         {
             Match match = timeCostPattern.Match(confirmForm);
             if (match.Success)

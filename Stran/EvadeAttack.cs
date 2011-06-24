@@ -53,7 +53,7 @@ namespace Stran
 			}
 			this.Return = new EvadeQueue()
 			{
-				nEvadePoint = new TPoint(x, y),
+				tpEvadePoint = new TPoint(x, y),
 				nMinInterval = interval,
 				nLeadTime = leadtime
 			};
