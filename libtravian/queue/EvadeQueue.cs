@@ -405,9 +405,8 @@ namespace libTravian
                 return;
             }
             Match m = Regex.Match(data, 
-                                  "<span class=\"coordinateX\">\\(" + tpEvadePoint.X + "</span>"
-                                 + ".*?<span class=\"coordinateY\">" + tpEvadePoint.Y + "\\)</span>"
-                                 + ".*?onclick=\"window\\.location\\.href = \'([^\']*?)\'",
+                                  "<a href=\"karte\\.php\\?d=" + tpEvadePoint.Z + "\">[^<]*?</a>"
+                                 	+ ".*?onclick=\"window\\.location\\.href = \'([^\']*?)\'",
                                  RegexOptions.Singleline);
             if (!m.Success)
             {
@@ -432,8 +431,10 @@ namespace libTravian
             }
             for (int i = 0; i < ReinforceToop.Length; i++)
             {
-                string troopKey = String.Format("t{0}", i + 1);
-                string troopNumber = ReinforceToop[i] == 0 ? "" : ReinforceToop[i].ToString();
+            	if (ReinforceToop[i] == 0)
+            		continue;
+                string troopKey = String.Format("t[{0}]", i + 1);
+                string troopNumber = ReinforceToop[i].ToString();
                 postData.Add(troopKey, troopNumber);
             }
             postData.Add("s1", "ok");

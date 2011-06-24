@@ -120,11 +120,6 @@ namespace Stran
 									0,
 									0,
 									0});
-			this.numericUpDown1.Minimum = new decimal(new int[] {
-									600,
-									0,
-									0,
-									0});
 			this.numericUpDown1.Name = "numericUpDown1";
 			this.numericUpDown1.Size = new System.Drawing.Size(89, 21);
 			this.numericUpDown1.TabIndex = 3;
@@ -158,12 +153,7 @@ namespace Stran
 			// 
 			this.numericUpDown2.Location = new System.Drawing.Point(169, 126);
 			this.numericUpDown2.Maximum = new decimal(new int[] {
-									600,
-									0,
-									0,
-									0});
-			this.numericUpDown2.Minimum = new decimal(new int[] {
-									60,
+									1200,
 									0,
 									0,
 									0});
