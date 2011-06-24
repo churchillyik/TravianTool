@@ -108,6 +108,22 @@ namespace libTravian
 	            return sb.ToString();
 	        }
 		}
+		public string TableFriendlyName
+		{
+			get
+	        {
+	            StringBuilder sb = new StringBuilder();
+	            for (int i = 0; i < Troops.Length; i++)
+	            {
+	            	sb.AppendFormat("{0}\t", Troops[i]);
+	            }
+
+	            if (sb.Length > 2)
+	            	return sb.ToString().Trim();
+	            else
+	                return "None";
+	        }
+		}
 	}
 	
 	public class AnimalsInfoArgs : EventArgs
@@ -548,7 +564,7 @@ namespace libTravian
         		List<int> lstExcl = option.lstExcl;
         		
         		AnimalsFoundLog("开始以村子【" + TD.Villages[VillageID].Name 
-	        	                   + "("  + axis_x + "|" + axis_x
+	        	                   + "("  + axis_x + "|" + axis_y
 	        	                   + ")】为中心，在" + Range + "范围内搜索野兽。");
         		
         		AnimalsFoundLog("[" + 1 + " / " + 1 + "] 搜索以(" 
@@ -683,7 +699,7 @@ namespace libTravian
 					break;
 				}
 			}
-			if (!bAvail)
+			if (!bAvail && lstIncl.Count > 0)
 				return;
 			
 			AnimalsInfo info = new AnimalsInfo()

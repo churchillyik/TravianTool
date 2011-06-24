@@ -2429,9 +2429,17 @@ namespace Stran
 		public void SaveAnimalsInfoClick()
 		{
 			StringBuilder sb = new StringBuilder();
+			sb.Append("坐标X\t坐标Y");
+			for (int i = 1; i <= 10; i++)
+			{
+				sb.Append("\t" + dl.GetAidLang(4, i));
+			}
+			sb.Append("\r\n");
 			foreach (AnimalsInfo info in AnimalsInfoList)
 			{
-				sb.AppendLine(info.loc_pt.ToString() + "\t" + info.FriendlyName);
+				sb.AppendLine(info.loc_pt.X + "\t"
+				              + info.loc_pt.Y + "\t" 
+				              + info.TableFriendlyName);
 			}
 			
 			FileStream fs = new FileStream("野兽.txt", FileMode.Create, FileAccess.Write);
