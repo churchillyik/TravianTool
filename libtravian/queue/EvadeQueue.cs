@@ -150,6 +150,9 @@ namespace libTravian
             	evade_status = EvadeStatus.NoAtkDetected;
             	MinimumDelay = nMinInterval;
             }
+            
+            UpCall.TD.Dirty = true;
+            UpCall.CallStatusUpdate(this, new Travian.StatusChanged() { ChangedData = Travian.ChangedType.Queue, VillageID = VillageID });
         }
 
         public int QueueGUID { get { return 15; } }
@@ -363,6 +366,8 @@ namespace libTravian
         		evade_status = EvadeStatus.NoAtkDetected;
                 return;
             }
+            
+            postData = RaidQueue.GetHiddenInputValues(confirmForm);
 
             string result = this.UpCall.PageQuery(this.VillageID, confirmUrl, postData);
             if (result == null)
