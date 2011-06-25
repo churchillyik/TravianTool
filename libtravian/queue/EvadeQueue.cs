@@ -325,11 +325,18 @@ namespace libTravian
         	postData.Add("c", "2");
         	postData.Add("x", tpEvadePoint.X.ToString());
         	postData.Add("y", tpEvadePoint.Y.ToString());
-        	int[] maxTroops = RaidQueue.GetMaxTroops(sendTroopForm);
-            for (int i = 0; i < maxTroops.Length; i++)
+        	ReinforceToop = RaidQueue.GetMaxTroops(sendTroopForm);
+        	for (int i = 0; i < this.bTroopFilter.Length; i++)
+        	{
+        		if (bTroopFilter[i])
+        			continue;
+        		
+        		ReinforceToop[i] = 0;
+        	}
+            for (int i = 0; i < ReinforceToop.Length; i++)
             {
                 string troopKey = String.Format("t{0}", i + 1);
-                string troopNumber = maxTroops[i] == 0 ? "" : maxTroops[i].ToString();
+                string troopNumber = ReinforceToop[i] == 0 ? "" : ReinforceToop[i].ToString();
                 postData.Add(troopKey, troopNumber);
             }
             
@@ -377,14 +384,13 @@ namespace libTravian
             }
             
             evade_status = EvadeStatus.Evaded;
-            ReinforceToop = maxTroops;
             ReinforceTimeCost = (int)timeCost.TotalSeconds;
             MinimumDelay = ReinforceTimeCost + RandomDelay(5, 10);
             
             TTInfo troopInfo = new TTInfo()
             {
                 Tribe = UpCall.TD.Tribe,
-                Troops = maxTroops
+                Troops = ReinforceToop
             };
             string message = String.Format(
                 "部队回避 {0} ({1}) => {2} {3}",
@@ -461,5 +467,7 @@ namespace libTravian
         public int nMinInterval;
         [Json]
         public int nLeadTime;
+        [Json]
+        public bool[] bTroopFilter;
 	}
 }

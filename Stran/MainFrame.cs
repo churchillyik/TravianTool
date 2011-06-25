@@ -2453,7 +2453,8 @@ namespace Stran
 			var CV = TravianData.Villages[SelectVillage];
             EvadeAttack ev_atk = new EvadeAttack()
             {
-                mui = this.mui
+                mui = this.mui,
+                Tribe = TravianData.Tribe
             };
             
             if (ev_atk.ShowDialog() == DialogResult.OK && ev_atk.Return != null)
