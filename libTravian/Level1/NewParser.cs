@@ -583,7 +583,7 @@ namespace libTravian
             int gid = 0;
             int lvl = -1;
             string gid_str;
-            Match m = Regex.Match(data, "<td>([^<]*?)<span\\sclass=\"level\">Level\\s(\\d+)</span>");
+            Match m = Regex.Match(data, "<td>([^<]*?)<span\\sclass=\"level\">\\D*?(\\d+)</span>");
             
             if (m.Success)
             {
