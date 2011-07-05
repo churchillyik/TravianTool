@@ -450,6 +450,11 @@ namespace libTravian
 					if (CV.Buildings[i].Gid == Goal[j].req_gid 
 					    && CV.Buildings[i].Level >= Goal[j].req_lvl)
 					{
+						if (CV.Buildings[i].Level == Goal[j].req_lvl 
+						    && (CV.InBuilding[0] != null && CV.InBuilding[0].ABid == i
+						    || CV.InBuilding[1] != null && CV.InBuilding[1].ABid == i))
+							continue;
+						
 						Goal[j].bPossible = true;
 					}
 				}

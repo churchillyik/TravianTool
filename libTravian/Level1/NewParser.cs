@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace libTravian
 {
@@ -954,7 +955,8 @@ namespace libTravian
                 bool postInVillageTroops = inVillageTroopsParsed;
                 foreach (string troopDetail in troopDetails)
                 {
-                    TTInfo troop = this.ParseTroopDetail(troopDetail, postInVillageTroops);
+                    TTInfo troop = this.ParseTroopDetail(
+                		troopDetail, postInVillageTroops, TTroopType.InVillage);
                     if (troop != null)
                     {
                         village.Troop.Troops.Add(troop);
@@ -963,6 +965,72 @@ namespace libTravian
                             inVillageTroopsParsed = true;
                         }
                     }
+                }
+                
+                MatchCollection mc = Regex.Matches(troopGroups[i]
+                                                   , "data:\\s*?\\{([^\\}]*?)\\},", RegexOptions.Singleline);
+                foreach (Match m in mc)
+                {
+                	string str_data = m.Groups[1].Value;
+                	string[] cmd_paras = str_data.Split(new string[] { "," }, StringSplitOptions.None);
+                	
+                	if (cmd_paras.Length < 7)
+                		continue;
+                	Dictionary<string, string> postData = new Dictionary<string, string>();
+                	string cmd = "";
+                	TTroopType troop_type = TTroopType.Outgoing;
+                	foreach (string para in cmd_paras)
+                	{
+                		string name, val;
+                		string[] pair = para.Split(new string[] { ":" }, StringSplitOptions.None);
+                		if (pair.Length != 2)
+                			continue;
+                		
+                		name = pair[0].Trim();
+                		val = pair[1].Trim().Replace("\'", "");
+                		if (name != "timer")
+                		{
+                			postData.Add(name, val);
+                		}
+                		else
+                		{
+                			postData.Add(name, "0");
+                		}
+                		if (name == "cmd")
+                		{
+                			cmd = val;
+                		}
+                		if (name == "fromOrTo" && val == "to")
+                		{
+                			troop_type = TTroopType.Incoming;
+                		}
+                		else if (name == "fromOrTo" && val == "from")
+                		{
+                			troop_type = TTroopType.Outgoing;
+                		}
+                	}
+                	string ret_data = this.PageQuery(VillageID, "/ajax.php?cmd=" + cmd, postData, true, true);
+                	ret_data = ret_data.Replace("\\n", "\r\n");
+                	ret_data = ret_data.Replace("\\t", "\t");
+                	ret_data = ret_data.Replace("\\/", "/");
+                	ret_data = ret_data.Replace("\\\"", "\"");
+                	troopDetails = HtmlUtility.GetElementsWithClass(
+	                    ret_data,
+	                    "table",
+	                    "troop_details\\s*[^\"]*?");
+                	postInVillageTroops = inVillageTroopsParsed;
+	                foreach (string troopDetail in troopDetails)
+	                {
+	                    TTInfo troop = this.ParseTroopDetail(troopDetail, postInVillageTroops, troop_type);
+	                    if (troop != null)
+	                    {
+	                        village.Troop.Troops.Add(troop);
+	                        if (troop.TroopType == TTroopType.InVillage)
+	                        {
+	                            inVillageTroopsParsed = true;
+	                        }
+	                    }
+	                }
                 }
             }
             
@@ -981,7 +1049,25 @@ namespace libTravian
         	StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Villages });
         }
 
-        private TTInfo ParseTroopDetail(string troopDetail, bool postInVillageTroops)
+        private string UnicodeToString(string u_str)
+        {
+        	MatchCollection mc = Regex.Matches(
+        		u_str, @"\\u([\w]{2})([\w]{2})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        	if (mc.Count == 0)
+        		return u_str;
+        	StringBuilder sb = new StringBuilder();
+        	byte[] bts = new byte[2];
+        	foreach (Match m in mc)
+        	{
+        		bts[0] = (byte)int.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
+        		bts[1] = (byte)int.Parse(m.Groups[1].Value, NumberStyles.HexNumber);
+        		sb.Append(Encoding.Unicode.GetString(bts));
+        	}
+        	
+        	return sb.ToString();
+        }
+        
+        private TTInfo ParseTroopDetail(string troopDetail, bool postInVillageTroops, TTroopType troop_type)
         {
             string header = HtmlUtility.GetElement(troopDetail, "thead");
             if (header == null)
@@ -999,11 +1085,11 @@ namespace libTravian
             Match ownerMatch = Regex.Match(headerColumns[0], @"<a href=""(.+?)"">(.+?)</a>");
             if (!ownerMatch.Success)
             {
-            	return ParseNatureTroops(troopDetail, headerColumns, postInVillageTroops);
+            	return ParseNatureTroops(troopDetail, headerColumns, postInVillageTroops, troop_type);
             }
 
             string owner = ownerMatch.Groups[2].Value;
-            
+            owner = UnicodeToString(owner);
             int ownerVillageZ = 0;
             string ownerVillageUrl = "";
             Match ownerVillageZMatch = Regex.Match(ownerMatch.Groups[1].Value, @"karte.php\?d=(\d+)");
@@ -1029,6 +1115,7 @@ namespace libTravian
             		return null;
             	}
             	name = nameMch.Groups[1].Value;
+            	name = UnicodeToString(name);
             	
             	nameMch = Regex.Match(raw_name, "<span class=\"coordinateX\">(.+?)</span>");
             	if (!nameMch.Success)
@@ -1043,6 +1130,10 @@ namespace libTravian
             		return null;
             	}
             	name = name + nameMch.Groups[1].Value;
+            }
+            else
+            {
+            	name = UnicodeToString(name);
             }
 
             //	获得部队单位类型
@@ -1133,7 +1224,7 @@ namespace libTravian
             TTroopType type = postInVillageTroops ? TTroopType.InOtherVillages : TTroopType.InVillage;
             if (arrival != DateTime.MinValue)
             {
-                type = postInVillageTroops ? TTroopType.Outgoing : TTroopType.Incoming;
+                type = troop_type;
             }
 
             return new TTInfo()
@@ -1149,7 +1240,7 @@ namespace libTravian
             };
         }
         
-        private TTInfo ParseNatureTroops(string troopDetail, string[] headerColumns, bool postInVillageTroops)
+        private TTInfo ParseNatureTroops(string troopDetail, string[] headerColumns, bool postInVillageTroops, TTroopType troop_type)
         {
         	Match ownerMatch = Regex.Match(headerColumns[0], "<strong>(\\w+)</strong>");
         	if (!ownerMatch.Success)
@@ -1157,6 +1248,7 @@ namespace libTravian
         		return null;
         	}
         	string owner = ownerMatch.Groups[1].Value;
+        	owner = UnicodeToString(owner);
         	
         	Match nameMatch = Regex.Match(headerColumns[1], "<a>([^<]*?)</a>");
         	if (!nameMatch.Success)
@@ -1164,6 +1256,7 @@ namespace libTravian
         		return null;
         	}
         	string name = nameMatch.Groups[1].Value;
+        	name = UnicodeToString(name);
         	
         	//	获得部队单位类型
             string unitsBody = HtmlUtility.GetElementWithClass(troopDetail, "tbody", "units");
@@ -1253,7 +1346,7 @@ namespace libTravian
             TTroopType type = postInVillageTroops ? TTroopType.InOtherVillages : TTroopType.InVillage;
             if (arrival != DateTime.MinValue)
             {
-                type = postInVillageTroops ? TTroopType.Outgoing : TTroopType.Incoming;
+                type = troop_type;
             }
 
             return new TTInfo()
