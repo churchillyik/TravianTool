@@ -335,13 +335,13 @@ namespace libTravian
                 return DoRaidResult.SkipVillage;
             }
 
-            Match errorMatch = Regex.Match(confirmForm, "<p class=\"error\">(.+)</span>");
+            Match errorMatch = Regex.Match(confirmForm, "<p class=\"error\">(.+)</p>");
             if (errorMatch.Success)
             {
+            	string err_msg = errorMatch.Groups[1].Value.Replace("</span>", "");
                 string error = String.Format(
                     "Delete village {0}. Error: {1}",
-                    this.Targets[this.TargetID],
-                    errorMatch.Groups[1].Value);
+                    this.Targets[this.TargetID], err_msg);
                 this.UpCall.DebugLog(error, DebugLevel.W);
                 return DoRaidResult.DeleteVillage;
             }
