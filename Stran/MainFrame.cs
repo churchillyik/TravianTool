@@ -106,7 +106,15 @@ namespace Stran
             if (MainForm.Options.ContainsKey("proxy"))
             {
                 string proxy = MainForm.Options["proxy"];
-                TravianData.Proxy = new WebProxy(proxy);
+                if (proxy != "IE")
+                {
+                	TravianData.Proxy = new WebProxy(proxy);
+                }
+                else
+                {
+                	TravianData.Proxy = WebProxy.GetDefaultProxy();
+                	TravianData.Proxy.UseDefaultCredentials = true;
+                }
             }
             tr = DB.Instance.RestoreTravian(LoginInfo.Server);
             if (tr == null)
