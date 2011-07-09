@@ -338,7 +338,9 @@ namespace libTravian
             Match errorMatch = Regex.Match(confirmForm, "<p class=\"error\">(.+)</p>");
             if (errorMatch.Success)
             {
-            	string err_msg = errorMatch.Groups[1].Value.Replace("</span>", "");
+            	string err_msg = errorMatch.Groups[1].Value;
+            	err_msg = err_msg.Replace("<span>", "");
+            	err_msg = err_msg.Replace("</span>", "");
                 string error = String.Format(
                     "Delete village {0}. Error: {1}",
                     this.Targets[this.TargetID], err_msg);
