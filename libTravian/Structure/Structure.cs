@@ -53,6 +53,8 @@ namespace libTravian
 		public int GetOrPostDelaySeconds { get; set; }
 		public int CurGetOrPostTimes { get; set; }
 		public DateTime LastGetOrPost { get; set; }
+		[Json]
+		public DateTime LastUpload { get; set; }
 		public bool isRomans
 		{
 			get

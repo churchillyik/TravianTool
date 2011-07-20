@@ -355,8 +355,8 @@ namespace libTravian
                     "Delete village {0}. Error: {1}",
                     tpEvadePoint,
                     errorMatch.Groups[1].Value);
-                UpCall.DebugLog("增援位置不靠谱：" + error, DebugLevel.W);
-                this.MarkDeleted = true;
+                UpCall.DebugLog("部队未能发出，因为：" + error, DebugLevel.W);
+                MinimumDelay = nMinInterval;
                 return;
             }
             

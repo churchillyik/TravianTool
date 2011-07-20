@@ -921,7 +921,7 @@ namespace libTravian
             TroopCost[7] = new TResAmount(900, 360, 500, 70);
             TroopCost[8] = new TResAmount(950, 1350, 600, 90);
             TroopCost[9] = new TResAmount(30750, 27200, 45000, 37500);
-            TroopCost[10] = new TResAmount(5800, 5300, 7200, 5500);
+            TroopCost[10] = new TResAmount(4600, 4200, 5800, 4400);
             TroopCost[11] = new TResAmount(95, 75, 40, 40);
             TroopCost[12] = new TResAmount(145, 70, 85, 40);
             TroopCost[13] = new TResAmount(130, 120, 170, 70);
@@ -931,7 +931,7 @@ namespace libTravian
             TroopCost[17] = new TResAmount(1000, 300, 350, 70);
             TroopCost[18] = new TResAmount(900, 1200, 600, 60);
             TroopCost[19] = new TResAmount(35500, 26600, 25000, 27200);
-            TroopCost[20] = new TResAmount(7200, 5500, 5800, 6500);
+            TroopCost[20] = new TResAmount(5800, 4400, 4600, 5200);
             TroopCost[21] = new TResAmount(100, 130, 55, 30);
             TroopCost[22] = new TResAmount(140, 150, 185, 60);
             TroopCost[23] = new TResAmount(170, 150, 20, 40);
@@ -941,7 +941,7 @@ namespace libTravian
             TroopCost[27] = new TResAmount(950, 555, 330, 75);
             TroopCost[28] = new TResAmount(960, 1450, 630, 90);
             TroopCost[29] = new TResAmount(30750, 45400, 31000, 37500);
-            TroopCost[30] = new TResAmount(5500, 7000, 5300, 4900);
+            TroopCost[30] = new TResAmount(4400, 5600, 4200, 3900);
         }
         static public TResAmount Cost(int gid, int level)
         {

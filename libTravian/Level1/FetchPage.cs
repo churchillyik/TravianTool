@@ -138,7 +138,7 @@ namespace libTravian
 				wc.Headers[HttpRequestHeader.Referer] = _LastQueryPageURI;
 				_LastQueryPageURI = wc.BaseAddress + Uri;
 
-				wc.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+				wc.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0";
 				if(TD.Cookie == null)
 					if(CheckLogin && !Login())
 						return null;

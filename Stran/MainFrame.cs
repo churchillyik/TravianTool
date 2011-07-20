@@ -105,6 +105,7 @@ namespace Stran
             TravianData.GetOrPostDelaySeconds = LoginInfo.GetOrPostDelaySeconds;
             if (MainForm.Options.ContainsKey("proxy"))
             {
+            	System.Net.ServicePointManager.Expect100Continue = false;
                 string proxy = MainForm.Options["proxy"];
                 if (proxy != "IE")
                 {
