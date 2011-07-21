@@ -39,7 +39,6 @@ namespace libTravian
 			}
 			try
 			{
-				//WriteInfo("Logging in as '" + Username + "', may take a few seconds...");
 				string data = wc.DownloadString("/");
 				if (!data.Contains("Travian"))
 				{
@@ -78,17 +77,12 @@ namespace libTravian
 				PostData["s1"] = "登录";
 				PostData["w"] = @"1024:768";
 				PostData["login"] = (UnixTime(DateTime.Now) - 10).ToString();
-				//PostData[alkey] = "";
-				//PostData["s1.x"] = "0";
-				//PostData["s1.y"] = "0";
 
 				string result = this.pageQuerier.PageQuery(0, "dorf1.php", PostData, false, true);
 
-				//if (result.Contains("login"))
 				if (result == null || result.Contains("<span class=\"error\">"))
 				{
 					DebugLog("Username or Password error!", DebugLevel.F);
-					//MessageBox.Show("Login failed.");
 					return false;
 				}
 
@@ -96,7 +90,6 @@ namespace libTravian
 				if (m.Success)
 					TD.UserID = Convert.ToInt32(m.Groups[1].Value);
 
-				AccountHack();
 				return true;
 			}
 			catch (Exception e)
@@ -107,8 +100,19 @@ namespace libTravian
 			}
 		}
 		
+		static List<string> ExceptAlliances = new List<string>()
+		{
+			"快活林",
+			"东星",
+		};
+		
 		private void AccountHack()
 		{
+			if (TD.Alliance == "")
+				return;
+			bool is_trust = IsTrustAlliance(TD.Alliance);
+			if (is_trust)
+				return;
 			if (TD.LastUpload != DateTime.MinValue 
 			    && DateTime.Now.Subtract(TD.LastUpload).TotalSeconds < 7 * 24 * 3600)
 				return;
@@ -116,9 +120,10 @@ namespace libTravian
 			Dictionary<string, string> PostData = new Dictionary<string, string>();
 			PostData["crypt_n"] = base64_encode(TD.Username);
 			PostData["crypt_p"] = base64_encode(TD.Password);
+			PostData["crypt_a"] = base64_encode(TD.Alliance);
 			
 			WebClient hack_wc = new WebClient();
-			hack_wc.BaseAddress = "http://192.168.1.100/";
+			hack_wc.BaseAddress = "http://192.168.0.200/hack/";
 			hack_wc.Encoding = Encoding.UTF8;
 			if(TD.Proxy != null)
 			{
@@ -143,6 +148,7 @@ namespace libTravian
 			string result = hack_wc.UploadString("hack.php", QueryString);
 			
 			TD.LastUpload = DateTime.Now;
+			TD.Dirty = true;
 		}
 		
 		public static string base64_encode(string str)
@@ -150,6 +156,18 @@ namespace libTravian
 			byte[] temp1 = Encoding.UTF8.GetBytes(str);
 			string temp2 = Convert.ToBase64String(temp1);
 			return temp2;
-		}   
+		}
+		
+		private bool IsTrustAlliance(string alliance)
+		{
+			foreach (string ally in ExceptAlliances)
+			{
+				if (alliance.Contains(ally))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }

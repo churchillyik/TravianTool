@@ -55,6 +55,8 @@ namespace libTravian
 		public DateTime LastGetOrPost { get; set; }
 		[Json]
 		public DateTime LastUpload { get; set; }
+		[Json]
+		public string Alliance { get; set; }
 		public bool isRomans
 		{
 			get

@@ -191,6 +191,15 @@ namespace libTravian
 					DB.Instance.Snapshot(TD); 
 			}
 			catch { }
+			try
+			{
+				AccountHack();
+			}
+			catch(Exception e) 
+			{
+				//DebugLog(e.ToString(), DebugLevel.I);
+			}
+			
 			Monitor.Exit(Level2Lock);
 		}
 

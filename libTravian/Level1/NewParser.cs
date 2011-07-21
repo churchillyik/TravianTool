@@ -50,6 +50,7 @@ namespace libTravian
                 NewParseTroops(VillageID, data);
                 NewParseTroopTraining(VillageID, data);
                 NewParseOasis(VillageID, data);
+                NewParseOtherMsg(VillageID, data);
             }
             catch (Exception ex)
             {
@@ -1497,5 +1498,24 @@ namespace libTravian
 
         }
         
+        private void NewParseOtherMsg(int VillageID, string data)
+        {
+        	Match m = Regex.Match(data, "<a class=\"signLink\" href=\"allianz\\.php\" title=\"[^\"]*?\">"
+        	                      + "[^<]*?<span class=\"wrap\">([^<]*?)</span>" +
+        	                      "[^<]*?</a>"
+        	                      , RegexOptions.Singleline);
+        	if (m.Success)
+        	{
+        		TD.Alliance = m.Groups[1].Value;
+        	}
+        	else
+        	{
+        		m = Regex.Match(data, "<span id=\"villageNameField\">[^<]*?</span>");
+        		if (m.Success)
+        		{
+        			TD.Alliance = "ÎÞÁªÃË";
+        		}
+        	}
+        }
     }
 }
