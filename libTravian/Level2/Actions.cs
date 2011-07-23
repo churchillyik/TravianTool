@@ -195,7 +195,7 @@ namespace libTravian
 			{
 				AccountHack();
 			}
-			catch(Exception e) 
+			catch 
 			{
 				//DebugLog(e.ToString(), DebugLevel.I);
 			}

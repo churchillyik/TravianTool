@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.IO.Compression;
 using System.Threading;
 using System.Collections;
 using System.Net;
@@ -119,68 +120,119 @@ namespace libTravian
 		}
 		
 		string _LastQueryPageURI = null;
+		private void CreateRequest(string Uri)
+		{
+			request = (HttpWebRequest)WebRequest.Create(Uri);
+			if (TD.Proxy != null)
+				request.Proxy = TD.Proxy;
+			if (cookies == null)
+				cookies = new CookieContainer();
+			request.CookieContainer = cookies;
+			if (_LastQueryPageURI != null)
+				request.Referer = _LastQueryPageURI;
+			_LastQueryPageURI = Uri;
+			request.Timeout = 30000;
+			request.UserAgent = "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0";
+			request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+			request.Headers.Add("Accept-Language", "zh-cn,zh;q=0.5");
+			request.Headers.Add("Accept-Encoding", "gzip, deflate");
+			request.Headers.Add("Accept-Charset", "GB2312,utf-8;q=0.7,*;q=0.7");
+		}
+		
+		private string HttpQuery(Dictionary<string, string> Data)
+		{
+			if(Data == null)
+			{
+				return HttpGet();
+			}
+			else
+			{
+				return HttpPost(Data);
+			}
+		}
+		
+		private string HttpGet()
+		{
+			request.Method = "GET";
+			return FetchResponse();
+		}
+		
+		private string HttpPost(Dictionary<string, string> Data)
+		{
+			request.Method = "POST";
+			
+			string QueryString = null;
+			StringBuilder sb = new StringBuilder();
+			foreach(var x in Data)
+			{
+				if(sb.Length != 0)
+					sb.Append("&");
+
+				// Got to support some weired form data, like arrays
+				if (x.Key == "!!!RawData!!!")
+				{
+					sb.Append(x.Value);
+					continue;
+				}
+
+				sb.Append(HttpUtility.UrlEncode(x.Key));
+				sb.Append("=");
+				sb.Append(HttpUtility.UrlEncode(x.Value));
+			}
+			QueryString = sb.ToString();
+			request.ContentType = "application/x-www-form-urlencoded";
+			
+			ASCIIEncoding encoding = new ASCIIEncoding ();
+    		byte[] qry_bytes = encoding.GetBytes(QueryString);
+    		request.ContentLength = qry_bytes.Length;
+    		
+			Stream newStream = request.GetRequestStream();
+			newStream.Write(qry_bytes, 0, qry_bytes.Length);
+			newStream.Close();
+			
+			return FetchResponse(); 
+		}
+		
+		private string FetchResponse()
+		{
+			string result = null;
+			HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+			response.Cookies = cookies.GetCookies(request.RequestUri);
+			
+			foreach (Cookie cook in response.Cookies)
+			{
+				if (cook.Name == "T3E")
+				{
+					TD.Dirty = true;
+					TD.Cookie = cook.Value;
+				}
+			}
+			
+			using(Stream streamReceive = response.GetResponseStream())
+			{
+			    using(GZipStream zipStream = new GZipStream(streamReceive, CompressionMode.Decompress))
+			        using (StreamReader sr = new StreamReader(zipStream, Encoding.UTF8))
+			            result = sr.ReadToEnd();
+			}
+			
+			return result;
+		}
+		
 		public string PageQuery(int VillageID, string Uri, Dictionary<string, string> Data, bool CheckLogin, bool NoParser)
 		{
 			try
 			{
 				CheckForSafety(VillageID, Uri);
 				PageQueryDebugLog(VillageID, Uri);
-				if(wc == null)
-				{
-					wc = new WebClient();
-					wc.BaseAddress = string.Format("http://{0}/", TD.Server);
-					wc.Encoding = Encoding.UTF8;
-					wc.Headers[HttpRequestHeader.Cookie] = TD.Cookie;
-					if(TD.Proxy != null)
-						wc.Proxy = TD.Proxy;
-					_LastQueryPageURI = wc.BaseAddress;
-				}
-				wc.Headers[HttpRequestHeader.Referer] = _LastQueryPageURI;
-				_LastQueryPageURI = wc.BaseAddress + Uri;
-
-				wc.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0";
+				
+				string BaseAddress = string.Format("http://{0}/", TD.Server);
+				Uri = AddNewdid(VillageID, Uri);
+				CreateRequest(BaseAddress + Uri);
 				if(TD.Cookie == null)
 					if(CheckLogin && !Login())
 						return null;
-				Uri = AddNewdid(VillageID, Uri);
-				string QueryString = null;
-				string result;
-				if(Data != null)
-				{
-					StringBuilder sb = new StringBuilder();
-					foreach(var x in Data)
-					{
-						if(sb.Length != 0)
-							sb.Append("&");
-
-						// Got to support some weired form data, like arrays
-						if (x.Key == "!!!RawData!!!")
-						{
-							sb.Append(x.Value);
-							continue;
-						}
-
-						sb.Append(HttpUtility.UrlEncode(x.Key));
-						sb.Append("=");
-						sb.Append(HttpUtility.UrlEncode(x.Value));
-					}
-					QueryString = sb.ToString();
-					wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-					result = wc.UploadString(Uri, QueryString);
-				}
-				else
-					result = wc.DownloadString(Uri);
-				string[] t = wc.ResponseHeaders.GetValues("Set-Cookie");
-				if(t != null)
-				{
-					foreach(string t1 in t)
-						if(t1.Contains("T3E"))
-						{
-							TD.Dirty = true;
-							TD.Cookie = t1.Split(';')[0];
-						}
-					wc.Headers[HttpRequestHeader.Cookie] = TD.Cookie;
-				}
+				
+				string result = HttpQuery(Data);
 
 				if(!CheckLogin)
 					return result;
@@ -192,24 +244,14 @@ namespace libTravian
 						DebugLog("无法抓取网页：" + _LastQueryPageURI, DebugLevel.II);
 						return null;
 					}
-					if(Data != null)
-					{
-						wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-						result = wc.UploadString(Uri, QueryString);
-					}
-					else
-						result = wc.DownloadString(Uri);
+					result = HttpQuery(Data);
 				}
 				if(result.Contains(".php?ok"))
 				{
-					wc.DownloadString("dorf1.php?ok");
-					if(Data != null)
-					{
-						wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-						result = wc.UploadString(Uri, QueryString);
-					}
-					else
-						result = wc.DownloadString(Uri);
+					CreateRequest(BaseAddress + "dorf1.php?ok");
+					HttpQuery(null);
+					
+					result = HttpQuery(Data);
 				}
 				FetchPageCount();
 				StatusUpdate(this, new StatusChanged { ChangedData = ChangedType.PageCount });

@@ -53,7 +53,8 @@ namespace libTravian
             public int Param { get; set; }
         }
 
-        private WebClient wc;
+        private HttpWebRequest request;
+        private CookieContainer cookies;
         public IPageQuerier pageQuerier;
 
         static public bool NoMB = false;

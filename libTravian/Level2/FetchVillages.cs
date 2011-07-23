@@ -156,19 +156,20 @@ namespace libTravian
         
         public string CheckBuildingExistAndQuery(int VillageID, int gid)
         {
-        	bool bExist = false;
+        	int bid = -1;
         	if (TD.Villages[VillageID].isBuildingInitialized == 2)
         	{
-	        	foreach (TBuilding tb in TD.Villages[VillageID].Buildings.Values)
+	        	foreach (KeyValuePair<int, TBuilding> pair in TD.Villages[VillageID].Buildings)
 	        	{
+	        		TBuilding tb = pair.Value;
 	        		if (tb.Gid == gid && tb.Level != 0)
-	        			bExist = true;
+	        			bid = pair.Key;
 	        	}
         	}
         	
-        	if (bExist)
+        	if (bid != -1)
         	{
-        		return PageQuery(VillageID, "build.php?gid=" + gid.ToString());
+        		return PageQuery(VillageID, "build.php?gid=" + gid.ToString() + "&bid=" + bid);
         	}
         	else
         	{
