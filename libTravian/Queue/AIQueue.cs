@@ -323,9 +323,9 @@ namespace libTravian
 			if(UpCall.TD.Villages.Count > 20)
 				rate2 = new int[3] { 7, 8, 1000 };
 			else if(UpCall.TD.Villages.Count > 5)
-				rate2 = new int[3] { 3, 4, 3000 };
+				rate2 = new int[3] { 3, 4, 1000 };
 			else
-				rate2 = new int[3] { 2, 3, 3000 };	
+				rate2 = new int[3] { 2, 3, 1000 };	
 
 			//	检查仓库和粮仓
 			int tgid, tbid;

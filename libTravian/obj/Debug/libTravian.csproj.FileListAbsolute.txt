@@ -38,3 +38,4 @@ E:\Resources\TravianTool\libTravian\bin\Debug\json.pdb
 E:\Resources\TravianTool\libTravian\obj\Debug\ResolveAssemblyReference.cache
 E:\Resources\TravianTool\libTravian\obj\Debug\libTravian.dll
 E:\Resources\TravianTool\libTravian\obj\Debug\libTravian.pdb
+E:\Resources\TravianTool\libTravian\bin\Debug\ICSharpCode.SharpZipLib.dll

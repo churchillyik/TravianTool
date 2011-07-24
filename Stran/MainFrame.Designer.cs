@@ -239,9 +239,9 @@
 			this.checkBoxVerbose.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBoxVerbose.Location = new System.Drawing.Point(3, 6);
 			this.checkBoxVerbose.Name = "checkBoxVerbose";
-			this.checkBoxVerbose.Size = new System.Drawing.Size(71, 18);
+			this.checkBoxVerbose.Size = new System.Drawing.Size(74, 18);
 			this.checkBoxVerbose.TabIndex = 0;
-			this.checkBoxVerbose.Text = "Verbose";
+			this.checkBoxVerbose.Text = "详尽显示";
 			this.checkBoxVerbose.UseVisualStyleBackColor = true;
 			// 
 			// contextMenuEvent
@@ -973,7 +973,7 @@
 									this.CMTRefresh});
 			this.contextMenuTroop.Name = "contextMenuTroop";
 			this.contextMenuTroop.ShowImageMargin = false;
-			this.contextMenuTroop.Size = new System.Drawing.Size(130, 142);
+			this.contextMenuTroop.Size = new System.Drawing.Size(130, 120);
 			this.contextMenuTroop.Tag = "mtroop";
 			// 
 			// CMTRaid

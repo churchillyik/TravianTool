@@ -39,9 +39,7 @@ namespace libTravian
 			}
 			try
 			{
-				string BaseAddress = string.Format("http://{0}/", TD.Server);
-				CreateRequest(BaseAddress);
-				string data = HttpQuery(null);
+				string data = HttpQuery(0, "", null);
 				if (!data.Contains("Travian"))
 				{
 					DebugLog("Cannot visit travian website!", DebugLevel.F);

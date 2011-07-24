@@ -232,7 +232,7 @@ namespace libTravian
 			PostData["data[y]"] = center_axis_y.ToString();
 			PostData["data[zoomLevel]"] = "1";
 
-			return PageQuery(VillageID, "/ajax.php?cmd=mapPositionData", PostData);
+			return PageQuery(VillageID, "ajax.php?cmd=mapPositionData", PostData);
         }
         
         private int CalcAxisTran(int axis, int offset)
@@ -428,7 +428,7 @@ namespace libTravian
         	PostData["x"] = axis_x.ToString();
 			PostData["y"] = axis_y.ToString();
 
-			string data = PageQuery(VillageID, "/ajax.php?cmd=viewTileDetails", PostData);
+			string data = PageQuery(VillageID, "ajax.php?cmd=viewTileDetails", PostData);
 			
 			if (data == null)
 				return false;
@@ -672,7 +672,7 @@ namespace libTravian
         	PostData["x"] = axis_x.ToString();
 			PostData["y"] = axis_y.ToString();
 
-			string data = PageQuery(VillageID, "/ajax.php?cmd=viewTileDetails", PostData);
+			string data = PageQuery(VillageID, "ajax.php?cmd=viewTileDetails", PostData);
 			
 			if (data == null)
 				return;

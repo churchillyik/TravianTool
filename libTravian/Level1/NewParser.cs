@@ -1010,7 +1010,7 @@ namespace libTravian
                 			troop_type = TTroopType.Outgoing;
                 		}
                 	}
-                	string ret_data = this.PageQuery(VillageID, "/ajax.php?cmd=" + cmd, postData, true, true);
+                	string ret_data = this.PageQuery(VillageID, "ajax.php?cmd=" + cmd, postData, true, true);
                 	ret_data = ret_data.Replace("\\n", "\r\n");
                 	ret_data = ret_data.Replace("\\t", "\t");
                 	ret_data = ret_data.Replace("\\/", "/");

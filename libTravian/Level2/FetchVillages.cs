@@ -24,7 +24,7 @@ namespace libTravian
 {
     partial class Travian
     {
-        private static object Level2Lock = new object();
+        private object Level2Lock = new object();
         private void doFetchVillages()
         {
             lock (Level2Lock)
@@ -169,7 +169,7 @@ namespace libTravian
         	
         	if (bid != -1)
         	{
-        		return PageQuery(VillageID, "build.php?gid=" + gid.ToString() + "&bid=" + bid);
+        		return PageQuery(VillageID, "build.php?gid=" + gid.ToString() + "&id=" + bid);
         	}
         	else
         	{

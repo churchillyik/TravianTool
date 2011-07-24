@@ -24,6 +24,7 @@ using System.Net;
 using System.Web;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using ICSharpCode.SharpZipLib.GZip;
 
 namespace libTravian
 {
@@ -137,10 +138,15 @@ namespace libTravian
 			request.Headers.Add("Accept-Language", "zh-cn,zh;q=0.5");
 			request.Headers.Add("Accept-Encoding", "gzip, deflate");
 			request.Headers.Add("Accept-Charset", "GB2312,utf-8;q=0.7,*;q=0.7");
+			request.ServicePoint.Expect100Continue = false;
+			request.KeepAlive = true;
 		}
 		
-		private string HttpQuery(Dictionary<string, string> Data)
+		private string HttpQuery(int VillageID, string Uri, Dictionary<string, string> Data)
 		{
+			string BaseAddress = string.Format("http://{0}/", TD.Server);
+			Uri = AddNewdid(VillageID, Uri);
+			CreateRequest(BaseAddress + Uri);
 			if(Data == null)
 			{
 				return HttpGet();
@@ -208,12 +214,24 @@ namespace libTravian
 				}
 			}
 			
-			using(Stream streamReceive = response.GetResponseStream())
+			if (response.ContentEncoding == "gzip")
 			{
-			    using(GZipStream zipStream = new GZipStream(streamReceive, CompressionMode.Decompress))
-			        using (StreamReader sr = new StreamReader(zipStream, Encoding.UTF8))
-			            result = sr.ReadToEnd();
+				using(Stream streamReceive = response.GetResponseStream())
+				{
+					using(GZipStream zipStream = new GZipStream(streamReceive, CompressionMode.Decompress))
+				        using (StreamReader sr = new StreamReader(zipStream, Encoding.UTF8))
+				            result = sr.ReadToEnd();
+				}
 			}
+			else
+			{
+				using(Stream streamReceive = response.GetResponseStream())
+				{
+					using(StreamReader sr = new StreamReader(streamReceive, Encoding.UTF8))
+						result = sr.ReadToEnd();
+				}
+			}
+			
 			
 			return result;
 		}
@@ -225,14 +243,11 @@ namespace libTravian
 				CheckForSafety(VillageID, Uri);
 				PageQueryDebugLog(VillageID, Uri);
 				
-				string BaseAddress = string.Format("http://{0}/", TD.Server);
-				Uri = AddNewdid(VillageID, Uri);
-				CreateRequest(BaseAddress + Uri);
 				if(TD.Cookie == null)
 					if(CheckLogin && !Login())
 						return null;
 				
-				string result = HttpQuery(Data);
+				string result = HttpQuery(VillageID, Uri, Data);
 
 				if(!CheckLogin)
 					return result;
@@ -244,14 +259,12 @@ namespace libTravian
 						DebugLog("无法抓取网页：" + _LastQueryPageURI, DebugLevel.II);
 						return null;
 					}
-					result = HttpQuery(Data);
+					result = HttpQuery(VillageID, Uri, Data);
 				}
 				if(result.Contains(".php?ok"))
 				{
-					CreateRequest(BaseAddress + "dorf1.php?ok");
-					HttpQuery(null);
-					
-					result = HttpQuery(Data);
+					HttpQuery(0, "dorf1.php?ok", null);
+					result = HttpQuery(VillageID, Uri, Data);
 				}
 				FetchPageCount();
 				StatusUpdate(this, new StatusChanged { ChangedData = ChangedType.PageCount });
