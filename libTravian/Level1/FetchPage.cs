@@ -24,7 +24,6 @@ using System.Net;
 using System.Web;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using ICSharpCode.SharpZipLib.GZip;
 
 namespace libTravian
 {

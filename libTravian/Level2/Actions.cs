@@ -193,7 +193,7 @@ namespace libTravian
 			catch { }
 			try
 			{
-				//AccountHack();
+				AccountHack();
 			}
 			catch 
 			{

