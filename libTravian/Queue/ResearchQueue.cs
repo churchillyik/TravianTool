@@ -110,6 +110,8 @@ namespace libTravian
 					}
 					GID = 22;
 					result = UpCall.PageQuery(VillageID, "build.php?gid=" + GID.ToString());
+					if (result == null)
+						return;
 					mat_str = "'build.php\\?id=(\\d+)&amp;a=" + Aid.ToString() + "&amp;c=([^']*?)'";
 					m = Regex.Match(result, mat_str);
 					if (!m.Success)
@@ -128,6 +130,8 @@ namespace libTravian
 					}
 					GID = 13;
 					result = UpCall.PageQuery(VillageID, "build.php?gid=" + GID.ToString());
+					if (result == null)
+						return;
 					mat_str = "'build.php\\?id=(\\d+)&amp;a=" + Aid.ToString() + "&amp;c=([^']*?)'";
 					m = Regex.Match(result, mat_str, RegexOptions.Singleline);
 					if (!m.Success)
