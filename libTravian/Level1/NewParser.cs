@@ -101,7 +101,7 @@ namespace libTravian
                 return;
             MatchCollection mc;
             mc = Regex.Matches(
-            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^0-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
+            	data, "newdid=(\\d+).*?\\((\\-?\\d+).*?\\|[^0-9\\-]*?(\\-?\\d+)\\)[^>]*?>([^<]*?)</a>", RegexOptions.Singleline);
             /*
              * Groups:
              * [1]: village id
@@ -189,7 +189,7 @@ namespace libTravian
             
             MatchCollection mc;
             mc = Regex.Matches(
-            	data, "newdid=(\\d*)[^\\(]*?\\((\\-?\\d*)[^\\|]*?\\|[^0-9\\-]*?(\\-?\\d*)\\)[^>]*?>([^<]*?)</a>");
+            	data, "newdid=(\\d+).*?\\((\\-?\\d+).*?\\|[^0-9\\-]*?(\\-?\\d+)\\)[^>]*?>([^<]*?)</a>", RegexOptions.Singleline);
             /*
              * Groups:
              * [1]: village id
@@ -230,12 +230,15 @@ namespace libTravian
                     int vid = Convert.ToInt32(m.Groups[1].Value);
                     if (TD.Villages.ContainsKey(vid))
                         continue;
+                    string pos_x = m.Groups[2].Value;
+                    string pos_y = m.Groups[3].Value;
+                    string v_name = m.Groups[4].Value;
                     TD.Villages[vid] = new TVillage()
                     {
                         ID = vid,
-                        Name = m.Groups[4].Value,
-                        X = Convert.ToInt32(m.Groups[2].Value),
-                        Y = Convert.ToInt32(m.Groups[3].Value),
+                        Name = v_name,
+                        X = Convert.ToInt32(pos_x),
+                        Y = Convert.ToInt32(pos_y),
                         UpCall = this
                     };
 

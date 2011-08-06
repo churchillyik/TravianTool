@@ -93,6 +93,8 @@ namespace libTravian
 				return;
 			}
 			string data = UpCall.PageQuery(VillageID, "build.php?gid=" + Gid);
+			if (data == null)
+				return;
 			if (!data.Contains(string.Format("name=\"t{0}\"", Aid)))
 			{
 				UpCall.DebugLog("Cannot produce this kind of troop before research it.", DebugLevel.W);
