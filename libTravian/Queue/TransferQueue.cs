@@ -346,6 +346,12 @@ namespace libTravian
 		public int MinimumInterval { get; set; }
 
 		/// <summary>
+		/// Limit Rate of the amount for every kind of resources
+		/// </summary>
+		[Json]
+		public int LimitRate { get; set; }
+		
+		/// <summary>
 		/// Return false if the total resource amount is 0
 		/// </summary>
 		public bool IsValid
@@ -401,7 +407,7 @@ namespace libTravian
 			{
 				for(int i = 0; i < targetCapacity.Resources.Length; i++)
 				{
-					if(this.ResourceAmount.Resources[i] > targetCapacity.Resources[i])
+					if(this.ResourceAmount.Resources[i] > targetCapacity.Resources[i] * this.LimitRate / 100)
 					{
 						return true;
 					}

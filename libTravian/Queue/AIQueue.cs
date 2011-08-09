@@ -422,8 +422,8 @@ namespace libTravian
 			new ConstructGoal(false, 7, 5, 25, 10),
 			//	市场在行宫10级以后开始建造，造到10级
 			new ConstructGoal(false, 25, 10, 17, 10),
-			//	磨坊在市场10级以后开始建造，造到5级
-			new ConstructGoal(false, 17, 10, 8, 5),
+			//	磨坊在农场9级以后开始建造，造到5级
+			new ConstructGoal(false, 4, 9, 8, 5),
 			//	面包房在磨坊5级以后开始建造，造到5级
 			new ConstructGoal(false, 8, 5, 9, 5)
 		};

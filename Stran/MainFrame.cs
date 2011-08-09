@@ -548,7 +548,7 @@ namespace Stran
                 for (int i = 0; i < CV.InBuilding.Length; i++)
                 {
                     var x = TravianData.isRomans || i >= 2 ? CV.InBuilding[i] : CV.InBuilding[0];
-                    if (x == null || x.FinishTime < DateTime.Now || !TravianData.isRomans && i < 2 && i == (x.Gid > 5 ? 0 : 1))
+                    if (x == null || x.FinishTime < DateTime.Now || !TravianData.isRomans && i < 2 && i == (x.Gid >= 5 ? 0 : 1))
                         c_text = "";
                     else
                     {

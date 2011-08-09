@@ -294,6 +294,7 @@ namespace Stran
 				option.MinimumDelay = Convert.ToInt32((this.transferAt - DateTime.Now).TotalSeconds);
 			}
 
+			option.LimitRate = Convert.ToInt32(this.numericUpDown5.Value);
 			return option;
 		}
 

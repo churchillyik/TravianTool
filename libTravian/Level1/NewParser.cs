@@ -970,73 +970,10 @@ namespace libTravian
                         }
                     }
                 }
-                
-                MatchCollection mc = Regex.Matches(troopGroups[i]
-                                                   , "data:\\s*?\\{([^\\}]*?)\\},", RegexOptions.Singleline);
-                foreach (Match m in mc)
-                {
-                	string str_data = m.Groups[1].Value;
-                	string[] cmd_paras = str_data.Split(new string[] { "," }, StringSplitOptions.None);
-                	
-                	if (cmd_paras.Length < 7)
-                		continue;
-                	Dictionary<string, string> postData = new Dictionary<string, string>();
-                	string cmd = "";
-                	TTroopType troop_type = TTroopType.Outgoing;
-                	foreach (string para in cmd_paras)
-                	{
-                		string name, val;
-                		string[] pair = para.Split(new string[] { ":" }, StringSplitOptions.None);
-                		if (pair.Length != 2)
-                			continue;
-                		
-                		name = pair[0].Trim();
-                		val = pair[1].Trim().Replace("\'", "");
-                		if (name != "timer")
-                		{
-                			postData.Add(name, val);
-                		}
-                		else
-                		{
-                			postData.Add(name, "0");
-                		}
-                		if (name == "cmd")
-                		{
-                			cmd = val;
-                		}
-                		if (name == "fromOrTo" && val == "to")
-                		{
-                			troop_type = TTroopType.Incoming;
-                		}
-                		else if (name == "fromOrTo" && val == "from")
-                		{
-                			troop_type = TTroopType.Outgoing;
-                		}
-                	}
-                	string ret_data = this.PageQuery(VillageID, "ajax.php?cmd=" + cmd, postData, true, true);
-                	ret_data = ret_data.Replace("\\n", "\r\n");
-                	ret_data = ret_data.Replace("\\t", "\t");
-                	ret_data = ret_data.Replace("\\/", "/");
-                	ret_data = ret_data.Replace("\\\"", "\"");
-                	troopDetails = HtmlUtility.GetElementsWithClass(
-	                    ret_data,
-	                    "table",
-	                    "troop_details\\s*[^\"]*?");
-                	postInVillageTroops = inVillageTroopsParsed;
-	                foreach (string troopDetail in troopDetails)
-	                {
-	                    TTInfo troop = this.ParseTroopDetail(troopDetail, postInVillageTroops, troop_type);
-	                    if (troop != null)
-	                    {
-	                        village.Troop.Troops.Add(troop);
-	                        if (troop.TroopType == TTroopType.InVillage)
-	                        {
-	                            inVillageTroopsParsed = true;
-	                        }
-	                    }
-	                }
-                }
             }
+            
+            LoadTroopsOnTheWay(village, "to", inVillageTroopsParsed);
+            LoadTroopsOnTheWay(village, "from", inVillageTroopsParsed);
             
             HeroStatus status = CheckIfInAdventure(VillageID);
             if (status != HeroStatus.HERO_NOT_BELONG_HERE)
@@ -1051,6 +988,67 @@ namespace libTravian
             
             TD.Dirty = true;
         	StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Villages });
+        }
+        
+        private void LoadTroopsOnTheWay(TVillage village, string fromOrTo, bool inVillageTroopsParsed)
+        {        	
+        	Dictionary<string, string> postData = new Dictionary<string, string>();
+            postData["cmd"] 		= "loadTroopsOnTheWay";
+            postData["qid"] 		= "0";
+            postData["limit"] 		= "10";
+            postData["fromOrTo"] 	= fromOrTo;
+            postData["timer"] 		= "0";
+            postData["did"] 		= village.ID.ToString();
+            
+            TTroopType troop_type = TTroopType.Outgoing;
+            if (fromOrTo == "to")
+            {
+            	troop_type = TTroopType.Incoming;
+            }
+        	
+        	int count = 0;
+        	int offset = 0;
+        	postData["offset"] = offset.ToString();
+        	
+        	while (true)
+        	{
+            	string ret_data = this.PageQuery(village.ID, "ajax.php?cmd=loadTroopsOnTheWay", postData, true, true);
+            	if (ret_data == null)
+            		continue;
+            	ret_data = ret_data.Replace("\\n", "\r\n");
+            	ret_data = ret_data.Replace("\\t", "\t");
+            	ret_data = ret_data.Replace("\\/", "/");
+            	ret_data = ret_data.Replace("\\\"", "\"");
+            	string[] troopDetails = HtmlUtility.GetElementsWithClass(
+                    ret_data,
+                    "table",
+                    "troop_details\\s*[^\"]*?");
+            	bool postInVillageTroops = inVillageTroopsParsed;
+            	count = 0;
+                foreach (string troopDetail in troopDetails)
+                {
+                    TTInfo troop = this.ParseTroopDetail(troopDetail, postInVillageTroops, troop_type);
+                    if (troop != null)
+                    {
+                    	count++;
+                        village.Troop.Troops.Add(troop);
+                        if (troop.TroopType == TTroopType.InVillage)
+                        {
+                            inVillageTroopsParsed = true;
+                        }
+                    }
+                }
+                
+                if (count < 10)
+                {
+                	break;
+                }
+                else
+                {
+                	offset += 10;
+                	postData["offset"] = offset.ToString();
+                }
+        	}
         }
 
         private string UnicodeToString(string u_str)
