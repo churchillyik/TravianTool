@@ -47,8 +47,9 @@ namespace libTravian
 				string mask = (this.NoCrop ? "NC " : "") + (this.ForceGo ? "FG " : "");
 				count += this.MaxCount == 0 ? "∞" : this.MaxCount.ToString();
 				CalculateResourceAmount(UpCall.TD, VillageID);
+				string limit_rate = "(Tg" + this.LimitRate + "%)";
 				return mask + count + DistributionShortName[(int)this.Distribution]
-					+ this.ResourceAmount.ToString();
+					+ this.ResourceAmount.ToString() + limit_rate;
 			}
 		}
 
@@ -407,7 +408,7 @@ namespace libTravian
 			{
 				for(int i = 0; i < targetCapacity.Resources.Length; i++)
 				{
-					if(this.ResourceAmount.Resources[i] > targetCapacity.Resources[i] * this.LimitRate / 100)
+					if(this.ResourceAmount.Resources[i] > targetCapacity.Resources[i])
 					{
 						return true;
 					}
@@ -621,12 +622,12 @@ namespace libTravian
 					double timecost = source.Coord * destination.Coord / speed;
 					for(int i = 0; i < resources.Length; i++)
 					{
-						resources[i] = VR[i].Capacity;
+						resources[i] = VR[i].Capacity * this.LimitRate / 100;
 						if(destination.Market.UpperLimit != null)
 						{
 							resources[i] = destination.Market.UpperLimit.Resources[i];
 						}
-
+						
 						resources[i] -= VR[i].CurrAmount + (int)(VR[i].Produce * timecost);
 					}
 
