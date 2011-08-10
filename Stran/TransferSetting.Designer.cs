@@ -68,9 +68,9 @@
 			// buttonCancel
 			// 
 			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonCancel.Location = new System.Drawing.Point(302, 356);
+			this.buttonCancel.Location = new System.Drawing.Point(324, 356);
 			this.buttonCancel.Name = "buttonCancel";
-			this.buttonCancel.Size = new System.Drawing.Size(80, 32);
+			this.buttonCancel.Size = new System.Drawing.Size(69, 32);
 			this.buttonCancel.TabIndex = 21;
 			this.buttonCancel.Tag = "cancel";
 			this.buttonCancel.Text = "取消";
@@ -79,9 +79,9 @@
 			// buttonOK
 			// 
 			this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonOK.Location = new System.Drawing.Point(204, 356);
+			this.buttonOK.Location = new System.Drawing.Point(243, 356);
 			this.buttonOK.Name = "buttonOK";
-			this.buttonOK.Size = new System.Drawing.Size(80, 32);
+			this.buttonOK.Size = new System.Drawing.Size(72, 32);
 			this.buttonOK.TabIndex = 20;
 			this.buttonOK.Tag = "ok";
 			this.buttonOK.Text = "确定";
@@ -193,11 +193,11 @@
 			// labelDetail
 			// 
 			this.labelDetail.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelDetail.Location = new System.Drawing.Point(115, 219);
+			this.labelDetail.Location = new System.Drawing.Point(12, 238);
 			this.labelDetail.Multiline = true;
 			this.labelDetail.Name = "labelDetail";
 			this.labelDetail.ReadOnly = true;
-			this.labelDetail.Size = new System.Drawing.Size(278, 131);
+			this.labelDetail.Size = new System.Drawing.Size(381, 112);
 			this.labelDetail.TabIndex = 19;
 			this.labelDetail.TabStop = false;
 			// 
@@ -295,9 +295,9 @@
 			// 
 			// buttonTiming
 			// 
-			this.buttonTiming.Location = new System.Drawing.Point(12, 316);
+			this.buttonTiming.Location = new System.Drawing.Point(161, 356);
 			this.buttonTiming.Name = "buttonTiming";
-			this.buttonTiming.Size = new System.Drawing.Size(80, 32);
+			this.buttonTiming.Size = new System.Drawing.Size(63, 32);
 			this.buttonTiming.TabIndex = 18;
 			this.buttonTiming.Tag = "Timing";
 			this.buttonTiming.Text = "定时";
@@ -306,9 +306,9 @@
 			// 
 			// buttonSource
 			// 
-			this.buttonSource.Location = new System.Drawing.Point(12, 240);
+			this.buttonSource.Location = new System.Drawing.Point(12, 356);
 			this.buttonSource.Name = "buttonSource";
-			this.buttonSource.Size = new System.Drawing.Size(80, 32);
+			this.buttonSource.Size = new System.Drawing.Size(70, 32);
 			this.buttonSource.TabIndex = 16;
 			this.buttonSource.Tag = "MyResource";
 			this.buttonSource.Text = "我的资源";
@@ -317,9 +317,9 @@
 			// 
 			// buttonTarget
 			// 
-			this.buttonTarget.Location = new System.Drawing.Point(12, 278);
+			this.buttonTarget.Location = new System.Drawing.Point(88, 356);
 			this.buttonTarget.Name = "buttonTarget";
-			this.buttonTarget.Size = new System.Drawing.Size(80, 32);
+			this.buttonTarget.Size = new System.Drawing.Size(67, 32);
 			this.buttonTarget.TabIndex = 17;
 			this.buttonTarget.Tag = "TargetResource";
 			this.buttonTarget.Text = "目标资源";
@@ -365,7 +365,7 @@
 			// 
 			// numericUpDown5
 			// 
-			this.numericUpDown5.Location = new System.Drawing.Point(284, 190);
+			this.numericUpDown5.Location = new System.Drawing.Point(284, 200);
 			this.numericUpDown5.Name = "numericUpDown5";
 			this.numericUpDown5.Size = new System.Drawing.Size(61, 22);
 			this.numericUpDown5.TabIndex = 26;
@@ -377,7 +377,7 @@
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(115, 193);
+			this.label4.Location = new System.Drawing.Point(115, 203);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(169, 22);
 			this.label4.TabIndex = 27;
