@@ -999,6 +999,8 @@ namespace libTravian
             postData["fromOrTo"] 	= fromOrTo;
             postData["timer"] 		= "0";
             postData["did"] 		= village.ID.ToString();
+            postData["showAllIncoming"] = "";
+            postData["showAllOutgoing"] = "";
             
             TTroopType troop_type = TTroopType.Outgoing;
             if (fromOrTo == "to")
