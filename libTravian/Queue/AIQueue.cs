@@ -410,7 +410,7 @@ namespace libTravian
 		
 		//					0		1		2		3		4		5		6
 		//	建造优先级：木柴厂 > 砖块厂 > 铸造厂 > 行宫 > 市场 > 磨坊 > 面包房
-		private static ConstructGoal[] Goal = new ConstructGoal[7]
+		private static ConstructGoal[] Goal = new ConstructGoal[6]
 		{
 			//	木柴厂需要10级伐木场，造到5级
 			new ConstructGoal(false, 1, 10, 5, 5),
@@ -418,14 +418,14 @@ namespace libTravian
 			new ConstructGoal(false, 2, 10, 6, 5),
 			//	铸造厂需要10级铁矿，造到5级
 			new ConstructGoal(false, 3, 10, 7, 5),
-			//	行宫在铸造厂5级以后开始建造，造到10级
-			new ConstructGoal(false, 7, 5, 25, 10),
+			//	行宫在中心大楼10级以后开始建造，造到10级
+			new ConstructGoal(false, 15, 10, 25, 10),
 			//	市场在行宫10级以后开始建造，造到10级
 			new ConstructGoal(false, 25, 10, 17, 10),
-			//	磨坊在农场9级以后开始建造，造到5级
-			new ConstructGoal(false, 4, 9, 8, 5),
+			//	磨坊在农场9级以后开始建造，造到3级
+			new ConstructGoal(false, 4, 9, 8, 3)
 			//	面包房在磨坊5级以后开始建造，造到5级
-			new ConstructGoal(false, 8, 5, 9, 5)
+			//new ConstructGoal(false, 8, 5, 9, 5)
 		};
 		
 		private bool FetchAdditionalConstruction(TVillage CV, out int gid, out int bid)
