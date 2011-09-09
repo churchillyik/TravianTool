@@ -893,7 +893,7 @@ namespace Stran
 			this.checkBoxInclTribe.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBoxInclTribe.Location = new System.Drawing.Point(6, 105);
 			this.checkBoxInclTribe.Name = "checkBoxInclTribe";
-			this.checkBoxInclTribe.Size = new System.Drawing.Size(103, 21);
+			this.checkBoxInclTribe.Size = new System.Drawing.Size(96, 21);
 			this.checkBoxInclTribe.TabIndex = 78;
 			this.checkBoxInclTribe.Tag = "CBInclTribe";
 			this.checkBoxInclTribe.Text = "搜索死羊";

@@ -1056,7 +1056,7 @@ namespace libTravian
         private string UnicodeToString(string u_str)
         {
         	MatchCollection mc = Regex.Matches(
-        		u_str, @"\\u([\w]{2})([\w]{2})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        		u_str, @"\\u([\w]{2})([\w]{2})([^\\]*)", RegexOptions.IgnoreCase);
         	if (mc.Count == 0)
         		return u_str;
         	StringBuilder sb = new StringBuilder();
@@ -1066,6 +1066,8 @@ namespace libTravian
         		bts[0] = (byte)int.Parse(m.Groups[2].Value, NumberStyles.HexNumber);
         		bts[1] = (byte)int.Parse(m.Groups[1].Value, NumberStyles.HexNumber);
         		sb.Append(Encoding.Unicode.GetString(bts));
+        		string non_unicode = m.Groups[3].Value;
+        		sb.Append(non_unicode);
         	}
         	
         	return sb.ToString();
