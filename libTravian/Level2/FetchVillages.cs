@@ -65,8 +65,11 @@ namespace libTravian
                 PageQuery(VillageID, "dorf1.php");			//	资源田
                 PageQuery(VillageID, "dorf2.php");			//	内城建筑
                 TD.Dirty = true;
-
-                TD.Villages[VillageID].isBuildingInitialized = 2;
+				
+                if (TD.Villages.ContainsKey(VillageID))
+                {
+                	TD.Villages[VillageID].isBuildingInitialized = 2;
+                }
                 StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Buildings, VillageID = VillageID });
 
                 TD.Dirty = true;
@@ -82,7 +85,10 @@ namespace libTravian
                 CheckBuildingExistAndQuery(VillageID, 13);	//	铁匠铺
                 CheckBuildingExistAndQuery(VillageID, 22);	//	研究院
                 CheckBuildingExistAndQuery(VillageID, 24);	//	市政厅
-                TD.Villages[VillageID].isUpgradeInitialized = 2;
+                if (TD.Villages.ContainsKey(VillageID))
+                {
+                	TD.Villages[VillageID].isUpgradeInitialized = 2;
+                }
                 StatusUpdate(this, new StatusChanged() { ChangedData = ChangedType.Research, VillageID = VillageID });
                 TD.Dirty = true;
             }
@@ -95,7 +101,10 @@ namespace libTravian
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isDestroyInitialized = 1;
                 CheckBuildingExistAndQuery(VillageID, 15);	//	中心大楼
-                TD.Villages[VillageID].isDestroyInitialized = 2;
+                if (TD.Villages.ContainsKey(VillageID))
+                {
+                	TD.Villages[VillageID].isDestroyInitialized = 2;
+                }
                 TD.Dirty = true;
             }
         }
@@ -107,7 +116,10 @@ namespace libTravian
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isMarketInitialized = 1;
                 CheckBuildingExistAndQuery(VillageID, 17);	//	市场
-                TD.Villages[VillageID].isMarketInitialized = 2;
+                if (TD.Villages.ContainsKey(VillageID))
+                {
+                	TD.Villages[VillageID].isMarketInitialized = 2;
+                }
                 TD.Dirty = true;
             }
         }
@@ -122,7 +134,10 @@ namespace libTravian
                 CheckBuildingExistAndQuery(VillageID, 19);	//	兵营
                 CheckBuildingExistAndQuery(VillageID, 20);	//	马厩
                 CheckBuildingExistAndQuery(VillageID, 21);	//	工场
-                TD.Villages[VillageID].isTroopInitialized = 2;
+                if (TD.Villages.ContainsKey(VillageID))
+                {
+                	TD.Villages[VillageID].isTroopInitialized = 2;
+                }
                 TD.Dirty = true;
             }
         }
@@ -148,8 +163,10 @@ namespace libTravian
                 {
                     NewParseEntry(VillageID, data);
                 }
-
-                TD.Villages[VillageID].isTroopInitialized = 2;
+				if (TD.Villages.ContainsKey(VillageID))
+				{
+                	TD.Villages[VillageID].isTroopInitialized = 2;
+				}
                 TD.Dirty = true;
             }
         }
