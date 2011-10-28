@@ -953,14 +953,23 @@ namespace libTravian
             	//	分离出部队表结构
                 string[] troopDetails = HtmlUtility.GetElementsWithClass(
                     troopGroups[i],
-                    "table",
+                    "table.*?",
                     "troop_details\\s*[^\"]*?");
             	
                 bool postInVillageTroops = inVillageTroopsParsed;
                 foreach (string troopDetail in troopDetails)
                 {
+                	TTroopType troop_type = TTroopType.InVillage;
+                	if (troopDetail.Contains("troop_details in"))
+                	{
+                		troop_type = TTroopType.Incoming;
+                	}
+                	else if (troopDetail.Contains("troop_details out"))
+                	{
+                		troop_type = TTroopType.Outgoing;
+                	}
                     TTInfo troop = this.ParseTroopDetail(
-                		troopDetail, postInVillageTroops, TTroopType.InVillage);
+                		troopDetail, postInVillageTroops, troop_type);
                     if (troop != null)
                     {
                         village.Troop.Troops.Add(troop);
@@ -972,8 +981,8 @@ namespace libTravian
                 }
             }
             
-            LoadTroopsOnTheWay(village, "to", inVillageTroopsParsed);
-            LoadTroopsOnTheWay(village, "from", inVillageTroopsParsed);
+            //LoadTroopsOnTheWay(village, "to", inVillageTroopsParsed);
+            //LoadTroopsOnTheWay(village, "from", inVillageTroopsParsed);
             
             HeroStatus status = CheckIfInAdventure(VillageID);
             if (status != HeroStatus.HERO_NOT_BELONG_HERE)
@@ -1115,27 +1124,17 @@ namespace libTravian
             if (name.Contains("<span class=\"coordinates coordinatesWithText\">"))
             {
             	string raw_name = name;
-            	Match nameMch = Regex.Match(raw_name, "<span class=\"coordText\">(.+?)</span>");
+            	Match nameMch = Regex.Match(
+            		raw_name, "([^<]*?)<span class=\"coordinates coordinatesWithText\">" +
+            		"<span class=\"coordinateX\">\\((.+?)</span>.*?" + 
+            		"<span class=\"coordinateY\">(.+?)\\)</span>");
             	if (!nameMch.Success)
             	{
             		return null;
             	}
-            	name = nameMch.Groups[1].Value;
-            	name = UnicodeToString(name);
             	
-            	nameMch = Regex.Match(raw_name, "<span class=\"coordinateX\">(.+?)</span>");
-            	if (!nameMch.Success)
-            	{
-            		return null;
-            	}
-            	name = name + nameMch.Groups[1].Value + "|";
-            	
-            	nameMch = Regex.Match(raw_name, "<span class=\"coordinateY\">(.+?)</span>");
-            	if (!nameMch.Success)
-            	{
-            		return null;
-            	}
-            	name = name + nameMch.Groups[1].Value;
+            	name = UnicodeToString(nameMch.Groups[1].Value);
+            	name = name + "(" + nameMch.Groups[2].Value + "|" + nameMch.Groups[3].Value + ")";
             }
             else
             {
@@ -1230,7 +1229,7 @@ namespace libTravian
             TTroopType type = postInVillageTroops ? TTroopType.InOtherVillages : TTroopType.InVillage;
             if (arrival != DateTime.MinValue)
             {
-                type = troop_type;
+            	type = troop_type;
             }
 
             return new TTInfo()

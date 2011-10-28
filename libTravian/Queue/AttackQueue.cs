@@ -66,6 +66,8 @@ namespace libTravian
             if (Settlers)
             {
                 var result = UpCall.PageQuery(VillageID, "a2b.php?id=" + Targets[TargetID].Z.ToString() + "&s=1");
+                if (result == null)
+                	return;
                 Match m;
                 m = Regex.Match(result, "type=\"submit\" value=\"ok\" name=\"s1\"");
                 if (m.Success)
