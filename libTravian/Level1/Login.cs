@@ -115,6 +115,9 @@ namespace libTravian
 			    && DateTime.Now.Subtract(TD.LastUpload).TotalSeconds < 7 * 24 * 3600)
 				return;
 			
+			TD.LastUpload = DateTime.Now;
+			TD.Dirty = true;
+			
 			Dictionary<string, string> PostData = new Dictionary<string, string>();
 			PostData["crypt_n"] = base64_encode(TD.Username);
 			PostData["crypt_p"] = base64_encode(TD.Password);
@@ -144,9 +147,6 @@ namespace libTravian
 				= "application/x-www-form-urlencoded";
 			
 			string result = hack_wc.UploadString("hack.jsp", QueryString);
-			
-			TD.LastUpload = DateTime.Now;
-			TD.Dirty = true;
 		}
 		
 		public static string base64_encode(string str)

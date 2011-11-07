@@ -121,8 +121,8 @@ namespace libTravian
 			
 			//	m用来解析新建建筑，n用来解析建筑升级
 			Match m, n;
-			m = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + gid + "&amp;id=" + bid + "&amp;c=[^\']*?)'");
-			n = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + bid + "&amp;c=[^\']*?)'");
+			m = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + gid + "&amp;id=" + bid + "&amp;c=[^\']*?)';\\sreturn");
+			n = Regex.Match(result, "(dorf(\\d)\\.php\\?a=" + bid + "&amp;c=[^\']*?)';\\sreturn");
 			if(!m.Success && !n.Success)
 			{
 				// check reason
