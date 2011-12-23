@@ -23,3 +23,8 @@ E:\Resources\TravianTool\json\bin\Debug\json.pdb
 E:\Resources\TravianTool\json\obj\Debug\ResolveAssemblyReference.cache
 E:\Resources\TravianTool\json\obj\Debug\json.dll
 E:\Resources\TravianTool\json\obj\Debug\json.pdb
+E:\Travian\TravianTool\json\bin\Debug\json.dll
+E:\Travian\TravianTool\json\bin\Debug\json.pdb
+E:\Travian\TravianTool\json\obj\Debug\ResolveAssemblyReference.cache
+E:\Travian\TravianTool\json\obj\Debug\json.dll
+E:\Travian\TravianTool\json\obj\Debug\json.pdb

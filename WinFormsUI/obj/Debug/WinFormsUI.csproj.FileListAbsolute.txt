@@ -43,3 +43,12 @@ E:\Resources\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.Strin
 E:\Resources\TravianTool\WinFormsUI\obj\Debug\WinFormsUI.csproj.GenerateResource.Cache
 E:\Resources\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.dll
 E:\Resources\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.pdb
+E:\Travian\TravianTool\WinFormsUI\bin\Debug\license.txt
+E:\Travian\TravianTool\WinFormsUI\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+E:\Travian\TravianTool\WinFormsUI\bin\Debug\WeifenLuo.WinFormsUI.Docking.pdb
+E:\Travian\TravianTool\WinFormsUI\obj\Debug\ResolveAssemblyReference.cache
+E:\Travian\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.Resources.resources
+E:\Travian\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.Strings.resources
+E:\Travian\TravianTool\WinFormsUI\obj\Debug\WinFormsUI.csproj.GenerateResource.Cache
+E:\Travian\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.dll
+E:\Travian\TravianTool\WinFormsUI\obj\Debug\WeifenLuo.WinFormsUI.Docking.pdb

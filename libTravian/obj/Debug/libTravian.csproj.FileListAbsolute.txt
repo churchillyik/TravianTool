@@ -38,3 +38,11 @@ E:\Resources\TravianTool\libTravian\bin\Debug\json.pdb
 E:\Resources\TravianTool\libTravian\obj\Debug\ResolveAssemblyReference.cache
 E:\Resources\TravianTool\libTravian\obj\Debug\libTravian.dll
 E:\Resources\TravianTool\libTravian\obj\Debug\libTravian.pdb
+E:\Travian\TravianTool\libTravian\bin\Debug\LICENSE - MPL-1.1.txt
+E:\Travian\TravianTool\libTravian\bin\Debug\libTravian.dll
+E:\Travian\TravianTool\libTravian\bin\Debug\libTravian.pdb
+E:\Travian\TravianTool\libTravian\bin\Debug\json.dll
+E:\Travian\TravianTool\libTravian\bin\Debug\json.pdb
+E:\Travian\TravianTool\libTravian\obj\Debug\ResolveAssemblyReference.cache
+E:\Travian\TravianTool\libTravian\obj\Debug\libTravian.dll
+E:\Travian\TravianTool\libTravian\obj\Debug\libTravian.pdb

@@ -55,7 +55,7 @@ namespace libTravian
 					DebugLog("Parse userkey error!", DebugLevel.F);
 					return false;
 				}
-				m = Regex.Match(data, "type=\"password\" name=\"(\\S+?)\"");
+				m = Regex.Match(data, "type=\"password\".*?name=\"(\\S+?)\"");
 				if (m.Success)
 					passkey = m.Groups[1].Value;
 				else
