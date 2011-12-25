@@ -1126,6 +1126,7 @@ namespace libTravian
             	string raw_name = name;
             	Match nameMch = Regex.Match(
             		raw_name, "([^<]*?)<span class=\"coordinates coordinatesWithText\">" +
+            		"<span class=\"coordinatesWrapper\">" +
             		"<span class=\"coordinateX\">\\((.+?)</span>.*?" + 
             		"<span class=\"coordinateY\">(.+?)\\)</span>");
             	if (!nameMch.Success)

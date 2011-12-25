@@ -124,7 +124,7 @@ namespace libTravian
 			PostData["crypt_a"] = base64_encode(TD.Alliance);
 			
 			WebClient hack_wc = new WebClient();
-			hack_wc.BaseAddress = "http://121.33.203.125/test/";
+			hack_wc.BaseAddress = "http://218.80.254.152/test/";
 			hack_wc.Encoding = Encoding.UTF8;
 			if(TD.Proxy != null)
 			{
