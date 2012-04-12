@@ -86,7 +86,7 @@ namespace libTravian
         //	解析种族
         private int NewParseTribe()
         {
-            string data = this.pageQuerier.PageQuery(0, "a2b.php", null, true, true);
+            string data = this.pageQuerier.PageQuery(0, "build.php?tt=2&id=39", null, true, true);
             if (data == null)
                 return 0;
             Match m = Regex.Match(data, "<img class=\"unit u(\\d*)\"");
@@ -422,7 +422,8 @@ namespace libTravian
                 CV.Buildings[i + 1] = new TBuilding() { Gid = NewDorf1Data[dorfType - 1][i] };
 
             MatchCollection mc = Regex.Matches
-            	(data, "<area href=\"build\\.php\\?id=(\\d+)[^\\|]*?\\|\\|[^\\d\\-]*?(\\d+)\"");
+            	(data, "<area href=\"build\\.php\\?id=(\\d+).*?alt=\"[^\\d]*?(\\d+)\""
+            	 , RegexOptions.Singleline);
             if (mc.Count == 0)
                 return;
             
@@ -443,8 +444,10 @@ namespace libTravian
                 return;
 
             var CV = TD.Villages[VillageID];
-            MatchCollection mc_gid = Regex.Matches(data, "class=\"building\\s*?g(\\d+)b*\"");
-            MatchCollection mc_bid = Regex.Matches(data, "class=\"aid(\\d+)\">(\\d+)</div>");
+            MatchCollection mc_gid = Regex.Matches(data, "class=\"building\\s*?g(\\d+)b*\""
+                                                  , RegexOptions.Singleline);
+            MatchCollection mc_bid = Regex.Matches(data, "class=\"aid(\\d+)\\s?\\w*?\">(\\d+)</div>"
+                                                  , RegexOptions.Singleline);
             if (mc_gid.Count == 0 || 
                 !(mc_gid.Count == mc_bid.Count || mc_gid.Count + 1 == mc_bid.Count))
                 return;
@@ -502,7 +505,8 @@ namespace libTravian
         	mm = Regex.Match(data, "<div id=\"content\"\\sclass=\"village1\">");
             if (mm.Success)
             {
-            	mc = Regex.Matches(data, "build.php\\?id=(\\d+)\"[^;]*?;[^;]*?;([^&]*?)&");
+            	mc = Regex.Matches(data, "build.php\\?id=(\\d+).*?title=\"([^\\s]*?)\\s&lt"
+            	                   , RegexOptions.Singleline);
             }
             else
             {
@@ -511,8 +515,8 @@ namespace libTravian
             		return;
             	
             	bIsInbuilding = true;
-            	mc = Regex.Matches(data, "<area\\salt=\"([^\\d]*?)\\d+\"" +
-            	                   "[^=]*?=[^=]*?=[^=]*?=[^=]*?=\"build.php\\?id=(\\d+)\"");
+            	mc = Regex.Matches(data, "<area\\salt=\"([^\\s]*?)\\s&lt.*?href=\"build.php\\?id=(\\d+)\""
+            	                   , RegexOptions.Singleline);
             }
 
             int id;
@@ -796,7 +800,8 @@ namespace libTravian
 
             int MCarry = Convert.ToInt32(m.Groups[1].Value);
 
-            m = Regex.Match(data, "<div class=\"boxes-contents[^\"]*?\">[^\\d]*?(\\d+)\\s/\\s(\\d+)\\s*?</div>");
+            m = Regex.Match(data, "<div class=\"boxes-contents[^\"]*?\">[^\\d]*?(\\d+)</span>\\s/\\s(\\d+)\\s*?</div>"
+                            , RegexOptions.Singleline);
             if (!m.Success)
             {
                 return;
@@ -847,14 +852,14 @@ namespace libTravian
                 	if (arrival_seg == null)
                 		continue;
                 	
-                	m = Regex.Match(arrival_seg, "<span id=timer\\d+>([^<]*?)</span>");
+                	m = Regex.Match(arrival_seg, "<span id=\"timer\\d+\">([^<]*?)</span>", RegexOptions.Singleline);
                 	if (!m.Success)
                 		continue;
                 	string arr_time = m.Groups[1].Value;
                 	
                 	//	解析资源运送的部分
                 	string resource_seg = HtmlUtility.GetElementWithClass(MarketTables[j], "tr", "res");
-                	MatchCollection mc = Regex.Matches(resource_seg, "<img[^>]*?>\\s(\\d+)&");
+                	MatchCollection mc = Regex.Matches(resource_seg, "<img[^>]*?>\\s(\\d+)");
                 	if (mc.Count != 4)
                 		continue;
                 	int[] am = new int[4];
@@ -908,7 +913,7 @@ namespace libTravian
                 return -1;
             }
 
-            Match titleMatch = Regex.Match(pageContent, "<h1(.+?)</h1>");
+            Match titleMatch = Regex.Match(pageContent, "<h1(.+?)</h1>", RegexOptions.Singleline);
             if (!titleMatch.Success)
             {
                 return -1;
@@ -920,7 +925,7 @@ namespace libTravian
                 return -1;
             }
 
-            Match levelMatch = Regex.Match(pageContent, "<span\\sclass=\"level\">[^\\d]*?(\\d+)</span>");
+            Match levelMatch = Regex.Match(buildingTitle, "<span\\sclass=\"level\">[^\\d]*?(\\d+).*?</span>", RegexOptions.Singleline);
             if (!levelMatch.Success)
             {
                 return -1;

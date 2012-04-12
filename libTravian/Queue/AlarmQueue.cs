@@ -96,7 +96,7 @@ namespace libTravian
 
             if (!HasGetAll)
             {
-            	string data = UpCall.PageQuery(VillageID, "build.php?gid=16");
+            	string data = UpCall.PageQuery(VillageID, "build.php?gid=16&tt=1");
                 InitAttackers();
             }
 

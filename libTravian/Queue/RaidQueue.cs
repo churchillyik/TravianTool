@@ -293,14 +293,14 @@ namespace libTravian
                 return DoRaidResult.Postpone;
             }
 
-            string sendTroopsUrl = String.Format("a2b.php?z={0}", this.Targets[this.TargetID].Z);
+            string sendTroopsUrl = String.Format("build.php?id=39&tt=2&z={0}", this.Targets[this.TargetID].Z);
             string sendTroopForm = UpCall.PageQuery(this.VillageID, sendTroopsUrl);
             if (sendTroopForm == null)
             {
                 return DoRaidResult.SkipVillage;
             }
 
-            if (!sendTroopForm.Contains("<form method=\"POST\" name=\"snd\" action=\"a2b.php\">"))
+            if (!sendTroopForm.Contains("<form method=\"POST\" name=\"snd\" action=\"build.php?id=39&tt=2\">"))
             {
                 return DoRaidResult.SkipVillage;
             }
@@ -328,7 +328,7 @@ namespace libTravian
                 postData.Add(troopKey, troopNumber);
             }
 
-            string confirmUrl = "a2b.php";
+            string confirmUrl = "build.php?id=39&tt=2";
             string confirmForm = UpCall.PageQuery(this.VillageID, confirmUrl, postData);
             if (confirmForm == null)
             {
@@ -348,7 +348,7 @@ namespace libTravian
                 return DoRaidResult.DeleteVillage;
             }
 
-            if (!confirmForm.Contains("<form method=\"post\" action=\"a2b.php\">"))
+            if (!confirmForm.Contains("<form method=\"post\" action=\"build.php?id=39&tt=2\">"))
             {
                 return DoRaidResult.SkipVillage;
             }

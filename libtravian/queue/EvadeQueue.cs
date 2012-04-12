@@ -266,7 +266,7 @@ namespace libTravian
         {
         	var CV = UpCall.TD.Villages[VillageID];
         	
-        	UpCall.PageQuery(VillageID, "build.php?gid=16");
+        	UpCall.PageQuery(VillageID, "build.php?gid=16&tt=1");
         	latest_toop = null;
         	foreach (TTInfo tt in CV.Troop.Troops)
 	        {
@@ -312,10 +312,10 @@ namespace libTravian
         
         private void DoEvade()
         {
-        	string sendTroopsUrl = String.Format("a2b.php?z={0}", tpEvadePoint.Z);
+        	string sendTroopsUrl = String.Format("build.php?id=39&tt=2&z={0}", tpEvadePoint.Z);
             string sendTroopForm = UpCall.PageQuery(VillageID, sendTroopsUrl);
             if (sendTroopForm == null 
-               || !sendTroopForm.Contains("<form method=\"POST\" name=\"snd\" action=\"a2b.php\">"))
+               || !sendTroopForm.Contains("<form method=\"POST\" name=\"snd\" action=\"build.php?id=39&tt=2\">"))
             {
                 MinimumDelay = 0;
                 return;
@@ -340,7 +340,7 @@ namespace libTravian
                 postData.Add(troopKey, troopNumber);
             }
             
-            string confirmUrl = "a2b.php";
+            string confirmUrl = "build.php?id=39&tt=2";
             string confirmForm = UpCall.PageQuery(this.VillageID, confirmUrl, postData);
             if (confirmForm == null)
             {
@@ -360,7 +360,7 @@ namespace libTravian
                 return;
             }
             
-            if (!confirmForm.Contains("<form method=\"post\" action=\"a2b.php\">"))
+            if (!confirmForm.Contains("<form method=\"post\" action=\"build.php?id=39&tt=2\">"))
             {
             	MinimumDelay = 0;
                 return;
@@ -404,7 +404,7 @@ namespace libTravian
         
         private void DoTroopsBack()
         {
-            string data = UpCall.PageQuery(VillageID, "build.php?gid=16");
+            string data = UpCall.PageQuery(VillageID, "build.php?gid=16&tt=1");
             if (data == null)
             {
                 MinimumDelay = 0;

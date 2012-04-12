@@ -65,7 +65,7 @@ namespace libTravian
             }
             if (Settlers)
             {
-                var result = UpCall.PageQuery(VillageID, "a2b.php?id=" + Targets[TargetID].Z.ToString() + "&s=1");
+                var result = UpCall.PageQuery(VillageID, "build.php?id=39&tt=2&z=" + Targets[TargetID].Z.ToString());
                 if (result == null)
                 	return;
                 Match m;
@@ -94,7 +94,7 @@ namespace libTravian
             	for (int j = 0; j < wWaves[w]; j++)
             	{
             		Dictionary<string, string> PostData = new Dictionary<string, string>();
-            		var data = UpCall.PageQuery(VillageID, "a2b.php");
+            		var data = UpCall.PageQuery(VillageID, "build.php?tt=2&id=39");
             		Match m10;
             		m10 = Regex.Match(data, "type=\"hidden\" name=\"timestamp\" value=\"([^>]*?)\"");
             		string p_timestamp = m10.Groups[1].Value;
@@ -122,7 +122,7 @@ namespace libTravian
              			PostData["t" + i] = wTroops[w].Troops[i - 1].ToString();
 						
             		Dictionary<string, string> PostDataF = new Dictionary<string, string>();
-            		var result = UpCall.PageQuery(VillageID, "a2b.php", PostData);
+            		var result = UpCall.PageQuery(VillageID, "build.php?tt=2&id=39", PostData);
             		if (result.Contains("<p class=\"error\">"))
             		{
             			UpCall.DebugLog("Target is Error!!", DebugLevel.W);
@@ -189,7 +189,7 @@ namespace libTravian
             }
             //POST ALL Attack
             for (int i = 0; i < PostDataALL.Count; i++)
-            	UpCall.PageQuery(VillageID, "a2b.php", PostDataALL[i]);
+            	UpCall.PageQuery(VillageID, "build.php?tt=2&id=39", PostDataALL[i]);
             Wave++;
             if (TargetID == Targets.Count - 1)
             {

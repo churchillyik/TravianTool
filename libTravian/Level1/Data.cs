@@ -59,7 +59,7 @@ namespace libTravian
                         for (j = 0; j < 4; j++)
                         {
                             r[j] *= ratio;
-                            _data[i].Resources[j] = Math.Min(mytrunc(r[j]), 1000000);
+                            _data[i].Resources[j] = Math.Min(mytrunc(r[j]), 2000000);
                         }
                     }
                 }

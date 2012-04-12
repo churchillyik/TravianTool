@@ -148,7 +148,7 @@ namespace libTravian
             {
                 int VillageID = (int)o;
                 TD.Villages[VillageID].isTroopInitialized = 1;
-                string data = PageQuery(VillageID, "build.php?gid=16", null, true, true);	//	集结点
+                string data = PageQuery(VillageID, "build.php?gid=16&tt=1", null, true, true);	//	集结点
 
                 if (string.IsNullOrEmpty(data))
                     return;
@@ -186,7 +186,19 @@ namespace libTravian
         	
         	if (bid != -1)
         	{
-        		return PageQuery(VillageID, "build.php?gid=" + gid.ToString() + "&id=" + bid);
+        		if (gid == 17)
+        		{
+        			//	市场页面需要查询第二页
+        			return PageQuery(VillageID, "build.php?gid=" + gid.ToString() + "&t=5&id=" + bid);
+        		}
+        		else if (gid == 16)
+        		{
+        			return PageQuery(VillageID, "build.php?gid=" + gid.ToString() + "&tt=1&id=" + bid);
+        		}
+        		else
+        		{
+        			return PageQuery(VillageID, "build.php?gid=" + gid.ToString() + "&id=" + bid);
+        		}
         	}
         	else
         	{

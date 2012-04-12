@@ -154,10 +154,10 @@ namespace libTravian
 				}
 				
 				TPoint tp = new TPoint(InfoList[i].axis_x, InfoList[i].axis_y);
-				data = UpCall.PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");
+				data = UpCall.PageQuery(HeroLoc, "start_adventure.php?from=list&kid=" + tp.Z.ToString());
 				if (data == null)
 					continue;
-                Match m_test = Regex.Match(data, "type=\"submit\" value=\"ok\" name=\"h1\"");
+                Match m_test = Regex.Match(data, "type=\"submit\" value=\".*?\" name=\"start\"");
                 if (!m_test.Success)
                 	continue;
 				
@@ -171,8 +171,8 @@ namespace libTravian
 					val = m.Groups[2].Value;
 					PostData[key] = val;
 				}
-				PostData["h1"] = "ok";
-				UpCall.PageQuery(HeroLoc, "a2b.php", PostData);
+				UpCall.PageQuery(HeroLoc, "start_adventure.php", PostData);
+				UpCall.PageQuery(HeroLoc, "build.php?gid=16&tt=1");
 				
 				MinimumDelay = Convert.ToInt32(ts.TotalSeconds);
 				cur_adv_pt = tp;

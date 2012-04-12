@@ -178,11 +178,11 @@ namespace libTravian
 					return;
 				}
 				TPoint tp = new TPoint(TD.Adv_Sta.HeroAdventures[Key].axis_x, TD.Adv_Sta.HeroAdventures[Key].axis_y);
-				string data = PageQuery(HeroLoc, "a2b.php?id=" + tp.Z.ToString() + "&h=1");
+				string data = PageQuery(HeroLoc, "start_adventure.php?from=list&kid=" + tp.Z.ToString());
 				
 				if (string.IsNullOrEmpty(data))
                     return;
-                Match m_test = Regex.Match(data, "type=\"submit\" value=\"ok\" name=\"h1\"");
+                Match m_test = Regex.Match(data, "type=\"submit\" value=\".*?\" name=\"start\"");
                 if (!m_test.Success)
                 {
                 	DebugLog("英雄目前还无法进行探险！", DebugLevel.II);
@@ -198,8 +198,8 @@ namespace libTravian
 					val = m.Groups[2].Value;
 					PostData[key] = val;
 				}
-				PostData["h1"] = "ok";
-				PageQuery(HeroLoc, "a2b.php", PostData);
+				PageQuery(HeroLoc, "start_adventure.php", PostData);
+				PageQuery(HeroLoc, "build.php?gid=16&tt=1");
 			}
 		}
 	}

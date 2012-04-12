@@ -124,7 +124,7 @@ namespace libTravian
 				UpCall.TD.Villages.ContainsKey(TargetVillageID) &&
 				UpCall.TD.Villages[TargetVillageID].isBuildingInitialized == 2)
 			{
-				UpCall.PageQuery(TargetVillageID, "build.php?gid=17");
+				UpCall.PageQuery(TargetVillageID, "build.php?gid=17&t=5");
 				CalculateResourceAmount(UpCall.TD, VillageID);
 				
 				// check if it's a crop transfer, and crop is seriously needed from target village:
@@ -148,6 +148,7 @@ namespace libTravian
 			}
 
 			int timeCost = doTransfer(toTransfer, TargetPos);
+			UpCall.PageQuery(VillageID, "build.php?gid=17&t=5");
 			if(timeCost >= 0)
 			{
 				var CV = UpCall.TD.Villages[VillageID];
@@ -177,14 +178,15 @@ namespace libTravian
 		/// <returns>Error return minus number. Succeed return single way transfer time cost.</returns>
 		public int doTransfer(TResAmount Amount, TPoint TargetPos)
 		{
-			string result = UpCall.PageQuery(VillageID, "build.php?gid=17");
+			string result = UpCall.PageQuery(VillageID, "build.php?gid=17&t=5");
 			if(result == null)
 				return -1;
 			var CV = UpCall.TD.Villages[VillageID];
 			Dictionary<string, string> PostData = new Dictionary<string, string>();
-			var m = Regex.Match(result, "name=\"id\" value=\"(\\d+)\"");
+			var m = Regex.Match(result, "name=\"id\" id=\"id\" value=\"(\\d+)\"", RegexOptions.Singleline);
 			if(!m.Success)
 				return -1;
+			PostData["cmd"] = "prepareMarketplace";
 			PostData["id"] = m.Groups[1].Value;
 
 			if(result.Contains("Popup(2,5)") && Amount.TotalAmount > CV.Market.SingleCarry * CV.Market.ActiveMerchant)
@@ -215,18 +217,23 @@ namespace libTravian
 				PostData["r" + (i + 1).ToString()] = Amount.Resources[i].ToString();
 			}
 
+			//cmd=prepareMarketplace&r1=3000&r2=3000&r3=3000&r4=&dname=&x=50&y=105&id=27&t=5&x2=1
 			PostData["dname"] = "";
 			PostData["x"] = TargetPos.X.ToString();
 			PostData["y"] = TargetPos.Y.ToString();
-			PostData["s1.x"] = "0";
-			PostData["s1.y"] = "0";
+			PostData["t"] = "5";
+			PostData["x2"] = "1";
 
-			result = UpCall.PageQuery(VillageID, "build.php", PostData);
+			result = UpCall.PageQuery(VillageID, "ajax.php?cmd=prepareMarketplace", PostData);
 
+			//cmd=prepareMarketplace&t=5&id=27&a=64846&sz=2788&kid=236746&c=aaa02a&x2=1&r1=3000&r2=3000&r3=3000&r4=
 			if(result == null)
 				return -1;
 			PostData.Clear();
-			MatchCollection matches = Regex.Matches(result, "name=\"(\\w+)\" value=\"(\\w+)\"");
+			result = result.Replace("\\\"", "\"");
+			result = result.Replace("\\/", "/");
+			PostData["cmd"] = "prepareMarketplace";
+			MatchCollection matches = Regex.Matches(result, "name=\"(\\w+)\" id=\"\\w+\" value=\"(\\w+)\"");
 			for (int i = 0; i < matches.Count; i ++)
             {
 				PostData[matches[i].Groups[1].Value] = matches[i].Groups[2].Value;
@@ -235,8 +242,6 @@ namespace libTravian
 			{
 				PostData["r" + (i + 1).ToString()] = Amount.Resources[i].ToString();
 			}
-			PostData["s1.x"] = "0";
-			PostData["s1.y"] = "0";
 			m = Regex.Match(result, "<td>([0-9:]{6,})</td>");
 			if(!m.Success)
 				return -1; // Parse error!
@@ -249,7 +254,7 @@ namespace libTravian
 				UpCall.TD.MarketSpeed = Convert.ToInt32(Math.Round(distance * 3600 / TimeCost));
 			}
 
-			result = UpCall.PageQuery(VillageID, "build.php", PostData);
+			UpCall.PageQuery(VillageID, "ajax.php?cmd=prepareMarketplace", PostData);
 			UpCall.BuildCount();
 
 			// write data into target village if it's my village.
