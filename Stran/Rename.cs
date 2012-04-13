@@ -28,7 +28,9 @@ namespace Stran
             newVillagename = this.tbnewVillagename.Text;
             // Get if possible Rename
             string mainuser = UpCall.PageQuery(ReVillageID, "spieler.php");
-            Match mu = Regex.Match(mainuser, "<a href=\"spieler.php\\?s=1\">", RegexOptions.Singleline);
+            if (mainuser == null)
+            	return;
+            Match mu = Regex.Match(mainuser, "<a\\s*?href=\"spieler.php\\?s=1\"", RegexOptions.Singleline);
             if (!mu.Success)
             {
                 UpCall.DebugLog("You are not owner of this accounts.", DebugLevel.W);
@@ -37,6 +39,7 @@ namespace Stran
             {
                 if (newVillagename != oldVillagename && newVillagename != null)
                 {
+                	//	cmd=changeVillageName&name=%E5%8A%A8%E5%A6%82%E8%84%B1%E5%85%94&did=63043
                     Dictionary<string, string> PostData = new Dictionary<string, string>();
                     PostData["cmd"] = "changeVillageName";
                     PostData["name"] = newVillagename;

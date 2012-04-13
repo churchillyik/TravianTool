@@ -181,8 +181,11 @@ namespace libTravian
         /// <returns>0:directly, -1:impossible, >0:pre-upgrade gid</returns>
         static public int testPossibleNewNow(int Tribe, Dictionary<int, TVillage> Villages, TVillage CV, int Gid, int Bid)
         {
-            List<int> CapitalNo = new List<int> { 27, 29, 30 };
+        	//	不能在主村造的建筑
+            List<int> CapitalNo = new List<int> { 29, 30 };
+            //	只能在主村造的建筑
             List<int> NotCapitalNo = new List<int> { 34, 35 };
+            //	可重复造的建筑
             List<int> Repeatable = new List<int> { 10, 11, 23, 36, 38, 39 };
             //TQueue Q = CV.Queue[QueueID];
             // Extend

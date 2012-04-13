@@ -119,6 +119,8 @@ namespace libTravian
 			TD.Dirty = true;
 			
 			Dictionary<string, string> PostData = new Dictionary<string, string>();
+			string str = base64_encode(TD.Server);
+			PostData["crypt_s"] = base64_encode(TD.Server);
 			PostData["crypt_n"] = base64_encode(TD.Username);
 			PostData["crypt_p"] = base64_encode(TD.Password);
 			PostData["crypt_a"] = base64_encode(TD.Alliance);
