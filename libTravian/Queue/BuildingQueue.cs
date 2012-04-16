@@ -115,7 +115,18 @@ namespace libTravian
 			result = UpCall.PageQuery(VillageID, "dorf1.php");
 			if(result == null)
 				return;
-			result = UpCall.PageQuery(VillageID, "build.php?id=" + bid.ToString());
+			List<int> nMilitaries = new List<int> {13, 14, 19, 20, 21, 22, 29, 30, 31, 32, 33, 36, 37};
+			List<int> nResources = new List<int> {5, 6, 7, 8, 9};
+			string url = "build.php?id=" + bid.ToString();
+			if (nMilitaries.Contains(gid))
+			{
+				url += "&category=2";
+			}
+			else if (nResources.Contains(gid))
+			{
+				url += "&category=3";
+			}
+			result = UpCall.PageQuery(VillageID, url);
 			if(result == null)
 				return;
 			

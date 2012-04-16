@@ -92,7 +92,12 @@ namespace libTravian
 				MarkDeleted = true;
 				return;
 			}
-			string data = UpCall.PageQuery(VillageID, "build.php?gid=" + Gid);
+			string url = "build.php?gid=" + Gid;
+			if (Gid == 25)
+			{
+				url += "&s=1";
+			}
+			string data = UpCall.PageQuery(VillageID, url);
 			if (data == null)
 				return;
 			if (!data.Contains(string.Format("name=\"t{0}\"", Aid)))
