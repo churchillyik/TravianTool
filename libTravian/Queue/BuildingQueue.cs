@@ -126,6 +126,10 @@ namespace libTravian
 			{
 				url += "&category=3";
 			}
+			else if (gid == 17)
+			{
+				url += "&t=0";
+			}
 			result = UpCall.PageQuery(VillageID, url);
 			if(result == null)
 				return;
