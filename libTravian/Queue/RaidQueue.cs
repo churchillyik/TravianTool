@@ -300,7 +300,7 @@ namespace libTravian
                 return DoRaidResult.SkipVillage;
             }
 
-            if (!sendTroopForm.Contains("<form method=\"POST\" name=\"snd\" action=\"build.php?id=39&tt=2\">"))
+            if (!sendTroopForm.Contains("<form method=\"post\" name=\"snd\" action=\"build.php?id=39&amp;tt=2\">"))
             {
                 return DoRaidResult.SkipVillage;
             }
@@ -348,7 +348,7 @@ namespace libTravian
                 return DoRaidResult.DeleteVillage;
             }
 
-            if (!confirmForm.Contains("<form method=\"post\" action=\"build.php?id=39&tt=2\">"))
+            if (!confirmForm.Contains("<form method=\"post\" action=\"build.php?id=39&amp;tt=2\">"))
             {
                 return DoRaidResult.SkipVillage;
             }
